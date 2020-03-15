@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions, ImageBackground, } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, Image, View, Dimensions, ImageBackground, } from 'react-native';
 
 import Carousel from 'react-native-anchor-carousel';
 
@@ -7,10 +7,10 @@ const { width } = Dimensions.get('window');
 
 const carouselItems = [
     {
-        top: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%203.png?raw=true',
-        body: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%2010.png?raw=true',
-        circles: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%207.png?raw=true',
-        button: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%202.png?raw=true',
+        top: 'https://raw.githubusercontent.com/adamtuenti/FrontEnd/master/Solinal-Front/Recurso%203.png',
+        body: 'https://raw.githubusercontent.com/adamtuenti/FrontEnd/master/Solinal-Front/Recurso%2010.png',
+        circles: 'https://raw.githubusercontent.com/adamtuenti/FrontEnd/master/Solinal-Front/Recurso%207.png',
+        button: 'https://raw.githubusercontent.com/adamtuenti/FrontEnd/master/Solinal-Front/Recurso%202.png',
         text: '',
         icon: ''
     },
@@ -64,29 +64,36 @@ export default class CarouselS extends Component {
           >
         </ImageBackground>
           <View style={styles.textLine}>
-            <Text>Ya tienes una cuenta?</Text>
+            <Text>Ya tienes una cuenta?</Text> 
             <Text>Inicia Sesión</Text>
           </View>
           <View style={styles.navBarBottom}>
-              <Image source={'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/blue-and-white-letter-p-logo-gbutton.png?raw=true'} style={styles.imageStyle}></Image>
-              <Image source={'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Facebook-share-icon.png?raw=true'} style={styles.imageStyle}></Image>
+              <Image 
+              source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/blue-and-white-letter-p-logo-gbutton.png?raw=true'}} style={styles.imageStyle}></Image>
+              <Image source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Facebook-share-icon.png?raw=true'}} style={styles.imageStyle}></Image>
           </View>
         </TouchableOpacity>
       );
     };
+    /* <Button
+                        title="Olvido su clave?"
+                        type="clear"
+                        //onPress={alert("Siguiente avance!")}
+                        />*/ //esto es un digamos un link, el on press es la accion q hara.
     render() {
         return (
           <Carousel
             style={styles.carousel}
             data={carouselItems}
-            renderItem={this.renderItem}
-            itemWidth={0.7 * width}
-            inActiveOpacity={0.3}
-            containerWidth={width - 10}
-            ref={(c) => {
-              this._carousel = c;
-            }}
-          />
+            renderItem={({ item, index })}
+                itemWidth={0.7 * width}
+                inActiveOpacity={0.3}
+                containerWidth={width - 10}
+                ref={(c) => {
+                  this._carousel = c;
+                  console.log('a')
+                }}
+              />
         );
       }
     }

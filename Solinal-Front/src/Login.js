@@ -18,7 +18,7 @@ class Login extends Component{
           password : '',
           loading: false,
           pacientes: [],
-          url: 'https://nymax.herokuapp.com/api/v1.0/patients/'
+          url: 'http://accountsolinal.pythonanywhere.com/api/user'
         }
         /*super(props)
 
@@ -90,12 +90,13 @@ class Login extends Component{
         var bandera = 0
 
         array1.forEach(function(element){
-            var name = element.names
-            var pass = element.address
+            var name = element.username
+            var pass = element.id
 
             if (name==username){
                 
                 console.log(name);
+                console.log(pass);
                 
                 
                 
@@ -118,7 +119,7 @@ class Login extends Component{
 
         }
         else if(bandera==1){
-            this.props.navigation.navigate('Registro')
+            this.props.navigation.navigate('CarouselS')
         }
 
 
@@ -173,6 +174,7 @@ class Login extends Component{
                 <TextInput
                     style={{height: 35,width:  142,borderColor: "gray",borderWidth: 1, alignItems:'center', fontWeight: 'bold',margin:5, padding:5}}
                     placeholder='Usuario'
+                    autoCapitalize="none"
                     onChangeText={username=>this.setState({username})}
                     
                     />
@@ -209,14 +211,14 @@ class Login extends Component{
                     <Button
                         title="Crear cuenta"
                         type="clear"
-                        onPress={
-                            alert("Esta es la pestaña que hara David")
-                        }
+                     //   onPress={
+                           // alert("Esta es la pestaña que hara David")
+                      //  }
                         />
                     <Button
                         title="Olvido su clave?"
                         type="clear"
-                        onPress={alert("Siguiente avance!")}
+                        //onPress={alert("Siguiente avance!")}
                         />
 
                 
