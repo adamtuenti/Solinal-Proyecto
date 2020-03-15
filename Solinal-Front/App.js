@@ -12,7 +12,7 @@ import Router from './src/Router';
 
 const AppNavigator = createStackNavigator(
   {
-    Login, Registro
+    Registro
   },
   {
     headerMode: 'none',
