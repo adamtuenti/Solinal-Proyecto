@@ -1,11 +1,13 @@
-import {createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import Login from './../src/Login';
-import Registro from './../src/Registro';
-import CarouselS from './../src/CarouselS';
+import Registro from './../src/Registro'; 
+import Reestablecer from './../src/Reestablecer';
 
-/*import Pacientes from './../pages/Pacientes';
+
+
+/*import Pacientes from './../pages/Pacientes';import Carousel from './Carousel';
 import HomeAPP from './../pages/HomeAPP';
 import Home from './../screens/Home';
 import CreateTask from './../screens/CreateTask';*/
@@ -13,31 +15,33 @@ import CreateTask from './../screens/CreateTask';*/
 
 
 const AppNavigator = createStackNavigator({
-    
-    Login:{
+
+
+    Login: {
         screen: Login,
-        navigationOptions:()=>({
-            headerTitle:'Login',
-            
+        navigationOptions: () => ({
+            headerTitle: 'Login',
+
         })
     },
-    Registro:{
+    Reestablecer: {
+        screen: Reestablecer,
+        navigationOptions: () => ({
+            headerTitle: 'Reestablecer',
+
+        })
+    },
+
+    Registro: {
         screen: Registro,
-        navigationOptions:()=>({
-            headerTitle:'Registro',
-            
+        navigationOptions: () => ({
+            headerTitle: 'Registro',
+
         })
     },
-    CarouselS:{
-        screen: CarouselS,
-        navigationOptions:()=>({
-            headerTitle:'CarouselS',
-            
-        })
-    }
-    //aqui pondras tu nueva paguina, usa la que se llama R
-},{
-    headerLayoutPreset:'center'
+
+}, {
+    headerLayoutPreset: 'center'
 })
 
 
