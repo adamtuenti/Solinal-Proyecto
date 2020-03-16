@@ -119,7 +119,7 @@ class Login extends Component{
 
         }
         else if(bandera==1){
-            this.props.navigation.navigate('CarouselS')
+            this.props.navigation.navigate('Home')
         }
 
 
@@ -165,7 +165,7 @@ class Login extends Component{
                 <Image
                         style={{width: 125, height: 175, margin:25}}
                         source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
-                        />
+                />
 
 
                 

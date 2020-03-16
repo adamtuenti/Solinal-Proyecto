@@ -6,6 +6,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Login from './src/Login';
 import Registro from './src/Registro';
 import CarouselS from './src/CarouselS';
+import Home from './src/Home';
+import Tab from './src/Tab';
 
 
 
@@ -13,7 +15,7 @@ import Router from './src/Router';
 
 const AppNavigator = createStackNavigator(
   {
-    Login, Registro, CarouselS
+    Login, Registro, CarouselS, Home, Tab
   },
   {
     headerMode: 'none',

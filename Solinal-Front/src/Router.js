@@ -4,6 +4,8 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Login from './../src/Login';
 import Registro from './../src/Registro';
 import CarouselS from './../src/CarouselS';
+import Home from './../src/Home';
+import Tab from './../src/Tab';
 
 /*import Pacientes from './../pages/Pacientes';
 import HomeAPP from './../pages/HomeAPP';
@@ -21,6 +23,13 @@ const AppNavigator = createStackNavigator({
             
         })
     },
+    Home:{
+        screen: Home,
+        navigationOptions:()=>({
+            headerTitle:'Home',
+            
+        })
+    },
     Registro:{
         screen: Registro,
         navigationOptions:()=>({
@@ -28,10 +37,19 @@ const AppNavigator = createStackNavigator({
             
         })
     },
+
     CarouselS:{
         screen: CarouselS,
         navigationOptions:()=>({
             headerTitle:'CarouselS',
+            
+        })
+    },
+
+    Tab:{
+        screen: Tab,
+        navigationOptions:()=>({
+            headerTitle:'Tab',
             
         })
     }
