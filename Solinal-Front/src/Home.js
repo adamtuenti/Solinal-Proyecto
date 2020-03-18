@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, SafeAreaView,FlatList, TouchableHighlight,Image, TextInput,Alert,TouchableOpacity } from 'react-native';
 import { Input, Button, SocialIcon, Icon } from 'react-native-elements';
 import { Container, Header, Content, Accordion } from "native-base";
-import * as Font from 'expo-font';
+
 
 
 
@@ -12,13 +12,7 @@ export default class Home extends Component{
 
     render() {
     return (
-    <Container>
-      <Header
-  leftComponent={{ icon: 'menu', color: '#fff' }}
-  centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-  rightComponent={{ icon: 'home', color: '#fff' }}
-/>
-      // Try setting `flexDirection` to `column`.
+    
       <View style={{flex: 1, flexDirection: 'column', backgroundColor: 'green', alignItems: 'center', justifyContent: 'center'}}>
 
         <Image
@@ -35,10 +29,10 @@ export default class Home extends Component{
             color='green'
             
             
-            onPress={() => this.props.navigation.navigate('Tab')}
+            onPress={() => this.props.navigation.navigate('Main')}
         />
       </View>
-    </Container>    
+     
     );
   }
 

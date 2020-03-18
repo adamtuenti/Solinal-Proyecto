@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Login from './../src/Login';
 import Registro from './../src/Registro'; 
 import Reestablecer from './../src/Reestablecer';
+import Main from './../src/Main';
 
 
 
@@ -21,6 +22,13 @@ const AppNavigator = createStackNavigator({
         screen: Login,
         navigationOptions: () => ({
             headerTitle: 'Login',
+
+        })
+    },
+    Main: {
+        screen: Main,
+        navigationOptions: () => ({
+            headerTitle: 'Main',
 
         })
     },
