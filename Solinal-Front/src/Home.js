@@ -28,7 +28,7 @@ export default class Home extends Component{
             color='green'
             
             
-            onPress={() => this.props.navigation.navigate('Tab')}
+            onPress={() => this.props.navigation.navigate('Main')}
         />
       </View>
     );
