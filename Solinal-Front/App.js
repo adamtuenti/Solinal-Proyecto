@@ -17,7 +17,7 @@ import Router from './src/Router';
 
 const AppNavigator = createStackNavigator(
   {
-    CarouselS,Login, Registro,  Home, Reestablecer, Main,
+    Main,CarouselS,Login, Registro,  Home, Reestablecer
   },
   {
     headerMode: 'none',

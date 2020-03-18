@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Header, Title, Content, Card, CardItem, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Font } from 'native-base';
+import { Container, Header, Title, Content, Card, CardItem, Footer, FooterTab, Button, Left, Right, Body,  Font } from 'native-base';
+import { Icon } from 'react-native-elements'
+import {
+  StyleSheet,
+  TouchableHighlight,
+  Text,
+  View,
+} from 'react-native'
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 
@@ -17,9 +24,13 @@ export default class Main extends Component {
   render() {
     return (
       <Container>
-        <Header style={{backgroundColor: '#1ed695'}}>
+
+
+
+        <Header style={{backgroundColor: '#1ed695',height:75}}>
           <Left />
           <Body>
+          <Icon active name="carryout" style={{color: '#636363'}}/>
             <Title>Hola, Nombre Apellido</Title>
           </Body>
           <Right>
@@ -28,16 +39,21 @@ export default class Main extends Component {
             </Button>
           </Right>
         </Header>
+
+
+
         <Content padder>
           <Card transparent>
             <CardItem>
-              <Left>
-              <Text style={{color: '#2ba855'}}>
-                  0 
+              <Left style={{width:175}}>
+              <Text style={{color: '#636363'}}>
+                  Auditorias realizadas: # 
+                
+                <Text style={{color: '#2ba855'}}>
+                  0
                 </Text>
-                <Text style={{color: '#636363'}}>
-                     el número de auditorías realizadas
                 </Text>
+
                 </Left>
                 <Body />
               <Right>
@@ -79,26 +95,42 @@ export default class Main extends Component {
              </CardItem>
            </Card>
         </Content>
+
+
+
+
+
+        
         <Footer>
           <FooterTab style={{backgroundColor:'white'}}>
-          <Button vertical>
-              <Icon name="apps" style={{color: '#636363'}}/>
-              <Text style={{color: '#636363'}}>Auditorías</Text>
+          
+              
+            <Button vertical>
+              <Icon active name="carryout" style={{color: '#636363'}}/>
+              <Text style={{color: '#636363',fontSize:10}}>Auditorias</Text>
+            </Button>
+            
+          
+            <Button vertical>
+              <Icon name="calendar" style={{color: '#636363'}} />
+              <Text style={{color: '#636363',fontSize:10}}>Calendario</Text>
+            </Button>
+
+            <Icon active name="carryout" style={{color: '#636363'}}/>
+            <Button vertical>
+              <Icon active name="carryout" style={{color: '#636363'}}/>
+              <Text style={{color: '#636363',fontSize:10}}>Acción Correctiva</Text>
             </Button>
             <Button vertical>
-              <Icon name="camera" style={{color: '#636363'}} />
-              <Text style={{color: '#636363'}}>Calendario</Text>
+              <Icon name="ei-bell" style={{color: '#636363'}}/>
+              <Text style={{color: '#636363', fontSize:10}}>No Conformidad</Text>
             </Button>
-            <Button vertical>
-              <Icon active name="navigate" style={{color: '#636363'}}/>
-              <Text style={{color: '#636363'}}>Acción Correctiva</Text>
-            </Button>
-            <Button vertical>
-              <Icon name="person" style={{color: '#636363'}}/>
-              <Text style={{color: '#636363'}}>No Conformidad</Text>
-            </Button>
+            
           </FooterTab>
         </Footer>
+
+
+
       </Container>
     );
   }
