@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Image } from 'react-native';
 import { Container, Header, Title, Content, Card, CardItem, Footer, FooterTab, Button, Left, Right, Body,  Font } from 'native-base';
 import { Icon } from 'react-native-elements'
 import {
@@ -28,9 +29,13 @@ export default class Main extends Component {
 
 
         <Header style={{backgroundColor: '#1ed695',height:75}}>
-          <Left />
+          <Left>
+            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%201.png'}}
+                            style= {{height: 40,
+                                     width: 40}}>
+            </Image>
+          </Left>
           <Body>
-          <Icon active name="carryout" style={{color: '#636363'}}/>
             <Title>Hola, Nombre Apellido</Title>
           </Body>
           <Right>
@@ -42,8 +47,8 @@ export default class Main extends Component {
 
 
 
-        <Content padder>
-          <Card transparent>
+        <Content padder style={{backgroundColor: '#f6f6f6'}}>
+          <Card transparent style={{backgroundColor: '#f6f6f6'}}>
             <CardItem>
               <Left style={{width:175}}>
               <Text style={{color: '#636363'}}>
@@ -65,64 +70,104 @@ export default class Main extends Component {
           </Card>
           <Card>
             <CardItem bordered>
+              <Left>
+              <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%206.png'}}
+                            style= {{height: 30,
+                                     width: 40}}>
+              </Image>
+              </Left>
               <Body>
                 <Text style={{color: '#636363'}}>Crear Equipo</Text>
               </Body>
+              <Right />
             </CardItem>
             <CardItem bordered>
+              <Left>
+              <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%207.png'}}
+                            style= {{height: 30,
+                                     width: 40}}>
+              </Image>
+              </Left>
               <Body>
                 <Text style={{color: '#636363'}}>
                   Mis Auditorías
                 </Text>
               </Body>
+              <Right />
             </CardItem>
             <CardItem bordered>
+              <Left>
+              <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%208.png'}}
+                            style= {{height: 30,
+                                     width: 40}}>
+              </Image>
+              </Left>
               <Body>
                 <Text style={{color: '#636363'}}>Recomienda Solinal Auditor</Text>
               </Body>
+              <Right />
             </CardItem>
           </Card>
           <Card>
             <CardItem>
-              <Icon active name="apps" style={{color: '#636363'}}/>
+            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%209.png'}}
+                            style= {{height: 60,
+                                     width: 80}}>
+              </Image>
               <Body>
                 <Text style={{color: '#1ed695'}}>CONVIÉRTETE EN PREMIUM</Text>
                 <Text style={{color: '#636363'}}>Vea estadísticas de cumplimiento, cierre no conformidades, o crea más checklists de auditoría</Text>
               </Body>
               <Right>
-                <Icon name="arrow-forward" style={{color: '#1ed695'}}/>
+              <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2010.png'}}
+                            style= {{height: 53,
+                                     width: 30}}>
+              </Image>
               </Right>
              </CardItem>
            </Card>
         </Content>
 
-
-
-
-
         
         <Footer>
-          <FooterTab style={{backgroundColor:'white'}}>
+          <FooterTab style={{backgroundColor: '#f6f6f6'}}>
           
               
             <Button vertical>
-              <Icon active name="carryout" style={{color: '#636363'}}/>
+            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2011.png'}}
+                            style= {{height: 25,
+                                     width: 25}}>
+              </Image>
               <Text style={{color: '#636363',fontSize:10}}>Auditorias</Text>
             </Button>
             
           
             <Button vertical>
-              <Icon name="calendar" style={{color: '#636363'}} />
+            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2012.png'}}
+                            style= {{height: 25,
+                                     width: 25}}>
+              </Image>
               <Text style={{color: '#636363',fontSize:10}}>Calendario</Text>
             </Button>
 
-            <Icon active name="carryout" style={{color: '#636363'}}/>
+            <Button vertical>                  
+            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2013.png'}}
+                            style= {{height: 25,
+                                     width: 25}}>
+              </Image>
+              </Button>
             <Button vertical>
-              <Icon active name="carryout" style={{color: '#636363'}}/>
+            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
+                            style= {{height: 25,
+                                     width: 25}}>
+              </Image>
               <Text style={{color: '#636363',fontSize:10}}>Acción Correctiva</Text>
             </Button>
             <Button vertical>
-              <Icon name="ei-bell" style={{color: '#636363'}}/>
+            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2015.png'}}
+                            style= {{height: 25,
+                                     width: 25}}>
+              </Image>
               <Text style={{color: '#636363', fontSize:10}}>No Conformidad</Text>
             </Button>
             
