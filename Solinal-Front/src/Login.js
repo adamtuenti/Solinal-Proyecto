@@ -71,7 +71,18 @@ class Login extends Component{
                         color='black'
                         />
                     }
-                    />*/
+                    />
+                    
+                    
+                     <TextInput
+                    style={{height: 35,width:  142,borderColor: "gray",borderWidth: 1, alignItems:'center', fontWeight: 'bold',margin:5, padding:5}}
+                    placeholder='Usuario'
+                    autoCapitalize="none"
+                    onChangeText={username=>this.setState({username})}
+                    
+                    />
+                    
+                    */
             
     }
     cambiar=()=>{
@@ -171,24 +182,30 @@ class Login extends Component{
                 
                 
             
+               
+                
                 <TextInput
-                    style={{height: 35,width:  142,borderColor: "gray",borderWidth: 1, alignItems:'center', fontWeight: 'bold',margin:5, padding:5}}
-                    placeholder='Usuario'
-                    autoCapitalize="none"
-                    onChangeText={username=>this.setState({username})}
-                    
-                    />
-                    
+                                    style={styles.input}
+                                    placeholder='User'
 
-                    <TextInput
-                        style={{height: 35,width:  142,borderColor: "gray",borderWidth: 1, alignItems:'center', fontWeight: 'bold', margin:5, padding:5}}
-                        secureTextEntry={true}
-                        placeholder='Clave'
-                    onChangeText={
-                        password => this.setState({password})
-                    }
+                                    autoCapitalize="none"
+                                    placeholderTextColor='lightgrey'
+                                    onChangeText={username => this.setState({ username })}
+
+                />
                     
-                    />
+                
+                <TextInput
+                                    style={styles.input}
+                                    placeholder='Password'
+
+                                    autoCapitalize="none"
+                                    placeholderTextColor='lightgrey'
+                                    onChangeText={password => this.setState({ password})}
+
+                />
+
+                    
 
                 
 
@@ -209,16 +226,16 @@ class Login extends Component{
                     
 
                     <Button
-                        title="Crear cuenta"
+                        title="Crear cuenta" //cuando presiones crear cuenta se ira a su pestana. Posi
                         type="clear"
-                     //   onPress={
-                           // alert("Esta es la pestaña que hara David")
-                      //  }
-                        />
+                        style={styles.botonLogin} 
+                        onPress={()=>this.props.navigation.navigate('Registro')} 
+                    
+                    />
                     <Button
-                        title="Olvido su clave?"
+                        title="¿Olvidó su clave?"
                         type="clear"
-                        //onPress={alert("Siguiente avance!")}
+                        onPress={()=>this.props.navigation.navigate('Reestablecer')} 
                         />
 
                 
@@ -255,24 +272,7 @@ class Login extends Component{
 
 export default Login;
 
-const IconButton = (props) => {
-    return (
-            <TouchableOpacity style={{ 
-                width: 50, 
-                height: 50, 
-                borderRadius: 25,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor:'#000000',
-                marginHorizontal: 6,
-                }}>
-                <Icon 
-                name={props.icono} 
-                size={38} 
-                color="#ffffff" />
-            </TouchableOpacity>
-    )
-}
+
 
 
 const styles = StyleSheet.create({
@@ -287,6 +287,18 @@ const styles = StyleSheet.create({
       marginTop: "70%",
       margin:10
     },
+    input: {
+        height: 30,
+        borderBottomColor: '#1ed796',
+        borderBottomWidth: 1,
+        paddingLeft: 10,
+        paddingRight: 10,
+        width: 142,
+        alignItems: 'center',
+        margin:5, 
+        padding:5,
+        fontSize: 15
+    },
 
     botonLogin:{
         alignItems: 'center',
@@ -296,6 +308,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 1,
         borderColor: '#d6d7da',
+        
    
 
     },botonGoogle:{

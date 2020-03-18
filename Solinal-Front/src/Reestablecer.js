@@ -26,7 +26,7 @@ class Reestablecer extends Component {
         alert('Por favor revisa tu correo');
 
     }
-    handleChangeInput(evento) {
+   /* handleChangeInput(evento) {
         const { email, value } = evento.target;
         let regex = new RegExp("^[ a-zA-Z ]+$");
         for (let i = 0; i <= value.size - 1; i++) {
@@ -39,7 +39,7 @@ class Reestablecer extends Component {
         this.setState({
             [email]: value  
         });
-    }
+    }*/
 
     render() {
 
@@ -68,7 +68,7 @@ class Reestablecer extends Component {
                             <TextInput
                                 id='nombre'
                                 value={this.state.nombre}
-                                onChange={this.handleChangeInput}
+                               // onChange={this.handleChangeInput}
                                 style={styles.input}
                                 placeholder='E-MAIL'
                                 autoCapitalize="none"

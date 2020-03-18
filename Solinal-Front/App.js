@@ -7,7 +7,8 @@ import Login from './src/Login';
 import Registro from './src/Registro';
 import CarouselS from './src/CarouselS';
 import Home from './src/Home';
-import Tab from './src/Tab';
+import Reestablecer from './src/Reestablecer';
+
 
 
 
@@ -15,7 +16,7 @@ import Router from './src/Router';
 
 const AppNavigator = createStackNavigator(
   {
-    Login, Registro, CarouselS, Home, Tab
+    CarouselS,Login, Registro,  Home, Reestablecer
   },
   {
     headerMode: 'none',
