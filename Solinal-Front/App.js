@@ -9,6 +9,7 @@ import CarouselS from './src/CarouselS';
 import Home from './src/Home';
 import Reestablecer from './src/Reestablecer';
 import Main from './src/Main';
+import AuditoriasVacia from './src/AuditoriasVacia';
 
 
 
@@ -17,7 +18,7 @@ import Router from './src/Router';
 
 const AppNavigator = createStackNavigator(
   {
-    Main,CarouselS,Login, Registro,  Home, Reestablecer
+    Main, CarouselS, Login, Registro, Home, Reestablecer, AuditoriasVacia,
   },
   {
     headerMode: 'none',

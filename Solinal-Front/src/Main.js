@@ -40,7 +40,10 @@ export default class Main extends Component {
           </Body>
           <Right>
             <Button transparent>
-              <Icon name='menu' />
+            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%205.png'}}
+                            style= {{height: 20,
+                                     width: 30}}>
+            </Image>
             </Button>
           </Right>
         </Header>
@@ -133,7 +136,7 @@ export default class Main extends Component {
           <FooterTab style={{backgroundColor: '#f6f6f6'}}>
           
               
-            <Button vertical>
+            <Button onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>
             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2011.png'}}
                             style= {{height: 25,
                                      width: 25}}>
