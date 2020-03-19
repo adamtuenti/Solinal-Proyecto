@@ -11,7 +11,7 @@ import {
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 
-export default class AuditoriasVacia extends Component {
+export default class CrearAuditoria extends Component {
 
     async componentDidMount() {
         await Font.loadAsync({
@@ -25,7 +25,7 @@ export default class AuditoriasVacia extends Component {
     render() {
         return (
             <Container>
-                <Header style={{backgroundColor: '#1ed695',height:75}}>
+                <Header style={{backgroundColor: '#1ed695', height:75}}>
                     <Left>
                         <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%201.png'}}
                             style= {{height: 40,
@@ -44,51 +44,43 @@ export default class AuditoriasVacia extends Component {
                     </Right>
                 </Header>
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
-                    <Card transparent style={{backgroundColor: '#f6f6f6'}}>
+                    <Card style={{height: 200}}>
                         <CardItem>
-                            <Left style={{width:175}}>
-                                <Text style={{color: '#636363'}}>
-                                Auditorias realizadas: #      
-                                    <Text style={{color: '#2ba855'}}>
-                                    0
-                                    </Text>
-                                </Text>
-                            </Left>
-                            <Body />
-                            <Right>
-                                <Text style={{color: '#2ba855'}}>
-                                CUENTA GRATUITA
-                                </Text>
-                            </Right>
-                        </CardItem>
-                    </Card>
-                    <Card>
-                        <CardItem>
-                            <Body style={{alignItems: 'center'}}>
-                                <Text style={{alignItems: 'center'}}>Mis Auditorías</Text>
+                            <Body>
+                                <Text style={{color: '#1ed695'}}>CREAR UNA NUEVA PLANTILLA</Text>
                             </Body>
                         </CardItem>
                         <CardItem cardBody style={{alignItems: 'center'}}>
+                            <Left style={{alignItems: 'center', paddingLeft: 10}}>
+                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2036.png'}} 
+                                       style={{height: 100, 
+                                        width: 100,
+                                        paddingLeft: 10}}/>
+                            </Left>
                             <Body style={{alignItems: 'center'}}>
-                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2032.png'}} 
-                                   style={{height: 200, 
-                                           width: 200, 
-                                           alignItems: 'center'}}/>
+                                <Text style={{color: '#636363'}}>
+                                    Puedes crear tus propias listas de inspección, ideal para auditorías personalizadas, auditorías a proveedores, checklists de verificación basado en la actividad del negocio
+                                </Text>
                             </Body>               
                         </CardItem>
+                    </Card>
+                    <Card style={{height: 200}}>
                         <CardItem>
-                            <Body style={{alignItems: 'center'}}>
-                                <Text style={{color: '#636363', fontSize: 8, alignItems: 'center'}}>Aún no has realizado ninguna auditoría</Text>
-                                <Text style={{color: '#636363', fontSize: 8, alignItems: 'center'}}>Encuentra las normas actualizadas y empieza a auditar</Text>
+                            <Body>
+                                <Text style={{color: '#1ed695'}}>BUSCAR LISTAS DE AUDITORÍAS BASADA EN NORMAS</Text>
                             </Body>
                         </CardItem>
-                        <CardItem style={{alignItems: 'center'}}>
+                        <CardItem cardBody style={{alignItems: 'center', paddingLeft: 10}}>
+                            <Left style={{alignItems: 'center'}}>
+                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2035.png'}} 
+                                       style={{height: 100, 
+                                               width: 100}}/>
+                            </Left>
                             <Body style={{alignItems: 'center'}}>
-                                <Button style={{backgroundColor:'#1ed695', alignItems: 'center', width: 200}}
-                                        onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
-                                    <Text style={{color: 'white', textAlign: 'center'}}>CREAR</Text>
-                                </Button>
-                            </Body>
+                                <Text style={{color: '#636363'}}>
+                                    Busca las normas que quieras auditar, ya sea por entidad privada o gobernamental, como el Codex Alimentarius, FDA, BRC, ISO International, y las que se encuentran vigentes en tu país
+                                </Text>
+                            </Body>               
                         </CardItem>
                     </Card>
                 </Content>
@@ -108,7 +100,7 @@ export default class AuditoriasVacia extends Component {
                             </Image>
                             <Text style={{color: '#636363',fontSize:10}}>Calendario</Text>
                         </Button>
-                        <Button vertical onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>                  
+                        <Button vertical>                  
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2013.png'}}
                                    style= {{height: 25,
                                             width: 25}}>
