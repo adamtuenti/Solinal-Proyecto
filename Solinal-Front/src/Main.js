@@ -203,7 +203,7 @@ export default class Main extends Component {
                             style= {{height: 29,
                                      width: 23}}>
               </Image>
-              <Text style={{color: '#636363',fontSize:9}}>Auditorias</Text>
+              <Text style={{color: '#636363', fontSize: 9}}>Auditorias</Text>
             </Button>
             
           
@@ -212,7 +212,7 @@ export default class Main extends Component {
                             style= {{height: 29,
                                      width: 27}}>
               </Image>
-              <Text style={{color: '#636363',fontSize:9}}>Calendario</Text>
+              <Text style={{color: '#636363', fontSize: 9}}>Calendario</Text>
             </Button>
 
             <Button vertical>                  
@@ -226,14 +226,14 @@ export default class Main extends Component {
                             style= {{height: 29,
                                      width: 25}}>
               </Image>
-              <Text style={{color: '#636363',fontSize:9}}>Acción Correctiva</Text>
+              <Text style={{color: '#636363', fontSize: 9}}>Acción Correctiva</Text>
             </Button>
             <Button vertical>
             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2015.png'}}
                             style= {{height: 29,
                                      width: 25}}>
               </Image>
-              <Text style={{color: '#636363', fontSize:9}}>No Conformidad</Text>
+              <Text style={{color: '#636363', fontSize: 9}}>No Conformidad</Text>
             </Button>
             
           </FooterTab>

@@ -84,12 +84,12 @@ export default class CrearAuditoria extends Component {
                         </CardItem>
                     </Card>
                 </Content>
-                <Footer>
+                <Footer style={{height:63}}>
                     <FooterTab style={{backgroundColor: '#f6f6f6'}}>
                         <Button vertical>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%207.png'}}
-                                   style= {{height: 25,
-                                            width: 25}}>
+                                   style= {{height: 29,
+                                            width: 23}}>
                             </Image>
                             <Text style={{color: '#636363',fontSize:10}}>Auditorias</Text>
                         </Button>

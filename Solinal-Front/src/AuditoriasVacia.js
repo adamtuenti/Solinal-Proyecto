@@ -44,24 +44,21 @@ export default class AuditoriasVacia extends Component {
                     </Right>
                 </Header>
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
-                    <Card transparent style={{backgroundColor: '#f6f6f6'}}>
-                        <CardItem>
-                            <Left style={{width:175}}>
-                                <Text style={{color: '#636363'}}>
-                                Auditorias realizadas: #      
-                                    <Text style={{color: '#2ba855'}}>
-                                    0
-                                    </Text>
-                                </Text>
-                            </Left>
-                            <Body />
-                            <Right>
+                    <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10}}>
+                        <View style={{marginRight:35}}>
+                            <Text style={{color: '#636363'}}>
+                                Auditorias realizadas: #    
                                 <Text style={{color: '#2ba855'}}>
-                                CUENTA GRATUITA
+                                    0
                                 </Text>
-                            </Right>
-                        </CardItem>
-                    </Card>
+                            </Text>
+                        </View>
+                        <View>
+                            <Text style={{color: '#2ba855'}}>
+                                CUENTA GRATUITA
+                            </Text>
+                        </View>
+                    </View>
                     <Card>
                         <CardItem>
                             <Body style={{alignItems: 'center'}}>
@@ -92,41 +89,41 @@ export default class AuditoriasVacia extends Component {
                         </CardItem>
                     </Card>
                 </Content>
-                <Footer>
+                <Footer style={{height:63}}>
                     <FooterTab style={{backgroundColor: '#f6f6f6'}}>
                         <Button vertical>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%207.png'}}
-                                   style= {{height: 25,
-                                            width: 25}}>
+                                   style= {{height: 29,
+                                            width: 23}}>
                             </Image>
-                            <Text style={{color: '#636363',fontSize:10}}>Auditorias</Text>
+                            <Text style={{color: '#636363',fontSize: 9}}>Auditorias</Text>
                         </Button>
                         <Button vertical>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2012.png'}}
-                                   style= {{height: 25,
-                                            width: 25}}>
+                                   style= {{height: 29,
+                                            width: 27}}>
                             </Image>
-                            <Text style={{color: '#636363',fontSize:10}}>Calendario</Text>
+                            <Text style={{color: '#636363',fontSize: 9}}>Calendario</Text>
                         </Button>
                         <Button vertical onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>                  
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2013.png'}}
-                                   style= {{height: 25,
-                                            width: 25}}>
+                                   style= {{height: 45,
+                                            width: 45}}>
                             </Image>
                         </Button>
                         <Button vertical>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
-                                   style= {{height: 25,
+                                   style= {{height: 29,
                                             width: 25}}>
                             </Image>
-                            <Text style={{color: '#636363',fontSize:10}}>Acción Correctiva</Text>
+                            <Text style={{color: '#636363',fontSize: 9}}>Acción Correctiva</Text>
                         </Button>
                         <Button vertical>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2015.png'}}
-                                   style= {{height: 25,
+                                   style= {{height: 29,
                                             width: 25}}>
                             </Image>
-                            <Text style={{color: '#636363', fontSize:10}}>No Conformidad</Text>
+                            <Text style={{color: '#636363', fontSize: 9}}>No Conformidad</Text>
                         </Button>
                     </FooterTab>
                 </Footer>
