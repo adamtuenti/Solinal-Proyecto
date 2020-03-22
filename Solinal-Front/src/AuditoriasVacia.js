@@ -62,7 +62,7 @@ export default class AuditoriasVacia extends Component {
                     <Card>
                         <CardItem>
                             <Body style={{alignItems: 'center'}}>
-                                <Text style={{alignItems: 'center'}}>Mis Auditorías</Text>
+                                <Text style={{alignItems: 'center',fontSize: 15,}}>Mis Auditorías</Text>
                             </Body>
                         </CardItem>
                         <CardItem cardBody style={{alignItems: 'center'}}>
@@ -74,21 +74,29 @@ export default class AuditoriasVacia extends Component {
                             </Body>               
                         </CardItem>
                         <CardItem>
-                            <Body style={{alignItems: 'center'}}>
-                                <Text style={{color: '#636363', fontSize: 8, alignItems: 'center'}}>Aún no has realizado ninguna auditoría</Text>
-                                <Text style={{color: '#636363', fontSize: 8, alignItems: 'center'}}>Encuentra las normas actualizadas y empieza a auditar</Text>
+                            <Body style={{alignItems: 'center', width:24,fontWeight: 'bold'}}>
+                                <Text style={{color: '#636363', fontSize: 12, alignItems: 'center'}}>Aún no has realizado ninguna auditoría</Text>
+                                <Text style={{color: '#636363', fontSize: 12, alignItems: 'center'}}>Encuentra las normas actualizadas y empieza a auditar</Text>
                             </Body>
                         </CardItem>
                         <CardItem style={{alignItems: 'center'}}>
                             <Body style={{alignItems: 'center'}}>
-                                <Button style={{backgroundColor:'#1ed695', alignItems: 'center', width: 200}}
-                                        onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
-                                    <Text style={{color: 'white', textAlign: 'center'}}>CREAR</Text>
-                                </Button>
+
+                                <TouchableHighlight
+                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
+                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> Crear </Text>
+                                    </TouchableHighlight>
+                                                        
                             </Body>
                         </CardItem>
                     </Card>
                 </Content>
+
+
+
+
+
+
                 <Footer style={{height:63}}>
                     <FooterTab style={{backgroundColor: '#f6f6f6'}}>
                         <Button vertical>
@@ -131,3 +139,22 @@ export default class AuditoriasVacia extends Component {
         );
     }  
 }
+
+
+
+const styles = StyleSheet.create({
+    
+
+    botonLogin:{
+        alignItems: 'center',
+        backgroundColor: '#1ed695',
+        padding: 10,
+        width:142,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: '#d6d7da',
+        
+   
+
+    }
+  });
