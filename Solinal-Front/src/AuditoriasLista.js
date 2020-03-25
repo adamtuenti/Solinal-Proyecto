@@ -11,7 +11,7 @@ import {
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 
-export default class AuditoriasBuscar extends Component {
+export default class AuditoriasLista extends Component {
     async componentDidMount() {
         await Font.loadAsync({
           Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -93,82 +93,80 @@ export default class AuditoriasBuscar extends Component {
                             </View>
                         </CardItem>
                     </Card>
-                    <Form>
-                        <Item picker>
-                            <Picker
-                                mode="dropdown"
-                                iosIcon={<Icon name="arrow-down" />}
-                                style={{ width: undefined }}
-                                placeholder="¿A qué país pertenece la norma o reglamento?"
-                                placeholderStyle={{ color: "#bfc6ea" }}
-                                placeholderIconColor="#007aff"
-                                selectedValue={this.state.selected2}
-                                onValueChange={this.onValueChange2.bind(this)}
-                            >
-                                <Picker.Item label="Argentina" value="key0" />
-                                <Picker.Item label="Bolivia" value="key1" />
-                                <Picker.Item label="Brasil" value="key2" />
-                                <Picker.Item label="Chile" value="key3" />
-                                <Picker.Item label="Colombia" value="key4" />
-                                <Picker.Item label="Ecuador" value="key5" />
-                                <Picker.Item label="Paraguay" value="key6" />
-                                <Picker.Item label="Perú" value="key7" />
-                                <Picker.Item label="Uruguay" value="key8" />
-                                <Picker.Item label="Venezuela" value="key9" />
-                            </Picker>
-                        </Item>
-                    </Form>
-                    <Form>
-                        <Item picker>
-                            <Picker
-                                mode="dropdown"
-                                iosIcon={<Icon name="arrow-down" />}
-                                style={{ width: undefined }}
-                                placeholder="Elige la norma o reglamento"
-                                placeholderStyle={{ color: "#bfc6ea" }}
-                                placeholderIconColor="#007aff"
-                                selectedValue={this.state.selected3}
-                                onValueChange={this.onValueChange3.bind(this)}
-                            >
-                                <Picker.Item label="Argentina" value="key0" />
-                                <Picker.Item label="Bolivia" value="key1" />
-                                <Picker.Item label="Brasil" value="key2" />
-                                <Picker.Item label="Chile" value="key3" />
-                                <Picker.Item label="Colombia" value="key4" />
-                                <Picker.Item label="Ecuador" value="key5" />
-                                <Picker.Item label="Paraguay" value="key6" />
-                                <Picker.Item label="Perú" value="key7" />
-                                <Picker.Item label="Uruguay" value="key8" />
-                                <Picker.Item label="Venezuela" value="key9" />
-                            </Picker>
-                        </Item>
-                    </Form>
-                    <CardItem style={{alignItems: 'center'}}>
-                            <Body style={{alignItems: 'center'}}>
-                                <Button style={{backgroundColor:'#1ed695', alignItems: 'center', width: 200}}
-                                        onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
-                                    <Text style={{color: 'white', textAlign: 'center'}}>CREAR AUDITORÍA</Text>
-                                </Button>
+                    <Card>
+                        <CardItem bordered>
+                            <Body>
+                                <View>
+                                    <Text>
+                                        Buscaste:
+                                        <Text>FDA</Text>
+                                    </Text>
+                                </View>
+                                <View>
+                                    <Text>
+                                        Encontramos:
+                                        <Text>Part 110 current good manufacturing practice in manufacturing, packing, or holding human food</Text>
+                                    </Text>
+                                </View>
+                                <View>
+                                    <Text>
+                                        Estados Unidos |
+                                        <Text>FDA 21 CFR 110 |
+                                            <Text>15 descargas</Text>
+                                        </Text>
+                                    </Text>
+                                </View>
                             </Body>
-                    </CardItem>
-                    <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10}}>
-                        <View style={{marginRight:35}}>
-                            <Text style={{color: '#636363'}}>
-                                ¿No encuentras a tu país en tu lista?  
-                            </Text>
-                            <Form>
-                                <Item inlineLabel>
-                                    <Label>No te preocupes, indíquenos qué norma o reglamento crees que deba estar en esta aplicación para poder aumentar las bases de datos</Label>
-                                    <Input />
-                                </Item>
-                            </Form>
-                        </View>
-                        <View>
-                                <Button style={{backgroundColor:'#1ed695', alignItems: 'center', width: 200}}>
-                                    <Text style={{color: 'white', textAlign: 'center'}}>ENVIAR</Text>
-                                </Button>
-                        </View>
-                    </View>
+                        </CardItem>
+                        <CardItem bordered>
+                            <Body>
+                                <View>
+                                    <Text>
+                                        Buscaste:
+                                        <Text>FDA</Text>
+                                    </Text>
+                                </View>
+                                <View>
+                                    <Text>
+                                        Encontramos:
+                                        <Text>Part 101 Food Ilbeling</Text>
+                                    </Text>
+                                </View>
+                                <View>
+                                    <Text>
+                                        Estados Unidos |
+                                        <Text>FDA 21 CFR 101 |
+                                            <Text>365 descargas</Text>
+                                        </Text>
+                                    </Text>
+                                </View>
+                            </Body>
+                        </CardItem>
+                        <CardItem bordered>
+                            <Body>
+                                <View>
+                                    <Text>
+                                        Buscaste:
+                                        <Text>FDA</Text>
+                                    </Text>
+                                </View>
+                                <View>
+                                    <Text>
+                                        Encontramos:
+                                        <Text>Fish and Fishering Products</Text>
+                                    </Text>
+                                </View>
+                                <View>
+                                    <Text>
+                                        Estados Unidos |
+                                        <Text>FDA 21 CFR 123 |
+                                            <Text>498 descargas</Text>
+                                        </Text>
+                                    </Text>
+                                </View>
+                            </Body>
+                        </CardItem>
+                    </Card>
                 </Content>
                 <Footer style={{height:63}}>
                     <FooterTab style={{backgroundColor: '#f6f6f6'}}>
