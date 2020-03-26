@@ -6,7 +6,7 @@ import {
     TextInput, Alert
 } from 'react-native';
 import { Input, Button } from 'react-native-elements';
-import Inputs from './../components/Inputs';
+
 
 import { Ionicons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -331,26 +331,6 @@ class Registro extends Component {
 }
 
 export default Registro;
-
-const IconButton = (props) => {
-
-    return (
-        <TouchableOpacity style={{
-            width: 50,
-            height: 50,
-            borderRadius: 25,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#000000',
-            marginHorizontal: 6,
-        }}>
-            <Icon
-                name={props.icono}
-                size={38}
-                color="#ffffff" />
-        </TouchableOpacity>
-    )
-}
 
 const styles = StyleSheet.create({
     top: {

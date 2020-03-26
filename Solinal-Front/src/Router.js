@@ -1,9 +1,9 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import Login from './../src/Login';
-import Registro from './../src/Registro'; 
-import Reestablecer from './../src/Reestablecer';
+import Login from './../src/Cuenta/Login';
+import Registro from './../src/Cuenta/Registro'; 
+import Reestablecer from './../src/Cuenta/Reestablecer';
 import Main from './../src/Main';
 
 

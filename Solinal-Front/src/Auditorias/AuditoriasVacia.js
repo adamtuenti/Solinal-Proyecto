@@ -25,24 +25,29 @@ export default class AuditoriasVacia extends Component {
     render() {
         return (
             <Container>
-                <Header style={{backgroundColor: '#1ed695',height:75}}>
-                    <Left>
-                        <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%201.png'}}
-                            style= {{height: 40,
-                                     width: 40}}>
-                        </Image>
-                    </Left>
-                    <Body>
-                        <Title>Auditorías</Title>
-                    </Body>
-                    <Right>
-                        <Button transparent>
-                        <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%205.png'}}
-                               style= {{height: 20,
-                                     width: 30}}/>
-                        </Button>
-                    </Right>
+
+
+                <Header style={{justifyContent: 'flex-end',marginTop:5,backgroundColor: '#1ed695',height:75, alignItems: 'center',}}>
+                <Left>
+                    <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%201.png'}}
+                                    style= {{height: 40,
+                                            width: 40}}>
+                    </Image>
+                </Left>
+                <Body>
+                    <Title>Auditorias</Title>
+                </Body>
+                <Right>
+                    <Button transparent>
+                    <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%205.png'}}
+                                    style= {{height: 20,
+                                            width: 30}}>
+                    </Image>
+                    </Button>
+                </Right>
                 </Header>
+
+
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
                     <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10}}>
                         <View style={{marginRight:35}}>
@@ -83,7 +88,7 @@ export default class AuditoriasVacia extends Component {
                             <Body style={{alignItems: 'center'}}>
 
                                 <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
+                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')}>
                                     <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> Crear </Text>
                                     </TouchableHighlight>
                                                         

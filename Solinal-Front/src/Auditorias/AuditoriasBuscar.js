@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container, Header, Title, Content, Card, CardItem, Footer, FooterTab, Button, Left, Right, Body, Font, Form, Item, Picker, Input } from 'native-base';
+import { Container, Header, Title, Content, Card, CardItem, Footer, FooterTab, Button, Left, Label,Right, Body, Font, Form, Item, Picker, Input } from 'native-base';
 import { Icon } from 'react-native-elements'
 import {
   StyleSheet,
   TouchableHighlight,
   Text,
   View,
+  TextInput
 } from 'react-native'
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
@@ -43,25 +44,31 @@ export default class AuditoriasBuscar extends Component {
     render(){
         return (
             <Container>
-                <Header>
-                    <Left>
-                        <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%201.png'}}
-                                style= {{height: 40,
-                                        width: 40}}>
-                        </Image>
-                    </Left>
-                    <Body>
-                        <Title>Auditorías</Title>
-                    </Body>
-                    <Right>
-                        <Button transparent>
-                        <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%205.png'}}
-                                style= {{height: 20,
-                                width: 30}}/>
-                        </Button>
-                    </Right>
+
+                <Header style={{justifyContent: 'flex-end',marginTop:5,backgroundColor: '#1ed695',height:75, alignItems: 'center',}}>
+                <Left>
+                    <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%201.png'}}
+                                    style= {{height: 40,
+                                            width: 40}}>
+                    </Image>
+                </Left>
+                <Body>
+                    <Title>Auditorias</Title>
+                </Body>
+                <Right>
+                    <Button transparent>
+                    <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%205.png'}}
+                                    style= {{height: 20,
+                                            width: 30}}>
+                    </Image>
+                    </Button>
+                </Right>
                 </Header>
+
+
+
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
+
                     <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10}}>
                         <View style={{marginRight:35}}>
                             <Text style={{color: '#636363'}}>
@@ -77,23 +84,39 @@ export default class AuditoriasBuscar extends Component {
                             </Text>
                         </View>
                     </View>
+
+
                     <Card>
                         <CardItem bordered>
                             <View style={{flex: 1, flexDirection: 'row'}}>
-                                <View style={{marginRight:10}}>
-                                    <Text style={{color: '#636363'}}>Buscador de normas y reglamentos</Text>
+                                <View >
+                                    <Text style={{marginRight:10, color: '#636363', fontWeight: "bold"}}>Buscador de normas y reglamentos</Text>
                                 </View>
+
+                                <View style={{flex: 1, flexDirection: 'row-reverse'}}>
+                               
+                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2010.png'}}style= {{height: 25,width: 15}}></Image>
+                                </View>
+
                             </View>
                         </CardItem>
                         <CardItem bordered>
                             <View style={{flex: 1, flexDirection: 'row'}}>
                                 <View>  
-                                    <Text style={{color: '#636363'}}>Filtar por entidad (FDA, Codex, BRC, ARCSA, MINSA, etc.)</Text>
+                                    <Text style={{marginRight:10, color: '#636363', fontWeight: "bold"}}>Filtar por entidad (FDA, Codex, BRC, etc.)</Text>
                                 </View>
+
+                                <View style={{flex: 1, flexDirection: 'row-reverse'}}>
+                               
+                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2010.png'}}style= {{height: 25,width: 15}}></Image>
+                                </View>
+
+
                             </View>
                         </CardItem>
                     </Card>
-                    <Form>
+
+                    <Form style ={{paddingTop:25}}>
                         <Item picker>
                             <Picker
                                 mode="dropdown"
@@ -118,7 +141,7 @@ export default class AuditoriasBuscar extends Component {
                             </Picker>
                         </Item>
                     </Form>
-                    <Form>
+                    <Form style={{paddingBottom:25}}>
                         <Item picker>
                             <Picker
                                 mode="dropdown"
@@ -130,7 +153,7 @@ export default class AuditoriasBuscar extends Component {
                                 selectedValue={this.state.selected3}
                                 onValueChange={this.onValueChange3.bind(this)}
                             >
-                                <Picker.Item label="Argentina" value="key0" />
+                                <Picker.Item label="Reglamento" value="key0" />
                                 <Picker.Item label="Bolivia" value="key1" />
                                 <Picker.Item label="Brasil" value="key2" />
                                 <Picker.Item label="Chile" value="key3" />
@@ -143,33 +166,61 @@ export default class AuditoriasBuscar extends Component {
                             </Picker>
                         </Item>
                     </Form>
-                    <CardItem style={{alignItems: 'center'}}>
+
+
+                    <CardItem style={{alignItems: 'center', marginTop:25, backgroundColor:'f6f6f6'}}>
                             <Body style={{alignItems: 'center'}}>
-                                <Button style={{backgroundColor:'#1ed695', alignItems: 'center', width: 200}}
-                                        onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
-                                    <Text style={{color: 'white', textAlign: 'center'}}>CREAR AUDITORÍA</Text>
-                                </Button>
+                                <TouchableHighlight
+                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')}>
+                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:19}}> Crear Auditoria </Text>
+                                    </TouchableHighlight>
                             </Body>
                     </CardItem>
-                    <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10}}>
+
+
+                    <View style={{flex: 1, flexDirection: 'column', margin:5,padding:10,  backgroundColor:'#9A9E9A',marginTop:35, borderRadius: 5,}}>
+
                         <View style={{marginRight:35}}>
-                            <Text style={{color: '#636363'}}>
+                            <Text style={{color: '#AFF9AF', fontSize:14, marginBottom:5}}>
                                 ¿No encuentras a tu país en tu lista?  
                             </Text>
-                            <Form>
-                                <Item inlineLabel>
-                                    <Label>No te preocupes, indíquenos qué norma o reglamento crees que deba estar en esta aplicación para poder aumentar las bases de datos</Label>
-                                    <Input />
-                                </Item>
-                            </Form>
+
                         </View>
-                        <View>
-                                <Button style={{backgroundColor:'#1ed695', alignItems: 'center', width: 200}}>
-                                    <Text style={{color: 'white', textAlign: 'center'}}>ENVIAR</Text>
-                                </Button>
+
+                        <View style={{flexDirection: 'row'}}>
+
+                            <View style={{flexDirection: 'column'}}> 
+
+                                <View style={{width:'88%'}}>
+                                <Text style={{color:'white',fontSize:12}}>Indíquenos la norma o reglamento para poder aumentar las bases de datos.</Text>
+                                </View>
+                                <View>
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder=''
+
+                                    autoCapitalize="none"
+                                    placeholderTextColor='lightgrey'
+                                    onChangeText={apellido => this.setState({ apellido })}
+
+                                />  
+                                </View>
+                            </View>
+
+                                <View style={{flex: 1, flexDirection: 'row-reverse'}}>
+                                    <TouchableHighlight
+                                        style={styles.botonEnviar} onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')}>
+                                        <Text style={{fontWeight: 'bold',color:'#9A9E9A',fontSize:15}}> Enviar </Text>
+                                        </TouchableHighlight>                                 
+                                </View>
+
+
                         </View>
+                       
                     </View>
                 </Content>
+
+
                 <Footer style={{height:63}}>
                     <FooterTab style={{backgroundColor: '#f6f6f6'}}>
                         <Button vertical>
@@ -212,3 +263,43 @@ export default class AuditoriasBuscar extends Component {
         )
     }
 }
+
+
+const styles = StyleSheet.create({
+    
+
+    botonLogin:{
+        alignItems: 'center',
+        backgroundColor: '#1ed695',
+        padding: 10,
+        width:175,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: '#d6d7da',
+        
+   
+
+    },input: {
+        height: 25,
+        borderBottomColor: 'white',
+        borderBottomWidth: 1,
+        paddingLeft: 10,
+        paddingRight: 15,
+        width: 219,
+        alignItems: 'flex-start'
+    },
+    botonEnviar:{
+        alignItems: 'center',
+        backgroundColor: '#FAFDC2',
+        padding: 10,
+        width:75,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: '#d6d7da',
+        height:45
+        
+        
+   
+
+    }
+  });

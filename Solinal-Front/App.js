@@ -3,22 +3,24 @@ import { Platform, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import Login from './src/Login';
-import Registro from './src/Registro';
+import Login from './src/Cuenta/Login';
+import Registro from './src/Cuenta/Registro';
 import CarouselS from './src/CarouselS';
 import Home from './src/Home';
-import Reestablecer from './src/Reestablecer';
+import Reestablecer from './src/Cuenta/Reestablecer';
 import Main from './src/Main';
-import AuditoriasVacia from './src/AuditoriasVacia';
-import CrearAuditoria from './src/CrearAuditoria';
+import AuditoriasVacia from './src/Auditorias/AuditoriasVacia';
+import CrearAuditoria from './src/Auditorias/CrearAuditoria';
 
+import AuditoriasLista from './src/Auditorias/AuditoriasLista';
+import AuditoriasBuscar from './src/Auditorias/AuditoriasBuscar';
 
 
 import Router from './src/Router';
 
 const AppNavigator = createStackNavigator(
   {
-    Main, CarouselS, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria,
+    Main, CarouselS, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar
   },
   {
     headerMode: 'none',

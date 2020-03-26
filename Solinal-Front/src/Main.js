@@ -120,8 +120,6 @@ export default class Main extends Component {
             </CardItem>
 
 
-
-
             <CardItem bordered>
 
 
@@ -136,16 +134,11 @@ export default class Main extends Component {
               </Image>
               </View>
               <View>
-            
-           
+
                 <Text style={{color: '#636363'}}>Recomienda Solinal Auditor</Text>
               </View>
               
               </View>
-             
-
-
-
             </CardItem>
           </Card>
 
@@ -163,28 +156,22 @@ export default class Main extends Component {
                             style= {{height: 50,
                                      width: 70}}>
               </Image>
-
           </View>
-
-
         <View style={{flex: 1, flexDirection: 'column',marginLeft:5}}>
-              
-
-
+            
                 <Text style={{color: '#1ed695'}}>CONVIÉRTETE EN PREMIUM</Text>
                 <Text style={{color: '#636363'}}>Vea estadísticas de cumplimiento, cierre no conformidades, o crea más checklists de auditoría</Text>
               
 
         </View>
 
-        <View style={{marginLeft:5, marginRight:3}}>    
+        <View style={{marginLeft:5, marginRight:3,marginTop:10}}>    
               <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2010.png'}}
                             style= {{height: 50,
                                      width: 24}}>
               </Image>
         
         </View>
-
        </View>
 
       </Card>
