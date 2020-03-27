@@ -223,7 +223,7 @@ export default class AuditoriasLista extends Component {
                 <Footer style={{height:63}}>
                     <FooterTab style={{backgroundColor: '#f6f6f6'}}>
                         <Button vertical>
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%207.png'}}
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true'}}
                                    style= {{height: 29,
                                             width: 23}}>
                             </Image>

@@ -74,7 +74,7 @@ export default class Main extends Component {
 
           <Card>
 
-            <CardItem bordered>
+            <CardItem bordered >
               <View style={{flex: 1, flexDirection: 'row'}}>
 
               <View style={{marginRight:10}}>
@@ -100,11 +100,13 @@ export default class Main extends Component {
             
             </CardItem>
 
+           
+
 
             <CardItem bordered>
               <View style={{flex: 1, flexDirection: 'row'}}>
                 <View style={{marginRight:25}}>      
-                  <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%207.png'}}
+                  <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true'}}
                                 style= {{height: 35,
                                         width: 25}}>
                   </Image>
@@ -113,6 +115,13 @@ export default class Main extends Component {
                   <Text style={{color: '#636363'}}>
                     Mis Auditorías
                   </Text>
+                </View>
+                <View style={{flex: 1, flexDirection: 'row-reverse'}}>
+                <Button>
+                               
+                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2010.png'}}style= {{height: 25,width: 15}}></Image>
+                                
+                </Button>
                 </View>
               
               </View>
