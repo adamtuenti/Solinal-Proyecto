@@ -171,6 +171,15 @@ export default class AuditoriasBuscar extends Component {
                         </Item>
                     </Form>
 
+                    <CardItem style={{alignItems: 'center', marginTop:25, backgroundColor:'f6f6f6'}}>
+                            <Body style={{alignItems: 'center'}}>
+                                <TouchableHighlight
+                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('AuditoriasLista')}>
+                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:19}}> Buscar </Text>
+                                    </TouchableHighlight>
+                            </Body>
+                    </CardItem>
+
 
                     <CardItem style={{alignItems: 'center', marginTop:25, backgroundColor:'f6f6f6'}}>
                             <Body style={{alignItems: 'center'}}>
