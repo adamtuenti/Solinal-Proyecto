@@ -29,7 +29,7 @@ export default class AuditoriasVacia extends Component {
 
                 <Header style={{justifyContent: 'flex-end',marginTop:5,backgroundColor: '#1ed695',height:75, alignItems: 'center',}}>
                 <Left>
-                    <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%201.png'}}
+                    <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/user.png?raw=true'}}
                                     style= {{height: 40,
                                             width: 40}}>
                     </Image>
@@ -88,7 +88,7 @@ export default class AuditoriasVacia extends Component {
                             <Body style={{alignItems: 'center'}}>
 
                                 <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')}>
+                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
                                     <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> Crear </Text>
                                     </TouchableHighlight>
                                                         
@@ -112,7 +112,7 @@ export default class AuditoriasVacia extends Component {
                             <Text style={{color: '#636363',fontSize: 9}}>Auditorias</Text>
                         </Button>
                         <Button vertical>
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2012.png'}}
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario.png?raw=true'}}
                                    style= {{height: 29,
                                             width: 27}}>
                             </Image>

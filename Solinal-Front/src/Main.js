@@ -30,7 +30,7 @@ export default class Main extends Component {
 
         <Header style={{justifyContent: 'flex-end',marginTop:5,backgroundColor: '#1ed695',height:75, alignItems: 'center',}}>
           <Left>
-            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%201.png'}}
+            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/user.png?raw=true'}}
                             style= {{height: 40,
                                      width: 40}}>
             </Image>
@@ -84,7 +84,7 @@ export default class Main extends Component {
 
 
           
-              <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%206.png'}}
+              <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/equipo.png?raw=true'}}
                             style= {{height: 30,
                                      width: 40}}>
               </Image>
@@ -95,6 +95,13 @@ export default class Main extends Component {
            
                 <Text style={{color: '#636363'}}>Crear Equipo</Text>
               </View>
+              <View style={{flex: 1, flexDirection: 'row-reverse'}}>
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>
+                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}style= {{height: 35,width: 25}}></Image>
+                </TouchableHighlight>
+             
+                </View>
+              
               
               </View>
             
@@ -117,11 +124,10 @@ export default class Main extends Component {
                   </Text>
                 </View>
                 <View style={{flex: 1, flexDirection: 'row-reverse'}}>
-                <Button>
-                               
-                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2010.png'}}style= {{height: 25,width: 15}}></Image>
-                                
-                </Button>
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>
+                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}style= {{height: 35,width: 25}}></Image>
+                </TouchableHighlight>
+             
                 </View>
               
               </View>
@@ -136,7 +142,7 @@ export default class Main extends Component {
 
               <View style={{marginRight:15}}>
           
-              <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%208.png'}}
+              <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/compartir.png?raw=true'}}
                             style= {{height: 30,
                                      width: 35}}>
               
@@ -146,6 +152,12 @@ export default class Main extends Component {
 
                 <Text style={{color: '#636363'}}>Recomienda Solinal Auditor</Text>
               </View>
+              <View style={{flex: 1, flexDirection: 'row-reverse'}}>
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>
+                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}style= {{height: 35,width: 25}}></Image>
+                </TouchableHighlight>
+             
+                </View>
               
               </View>
             </CardItem>
@@ -161,7 +173,7 @@ export default class Main extends Component {
 
           <View style={{margin:7}}>
             
-            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%209.png'}}
+            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/premium.png?raw=true'}}
                             style= {{height: 50,
                                      width: 70}}>
               </Image>
@@ -175,8 +187,8 @@ export default class Main extends Component {
         </View>
 
         <View style={{marginLeft:5, marginRight:3,marginTop:10}}>    
-              <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2010.png'}}
-                            style= {{height: 50,
+              <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}
+                            style= {{height: 55,
                                      width: 24}}>
               </Image>
         
@@ -195,7 +207,7 @@ export default class Main extends Component {
           
               
             <Button onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>
-            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2011.png'}}
+            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}}
                             style= {{height: 29,
                                      width: 23}}>
               </Image>
@@ -204,7 +216,7 @@ export default class Main extends Component {
             
           
             <Button vertical>
-            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2012.png'}}
+            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario.png?raw=true'}}
                             style= {{height: 29,
                                      width: 27}}>
               </Image>
