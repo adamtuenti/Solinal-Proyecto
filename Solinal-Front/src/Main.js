@@ -40,7 +40,7 @@ export default class Main extends Component {
           </Body>
           <Right>
             <Button transparent>
-            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%205.png'}}
+            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/menu.png?raw=true'}}
                             style= {{height: 20,
                                      width: 30}}>
             </Image>

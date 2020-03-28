@@ -57,7 +57,7 @@ export default class CrearAuditoria extends Component {
                 </Body>
                 <Right>
                     <Button transparent>
-                    <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%205.png'}}
+                    <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/menu.png?raw=true'}}
                                     style= {{height: 20,
                                             width: 30}}>
                     </Image>
@@ -78,11 +78,12 @@ export default class CrearAuditoria extends Component {
                     
 
                     <View style={{margin:7}}>
-                        
-                        <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2036.png'}} 
-                                       style={{height: 100, 
+                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2036.png'}} style={{height: 100, 
                                         width: 100,
                                         paddingLeft: 10}}/>
+                        </TouchableHighlight>
+                        
                     </View>
                     <View style={{flex: 1, flexDirection: 'column',marginLeft:5}}>
                             
@@ -105,10 +106,14 @@ export default class CrearAuditoria extends Component {
                     
 
                     <View style={{margin:7}}>
-                        
-                        <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2035.png'}} 
+
+                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2035.png'}} 
                                        style={{height: 100, 
-                                               width: 100}}  onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}/>
+                                               width: 100}}/>
+                        </TouchableHighlight>
+                        
+                        
                     </View>
                     <View style={{flex: 1, flexDirection: 'column',marginLeft:5}}>
                         
@@ -135,7 +140,7 @@ export default class CrearAuditoria extends Component {
                 <Footer style={{height:63}}>
                     <FooterTab style={{backgroundColor: '#f6f6f6'}}>
                         <Button vertical>
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%207.png'}}
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true'}}
                                    style= {{height: 29,
                                             width: 23}}>
                             </Image>
