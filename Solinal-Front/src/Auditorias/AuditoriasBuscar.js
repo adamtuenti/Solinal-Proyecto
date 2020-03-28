@@ -57,7 +57,7 @@ export default class AuditoriasBuscar extends Component {
                 </Body>
                 <Right>
                     <Button transparent>
-                    <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%205.png'}}
+                    <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/menu.png?raw=true'}}
                                     style= {{height: 20,
                                             width: 30}}>
                     </Image>
@@ -95,7 +95,9 @@ export default class AuditoriasBuscar extends Component {
 
                                 <View style={{flex: 1, flexDirection: 'row-reverse'}}>
                                
-                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2010.png'}}style= {{height: 25,width: 15}}></Image>
+                                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')}>
+                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}style= {{height: 25,width: 15}}></Image>
+                </TouchableHighlight>
                                 </View>
 
                             </View>
@@ -108,7 +110,9 @@ export default class AuditoriasBuscar extends Component {
 
                                 <View style={{flex: 1, flexDirection: 'row-reverse'}}>
                                
-                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2010.png'}}style= {{height: 25,width: 15}}></Image>
+                                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')}>
+                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}style= {{height: 25,width: 15}}></Image>
+                </TouchableHighlight>
                                 </View>
 
 

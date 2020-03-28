@@ -78,7 +78,7 @@ export default class CrearAuditoria extends Component {
                     
 
                     <View style={{margin:7}}>
-                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>
+                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')}>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2036.png'}} style={{height: 100, 
                                         width: 100,
                                         paddingLeft: 10}}/>
@@ -96,7 +96,7 @@ export default class CrearAuditoria extends Component {
                
 
 
-                    <Card style={{height:175}} onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>
+                    <Card style={{height:175}} onPress={()=>this.props.navigation.navigate('AuditoriasLista')}>
 
                     <View style={{flex: 1, flexDirection: 'column', height:100, justifyContent:'center', marginTop:5}}>
 

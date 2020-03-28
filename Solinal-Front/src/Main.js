@@ -96,8 +96,8 @@ export default class Main extends Component {
                 <Text style={{color: '#636363'}}>Crear Equipo</Text>
               </View>
               <View style={{flex: 1, flexDirection: 'row-reverse'}}>
-                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>
-                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}style= {{height: 35,width: 25}}></Image>
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')}>
+                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}style= {{height: 30,width: 23}}></Image>
                 </TouchableHighlight>
              
                 </View>
@@ -114,8 +114,8 @@ export default class Main extends Component {
               <View style={{flex: 1, flexDirection: 'row'}}>
                 <View style={{marginRight:25}}>      
                   <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true'}}
-                                style= {{height: 35,
-                                        width: 25}}>
+                                style= {{height: 30,
+                                        width: 23}}>
                   </Image>
                   </View>
                 <View>  
@@ -125,7 +125,7 @@ export default class Main extends Component {
                 </View>
                 <View style={{flex: 1, flexDirection: 'row-reverse'}}>
                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}>
-                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}style= {{height: 35,width: 25}}></Image>
+                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}style= {{height: 30,width: 23}}></Image>
                 </TouchableHighlight>
              
                 </View>
