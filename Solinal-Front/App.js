@@ -20,7 +20,7 @@ import Router from './src/Router';
 
 const AppNavigator = createStackNavigator(
   {
-    Main, CarouselS, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar
+    CarouselS, Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar
   },
   {
     headerMode: 'none',

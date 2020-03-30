@@ -5,7 +5,7 @@ import Login from './../src/Cuenta/Login';
 import Registro from './../src/Cuenta/Registro'; 
 import Reestablecer from './../src/Cuenta/Reestablecer';
 import Main from './../src/Main';
-
+import Header from './../shared/header';
 
 
 /*import Pacientes from './../pages/Pacientes';import Carousel from './Carousel';
@@ -15,7 +15,7 @@ import CreateTask from './../screens/CreateTask';*/
 
 
 
-const AppNavigator = createStackNavigator({
+const screens = {
 
 
     Login: {
@@ -27,10 +27,10 @@ const AppNavigator = createStackNavigator({
     },
     Main: {
         screen: Main,
-        navigationOptions: () => ({
-            headerTitle: 'Main',
+        navigationOptions: {
+            title: 'main',
 
-        })
+        }
     },
     Reestablecer: {
         screen: Reestablecer,
@@ -48,9 +48,14 @@ const AppNavigator = createStackNavigator({
         })
     },
 
-}, {
-    headerLayoutPreset: 'center'
+}
+
+const HomeStack = createStackNavigator(screens,{
+    defaultNavigationOptions:{
+        headerTintColor:'blue',
+        headerStyle:{backgroundColor:'#1ed695',height:150}
+    }
 })
 
 
-export default Router = createAppContainer(AppNavigator);
+export default HomeStack;
