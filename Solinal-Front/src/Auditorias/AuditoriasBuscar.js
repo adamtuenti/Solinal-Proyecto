@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container, Header, Title, Content, Card, CardItem, Footer, FooterTab, Button, Left, Label,Right, Body, Font, Form, Item, Picker, Input } from 'native-base';
+import { Container, Header, Title, Content, Card, CardItem, Button, Left, Label,Right, Body, Font, Form, Item, Picker, Input } from 'native-base';
 import { Icon } from 'react-native-elements'
 import {
   StyleSheet,
   TouchableHighlight,
   Text,
   View,
-  TextInput
+  TextInput,
+  
 } from 'react-native'
+import Dropdown from 'react-bootstrap/Dropdown';
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
+
+import Footer from './../../shared/Footer';
+
 
 export default class AuditoriasBuscar extends Component {
     async componentDidMount() {
@@ -145,13 +150,15 @@ export default class AuditoriasBuscar extends Component {
                             </Picker>
                         </Item>
                     </Form>
-                    <Form style={{paddingBottom:25}}>
+                    
+                   
+                    <Form style={{paddingBottom:15}}>
                         <Item picker>
                             <Picker
                                 mode="dropdown"
                                 iosIcon={<Icon name="arrow-down" />}
                                 style={{ width: undefined }}
-                                placeholder="Elige la norma o reglamento"
+                                placeholder="hola"
                                 placeholderStyle={{ color: "#bfc6ea" }}
                                 placeholderIconColor="#007aff"
                                 selectedValue={this.state.selected3}
@@ -225,44 +232,7 @@ export default class AuditoriasBuscar extends Component {
                 </Content>
 
 
-                <Footer style={{height:63}}>
-                    <FooterTab style={{backgroundColor: '#f6f6f6'}}>
-                        <Button vertical>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true'}}
-                                   style= {{height: 29,
-                                            width: 23}}>
-                            </Image>
-                            <Text style={{color: '#636363', fontSize: 9}}>Auditorias</Text>
-                        </Button>
-                        <Button vertical>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario.png?raw=true'}}
-                                   style= {{height: 29,
-                                            width: 27}}>
-                            </Image>
-                            <Text style={{color: '#636363', fontSize: 9}}>Calendario</Text>
-                        </Button>
-                        <Button vertical>                  
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2013.png'}}
-                                   style= {{height: 45,
-                                            width: 45}}>
-                            </Image>
-                        </Button>
-                        <Button vertical>
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
-                                   style= {{height: 29,
-                                            width: 25}}>
-                            </Image>
-                            <Text style={{color: '#636363', fontSize: 9}}>Acción Correctiva</Text>
-                        </Button>
-                        <Button vertical>
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2015.png'}}
-                                   style= {{height: 29,
-                                            width: 25}}>
-                            </Image>
-                            <Text style={{color: '#636363', fontSize: 9}}>No Conformidad</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
+                <Footer/>
             </Container>
         )
     }
