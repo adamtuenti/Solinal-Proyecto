@@ -6,19 +6,20 @@ import {StyleSheet,TouchableHighlight,Text,View,TextInput} from 'react-native'
 
 
 
-export default class Footer extends Component {
+export default class Footer extends React.Component{
+    render(){
     
 
-    render(){
+    
         return (
             
 
                 <View style={{height:63, flexDirection: 'row',width:'100%'}}>
                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true'}} 
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}} 
                             style={{height: 35, 
-                                        width: 24,
+                                        width: 25,
                                         }}/>
                     <Text style={styles.letra}>Auditorias</Text>
                     </View>
@@ -30,7 +31,7 @@ export default class Footer extends Component {
                                    style= {{height: 35,
                                             width: 28}}>
                             </Image>
-               <Text style={styles.letra}>Acción Correctiva</Text>
+               <Text style={styles.letra}>Accion Correctiva</Text>
                     </View>
                 </TouchableHighlight>
 

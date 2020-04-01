@@ -5,7 +5,7 @@ import Login from './../src/Cuenta/Login';
 import Registro from './../src/Cuenta/Registro'; 
 import Reestablecer from './../src/Cuenta/Reestablecer';
 import Main from './../src/Main';
-import Header from './../shared/header';
+
 
 
 /*import Pacientes from './../pages/Pacientes';import Carousel from './Carousel';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container, Header, Title, Content, Card, CardItem,  Button, Left, Right, Body, Font, Form, Item, Picker, Input } from 'native-base';
+import { Container, Title, Content, Card, CardItem,  Button, Left, Right, Body, Font, Form, Item, Picker, Input } from 'native-base';
 import { Icon } from 'react-native-elements'
 import {
   StyleSheet,
@@ -11,6 +11,8 @@ import {
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 import Footer from './../../shared/Footer';
+import Header from './../../shared/Header';
+import EstadoCuenta from './../../shared/estadoCuenta';
 
 export default class AuditoriasLista extends Component {
     async componentDidMount() {
@@ -120,44 +122,12 @@ export default class AuditoriasLista extends Component {
         return (
             <Container>
 
-                <Header style={{justifyContent: 'flex-end',marginTop:5,backgroundColor: '#1ed695',height:75, alignItems: 'center',}}>
-                <Left>
-                    <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/user.png?raw=true'}}
-                                    style= {{height: 40,
-                                            width: 40}}>
-                    </Image>
-                </Left>
-                <Body>
-                    <Title>Auditorias</Title>
-                </Body>
-                <Right>
-                    <Button transparent>
-                    <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/menu.png?raw=true'}}
-                                    style= {{height: 20,
-                                            width: 30}}>
-                    </Image>
-                    </Button>
-                </Right>
-                </Header>
+                <Header encabezado='Auditoria'/>
 
 
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
-                    <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10}}>
-                        <View style={{marginRight:35}}>
-                            <Text style={{color: '#636363'}}>
-                                Auditorias realizadas: #    
-                                <Text style={{color: '#2ba855'}}>
-                                    0
-                                </Text>
-                            </Text>
-                        </View>
-                        <View>
-                            <Text style={{color: '#2ba855'}}>
-                                CUENTA GRATUITA
-                            </Text>
-                        </View>
-                    </View>
+                    <EstadoCuenta cantidad='0' tipoCuenta='GRATIS'/>
 
                     <View style={{paddingBottom:25}}>
 

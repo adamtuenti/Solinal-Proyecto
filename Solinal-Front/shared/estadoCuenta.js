@@ -5,36 +5,35 @@ import Form from 'react-bootstrap/Form'
 import {MaterialIcons} from '@expo/vector-icons'
 
 
-export default class Header extends React.Component{
+export default class EstadoCuenta extends React.Component{
 
     
     render(){
 
     return(
 
-        <View  style={styles.back}>
-            <View style={styles.izquierdo}>
+        <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10}}>
+            <View style={{marginRight:35, flexDirection:'row'}}>
+                <View>
+                <Text style={{color: '#636363'}}>
+                    Auditorias realizadas:
+                </Text>
+                </View>  
+                <View>
+                    <Text style={{color: '#2ba855', marginLeft:5}}>
+                        {this.props.cantidad}
+                    </Text>
+                </View>
                 
-                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/user.png?raw=true'}}
-                            style= {styles.imagen}/>
-                
-
-                
-
-
-
-                
-                <Text style={{color:'white', fontSize:21, marginLeft:10}}>
-                    {this.props.encabezado}
+            </View>
+            <View style={{flexDirection:'row',marginLeft:15}}>
+                <Text style={{color: '#2ba855'}}>
+                    CUENTA 
+                </Text>
+                <Text style={{color: '#2ba855',marginLeft:5}}>
+                    {this.props.tipoCuenta}
                 </Text>
             </View>
-
-            
-
-            <View style={{flex: 1, flexDirection: 'row-reverse',marginLeft:5, alignItems:'center'}}>
-                <MaterialIcons name='menu' size={30}  style={styles.icon}/>
-            </View>
-
         </View>
         
     );
@@ -61,8 +60,7 @@ const styles = StyleSheet.create({
     back:{
         flexDirection:'row',
          backgroundColor:'#1ed695',
-        height:'11%',
-        paddingTop:'15%',
+        height:62,
         alignContent:'center'
         
     },
