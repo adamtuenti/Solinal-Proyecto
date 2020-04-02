@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container, Header, Title, DatePicker, Content, Card, CardItem, Button, Left, Label, Accordion, Right, Body, Font, Form, Item, Picker, Input } from 'native-base';
+import { Container, Header, Title, DatePicker, Content, Card, CardItem, Button, Left, Label, Accordion, Right, Body, Font, Form, Item, Picker, Input, List, ListItem, Separator } from 'native-base';
 import { Icon } from 'react-native-elements'
 import {
   StyleSheet,
@@ -13,6 +13,7 @@ import {
 import Dropdown from 'react-bootstrap/Dropdown';
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
+import { Collapse, CollapseHeader, CollapseBody } from "accordion-collapse-react-native";
 
 import Footer from './../../shared/Footer';
 
@@ -53,372 +54,6 @@ export default class NormaEcBPM extends Component {
 
       setDate(newDate) {
         this.setState({ chosenDate: newDate });
-      }
-
-      _renderHeader(item, expanded) {
-        return (
-          <View style={{
-            flexDirection: "row",
-            padding: 10,
-            justifyContent: "space-between",
-            alignItems: "center" ,
-            backgroundColor: "#A9DAD6" }}>
-          <Text style={{ fontWeight: "600" }}>
-              {" "}{item.title}
-            </Text>
-            {expanded
-              ? <Icon style={{ fontSize: 18 }} name="remove-circle" />
-              : <Icon style={{ fontSize: 18 }} name="add-circle" />}
-          </View>
-        );
-      }
-
-      _renderHeader1(item, expanded) {
-        return (
-          <View style={{
-            flexDirection: "row",
-            padding: 10,
-            justifyContent: "space-between",
-            alignItems: "center" ,
-            backgroundColor: "#A9DAD6" }}>
-          <Text style={{ fontWeight: "600" }}>
-              {" "}{item.title}
-            </Text>
-            {expanded
-              ? <Icon style={{ fontSize: 18 }} name="remove-circle" />
-              : <Icon style={{ fontSize: 18 }} name="add-circle" />}
-          </View>
-        );
-      }
-
-      _renderContent(item) {
-        return (
-            <Accordion 
-            dataArray={dataItem1}
-            animation={true}
-            expanded={true}
-            renderHeader={this._renderHeader1}
-            renderContent={this._renderContent11}>>
-           </Accordion>
-        );
-      }
-
-      _renderContent11(item) {
-        return (
-            <View>
-                <View>
-                    <Text>
-                        Los establecimientos donde se producen y manipulan alimentos serán diseñados y construidos de acuerdo
-                        a las operaciones y riesgos asociados a la actividad y al alimento, de manera que puedan cumplir los siguientes requisitos:
-                    </Text>
-                </View>
-                <View>
-                    <Text>
-                        a. Que el riesgo de contaminación y alteración sea el mismo.
-                    </Text>
-                    <View>
-                        <Button disabled rounded>
-                            <Text>SÍ</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO APLICA</Text>
-                        </Button>
-                    </View>
-                    <View>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar nota</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar evidencia</Text>
-                    </TouchableHighlight>
-                    </View>
-                </View>
-                <View>
-                    <Text>
-                        b. Que el diseño y distribución de las áreas permita un mantenimiento, limpieza y desinfección apropiada;
-                        y, que minimice los riesgos de contaminación.
-                    </Text>
-                    <View>
-                        <Button disabled rounded>
-                            <Text>SÍ</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO APLICA</Text>
-                        </Button>
-                    </View>
-                    <View>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar nota</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar evidencia</Text>
-                    </TouchableHighlight>
-                    </View>
-                </View>
-                <View>
-                    <Text>
-                        c. Que las superficies y materiales, particularmente aquellos que estén en contacto con los alimentos,
-                        no sean tóxicos, y están diseñados para el uso pretendido, fáciles de mantener, limpiar y desinfectar.
-                    </Text>
-                    <View>
-                        <Button disabled rounded>
-                            <Text>SÍ</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO APLICA</Text>
-                        </Button>
-                    </View>
-                    <View>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar nota</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar evidencia</Text>
-                    </TouchableHighlight>
-                    </View>
-                    <View>
-                    <Text>
-                        d. Que facilite un control efectivo de plagas y dificulte el acceso y refugio de las mismas.
-                    </Text>
-                    <View>
-                        <Button disabled rounded>
-                            <Text>SÍ</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO APLICA</Text>
-                        </Button>
-                    </View>
-                    <View>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar nota</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar evidencia</Text>
-                    </TouchableHighlight>
-                    </View>
-                </View>
-                </View>
-            </View>
-        );
-      }
-
-      _renderContent13(item) {
-        return (
-            <View>
-                <View>
-                    <Text>
-                        La edificicación debe construirse de manera que:
-                    </Text>
-                </View>
-                <View>
-                    <Text>
-                        a. Ofrezca protección contra polvo, materias extrañas, insectos, roedores, aves y otros elementos de ambiente exterior
-                        y que mantenga las condiciones sanitarias apropiadas según el proceso. 
-                    </Text>
-                    <View>
-                        <Button disabled rounded>
-                            <Text>SÍ</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO APLICA</Text>
-                        </Button>
-                    </View>
-                    <View>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar nota</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar evidencia</Text>
-                    </TouchableHighlight>
-                    </View>
-                </View>
-                <View>
-                    <Text>
-                        b. La construcción sea sólida y disponga de espacio suficiente para la instalación, operación y mantenimiento de los equipos
-                        así como para el movimiento del personal y el traslado de materiales o alimentos
-                    </Text>
-                    <View>
-                        <Button disabled rounded>
-                            <Text>SÍ</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO APLICA</Text>
-                        </Button>
-                    </View>
-                    <View>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar nota</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar evidencia</Text>
-                    </TouchableHighlight>
-                    </View>
-                </View>
-                <View>
-                    <Text>
-                        c. Brinde facilidades para la higiene del personal.
-                    </Text>
-                    <View>
-                        <Button disabled rounded>
-                            <Text>SÍ</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO APLICA</Text>
-                        </Button>
-                    </View>
-                    <View>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar nota</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar evidencia</Text>
-                    </TouchableHighlight>
-                    </View>
-                    <View>
-                    <Text>
-                        d. Las áreas internas de protección se deben dividir en zonas según el nivel de higiene que requieran y dependiendo
-                        de los riesgos de contaminación de los alimentos.
-                    </Text>
-                    <View>
-                        <Button disabled rounded>
-                            <Text>SÍ</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO</Text>
-                        </Button>
-                        <Button disabled rounded>
-                            <Text>NO APLICA</Text>
-                        </Button>
-                    </View>
-                    <View>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar nota</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                        <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 24,
-                                        }}/>
-                        </View>
-                        <Text>Agregar evidencia</Text>
-                    </TouchableHighlight>
-                    </View>
-                </View>
-                </View>
-            </View>
-        );
       }
 
       render(){
@@ -481,18 +116,351 @@ export default class NormaEcBPM extends Component {
                             <Input placeholder="Auditor" />
                         </Item>
                     </Card>
-
-                    <Accordion 
-                     dataArray={dataMain}
-                     animation={true}
-                    expanded={true}
-                    renderHeader={this._renderHeader}
-                    renderContent={this._renderContent}>
-                    </Accordion>
-
                     
+                    <Collapse>
+                        <CollapseHeader>
+                            <Card>
+                            <View>
+                                <Text>De las instalaciones y requisitos de buenas prácticas de manufactura</Text>
+                            </View>
+                            </Card>
+                        </CollapseHeader>
+                        <CollapseBody>
+                            <Collapse>
+                                <CollapseHeader>
+                                    <Card>
+                                    <View>
+                                        <Text>Art. 73: De las condiciones mínimas básicas</Text>
+                                    </View>
+                                    </Card>
+                                </CollapseHeader>
+                                <CollapseBody>
+                                    <Card>
+                                    <View>
+                                        <View>
+                                            <Text>De las instalaciones y requisitos de buenas prácticas de manufactura</Text>
+                                        </View>
+                                        <View>
+                                            <Text>a. Que el riesgo de contaminación y alteración sea el mismo.</Text>
+                                        </View>
+                                        <View>    
+                                            <Button disabled rounded>
+                                                <Text>SÍ</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO APLICA</Text>
+                                            </Button>
+                                        </View>
+                                    </View>
+                                    </Card>
+                                    <Card>
+                                    <View>
+                                        <View>
+                                            <Text>b. Que el diseño y distribución de las áreas permita un mantenimiento, limpieza y desinfección apropiada;
+                                            y, que minimice los riesgos de contaminación.</Text>
+                                        </View>
+                                        <View>    
+                                            <Button disabled rounded>
+                                                <Text>SÍ</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO APLICA</Text>
+                                            </Button>
+                                        </View>
+                                    </View>
+                                    </Card>
+                                    <Card>
+                                    <View>
+                                        <View>
+                                            <Text>c. Que las superficies y materiales, particularmente aquellos que estén en contacto con los alimentos,
+                                            no sean tóxicos, y están diseñados para el uso pretendido, fáciles de mantener, limpiar y desinfectar.</Text>
+                                        </View>
+                                        <View>    
+                                            <Button disabled rounded>
+                                                <Text>SÍ</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO APLICA</Text>
+                                            </Button>
+                                        </View>
+                                    </View>
+                                    </Card>
+                                    <Card>  
+                                    <View>
+                                        <View>
+                                            <Text>d. Que facilite un control efectivo de plagas y dificulte el acceso y refugio de las mismas.</Text>
+                                        </View>
+                                        <View>    
+                                            <Button disabled rounded>
+                                                <Text>SÍ</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO APLICA</Text>
+                                            </Button>
+                                        </View>
+                                    </View>
+                                    </Card>     
+                                </CollapseBody>
+                            </Collapse>
+                            <Collapse>
+                                <CollapseHeader>
+                                    <Card>
+                                    <View>
+                                        <Text>Art. 74: De la localización</Text>
+                                    </View>
+                                    </Card>
+                                </CollapseHeader>
+                                <CollapseBody>
+                                    <Card>
+                                    <View>
+                                        <Text>Bruto</Text>
+                                    </View>
+                                    </Card>
+                                </CollapseBody>
+                            </Collapse>
+                            <Collapse>
+                                <CollapseHeader>
+                                    <Card>
+                                    <View>
+                                        <Text>Art. 75: Diseño y construcción</Text>
+                                    </View>
+                                    </Card>
+                                </CollapseHeader>
+                                <CollapseBody>
+                                    <Card>
+                                    <View>
+                                        <View>
+                                            <Text>La edificicación debe construirse de manera que:</Text>
+                                        </View>
+                                        <View>
+                                            <Text>a. Ofrezca protección contra polvo, materias extrañas, insectos, roedores, aves y otros elementos de ambiente exterior
+                                            y que mantenga las condiciones sanitarias apropiadas según el proceso. </Text>
+                                        </View>
+                                        <View>    
+                                            <Button disabled rounded>
+                                                <Text>SÍ</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO APLICA</Text>
+                                            </Button>
+                                        </View>
+                                    </View>
+                                    </Card>
+                                    <Card>
+                                    <View>
+                                        <View>
+                                            <Text>b. La construcción sea sólida y disponga de espacio suficiente para la instalación, operación y mantenimiento de los equipos
+                                            así como para el movimiento del personal y el traslado de materiales o alimentos</Text>
+                                        </View>
+                                        <View>    
+                                            <Button disabled rounded>
+                                                <Text>SÍ</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO APLICA</Text>
+                                            </Button>
+                                        </View>
+                                    </View>
+                                    </Card>
+                                    <Card>
+                                    <View>
+                                        <View>
+                                            <Text>c. Brinde facilidades para la higiene del personal.</Text>
+                                        </View>
+                                        <View>    
+                                            <Button disabled rounded>
+                                                <Text>SÍ</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO APLICA</Text>
+                                            </Button>
+                                        </View>
+                                    </View>
+                                    </Card>
+                                    <Card> 
+                                    <View>
+                                        <View>
+                                            <Text>d. Las áreas internas de protección se deben dividir en zonas según el nivel de higiene que requieran y dependiendo
+                                            de los riesgos de contaminación de los alimentos.</Text>
+                                        </View>
+                                        <View>    
+                                            <Button disabled rounded>
+                                                <Text>SÍ</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO</Text>
+                                            </Button>
+                                            <Button disabled rounded>
+                                                <Text>NO APLICA</Text>
+                                            </Button>
+                                        </View>
+                                    </View>
+                                    </Card> 
+                                </CollapseBody>
+                            </Collapse>
+                            <Collapse>
+                                <CollapseHeader>
+                                    <Card>
+                                    <View>
+                                        <Text>Art. 76: Condiciones específicas de las áreas, estructuras internas y accesorios</Text>
+                                    </View>
+                                    </Card>
+                                </CollapseHeader>
+                                <CollapseBody>
+                                    <Card>
+                                    <View>
+                                        <Text>Bruto</Text>
+                                    </View>
+                                    </Card>
+                                </CollapseBody>
+                            </Collapse>
+                            <Collapse>
+                                <CollapseHeader>
+                                    <Card>
+                                    <View>
+                                        <Text>Art. 77: Suministro de Agua</Text>
+                                    </View>
+                                    </Card>
+                                </CollapseHeader>
+                                <CollapseBody>
+                                    <Card>
+                                    <View>
+                                        <Text>Bruto</Text>
+                                    </View>
+                                    </Card>
+                                </CollapseBody>
+                            </Collapse>
+                        </CollapseBody>
+                    </Collapse>
+                    <Collapse>
+                        <CollapseHeader>
+                            <Card>
+                            <View>
+                                <Text>De los equipos y utensilios</Text>
+                            </View>
+                            </Card>
+                        </CollapseHeader>
+                        <CollapseBody>
+                            <Card>
+                            <View>
+                                <Text>Collapse 2</Text>
+                            </View>
+                            </Card>
+                        </CollapseBody>
+                    </Collapse>
+                    <Collapse>
+                        <CollapseHeader>
+                            <Card>
+                            <View>
+                                <Text>Requisitos higiénicos de fabricación</Text>
+                            </View>
+                            </Card>
+                        </CollapseHeader>
+                        <CollapseBody>
+                            <Card>
+                            <View>
+                                <Text>Collapse 3</Text>
+                            </View>
+                            </Card>
+                        </CollapseBody>
+                    </Collapse>
+                    <Collapse>
+                        <CollapseHeader>
+                            <Card>
+                            <View>
+                                <Text>Envasado, etiquetado y empaquetado</Text>
+                            </View>
+                            </Card>
+                        </CollapseHeader>
+                        <CollapseBody>
+                            <Card>
+                            <View>
+                                <Text>Collapse 4</Text>
+                            </View>
+                            </Card>
+                        </CollapseBody>
+                    </Collapse>
+                    <Collapse>
+                        <CollapseHeader>
+                            <Card>
+                            <View>
+                                <Text>Almacenamiento, distribución, transporte y comercialización</Text>
+                            </View>
+                            </Card>
+                        </CollapseHeader>
+                        <CollapseBody>
+                            <Card>
+                            <View>
+                                <Text>Collapse 5</Text>
+                            </View>
+                            </Card>
+                        </CollapseBody>
+                    </Collapse>
+                    <Collapse>
+                        <CollapseHeader>
+                            <Card>
+                            <View>
+                                <Text>Del aseguramiento y control de calidad</Text>
+                            </View>
+                            </Card>
+                        </CollapseHeader>
+                        <CollapseBody>
+                            <Card>
+                            <View>
+                                <Text>Collapse 6</Text>
+                            </View>
+                            </Card>
+                        </CollapseBody>
+                    </Collapse>
+                    <Collapse>
+                        <CollapseHeader>
+                            <Card>
+                            <View>
+                                <Text>Firma del auditor</Text>
+                            </View>
+                            </Card>
+                        </CollapseHeader>
+                        <CollapseBody>
+                            <Card>
+                            <View>
+                                <Text>Nombre y Firma del Auditor</Text>
+                            </View>
+                            <Form>
+                                <Item inlineLabel>
+                                <Label>Escriba su nombre y su apellido</Label>
+                                <Input />
+                                </Item>
+                            </Form>
+                            <View>
+                                <Button warning rounded>
+                                    <Text>FINALIZAR AUDITORIA</Text>
+                                </Button>
+                            </View>
+                            </Card>
+                        </CollapseBody>
+                    </Collapse>
                 </Content>
-
                 <Footer/>
             </Container>
         )
