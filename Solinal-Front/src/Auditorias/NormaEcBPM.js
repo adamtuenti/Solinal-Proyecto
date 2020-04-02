@@ -73,15 +73,37 @@ export default class NormaEcBPM extends Component {
         );
       }
 
+      _renderHeader1(item, expanded) {
+        return (
+          <View style={{
+            flexDirection: "row",
+            padding: 10,
+            justifyContent: "space-between",
+            alignItems: "center" ,
+            backgroundColor: "#A9DAD6" }}>
+          <Text style={{ fontWeight: "600" }}>
+              {" "}{item.title}
+            </Text>
+            {expanded
+              ? <Icon style={{ fontSize: 18 }} name="remove-circle" />
+              : <Icon style={{ fontSize: 18 }} name="add-circle" />}
+          </View>
+        );
+      }
+
       _renderContent(item) {
         return (
             <Accordion 
-            dataArray={dataItem1}>
+            dataArray={dataItem1}
+            animation={true}
+            expanded={true}
+            renderHeader={this._renderHeader1}
+            renderContent={this._renderContent11}>>
            </Accordion>
         );
       }
 
-      _renderContent1(item) {
+      _renderContent11(item) {
         return (
             <View>
                 <View>
@@ -92,7 +114,7 @@ export default class NormaEcBPM extends Component {
                 </View>
                 <View>
                     <Text>
-                        a. Que el riesgo de contaminación y alteración sea el mismo
+                        a. Que el riesgo de contaminación y alteración sea el mismo.
                     </Text>
                     <View>
                         <Button disabled rounded>
@@ -105,6 +127,295 @@ export default class NormaEcBPM extends Component {
                             <Text>NO APLICA</Text>
                         </Button>
                     </View>
+                    <View>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar nota</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar evidencia</Text>
+                    </TouchableHighlight>
+                    </View>
+                </View>
+                <View>
+                    <Text>
+                        b. Que el diseño y distribución de las áreas permita un mantenimiento, limpieza y desinfección apropiada;
+                        y, que minimice los riesgos de contaminación.
+                    </Text>
+                    <View>
+                        <Button disabled rounded>
+                            <Text>SÍ</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO APLICA</Text>
+                        </Button>
+                    </View>
+                    <View>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar nota</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar evidencia</Text>
+                    </TouchableHighlight>
+                    </View>
+                </View>
+                <View>
+                    <Text>
+                        c. Que las superficies y materiales, particularmente aquellos que estén en contacto con los alimentos,
+                        no sean tóxicos, y están diseñados para el uso pretendido, fáciles de mantener, limpiar y desinfectar.
+                    </Text>
+                    <View>
+                        <Button disabled rounded>
+                            <Text>SÍ</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO APLICA</Text>
+                        </Button>
+                    </View>
+                    <View>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar nota</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar evidencia</Text>
+                    </TouchableHighlight>
+                    </View>
+                    <View>
+                    <Text>
+                        d. Que facilite un control efectivo de plagas y dificulte el acceso y refugio de las mismas.
+                    </Text>
+                    <View>
+                        <Button disabled rounded>
+                            <Text>SÍ</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO APLICA</Text>
+                        </Button>
+                    </View>
+                    <View>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar nota</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar evidencia</Text>
+                    </TouchableHighlight>
+                    </View>
+                </View>
+                </View>
+            </View>
+        );
+      }
+
+      _renderContent13(item) {
+        return (
+            <View>
+                <View>
+                    <Text>
+                        La edificicación debe construirse de manera que:
+                    </Text>
+                </View>
+                <View>
+                    <Text>
+                        a. Ofrezca protección contra polvo, materias extrañas, insectos, roedores, aves y otros elementos de ambiente exterior
+                        y que mantenga las condiciones sanitarias apropiadas según el proceso. 
+                    </Text>
+                    <View>
+                        <Button disabled rounded>
+                            <Text>SÍ</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO APLICA</Text>
+                        </Button>
+                    </View>
+                    <View>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar nota</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar evidencia</Text>
+                    </TouchableHighlight>
+                    </View>
+                </View>
+                <View>
+                    <Text>
+                        b. La construcción sea sólida y disponga de espacio suficiente para la instalación, operación y mantenimiento de los equipos
+                        así como para el movimiento del personal y el traslado de materiales o alimentos
+                    </Text>
+                    <View>
+                        <Button disabled rounded>
+                            <Text>SÍ</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO APLICA</Text>
+                        </Button>
+                    </View>
+                    <View>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar nota</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar evidencia</Text>
+                    </TouchableHighlight>
+                    </View>
+                </View>
+                <View>
+                    <Text>
+                        c. Brinde facilidades para la higiene del personal.
+                    </Text>
+                    <View>
+                        <Button disabled rounded>
+                            <Text>SÍ</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO APLICA</Text>
+                        </Button>
+                    </View>
+                    <View>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar nota</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar evidencia</Text>
+                    </TouchableHighlight>
+                    </View>
+                    <View>
+                    <Text>
+                        d. Las áreas internas de protección se deben dividir en zonas según el nivel de higiene que requieran y dependiendo
+                        de los riesgos de contaminación de los alimentos.
+                    </Text>
+                    <View>
+                        <Button disabled rounded>
+                            <Text>SÍ</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO</Text>
+                        </Button>
+                        <Button disabled rounded>
+                            <Text>NO APLICA</Text>
+                        </Button>
+                    </View>
+                    <View>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2060.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar nota</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2061.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 24,
+                                        }}/>
+                        </View>
+                        <Text>Agregar evidencia</Text>
+                    </TouchableHighlight>
+                    </View>
+                </View>
                 </View>
             </View>
         );
