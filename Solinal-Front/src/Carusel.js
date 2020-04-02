@@ -1,4 +1,4 @@
-import {StyleSheet, View, Text, Image} from 'react-native';
+import {StyleSheet, TouchableHighlight, View, Text, Image} from 'react-native';
 import React, {Component} from 'react';
 import {PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator} from 'react-native-best-viewpager';
  import ViewPagerAndroid from "@react-native-community/viewpager";
@@ -15,39 +15,101 @@ export default class Carusel extends Component {
                     <View style={{ flexDirection:'column',paddingTop:'15%'}}>
 
                         <View style={{alignItems:'center'}}>
-                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%203.png?raw=true'}}style= {{height: '65%',width: '70%'}}></Image>
+                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%203.png?raw=true'}}style= {{height: '55%',width: '60%'}}></Image>
+                            <View>
+                            <Text style={styles.tituloText}>Ahorra tiempo y dinero mientras ejecutas una auditoría</Text>
+                            <Text style={styles.bodyText}>Deshazte de tanto papel, todas las auditorias internas, de proveedor, inspecciones y checklist de verificación, en una app amigable.</Text>
+                            </View>
                         </View>
 
-                        <View styles={{width:150}}>
-                         <Text style={styles.tituloText}>Ahorra tiempo y dinero mientras ejecutas una auditoría</Text>
-                        <Text style={styles.bodyText}>Deshazte de tanto papel, todas las auditorias internas, de proveedor, inspecciones y checklist de verificación, en una app amigable.</Text>
-                        </View>
+                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('Registro')}>
+                            <View>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%202.png'}}
+                                   >
+                            </Image>
+                            </View>
+                        </TouchableHighlight>
 
                         <View style={styles.textLine}>
                             <Text>¿Ya tienes una cuenta? </Text>
                             <Text 
                             onPress={()=>this.props.navigation.navigate('Login')}
-                            style={{color: 'green'}}>
+                            style={{color: '#1ed695'}}>
                             Inicia Sesión</Text>
                         </View>
                        
-                        <View style={styles.navBarBottom}>
+                        <View style={{alignItems:'center'}}>
                             <Image 
-                            source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/blue-and-white-letter-p-logo-gbutton.png?raw=true'}} style={styles.imageStyle}></Image>
-                            <Image source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Facebook-share-icon.png?raw=true'}} style={styles.imageStyle}></Image>
+                            source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Facebook-share-icon.png?raw=true'}} style={styles.imageStyle}></Image>
                         </View>
                     </View>
 
 
 
-                    <View style={{backgroundColor:'cornflowerblue'}}>
-                        <Text>page twu</Text>
+                    <View style={{ flexDirection:'column',paddingTop:'15%'}}>
+
+                        <View style={{alignItems:'center'}}>
+                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%204.png?raw=true'}}style= {{height: '55%',width: '60%'}}></Image>
+                        <View styles={{width:150}}>
+                         <Text style={styles.tituloText}>Dile adiós a tantas reuniones no productivas</Text>
+                        <Text style={styles.bodyText}>Al finalizar una auditoría, checklist o inspección en planta, visualiza los resultados en un informe completo, dinámico y con indicadores de gestión.</Text>
+                        </View>
+                        </View>
+
+                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('Registro')}>
+                            <View>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%202.png'}}
+                                   >
+                            </Image>
+                            </View>
+                        </TouchableHighlight>
+
+                        <View style={styles.textLine}>
+                            <Text>¿Ya tienes una cuenta? </Text>
+                            <Text 
+                            onPress={()=>this.props.navigation.navigate('Login')}
+                            style={{color: '#1ed695'}}>
+                            Inicia Sesión</Text>
+                        </View>
+                       
+                        <View style={{alignItems:'center'}}>
+                            <Image 
+                            source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Facebook-share-icon.png?raw=true'}} style={styles.imageStyle}></Image>
+                        </View>
                     </View>
 
 
 
-                    <View style={{backgroundColor:'#1AA094'}}>
-                        <Text>page three</Text>
+                    <View style={{ flexDirection:'column',paddingTop:'15%'}}>
+
+                        <View style={{alignItems:'center'}}>
+                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%205.png?raw=true'}}style= {{height: '55%',width: '60%'}}></Image>
+                        <View styles={{width:150}}>
+                         <Text style={styles.tituloText}>Cierra no conformidades sin necesidad de tanto papel</Text>
+                        <Text style={styles.bodyText}>Olvídate de esas reuniones que no llegan a nada. Gestiona de una forma más intuitiva las acciones correctivar a implementar para cerrar las no conformidades.</Text>
+                        </View>
+                        </View>
+
+                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('Registro')}>
+                            <View>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%202.png'}}
+                                   >
+                            </Image>
+                            </View>
+                        </TouchableHighlight>
+
+                        <View style={styles.textLine}>
+                            <Text>¿Ya tienes una cuenta? </Text>
+                            <Text 
+                            onPress={()=>this.props.navigation.navigate('Login')}
+                            style={{color: '#1ed695'}}>
+                            Inicia Sesión</Text>
+                        </View>
+                       
+                        <View style={{alignItems:'center'}}>
+                            <Image 
+                            source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Facebook-share-icon.png?raw=true'}} style={styles.imageStyle}></Image>
+                        </View>
                     </View>
                 </IndicatorViewPager>
  
