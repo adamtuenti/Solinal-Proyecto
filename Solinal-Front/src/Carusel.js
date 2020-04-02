@@ -12,10 +12,19 @@ export default class Carusel extends Component {
                 >
 
 
-                    <View style={{justifyContent:'center'}}>
-                                      
+                    <View style={{ flexDirection:'column',paddingTop:'15%'}}>
+
+                        <View style={{alignItems:'center'}}>
+                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%203.png?raw=true'}}style= {{height: '65%',width: '70%'}}></Image>
+                        </View>
+
+                        <View styles={{width:150}}>
+                         <Text style={styles.tituloText}>Ahorra tiempo y dinero mientras ejecutas una auditoría</Text>
+                        <Text style={styles.bodyText}>Deshazte de tanto papel, todas las auditorias internas, de proveedor, inspecciones y checklist de verificación, en una app amigable.</Text>
+                        </View>
+
                         <View style={styles.textLine}>
-                            <Text>¿Ya tienes una cuent? </Text>
+                            <Text>¿Ya tienes una cuenta? </Text>
                             <Text 
                             onPress={()=>this.props.navigation.navigate('Login')}
                             style={{color: 'green'}}>
@@ -32,7 +41,7 @@ export default class Carusel extends Component {
 
 
                     <View style={{backgroundColor:'cornflowerblue'}}>
-                        <Text>page two</Text>
+                        <Text>page twu</Text>
                     </View>
 
 
@@ -96,15 +105,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     tituloText: {
-        marginTop: 20,
+        marginTop: 5,
         fontWeight: 'bold',
         fontSize: 22,
         textAlign: 'center',
+        alignItems:'center'
     },
     bodyText: {
         marginTop: 10,
         marginBottom: 15,
-        fontSize: 16,
+        fontSize: 15,
         textAlign: 'center',
     },
     imageBackground4: {
@@ -133,7 +143,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        fontSize:15
     },
     imageStyle: {
         width: 50,
