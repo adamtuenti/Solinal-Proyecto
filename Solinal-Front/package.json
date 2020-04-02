@@ -16,7 +16,7 @@
     "bootstrap": "^4.4.1",
     "expo": "~36.0.0",
     "expo-font": "^8.0.0",
-    "jquery": "^1.9.1",
+    "jquery": "^3.4.0",
     "linkify-it": "^2.2.0",
     "native-base": "2.13.8",
     "react": "~16.9.0",
