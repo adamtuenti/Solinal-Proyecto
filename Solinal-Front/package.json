@@ -19,10 +19,8 @@
     "linkify-it": "^2.2.0",
     "native-base": "2.13.8",
     "react": "~16.9.0",
-
     "react-bootstrap": "^1.0.0-beta.17",
     "react-bootstrap-carousel": "^4.0.3",
-
     "react-bootstrap-dropdown": "^0.3.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
