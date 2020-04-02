@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, Image, View, Dimensions, ImageBackground, } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, Image,Button, View, Dimensions, ImageBackground, } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import Carousel from 'react-native-anchor-carousel';
@@ -66,6 +66,19 @@ export default class CarouselS extends Component {
                         onPress={()=>this.props.navigation.navigate('Registro')}
                         style={styles.botonLogin}
                         />
+
+
+        <View>
+        <Button
+                        title="COMENZAR"
+                        type="clear"
+                        onPress={()=>this.props.navigation.navigate('Registro')}
+                        style={styles.botonLogin}
+                        />
+        </View>
+
+
+        
          <View style={styles.textLine}>
             <Text>¿Ya tienes una cuenta? </Text>
             <Text 
