@@ -21,7 +21,7 @@ import Carusel from './src/Carusel'
 
 const AppNavigator = createStackNavigator(
   {
-     Carusel,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar
+     Main,Carusel, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar
   },
   {
     headerMode: 'none',
