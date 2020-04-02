@@ -17,10 +17,11 @@ import AuditoriasBuscar from './src/Auditorias/AuditoriasBuscar';
 
 
 import Router from './src/Router';
+import Carusel from './src/Carusel'
 
 const AppNavigator = createStackNavigator(
   {
-     Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar
+     Carusel,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar
   },
   {
     headerMode: 'none',
