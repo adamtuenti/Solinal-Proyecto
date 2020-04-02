@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import Login from './src/Cuenta/Login';
 import Registro from './src/Cuenta/Registro';
-import CarouselS from './src/CarouselS';
+//import CarouselB from './src/CarouselB';
 import Home from './src/Home';
 import Reestablecer from './src/Cuenta/Reestablecer';
 import Main from './src/Main';
@@ -20,7 +20,7 @@ import Router from './src/Router';
 
 const AppNavigator = createStackNavigator(
   {
-    CarouselS, Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar
+     Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar
   },
   {
     headerMode: 'none',

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container,  Title, Content, Card, CardItem, FooterTab, Button, Left, Right, Body,  Font } from 'native-base';
+import { Container,  Title, Content, Card, CardItem,  Button, Left, Right, Body,  Font } from 'native-base';
 import { Icon } from 'react-native-elements'
 import {
   StyleSheet,
@@ -10,9 +10,11 @@ import {
 } from 'react-native'
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
-import { Header } from 'react-native-elements';
+
 import Accordion from 'react-bootstrap/Accordion'
 import Footer from './../shared/Footer';
+import Header from './../shared/Header';
+import EstadoCuenta from './../shared/estadoCuenta';
 
 export default class Main extends Component {
 
@@ -29,31 +31,19 @@ export default class Main extends Component {
     return (
       <Container>
 
+      <Header encabezado='Bienvenido'/>
+
+      
+
 
 
 
 
 
         <Content padder style={{backgroundColor: '#f6f6f6'}}>
-          <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10}}>
-          <View style={{marginRight:35}}>
-              <Text style={{color: '#636363'}}>
-                  Auditorias realizadas: #
-                
-                <Text style={{color: '#2ba855'}}>
-                  0
-                </Text>
-                </Text>
-          </View>
 
-          <View>
-               
-                <Text style={{color: '#2ba855'}}>
-                  CUENTA GRATUITA
-                </Text>
-          </View>
-            
-          </View>
+        <EstadoCuenta cantidad='0' tipoCuenta='GRATIS'/>
+          
 
 
           <Card>
@@ -186,7 +176,9 @@ export default class Main extends Component {
         </Content>
 
 
-      <Footer/>
+      <Footer title='Main'/>
+
+    
         
         
 

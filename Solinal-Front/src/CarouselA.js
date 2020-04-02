@@ -7,26 +7,26 @@ const { width } = Dimensions.get('window');
 
 const carouselItems = [
     {
-        top: require('https://raw.githubusercontent.com/adamtuenti/FrontEnd/master/Solinal-Front/Recurso%203.png'),
+        top: require('https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/blue-and-white-letter-p-logo-gbutton.png?raw=true'),
         titulo: 'Ahorra tiempo y dinero mientras ejecutas una auditoría',
         cuerpo: 'Deshazte de tanto papel, todas las auditorias internas, de proveedor, inspecciones y checklist de verificación, en una app amigable',
-        button: 'https://raw.githubusercontent.com/adamtuenti/FrontEnd/master/Solinal-Front/Recurso%202.png',
+        button: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/blue-and-white-letter-p-logo-gbutton.png?raw=true',
         text: '',
         icon: ''
     },
     {
-        top: require('https://raw.githubusercontent.com/adamtuenti/FrontEnd/master/Solinal-Front/Recurso%204.png'),
+        top: require('https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/blue-and-white-letter-p-logo-gbutton.png?raw=true'),
         titulo: 'Dile adiós a tantas reuniones no productivas',
         cuerpo: 'Al finalizar una auditoría, checklist o inspección en planta, visualiza los resultados en un informe completo, dinámico y con indicadores de gestión',
-        button: 'https://raw.githubusercontent.com/adamtuenti/FrontEnd/master/Solinal-Front/Recurso%202.png',
+        button: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/blue-and-white-letter-p-logo-gbutton.png?raw=true',
         text: '',
         icon: ''
     },
     {
-        top: require('https://raw.githubusercontent.com/adamtuenti/FrontEnd/master/Solinal-Front/Recurso%205.png'),
+        top: require('https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/blue-and-white-letter-p-logo-gbutton.png?raw=true'),
         titulo: 'Cierra no conformidades sin necesidad de tanto papel',
         cuerpo: 'Olvídate de esas reuniones que no llegan a nada. Gestiona de una forma más intuitiva, las acciones correctivas a implementar para cerrar las no conformidades',
-        button: 'https://raw.githubusercontent.com/adamtuenti/FrontEnd/master/Solinal-Front/Recurso%202.png',
+        button: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/blue-and-white-letter-p-logo-gbutton.png?raw=true',
         text: '',
         icon: ''
     }
