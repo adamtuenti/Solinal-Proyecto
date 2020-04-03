@@ -14,7 +14,7 @@ import Footer from './../../shared/Footer';
 import Header from './../../shared/Header';
 import EstadoCuenta from './../../shared/estadoCuenta';
 
-export default class AuditoriasVacia extends Component{
+export default class AuditoriaFinalizada extends Component{
 
     async componentDidMount() {
         await Font.loadAsync({
@@ -47,22 +47,21 @@ export default class AuditoriasVacia extends Component{
                         <CardItem>
                             <Body style={{alignItems: 'center', width:24,fontWeight: 'bold'}}>
                                 <Text style={{color: '#636363', fontSize: 12, alignItems: 'center'}}>AUDITORÍA FINALIZADA</Text>
-                                <Text style={{color: '#636363', fontSize: 12, alignItems: 'center'}}>Encuentra las normas actualizadas y empieza a auditar</Text>
                             </Body>
                         </CardItem>
                         <CardItem style={{alignItems: 'center'}}>
                             <Body style={{alignItems: 'center'}}>
 
                                 <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
+                                     onPress={()=>this.props.navigation.navigate()}>
                                     <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2063.png'}}></Image>
                                 </TouchableHighlight>                    
                             </Body>
                             <Body style={{alignItems: 'center'}}>
 
                                 <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
-                                    <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2063.png'}}></Image>
+                                     onPress={()=>this.props.navigation.navigate()}>
+                                    <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2064.png'}}></Image>
                                 </TouchableHighlight>                    
                             </Body>
                         </CardItem>
