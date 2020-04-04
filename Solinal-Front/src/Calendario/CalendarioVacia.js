@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import Header from '../../shared/Header';
-import EstadoCuenta from '../../shared/estadoCuenta';
+import AuditoriasProgramadas from '../../shared/AuditoriasProgramadas';
 
 export default class CalendarioVacia extends Component {
 
@@ -27,7 +27,7 @@ export default class CalendarioVacia extends Component {
               <Container>
                 <Header encabezado='Calendario'/>
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
-                    <EstadoCuenta cantidad='0' tipoCuenta='GRATIS'/>
+                    <AuditoriasProgramadas cantidad='0' tipoCuenta='GRATIS'/>
                     <Card>
                         <CardItem>
                             <Body style={{alignItems: 'center'}}>
@@ -72,7 +72,7 @@ export default class CalendarioVacia extends Component {
                             </View>
                         </TouchableHighlight>
 
-                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioVacia')} style={styles.botones}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
                             <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario-active.png?raw=true'}}
                                    style= {{height: 35,
