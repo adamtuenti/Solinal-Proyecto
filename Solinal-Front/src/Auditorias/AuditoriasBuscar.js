@@ -213,7 +213,7 @@ export default class AuditoriasBuscar extends Component {
                 </Content>
 
 
-                <Footer/>
+                <FooterAuditoria/>
             </Container>
         )
     }

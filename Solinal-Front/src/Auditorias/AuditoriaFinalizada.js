@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Footer from './../../shared/Footer';
 import Header from './../../shared/Header';
 import EstadoCuenta from './../../shared/estadoCuenta';
+import FooterAuditoria from '../../shared/FooterAuditoria';
 
 export default class AuditoriaFinalizada extends Component{
 
@@ -67,7 +68,6 @@ export default class AuditoriaFinalizada extends Component{
                         </CardItem>
                     </Card>
                 </Content>
-                 <Footer/>
             </Container>
         );
     } 

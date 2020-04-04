@@ -6,7 +6,7 @@ import {StyleSheet,TouchableHighlight,Text,View,TextInput} from 'react-native'
 
 
 
-export default class Footer extends React.Component{
+export default class FooterAuditoria extends React.Component{
     render(){
     
 
@@ -17,24 +17,11 @@ export default class Footer extends React.Component{
                 <View style={{height:63, flexDirection: 'row',width:'100%'}}>
                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}} 
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2047.png'}} 
                             style={{height: 35, 
                                         width: 25,
                                         }}/>
                     <Text style={styles.letra}>Auditorias</Text>
-                    </View>
-                </TouchableHighlight>
-
-                
-
-
-
-                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones1}>
-                    <View style={{flexDirection:'column',}}>
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2013.png'}}
-                                   style= {{height: 45,
-                                            width: 45}}>
-                            </Image>
                     </View>
                 </TouchableHighlight>
 
@@ -48,6 +35,15 @@ export default class Footer extends React.Component{
                     </View>
                 </TouchableHighlight>
 
+                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones1}>
+                    <View style={{flexDirection:'column',}}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2013.png'}}
+                                   style= {{height: 45,
+                                            width: 45}}>
+                            </Image>
+                    </View>
+                </TouchableHighlight>
+
                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
@@ -56,7 +52,7 @@ export default class Footer extends React.Component{
                             </Image>
                <Text style={styles.letra}>Accion Correctiva</Text>
                     </View>
-                </TouchableHighlight>               
+                </TouchableHighlight>
 
                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>

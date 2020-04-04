@@ -69,13 +69,7 @@ export default class AuditoriasVacia extends Component {
                         </CardItem>
                     </Card>
                 </Content>
-
-
-
-
-
-
-                 <Footer/>
+                 <FooterAuditoria/>
             </Container>
         );
     }  

@@ -16,6 +16,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Collapse, CollapseHeader, CollapseBody } from "accordion-collapse-react-native";
 
 import Footer from './../../shared/Footer';
+import FooterAuditoria from '../../shared/FooterAuditoria';
 
 const dataItem1 = [
     { title: "Art. 73: De las condiciones mínimas básicas", content: "Lorem ipsum dolor sit amet" },
@@ -461,7 +462,7 @@ export default class NormaEcBPM extends Component {
                         </CollapseBody>
                     </Collapse>
                 </Content>
-                <Footer/>
+                <FooterAuditoria/>
             </Container>
         )
     }

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Header from '../../shared/Header';
 import AuditoriasProgramadas from '../../shared/AuditoriasProgramadas';
+import FooterCalendario from '../../shared/FooterCalendario';
 
 export default class CalendarioVacia extends Component {
 
@@ -60,64 +61,8 @@ export default class CalendarioVacia extends Component {
                         </CardItem>
                     </Card>
                 </Content>
-                <Footer>
-                    <View style={{height:63, flexDirection: 'row',width:'100%'}}>
-                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                            <View style={{flexDirection:'column',alignItems: 'center',}}>
-                                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}} 
-                                style={{height: 35, 
-                                        width: 25,
-                                        }}/>
-                                <Text style={styles.letra}>Auditorias</Text>
-                            </View>
-                        </TouchableHighlight>
-
-                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioVacia')} style={styles.botones}>
-                    <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario-active.png?raw=true'}}
-                                   style= {{height: 35,
-                                            width: 32}}>
-                            </Image>
-                    <Text style={styles.letra}>Calendario</Text>
-                    </View>
-                </TouchableHighlight>
-
-                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones1}>
-                    <View style={{flexDirection:'column',}}>
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2013.png'}}
-                                   style= {{height: 45,
-                                            width: 45}}>
-                            </Image>
-                    </View>
-                </TouchableHighlight>
-
-
-                
-                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                    <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
-                                   style= {{height: 35,
-                                            width: 28}}>
-                            </Image>
-               <Text style={styles.letra}>Accion Correctiva</Text>
-                    </View>
-                </TouchableHighlight>
-                   
-
-                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                    <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2015.png'}}
-                                   style= {{height: 35,
-                                            width: 34}}>
-                            </Image>
-               <Text style={styles.letra}>No Conformidad</Text>
-                    </View>
-                </TouchableHighlight>
-  
-               
-                </View>
-                </Footer>    
-              </Container>
+                <FooterCalendario />
+            </Container>
           )
       }
 

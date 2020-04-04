@@ -6,7 +6,7 @@ import {StyleSheet,TouchableHighlight,Text,View,TextInput} from 'react-native'
 
 
 
-export default class Footer extends React.Component{
+export default class FooterCalendario extends React.Component{
     render(){
     
 
@@ -25,9 +25,15 @@ export default class Footer extends React.Component{
                     </View>
                 </TouchableHighlight>
 
-                
-
-
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario-active.png?raw=true'}}
+                                   style= {{height: 35,
+                                            width: 32}}>
+                            </Image>
+                    <Text style={styles.letra}>Calendario</Text>
+                    </View>
+                </TouchableHighlight>
 
                  <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones1}>
                     <View style={{flexDirection:'column',}}>
@@ -40,23 +46,13 @@ export default class Footer extends React.Component{
 
                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario.png?raw=true'}}
-                                   style= {{height: 35,
-                                            width: 32}}>
-                            </Image>
-                    <Text style={styles.letra}>Calendario</Text>
-                    </View>
-                </TouchableHighlight>
-
-                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                    <View style={{flexDirection:'column',alignItems: 'center',}}>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
                                    style= {{height: 35,
                                             width: 28}}>
                             </Image>
                <Text style={styles.letra}>Accion Correctiva</Text>
                     </View>
-                </TouchableHighlight>               
+                </TouchableHighlight>
 
                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>

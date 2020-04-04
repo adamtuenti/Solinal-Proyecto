@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Footer from './../../shared/Footer';
 import Header from './../../shared/Header';
 import EstadoCuenta from './../../shared/estadoCuenta';
+import FooterAuditoria from '../../shared/FooterAuditoria';
 
 export default class AuditoriasLista extends Component {
     async componentDidMount() {
@@ -42,82 +43,7 @@ export default class AuditoriasLista extends Component {
           selected3: value
         });
       }   
-
-
-/*<Card>
-                        <CardItem bordered>
-                            <Body>
-                                <View>
-                                    <Text>
-                                        Buscaste:
-                                        <Text>FDA</Text>
-                                    </Text>
-                                </View>
-                                <View>
-                                    <Text>
-                                        Encontramos:
-                                        <Text>Part 110 current good manufacturing practice in manufacturing, packing, or holding human food</Text>
-                                    </Text>
-                                </View>
-                                <View>
-                                    <Text>
-                                        Estados Unidos |
-                                        <Text>FDA 21 CFR 110 |
-                                            <Text>15 descargas</Text>
-                                        </Text>
-                                    </Text>
-                                </View>
-                            </Body>
-                        </CardItem>
-                        <CardItem bordered>
-                            <Body>
-                                <View>
-                                    <Text>
-                                        Buscaste:
-                                        <Text>FDA</Text>
-                                    </Text>
-                                </View>
-                                <View>
-                                    <Text>
-                                        Encontramos:
-                                        <Text>Part 101 Food Ilbeling</Text>
-                                    </Text>
-                                </View>
-                                <View>
-                                    <Text>
-                                        Estados Unidos |
-                                        <Text>FDA 21 CFR 101 |
-                                            <Text>365 descargas</Text>
-                                        </Text>
-                                    </Text>
-                                </View>
-                            </Body>
-                        </CardItem>
-                        <CardItem bordered>
-                            <Body>
-                                <View>
-                                    <Text>
-                                        Buscaste:
-                                        <Text>FDA</Text>
-                                    </Text>
-                                </View>
-                                <View>
-                                    <Text>
-                                        Encontramos:
-                                        <Text>Fish and Fishering Products</Text>
-                                    </Text>
-                                </View>
-                                <View>
-                                    <Text>
-                                        Estados Unidos |
-                                        <Text>FDA 21 CFR 123 |
-                                            <Text>498 descargas</Text>
-                                        </Text>
-                                    </Text>
-                                </View>
-                            </Body>
-                        </CardItem>
-                    </Card>*/
+               
     render(){
         return (
             <Container>
@@ -195,7 +121,7 @@ export default class AuditoriasLista extends Component {
                       
                     </Card>
                 </Content>
-                 <Footer/>
+                 <FooterAuditoria/>
             </Container>
         )
     }
