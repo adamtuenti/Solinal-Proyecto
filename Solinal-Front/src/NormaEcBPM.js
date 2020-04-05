@@ -423,23 +423,9 @@ export default class NormaEcBPM extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { chosenDate: new Date(), pressStatus: false };
+        this.state = { chosenDate: new Date() };
         this.setDate = this.setDate.bind(this);
       }
-
-      _onHideUnderlay() {
-    this.setState({ pressStatus: false });
-}
-_onShowUnderlay() {
-    this.setState({ pressStatus: true });
-}
-
-myfun=()=>{
-    alert("clave mal ingresada");
-
-    this.setState({ pressStatus: true });
-
-}
 
       setDate(newDate) {
         this.setState({ chosenDate: newDate });
@@ -450,26 +436,10 @@ myfun=()=>{
             <Container>
 
                 <Header encabezado='Auditoria'/>
-
-                
                 
 
 
                 <Content padder style={{backgroundColor: '#f6f6f6', borderBottomColor:2,width:'100%'}}>
-                <Card>
-
-
-
-
-                    <View style={{flex: 1, flexDirection: 'row', height:100, justifyContent:'flex-end', marginTop:15}}>
-                    <Text style={{fontSize:14, marginLeft:'2%'}}>Normativa tecnica sanitaria para alimentos procesados, plantas procesadoras de alimentos, establecimientos de distribución, comercialización, transporte y establecimientos de alimentacion colectiva.</Text>
-
-                    
-
-                    </View>
-
-
-                </Card>
 
                    
 
@@ -496,7 +466,7 @@ myfun=()=>{
                             animationType={"fade"}
                             androidMode={"default"}
                             placeHolderText="Fecha de la auditoría"
-                            textStyle={{ color: "blue" }}
+                            textStyle={{ color: "green" }}
                             placeHolderTextStyle={{ color: "#d3d3d3" }}
                             onDateChange={this.setDate}
                             disabled={false}
@@ -550,18 +520,9 @@ myfun=()=>{
 
                                                                         <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
                                                                             <TouchableHighlight
-                                                                            style={
-                    this.state.pressStatus
-                        ? styles.buttonPress
-                        : styles.button
-                }
-                
-                onPress={ this.myfun}
-                
-               >
+                                                                            style={styles.boton} underlayColor={'white'}  onPress={this.myfun}>
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
-                                                                            </TouchableHighlight>
-                                                                            <TouchableHighlight
+                                                                            </TouchableHighlight><TouchableHighlight
                                                                             style={styles.boton} onPress={this.myfun}>
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
                                                                             </TouchableHighlight>
@@ -631,18 +592,6 @@ const styles = StyleSheet.create({
       
       backgroundColor: '#f6f6f6', borderBottomColor:2,width:'90%',alignItems:'center',marginLeft:'5%'
     },
-    button: {
-    borderColor: "#000066",
-    backgroundColor:'green',
-    borderWidth: 1,
-    borderRadius: 10
-},
-buttonPress: {
-    borderColor: "#000066",
-    backgroundColor: "blue",
-    borderWidth: 1,
-    borderRadius: 10
-},
     colapse:{
         width:'98%',
         marginLeft:'1%',
