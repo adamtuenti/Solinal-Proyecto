@@ -65,5 +65,4 @@ export default class CalendarioVacia extends Component {
             </Container>
           )
       }
-
 }
