@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container, Header, Title, DatePicker, Content, Card, CardItem, Button, Left, Label, Accordion, Right, Body, Font, Form, Item, Picker, Input, List, ListItem, Separator } from 'native-base';
+import { Container,  Title, DatePicker, Content, Card, CardItem, Button, Left, Label, Accordion, Right, Body, Font, Form, Item, Picker, Input, List,  Separator } from 'native-base';
 import { Icon } from 'react-native-elements'
 import {
   StyleSheet,
@@ -14,111 +14,12 @@ import Dropdown from 'react-bootstrap/Dropdown';
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 import { Collapse, CollapseHeader, CollapseBody } from "accordion-collapse-react-native";
-
-import Footer from './../../shared/Footer';
+import { ListItem , Divider} from 'react-native-elements';
+import Header from './../../shared/Header';
 import FooterAuditoria from '../../shared/FooterAuditoria';
 
-const dataItem1 = [
-    { title: "Art. 73: De las condiciones mínimas básicas", content: "Lorem ipsum dolor sit amet" },
-    { title: "Art. 74: De la localización", content: "Lorem ipsum dolor sit amet" },
-    { title: "Art. 75: Diseño y construcción", content: "Lorem ipsum dolor sit amet" },
-    { title: "Art. 76: Condiciones específicas de las áreas, estructuras internas y accesorios", content: "Lorem ipsum dolor sit amet" },
-    { title: "Art. 77: Suministro de Agua", content: "Lorem ipsum dolor sit amet" },
-];
-
-const dataMain = [
-    { title: "De las instalaciones y requisitos de buenas prácticas de manufactura", content: "Lorem ipsum dolor sit amet" },
-    { title: "De los equipos y utensilios", content: "Lorem ipsum dolor sit amet" },
-    { title: "Requisitos higiénicos de fabricación", content: "Lorem ipsum dolor sit amet" },
-    { title: "Envasado, etiquetado y empaquetado", content: "Lorem ipsum dolor sit amet" },
-    { title: "Almacenamiento, distribución, transporte y comercialización", content: "Lorem ipsum dolor sit amet" },
-    { title: "Del aseguramiento y control de la calidad", content: "Lorem ipsum dolor sit amet" },
-    { title: "Firma del auditor", content: "Lorem ipsum dolor sit amet" }
-  ];
-
-export default class NormaEcBPM extends Component {
-
-    async componentDidMount() {
-        await Font.loadAsync({
-          Roboto: require("native-base/Fonts/Roboto.ttf"),
-          Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-          /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
-        });
-        this.setState({ isReady: true });
-      }
-
-    constructor(props) {
-        super(props);
-        this.state = { chosenDate: new Date() };
-        this.setDate = this.setDate.bind(this);
-      }
-
-      setDate(newDate) {
-        this.setState({ chosenDate: newDate });
-      }
-
-      render(){
-        return (
-            <Container>
-
-                <Header style={{justifyContent: 'flex-end',marginTop:5,backgroundColor: '#1ed695',height:75, alignItems: 'center',}}>
-                <Left>
-                    <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/user.png?raw=true'}}
-                                    style= {{height: 40,
-                                            width: 40}}>
-                    </Image>
-                </Left>
-                <Body>
-                    <Title>Auditorias</Title>
-                </Body>
-                <Right>
-                    <Button transparent>
-                    <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/menu.png?raw=true'}}
-                                    style= {{height: 20,
-                                            width: 30}}>
-                    </Image>
-                    </Button>
-                </Right>
-                </Header>
-
-
-
-                <Content padder style={{backgroundColor: '#f6f6f6'}}>
-
-                    <Card>
-                        <Item>
-                            <Input placeholder="Norma" />
-                        </Item>
-                        <Item>
-                            <Input placeholder="Organización" />
-                        </Item>
-                        <Item>
-                            <Input placeholder="Dirección" />
-                        </Item>
-                        <Item>
-                            <Input placeholder="Alcance de la auditoría" />
-                        </Item>
-                        <DatePicker
-                            defaultDate={new Date()}
-                            minimumDate={new Date(2020, 1, 1)}
-                            maximumDate={new Date(2020, 12, 31)}
-                            locale={"es"}
-                            timeZoneOffsetInMinutes={undefined}
-                            modalTransparent={false}
-                            animationType={"fade"}
-                            androidMode={"default"}
-                            placeHolderText="Fecha de la auditoría"
-                            textStyle={{ color: "green" }}
-                            placeHolderTextStyle={{ color: "#d3d3d3" }}
-                            onDateChange={this.setDate}
-                            disabled={false}
-                        />
-                        <Item>
-                            <Input placeholder="Auditor" />
-                        </Item>
-                    </Card>
-                    
-                    <Collapse>
+/*
+<Collapse>
                         <CollapseHeader>
                             <Card>
                             <View>
@@ -460,7 +361,243 @@ export default class NormaEcBPM extends Component {
                             </View>
                             </Card>
                         </CollapseBody>
+                    </Collapse>*/
+
+
+const dataItem1 = [
+    { title: "Art. 73: De las condiciones mínimas básicas", content: "Lorem ipsum dolor sit amet" },
+    { title: "Art. 74: De la localización", content: "Lorem ipsum dolor sit amet" },
+    { title: "Art. 75: Diseño y construcción", content: "Lorem ipsum dolor sit amet" },
+    { title: "Art. 76: Condiciones específicas de las áreas, estructuras internas y accesorios", content: "Lorem ipsum dolor sit amet" },
+    { title: "Art. 77: Suministro de Agua", content: "Lorem ipsum dolor sit amet" },
+];
+
+const dataMain = [
+    { title: "De las instalaciones y requisitos de buenas prácticas de manufactura", content: "Lorem ipsum dolor sit amet" },
+    { title: "De los equipos y utensilios", content: "Lorem ipsum dolor sit amet" },
+    { title: "Requisitos higiénicos de fabricación", content: "Lorem ipsum dolor sit amet" },
+    { title: "Envasado, etiquetado y empaquetado", content: "Lorem ipsum dolor sit amet" },
+    { title: "Almacenamiento, distribución, transporte y comercialización", content: "Lorem ipsum dolor sit amet" },
+    { title: "Del aseguramiento y control de la calidad", content: "Lorem ipsum dolor sit amet" },
+    { title: "Firma del auditor", content: "Lorem ipsum dolor sit amet" }
+  ];
+
+
+const list = [
+  {
+    titulo: 'De las instalaciones y requisitos de buenas prácticas de manufactura',
+    menu: ['Art. 73: De las condiciones mínimas básicas','Art. 74: De la localización','Art. 75: Diseño y construcción','Art. 76: Condiciones específicas de las áreas, estructuras internas y accesorios'],
+    submenu:['sub menu1','submenu2'],
+    url: 'AuditoriasBuscar',
+    altura:30,
+    anchura:40
+  },
+  {
+   titulo: 'De los equipos y utensilios',
+    menu: ['1a','2a'],
+    submenu:['sub menu1','submenu2'],
+    url: 'AuditoriasBuscar',
+    altura:32,
+    anchura:23
+  },
+  {
+    titulo: 'Requisitos higiénicos de fabricación',
+    menu: ['1 a','2a'],
+    submenu:['sub menu1','submenu2'],
+    url: 'AuditoriasBuscar',
+    altura:30,
+    anchura:35
+  }
+]
+
+export default class NormaEcBPM extends Component {
+// <Card style={{backgroundColor: '#f6f6f6', borderBottomColor:2,width:'90%',alignItems:'center',marginLeft:'5%'}}>
+    async componentDidMount() {
+        await Font.loadAsync({
+          Roboto: require("native-base/Fonts/Roboto.ttf"),
+          Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+          /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
+        });
+        this.setState({ isReady: true });
+      }
+
+    constructor(props) {
+        super(props);
+        this.state = { chosenDate: new Date() };
+        this.setDate = this.setDate.bind(this);
+      }
+
+      setDate(newDate) {
+        this.setState({ chosenDate: newDate });
+      }
+
+      render(){
+        return (
+            <Container>
+
+                <Header encabezado='Auditoria'/>
+                
+
+
+                <Content padder style={{backgroundColor: '#f6f6f6', borderBottomColor:2,width:'100%'}}>
+
+                   
+
+                     <View style = {styles.container}>
+                        
+                            <Input style={styles.input} placeholder="Nombre de la persona que es auditada" />
+                        
+                            <Input style={styles.input} placeholder="Cargo dentro de la organización" />
+                        
+                            <Input style={styles.input} placeholder="Area de trabajo" />
+                       
+                            <Input style={styles.input} placeholder="Email de contacto" />
+                       
+                            <Input style={styles.input} placeholder="Alcance de la auditoría" />
+                       
+                        <DatePicker
+                            style={styles.input}
+                            defaultDate={new Date()}
+                            minimumDate={new Date(2020, 1, 1)}
+                            maximumDate={new Date(2020, 12, 31)}
+                            locale={"es"}
+                            timeZoneOffsetInMinutes={undefined}
+                            modalTransparent={false}
+                            animationType={"fade"}
+                            androidMode={"default"}
+                            placeHolderText="Fecha de la auditoría"
+                            textStyle={{ color: "green" }}
+                            placeHolderTextStyle={{ color: "#d3d3d3" }}
+                            onDateChange={this.setDate}
+                            disabled={false}
+                        />
+                        
+                            <Input style={styles.input} placeholder="Nombre de la persona que audita" />
+                       
+                    </View>
+
+                 
+
+
+              <View style={styles.colapse}>
+                {
+                  list.map((l, i) => (
+                      <Collapse>
+                        <CollapseHeader>
+                            
+                            <View style={styles.titulo}>
+                                <Text style={styles.tituloLetra}>{l.titulo}</Text>
+                            </View>
+                            
+                        </CollapseHeader>
+                        <CollapseBody>
+
+                            
+                         
+                                        
+                                            
+                                            <View>
+                                             {
+                                                l.menu.map((m, n) => (
+
+                                                    <Collapse>
+
+                                                        <CollapseHeader>
+                                                                <View style={styles.menu}>
+                                                                <Text>{m}</Text>
+                                                                </View>
+                                                        
+                                                        </CollapseHeader>
+
+                                                        <CollapseBody>
+
+                                                            <View>
+
+                                                                {
+                                                                    l.submenu.map((o,p)=>(
+                                                                        <View style={styles.submenu}>
+                                                                        <Text>{o}</Text>
+
+                                                                        <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
+                                                                            <TouchableHighlight
+                                                                            style={styles.boton} onPress={this.myfun}>
+                                                                            <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
+                                                                            </TouchableHighlight><TouchableHighlight
+                                                                            style={styles.boton} onPress={this.myfun}>
+                                                                            <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
+                                                                            </TouchableHighlight>
+                                                                            <TouchableHighlight
+                                                                            style={styles.boton} onPress={this.myfun}>
+                                                                            <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
+                                                                            </TouchableHighlight>
+                                                                            
+                                                                        </View>
+                                                                        <View style={{marginTop:5,marginBottom:7,marginLeft:5}}>
+                                                                        <Collapse>
+                                                                            <CollapseHeader>
+                                                                            
+                                                                                <View style={{flexDirection:'row',alignItems: 'center',}}>
+                                                                                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}} 
+                                                                                        style={{height: 35, 
+                                                                                                    width: 25,
+                                                                                                    }}/>
+                                                                                <Text style={{fontSize:12,marginLeft:5}}>Agregar nota</Text>
+                                                                                </View>
+                                                                            
+                                                                            </CollapseHeader>
+                                                                            <CollapseBody>
+                                                                            <Input style={styles.input} placeholder="Escriba su nota" />
+                                                                            </CollapseBody>
+                                                                            </Collapse>
+                                                                        </View>
+
+                                                                        </View>
+
+                                                                        
+
+                                                                    ))
+                                                                }
+
+
+
+                                                                
+                                                                </View>
+
+                                                    </CollapseBody>
+                                                </Collapse>
+                                               
+                                            ))
+                                            }
+                                            </View>
+                                            
+                   
+            
+                                       
+                               
+                                
+                           
+                        </CollapseBody>
                     </Collapse>
+                    
+                ))
+                }
+              </View>
+                    
+                    
+                 
+           
+
+
+            
+
+
+         
+        
+                    
+                   
+
+               
+                    
                 </Content>
                 <FooterAuditoria/>
             </Container>
@@ -469,25 +606,83 @@ export default class NormaEcBPM extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+      
+      backgroundColor: '#f6f6f6', borderBottomColor:2,width:'90%',alignItems:'center',marginLeft:'5%'
+    },
+    colapse:{
+        width:'98%',
+        marginLeft:'1%',
+        marginTop:'10%'
+        
+
+    },
+    titulo:{
+        backgroundColor:'#70FA76',
+        borderBottomColor: 'white',
+        borderBottomWidth: 5,
+        padding:7
+        
+
+    },tituloLetra:{
+        fontSize:14,
+        marginLeft:8
+
+    },
+    menu:{
+        backgroundColor:'#FBFE91',
+        borderBottomColor: 'white',
+        borderBottomWidth: 3,
+        padding:6
+      
+
+
+    },
+    submenu:{
+        backgroundColor:'white'
+
+    },
     
 
-    botonLogin:{
-        alignItems: 'center',
-        backgroundColor: '#1ed695',
+    boton:{
+         alignItems: 'center',
+        backgroundColor: '#35E119',
         padding: 10,
-        width:175,
+        width:'30%',
         borderRadius: 4,
         borderWidth: 1,
         borderColor: '#d6d7da',
-        
+        marginLeft:7
    
 
-    },input: {
-        height: 25,
+    },
+    Textboton:{
+        fontSize:14,
+        alignItems:'center',
+        alignContent:'center',
+        
+
+    },
+    input: {
+        height: 30,
+        borderBottomColor: '#1ed796',
+        borderBottomWidth: 1,
+        paddingLeft: 10,
+        paddingRight: 10,
+        width: '100%',
+        alignItems: 'center',
+        margin:5, 
+        padding:5,
+        fontSize: 14,
+    
+
+    },input1: {
+        fontSize:14,
         borderBottomColor: 'white',
         borderBottomWidth: 1,
         paddingLeft: 10,
-        paddingRight: 15,
+        color:'green',
+      
         width: 219,
         alignItems: 'flex-start'
     },

@@ -14,6 +14,7 @@ import CrearAuditoria from './src/Auditorias/CrearAuditoria';
 
 import AuditoriasLista from './src/Auditorias/AuditoriasLista';
 import AuditoriasBuscar from './src/Auditorias/AuditoriasBuscar';
+import NormaEcBPM from './src/Auditorias/NormaEcBPM';
 
 
 import Router from './src/Router';
@@ -21,7 +22,7 @@ import Carusel from './src/Carusel'
 
 const AppNavigator = createStackNavigator(
   {
-     Main,Carusel, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar
+     NormaEcBPM,Main,Carusel, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar
   },
   {
     headerMode: 'none',
