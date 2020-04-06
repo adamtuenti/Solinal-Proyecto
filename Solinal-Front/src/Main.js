@@ -12,7 +12,6 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { ListItem } from 'react-native-elements';
 
-import Accordion from 'react-bootstrap/Accordion'
 import Footer from './../shared/Footer';
 import Header from './../shared/Header';
 import EstadoCuenta from './../shared/estadoCuenta';
