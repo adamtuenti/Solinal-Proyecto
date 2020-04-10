@@ -50,36 +50,84 @@ export default class CalendarioVacia extends Component {
                             onPressArrowRight={addMonth => addMonth()}
                             />
                         </Card>
-                        <View>
+
+                        <View style={{flexDirection:'row',marginTop:'2.5%',marginBottom:'2.5%',marginLeft:'2%'}}>
+
+                          <View>
                           <Text>
-                            Tienes 1 auditoría interna pendiente
+                            Tienes 
                           </Text>
+                          </View>
+
+                          <View style={{marginLeft:5}}>
+                          <Text style={{color:'green'}}>
+                          1
+                          </Text>
+                          </View>
+
+                          <View style={{marginLeft:5}}>
+                          <Text>
+                            auditoría interna pendiente
+                          </Text>
+                          </View>
                         </View>
-                        <View>
-                          <Card>
-                            <View>
-                              <Text>
-                                INICIA
-                                <Text>09:00 A.M.</Text>
+
+
+                        <View style={{flexDirection:'row',marginTop:10,}}>
+                         
+                            <View style={{flexDirection:'column',backgroundColor:'#C0FC96',borderColor: '#d6d7da',borderRadius: 2,borderWidth: 1,alignItems:'center',width:'23%'}}>
+                                <View style={{marginTop:'5%'}}>
+                                  <Text style={styles.datos}>
+                                    INICIA
+                                  </Text>
+                                  </View>
+                                  <View>
+                                    <Text style={styles.valores}>09:00 A.M.</Text>
+                                  </View>
+                                
+                              
+                                <View style={{marginTop:'5%'}}>
+                                  <Text style={styles.datos}>
+                                    FINALIZA
+                                  </Text>
+                                  </View>
+                                  <View style={{marginBottom:'15%',}}>
+                                    <Text style={styles.valores}>09:30 A.M.</Text>
+                                  </View>
+                            </View>
+
+                            <View style={{backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 2,borderWidth: 1,alignItems:'center',width:'72%',marginLeft:'3%'}}>
+                          
+                              <Text style={styles.descrip}>
+                                Normativa técnica sanitaria para alimentos procesados, plantas procesadoras
+                                de alimentos, establecimientos de distribución, comercialización, transporte
+                                y establecimientos de alimentación colectiva
                               </Text>
                             </View>
-                            <View>
-                              <Text>
-                                FINALIZA
-                                <Text>05:00 P.M.</Text>
-                              </Text>
-                            </View>
-                          </Card>
-                          <Card>
-                            <Text>
-                              Normativa técnica sanitaria para alimentos procesados, plantas procesadoras
-                              de alimentos, establecimientos de distribución, comercialización, transporte
-                              y establecimientos de alimentación colectiva
-                            </Text>
-                          </Card>
+                          
                         </View>
                     </Content>
+
+                    <FooterCalendario />
               </Container>
           )
       }
 }
+
+
+const styles = StyleSheet.create({
+  datos:{
+    fontSize:14
+  },
+  valores:{
+    color:'green',
+    fontSize:14,
+    alignItems:'center'
+  },
+  descrip:{
+    fontSize:12,
+    alignItems:'center',
+    padding:5
+    
+  }
+  });
