@@ -14,7 +14,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 
-import Footer from './../../shared/Footer';
+import FooterAuditoria from './../../shared/FooterAuditoria';
 import Header from './../../shared/Header';
 import EstadoCuenta from './../../shared/estadoCuenta';
 
@@ -29,12 +29,54 @@ export default class AuditoriasBuscar extends Component {
         this.setState({ isReady: true });
       }
 
+      
+
     constructor(props) {
         super(props);
         this.state = {
             selected2: undefined,
-            selected3: undefined
+            selected3: undefined,
+            loading: false,
+            paises: [],
+            url: 'http://accountsolinal.pythonanywhere.com/api/pais',
+            urlnorma: 'http://accountsolinal.pythonanywhere.com/api/norma',
+            normas:[],
+            loadingnorma: false,
         };
+    }
+
+    componentDidMount(){
+        this.getPaises();
+        this.getNorma();
+    }
+
+    getPaises = () => {
+        this.setState({loading:true})
+        fetch(this.state.url)
+        .then(res=>res.json())
+        .then(res=>{ 
+            console.log(res);
+            this.setState({
+            paises: res,
+            url: res.next,
+            loading: false,    
+            })
+        })
+    }
+
+    getNorma=()=>{
+         this.setState({loadingnorma:true})
+        fetch(this.state.urlnorma)
+        .then(res=>res.json())
+        .then(res=>{ 
+            console.log(res);
+            this.setState({
+            normas: res,
+            urlnorma: res.next,
+            loadingnorma: false,    
+            })
+        })
+
     }
     onValueChange2(value) {
         this.setState({
@@ -50,7 +92,9 @@ export default class AuditoriasBuscar extends Component {
 
     render(){
         return (
+            
             <Container>
+            
 
                 <Header encabezado='Auditoria'/>
 
@@ -98,7 +142,18 @@ export default class AuditoriasBuscar extends Component {
                     </Card>
 
                     <Form style ={{paddingTop:25}}>
+
+
+                    
+                    
+                    
+                      
+                     
+                    
                         <Item picker>
+
+                        
+                        
                             <Picker
                                 mode="dropdown"
                                 iosIcon={<Icon name="arrow-down" />}
@@ -109,18 +164,15 @@ export default class AuditoriasBuscar extends Component {
                                 selectedValue={this.state.selected2}
                                 onValueChange={this.onValueChange2.bind(this)}
                             >
-                                <Picker.Item label="Argentina" value="key0" />
-                                <Picker.Item label="Bolivia" value="key1" />
-                                <Picker.Item label="Brasil" value="key2" />
-                                <Picker.Item label="Chile" value="key3" />
-                                <Picker.Item label="Colombia" value="key4" />
-                                <Picker.Item label="Ecuador" value="key5" />
-                                <Picker.Item label="Paraguay" value="key6" />
-                                <Picker.Item label="Perú" value="key7" />
-                                <Picker.Item label="Uruguay" value="key8" />
-                                <Picker.Item label="Venezuela" value="key9" />
+                            
+                            {this.state.paises.map(r =>
+                                <Picker.Item label={r.pais} value={r.id_pais} />
+                             )}
+                                
                             </Picker>
                         </Item>
+
+                   
                     </Form>
                     
                    
@@ -136,16 +188,9 @@ export default class AuditoriasBuscar extends Component {
                                 selectedValue={this.state.selected3}
                                 onValueChange={this.onValueChange3.bind(this)}
                             >
-                                <Picker.Item label="Reglamento" value="key0" />
-                                <Picker.Item label="Bolivia" value="key1" />
-                                <Picker.Item label="Brasil" value="key2" />
-                                <Picker.Item label="Chile" value="key3" />
-                                <Picker.Item label="Colombia" value="key4" />
-                                <Picker.Item label="Ecuador" value="key5" />
-                                <Picker.Item label="Paraguay" value="key6" />
-                                <Picker.Item label="Perú" value="key7" />
-                                <Picker.Item label="Uruguay" value="key8" />
-                                <Picker.Item label="Venezuela" value="key9" />
+                                {this.state.normas.map(r =>
+                                <Picker.Item label={r.norma} value={r.id_norma} />
+                             )}
                             </Picker>
                         </Item>
                     </Form>
