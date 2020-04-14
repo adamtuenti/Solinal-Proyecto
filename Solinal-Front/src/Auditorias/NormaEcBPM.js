@@ -429,12 +429,13 @@ export default class NormaEcBPM extends Component {
 
       _onHideUnderlay() {
     this.setState({ pressStatus: false });
-}
-_onShowUnderlay() {
-    this.setState({ pressStatus: true });
-}
+    }
 
-myfun=()=>{
+    _onShowUnderlay() {
+    this.setState({ pressStatus: true });
+    }
+
+    myfun=()=>{
     alert("clave mal ingresada");
 
     this.setState({ pressStatus: true });
@@ -550,23 +551,37 @@ myfun=()=>{
 
                                                                         <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
                                                                             <TouchableHighlight
+                                                                            activeOpacity={1}
                                                                             style={
-                    this.state.pressStatus
-                        ? styles.buttonPress
-                        : styles.button
-                }
-                
-                onPress={ this.myfun}
-                
-               >
+                                                                            this.state.pressStatus
+                                                                            ? styles.botonYes
+                                                                            : styles.boton
+                                                                            }
+                                                                            onPress={ this.myfun}
+                                                                            onHideUnderlay={this._onHideUnderlay.bind(this)}
+                                                                            onShowUnderlay={this._onShowUnderlay.bind(this)}
+                                                                            >
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
                                                                             </TouchableHighlight>
                                                                             <TouchableHighlight
-                                                                            style={styles.boton} onPress={this.myfun}>
+                                                                            style={this.state.pressStatus
+                                                                            ? styles.botonNo
+                                                                            : styles.boton
+                                                                            }
+                                                                            onPress={ this.myfun}
+                                                                            onHideUnderlay={this._onHideUnderlay.bind(this)}
+                                                                            onShowUnderlay={this._onShowUnderlay.bind(this)}>
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
                                                                             </TouchableHighlight>
                                                                             <TouchableHighlight
-                                                                            style={styles.boton} onPress={this.myfun}>
+                                                                            style={
+                                                                                this.state.pressStatus
+                                                                                ? styles.botonApply
+                                                                                : styles.boton
+                                                                                }
+                                                                                onPress={ this.myfun}
+                                                                                onHideUnderlay={this._onHideUnderlay.bind(this)}
+                                                                                onShowUnderlay={this._onShowUnderlay.bind(this)}>
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
                                                                             </TouchableHighlight>
                                                                             
@@ -631,15 +646,28 @@ const styles = StyleSheet.create({
       
       backgroundColor: '#f6f6f6', borderBottomColor:2,width:'90%',alignItems:'center',marginLeft:'5%'
     },
-    button: {
+button: {
     borderColor: "#000066",
-    backgroundColor:'green',
+    backgroundColor:'gray',
     borderWidth: 1,
     borderRadius: 10
 },
-buttonPress: {
+buttonPressYes: {
     borderColor: "#000066",
-    backgroundColor: "blue",
+    backgroundColor: "green",
+    borderWidth: 1,
+    borderRadius: 10
+},
+buttonPressNo: {
+    borderColor: "#000066",
+    backgroundColor: "red",
+    borderWidth: 1,
+    borderRadius: 10
+},
+
+buttonPressApply: {
+    borderColor: "#000066",
+    backgroundColor: "orange",
     borderWidth: 1,
     borderRadius: 10
 },
@@ -688,7 +716,7 @@ buttonPress: {
 
     boton:{
          alignItems: 'center',
-        backgroundColor: '#35E119',
+        backgroundColor: 'gray',
         padding: 10,
         width:'30%',
         borderRadius: 4,
@@ -698,6 +726,42 @@ buttonPress: {
    
 
     },
+    botonYes:{
+        alignItems: 'center',
+       backgroundColor: '#35E119',
+       padding: 10,
+       width:'30%',
+       borderRadius: 4,
+       borderWidth: 1,
+       borderColor: '#d6d7da',
+       marginLeft:7
+  
+
+   },
+   botonNo:{
+    alignItems: 'center',
+   backgroundColor: 'red',
+   padding: 10,
+   width:'30%',
+   borderRadius: 4,
+   borderWidth: 1,
+   borderColor: '#d6d7da',
+   marginLeft:7
+
+
+},
+botonApply:{
+    alignItems: 'center',
+   backgroundColor: 'orange',
+   padding: 10,
+   width:'30%',
+   borderRadius: 4,
+   borderWidth: 1,
+   borderColor: '#d6d7da',
+   marginLeft:7
+
+
+},
     Textboton:{
         fontSize:14,
         alignItems:'center',
