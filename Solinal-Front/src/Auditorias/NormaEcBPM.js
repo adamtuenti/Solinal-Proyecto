@@ -45,18 +45,33 @@ import FooterAuditoria from '../../shared/FooterAuditoria';
                                         <View>
                                             <Text>a. Que el riesgo de contaminación y alteración sea el mismo.</Text>
                                         </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
+                                            <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '1')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '1' ? 'green' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '2')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '2' ? 'red' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '3')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '3' ? 'orange' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                            </View>
                                         </View>
-                                    </View>
                                     </Card>
                                     <Card>
                                     <View>
@@ -64,16 +79,33 @@ import FooterAuditoria from '../../shared/FooterAuditoria';
                                             <Text>b. Que el diseño y distribución de las áreas permita un mantenimiento, limpieza y desinfección apropiada;
                                             y, que minimice los riesgos de contaminación.</Text>
                                         </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
+                                        </View>
+                                            <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '1')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '1' ? 'green' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '2')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '2' ? 'red' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '3')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '3' ? 'orange' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                            </View>
                                         </View>
                                     </View>
                                     </Card>
@@ -83,16 +115,33 @@ import FooterAuditoria from '../../shared/FooterAuditoria';
                                             <Text>c. Que las superficies y materiales, particularmente aquellos que estén en contacto con los alimentos,
                                             no sean tóxicos, y están diseñados para el uso pretendido, fáciles de mantener, limpiar y desinfectar.</Text>
                                         </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
+                                        </View>
+                                            <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '1')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '1' ? 'green' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '2')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '2' ? 'red' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '3')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '3' ? 'orange' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                            </View>
                                         </View>
                                     </View>
                                     </Card>
@@ -101,16 +150,33 @@ import FooterAuditoria from '../../shared/FooterAuditoria';
                                         <View>
                                             <Text>d. Que facilite un control efectivo de plagas y dificulte el acceso y refugio de las mismas.</Text>
                                         </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
+                                        </View>
+                                            <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '1')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '1' ? 'green' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '2')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '2' ? 'red' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '3')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '3' ? 'orange' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                            </View>
                                         </View>
                                     </View>
                                     </Card>     
@@ -127,7 +193,7 @@ import FooterAuditoria from '../../shared/FooterAuditoria';
                                 <CollapseBody>
                                     <Card>
                                     <View>
-                                        <Text>Bruto</Text>
+                                        <Text>SubMenú</Text>
                                     </View>
                                     </Card>
                                 </CollapseBody>
@@ -150,16 +216,33 @@ import FooterAuditoria from '../../shared/FooterAuditoria';
                                             <Text>a. Ofrezca protección contra polvo, materias extrañas, insectos, roedores, aves y otros elementos de ambiente exterior
                                             y que mantenga las condiciones sanitarias apropiadas según el proceso. </Text>
                                         </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
+                                        </View>
+                                            <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '1')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '1' ? 'green' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '2')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '2' ? 'red' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '3')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '3' ? 'orange' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                            </View>
                                         </View>
                                     </View>
                                     </Card>
@@ -169,16 +252,33 @@ import FooterAuditoria from '../../shared/FooterAuditoria';
                                             <Text>b. La construcción sea sólida y disponga de espacio suficiente para la instalación, operación y mantenimiento de los equipos
                                             así como para el movimiento del personal y el traslado de materiales o alimentos</Text>
                                         </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
+                                        </View>
+                                            <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '1')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '1' ? 'green' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '2')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '2' ? 'red' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '3')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '3' ? 'orange' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                            </View>
                                         </View>
                                     </View>
                                     </Card>
@@ -187,16 +287,33 @@ import FooterAuditoria from '../../shared/FooterAuditoria';
                                         <View>
                                             <Text>c. Brinde facilidades para la higiene del personal.</Text>
                                         </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
+                                        </View>
+                                            <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '1')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '1' ? 'green' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '2')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '2' ? 'red' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '3')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '3' ? 'orange' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                            </View>
                                         </View>
                                     </View>
                                     </Card>
@@ -206,16 +323,33 @@ import FooterAuditoria from '../../shared/FooterAuditoria';
                                             <Text>d. Las áreas internas de protección se deben dividir en zonas según el nivel de higiene que requieran y dependiendo
                                             de los riesgos de contaminación de los alimentos.</Text>
                                         </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
+                                        </View>
+                                            <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '1')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '1' ? 'green' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '2')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '2' ? 'red' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                                <TouchableHighlight
+                                                style={styles.boton}
+                                                onPress={() => this._handleClick('any flag', '3')}
+                                                underlayColor="red">
+                                                    <View style={{backgroundColor: (this.state.SelectedButton === '3' ? 'orange' : 'grey')}}>
+                                                        <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
+                                                    </View>
+                                                </TouchableHighlight>
+                                            </View>
                                         </View>
                                     </View>
                                     </Card> 
@@ -232,7 +366,7 @@ import FooterAuditoria from '../../shared/FooterAuditoria';
                                 <CollapseBody>
                                     <Card>
                                     <View>
-                                        <Text>Bruto</Text>
+                                        <Text>Submenu</Text>
                                     </View>
                                     </Card>
                                 </CollapseBody>
@@ -248,7 +382,7 @@ import FooterAuditoria from '../../shared/FooterAuditoria';
                                 <CollapseBody>
                                     <Card>
                                     <View>
-                                        <Text>Bruto</Text>
+                                        <Text>Submenu</Text>
                                     </View>
                                     </Card>
                                 </CollapseBody>
@@ -395,7 +529,7 @@ const list = [
   {
    titulo: 'De los equipos y utensilios',
     menu: ['1a','2a'],
-    submenu:['sub menu1','submenu2'],
+    submenu:['sub menu3','submenu4'],
     url: 'AuditoriasBuscar',
     altura:32,
     anchura:23
@@ -403,7 +537,7 @@ const list = [
   {
     titulo: 'Requisitos higiénicos de fabricación',
     menu: ['1 a','2a'],
-    submenu:['sub menu1','submenu2'],
+    submenu:['sub menu5','submenu6'],
     url: 'AuditoriasBuscar',
     altura:30,
     anchura:35
@@ -512,8 +646,8 @@ export default class NormaEcBPM extends Component {
                             animationType={"fade"}
                             androidMode={"default"}
                             placeHolderText="Fecha de la auditoría"
-                            textStyle={{ color: "blue" }}
-                            placeHolderTextStyle={{ color: "#d3d3d3" }}
+                            textStyle={{ color: "#1ed695" }}
+                            placeHolderTextStyle={{ color: "#1ed695" }}
                             onDateChange={this.setDate}
                             disabled={false}
                         />
