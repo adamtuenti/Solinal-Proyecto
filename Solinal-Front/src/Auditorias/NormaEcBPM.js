@@ -18,8 +18,7 @@ import { ListItem , Divider} from 'react-native-elements';
 import Header from './../../shared/Header';
 import FooterAuditoria from '../../shared/FooterAuditoria';
 
-/*
-<Collapse>
+/*<Collapse>
                         <CollapseHeader>
                             <Card>
                             <View>
@@ -497,7 +496,6 @@ import FooterAuditoria from '../../shared/FooterAuditoria';
                         </CollapseBody>
                     </Collapse>*/
 
-
 const dataItem1 = [
     { title: "Art. 73: De las condiciones mínimas básicas", content: "Lorem ipsum dolor sit amet" },
     { title: "Art. 74: De la localización", content: "Lorem ipsum dolor sit amet" },
@@ -660,6 +658,7 @@ export default class NormaEcBPM extends Component {
 
 
               <View style={styles.colapse}>
+                  
                 {
                   list.map((l, i) => (
                       <Collapse>
