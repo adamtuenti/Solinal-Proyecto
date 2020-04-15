@@ -556,17 +556,17 @@ myfun=()=>{
                         : styles.button
                 }
                 
-                onPress={ this.myfun}
+                onPress={() =>{ this.myfun}}
                 
                >
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
                                                                             </TouchableHighlight>
                                                                             <TouchableHighlight
-                                                                            style={styles.boton} onPress={this.myfun}>
+                                                                            style={styles.boton} onPress={() =>{ this.myfun}}>
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
                                                                             </TouchableHighlight>
                                                                             <TouchableHighlight
-                                                                            style={styles.boton} onPress={this.myfun}>
+                                                                            style={styles.boton} onPress={() =>{ this.myfun}}>
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
                                                                             </TouchableHighlight>
                                                                             

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container,Title, Content, Card, CardItem, Button, Left, Label,Right, Body, Font, Form, Item, Picker, Input } from 'native-base';
 import { Icon } from 'react-native-elements'
+import { Collapse, CollapseHeader, CollapseBody } from "accordion-collapse-react-native";
 import {
   StyleSheet,
   TouchableHighlight,
@@ -18,6 +19,69 @@ import FooterAuditoria from './../../shared/FooterAuditoria';
 import Header from './../../shared/Header';
 import EstadoCuenta from './../../shared/estadoCuenta';
 
+export const idPa = 'neira';
+
+/*
+                    <Form style ={{paddingTop:25}}>
+
+
+                    
+                    
+                    
+                      
+                     
+                    
+                        <Item picker>
+
+                        
+                        
+                            <Picker
+                                mode="dropdown"
+                                iosIcon={<Icon name="arrow-down" />}
+                                style={{ width: undefined }}
+                                placeholder="¿A qué país pertenece la norma o reglamento?"
+                                placeholderStyle={{ color: "#bfc6ea" }}
+                                placeholderIconColor="#007aff"
+                                selectedValue={this.state.idPais}
+                                onValueChange={(itemValue, itemIndex) => this.setState({idPais: itemValue})}
+
+                             >
+                            
+                            {this.state.paises.map(r =>
+                                <Picker.Item label={r.pais} value={r.id_pais} />
+                              
+                             )}
+                                
+                            </Picker>
+                        </Item>
+
+                   
+                    </Form>
+                    
+                    
+                        <Item picker>
+                            <Picker
+                                mode="dropdown"
+                                iosIcon={<Icon name="arrow-down" />}
+                                style={{ width: undefined }}
+                                placeholder="hola"
+                                placeholderStyle={{ color: "#bfc6ea" }}
+                                placeholderIconColor="#007aff"
+                                selectedValue={this.state.selected3}
+                                onValueChange={this.onValueChange3.bind(this)}
+                            >
+                         
+                             {this.state.normas.map(r =>
+                                
+                                <Picker.Item label={r.norma} value={r.id_norma} />
+                                
+                              
+                             )}
+                            
+                            
+                                
+                            </Picker>
+                        </Item>*/
 
 export default class AuditoriasBuscar extends Component {
     async componentDidMount() {
@@ -33,6 +97,7 @@ export default class AuditoriasBuscar extends Component {
 
     constructor(props) {
         super(props);
+        global.idPa ='neira'
         this.state = {
             selected2: undefined,
             selected3: undefined,
@@ -42,6 +107,7 @@ export default class AuditoriasBuscar extends Component {
             urlnorma: 'http://accountsolinal.pythonanywhere.com/api/norma',
             normas:[],
             loadingnorma: false,
+            idPais:'hola',
         };
     }
 
@@ -90,6 +156,27 @@ export default class AuditoriasBuscar extends Component {
         });
       }   
 
+
+    myfun=(variable)=>{
+
+        
+        console.log(variable)
+        console.log(':)')
+        console.log(this.state.idPais);
+        this.setState({idPais:variable})
+        
+        
+        console.log(this.state.idPais)
+        console.log('-')
+        this.props.navigation.navigate('AuditoriasLista',variable)
+        
+
+    }
+
+    cambiar(){
+        this.props.navigation.navigate('AuditoriasLista',{idPais:this.state.idPais})
+
+    }
     render(){
         return (
             
@@ -141,64 +228,92 @@ export default class AuditoriasBuscar extends Component {
                         </CardItem>
                     </Card>
 
-                    <Form style ={{paddingTop:25}}>
-
-
                     
-                    
-                    
-                      
-                     
-                    
-                        <Item picker>
 
-                        
-                        
-                            <Picker
-                                mode="dropdown"
-                                iosIcon={<Icon name="arrow-down" />}
-                                style={{ width: undefined }}
-                                placeholder="¿A qué país pertenece la norma o reglamento?"
-                                placeholderStyle={{ color: "#bfc6ea" }}
-                                placeholderIconColor="#007aff"
-                                selectedValue={this.state.selected2}
-                                onValueChange={this.onValueChange2.bind(this)}
-                            >
-                            
-                            {this.state.paises.map(r =>
-                                <Picker.Item label={r.pais} value={r.id_pais} />
-                             )}
-                                
-                            </Picker>
-                        </Item>
-
-                   
-                    </Form>
                     
                    
                     <Form style={{paddingBottom:15}}>
-                        <Item picker>
-                            <Picker
-                                mode="dropdown"
-                                iosIcon={<Icon name="arrow-down" />}
-                                style={{ width: undefined }}
-                                placeholder="hola"
-                                placeholderStyle={{ color: "#bfc6ea" }}
-                                placeholderIconColor="#007aff"
-                                selectedValue={this.state.selected3}
-                                onValueChange={this.onValueChange3.bind(this)}
-                            >
-                                {this.state.normas.map(r =>
-                                <Picker.Item label={r.norma} value={r.id_norma} />
-                             )}
-                            </Picker>
-                        </Item>
+
+         <View style={styles.colapse}>
+
+         
+           <Collapse>
+                        <CollapseHeader>
+                            
+                            <View style={styles.seleccion}>
+                                <Text style={styles.letraSeleccion}>Seleccione el pais</Text>
+                            </View>
+                            
+                        </CollapseHeader>
+
+                        <CollapseBody>
+                       
+                         {this.state.paises.map(r =>
+
+                         <Collapse>
+
+                         <CollapseHeader>
+                            <View style={styles.paisStyle}>
+                            <Text style={styles.letraPais}>{r.pais}</Text>
+                            </View>
+                         </CollapseHeader>
+
+                                <CollapseBody>  
+                                                                    
+                                        {this.state.normas.map(m =>
+                                        
+                                                
+                                                
+                                                <View style={{flexDirection: 'row',alignItems:'center'}}>
+                                                <TouchableHighlight  style={styles.normaStyle}onPress={() => {
+                                                             this.setState({idPais: m.norma});
+                                                             alert('seleccionaste: '+m.norma)
+
+                                                           // this.myfun(m.norma); 
+                                                        }}>
+                                                        <View ><Text  style={styles.letraNorma}>{m.norma}</Text></View></TouchableHighlight>
+                                               
+                                                </View>
+                                                
+
+                                     
+                                        
+                                           
+
+                                               
+                                           
+                                                    
+                                                
+
+                                           
+                                                                            
+                                                                  
+                                        )}
+                                        
+                               
+                                </CollapseBody>
+                         </Collapse>
+                         )}
+
+                    </CollapseBody>
+                       
+            </Collapse>
+                              
+                             
+                
+              </View>
+                       
+              
+
+                    
                     </Form>
 
                     <CardItem style={{alignItems: 'center', marginTop:25, backgroundColor:'f6f6f6'}}>
                             <Body style={{alignItems: 'center'}}>
                                 <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('AuditoriasLista')}>
+                                    style={styles.botonLogin} onPress={()=>{
+                                     this.props.navigation.navigate('AuditoriasLista',{idPais:this.state.idPais})   
+                                    }}>
                                     <Text style={{fontWeight: 'bold',color:'white',fontSize:19}}> Buscar </Text>
                                     </TouchableHighlight>
                             </Body>
@@ -279,7 +394,75 @@ const styles = StyleSheet.create({
         
    
 
-    },input: {
+    },colapse:{
+width:'100%'
+    },
+    letraSeleccion:{
+        fontSize:15.5,
+        marginLeft:'2%',
+        fontWeight:'bold'
+    },
+    seleccion:{
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: '#d6d7da',
+          padding:'3%',
+       backgroundColor:'white',
+      
+        
+        borderBottomWidth: 3,
+      
+
+    },
+    letraPais:{
+        fontSize:15,
+        marginLeft:'2%',
+
+    },
+    letraNorma:{
+         fontSize:15,
+         marginLeft:'3%',
+         alignItems:'center'
+
+    },
+    paisStyle:{
+       // marginTop:'2%',
+       flexDirection:'row',
+      // marginLeft:'2%',
+      // backgroundColor:'#B5FB84',
+       padding:'2%',
+       backgroundColor:'#B0F8B3',
+        borderBottomColor: 'white',
+        borderBottomWidth: 3,
+        borderRadius: 4,
+        borderColor: '#d6d7da',
+      
+
+    },normaStyle:{
+      // marginTop:'2%',
+       flexDirection:'row',
+       flex:1,
+     //  marginLeft:'3%',
+       padding:'2%',
+       backgroundColor:'#EAF8B0',
+        borderBottomColor: 'white',
+        borderBottomWidth: 3,
+        borderRadius: 4,
+        borderColor: '#d6d7da',
+
+    },
+    botonCrear:{
+        alignItems: 'center',
+        backgroundColor: '#1ed695',
+        padding: 7,
+        width:115,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: '#d6d7da',
+  
+
+    },
+    input: {
         height: 25,
         borderBottomColor: 'white',
         borderBottomWidth: 1,

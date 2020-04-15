@@ -14,6 +14,8 @@ import Footer from './../../shared/Footer';
 import Header from './../../shared/Header';
 import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterAuditoria from '../../shared/FooterAuditoria';
+//import {idPais} from './AuditoriasBuscar'
+
 
 export default class AuditoriasLista extends Component {
     async componentDidMount() {
@@ -29,7 +31,8 @@ export default class AuditoriasLista extends Component {
         super(props);
         this.state = {
             selected2: undefined,
-            selected3: undefined
+            selected3: undefined,
+            idPais: this.props.navigation.state.params.idPais
         };
     }
     onValueChange2(value) {
@@ -53,7 +56,7 @@ export default class AuditoriasLista extends Component {
 
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
-                    <EstadoCuenta cantidad='0' tipoCuenta='GRATIS'/>
+                    <EstadoCuenta cantidad={global.idPa}  tipoCuenta='GRATIS'/>
 
                     <View style={{paddingBottom:25}}>
 
@@ -62,7 +65,7 @@ export default class AuditoriasLista extends Component {
                         <CardItem bordered>
                             <View style={{flex: 1, flexDirection: 'row'}}>
                                 <View style={{marginRight:10}}>
-                                    <Text style={{color: '#636363'}}>Buscador de normas y reglamentos</Text>
+                                    <Text style={{color: '#636363'}}>Buscador de normas y reglamentos {global.idPa}</Text>
                                 </View>
 
                                 <View style={{flex: 1, flexDirection: 'row-reverse'}}>
@@ -99,7 +102,7 @@ export default class AuditoriasLista extends Component {
                                 <View>
                                     <Text style={{color:'green'}}>
                                         Buscaste:
-                                        <Text style={{color:'black',fontWeight: "bold"}}> 'FDA</Text>
+                                        <Text style={{color:'black',fontWeight: "bold"}}> {this.state.idPais}</Text>
                                     </Text>
                                 </View>
                                 <View>

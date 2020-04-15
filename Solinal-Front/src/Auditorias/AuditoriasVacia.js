@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
-import Footer from './../../shared/Footer';
+import FooterAuditoria from './../../shared/FooterAuditoria';
 import Header from './../../shared/Header';
 import EstadoCuenta from './../../shared/estadoCuenta';
 

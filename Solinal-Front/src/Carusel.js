@@ -15,8 +15,8 @@ export default class Carusel extends Component {
                     <View style={{ flexDirection:'column',paddingTop:'15%'}}>
 
                         <View style={{alignItems:'center'}}>
-                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%203.png?raw=true'}}style= {{height: '55%',width: '60%'}}></Image>
-                            <View>
+                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%203.png?raw=true'}}style= {styles.imagen}></Image>
+                            <View styles={{width:150}}>
                             <Text style={styles.tituloText}>Ahorra tiempo y dinero mientras ejecutas una auditoría</Text>
                             <Text style={styles.bodyText}>Deshazte de tanto papel, todas las auditorias internas, de proveedor, inspecciones y checklist de verificación, en una app amigable.</Text>
                             </View>
@@ -33,7 +33,7 @@ export default class Carusel extends Component {
                         <View style={styles.textLine}>
                             <Text>¿Ya tienes una cuenta? </Text>
                             <Text 
-                            onPress={()=>this.props.navigation.navigate('Login')}
+                            onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}
                             style={{color: '#1ed695'}}>
                             Inicia Sesión</Text>
                         </View>
@@ -49,7 +49,7 @@ export default class Carusel extends Component {
                     <View style={{ flexDirection:'column',paddingTop:'15%'}}>
 
                         <View style={{alignItems:'center'}}>
-                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%204.png?raw=true'}}style= {{height: '55%',width: '60%'}}></Image>
+                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%204.png?raw=true'}}style= {styles.imagen}></Image>
                         <View styles={{width:150}}>
                          <Text style={styles.tituloText}>Dile adiós a tantas reuniones no productivas</Text>
                         <Text style={styles.bodyText}>Al finalizar una auditoría, checklist o inspección en planta, visualiza los resultados en un informe completo, dinámico y con indicadores de gestión.</Text>
@@ -83,7 +83,7 @@ export default class Carusel extends Component {
                     <View style={{ flexDirection:'column',paddingTop:'15%'}}>
 
                         <View style={{alignItems:'center'}}>
-                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%205.png?raw=true'}}style= {{height: '55%',width: '60%'}}></Image>
+                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%205.png?raw=true'}}style= {styles.imagen3}></Image>
                         <View styles={{width:150}}>
                          <Text style={styles.tituloText}>Cierra no conformidades sin necesidad de tanto papel</Text>
                         <Text style={styles.bodyText}>Olvídate de esas reuniones que no llegan a nada. Gestiona de una forma más intuitiva las acciones correctivar a implementar para cerrar las no conformidades.</Text>
@@ -148,6 +148,16 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
     },
+    imagen:{
+        height:'57.2%',
+        width:'82.7%',
+        marginTop:'2%'
+    },
+     imagen3:{
+        height:'55.5%',
+        width:'83%',
+        marginTop:'2%'
+    },
     item: {
         borderWidth: 2,
         backgroundColor: 'white',
@@ -157,42 +167,23 @@ const styles = StyleSheet.create({
 
         alignItems: 'center',
       },
-    imageBackground: {
-        flex: 1,
-        backgroundColor: 'white',
-        width: 150,
-        height: 150,
-        margin: 5,
-        borderColor: 'white',
-        justifyContent: 'center',
-    },
+  
     tituloText: {
         marginTop: 5,
         fontWeight: 'bold',
         fontSize: 22,
         textAlign: 'center',
-        alignItems:'center'
+        alignItems:'center',
+        marginTop:'7%'
     },
     bodyText: {
-        marginTop: 10,
+        marginTop: '5%',
         marginBottom: 15,
         fontSize: 15,
         textAlign: 'center',
     },
-    imageBackground4: {
-        flex: 1,
-        backgroundColor: 'white',
-        width: 245,
-        borderColor: 'white',
-    },
-    navBarBottom: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent:'center',
-       
-        width: 100,
-    },
+   
+ 
     botonLogin:{
         alignItems: 'center',
         backgroundColor: '#35E119',
