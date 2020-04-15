@@ -423,7 +423,7 @@ export default class NormaEcBPM extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { chosenDate: new Date(), pressStatus: false };
+        this.state = { chosenDate: new Date(), pressStatus: false, selected: null, SelectedButton: '' };
         this.setDate = this.setDate.bind(this);
       }
 
@@ -434,6 +434,21 @@ export default class NormaEcBPM extends Component {
     _onShowUnderlay() {
     this.setState({ pressStatus: true });
     }
+
+    getInitialState=()=>{
+        return({toggled: false});
+    }
+
+    handlePress=()=>{
+        this.setState({ toggled: !this.state.toggled })
+    }
+
+     _handleClick(flag, button) {
+        if (flag == 1) {
+          this.setState({selected: true});
+        }
+        this.setState({SelectedButton: button})
+      }
 
     myfun=()=>{
     alert("clave mal ingresada");
@@ -551,38 +566,29 @@ export default class NormaEcBPM extends Component {
 
                                                                         <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
                                                                             <TouchableHighlight
-                                                                            activeOpacity={1}
-                                                                            style={
-                                                                            this.state.pressStatus
-                                                                            ? styles.botonYes
-                                                                            : styles.boton
-                                                                            }
-                                                                            onPress={ this.myfun}
-                                                                            onHideUnderlay={this._onHideUnderlay.bind(this)}
-                                                                            onShowUnderlay={this._onShowUnderlay.bind(this)}
+                                                                            style={styles.boton}
+                                                                            onPress={() => this._handleClick('any flag', '1')}
+                                                                            underlayColor="red"
                                                                             >
+                                                                            <View style={{backgroundColor: (this.state.SelectedButton === '1' ? 'green' : 'grey')}}>
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
+                                                                            </View>
                                                                             </TouchableHighlight>
                                                                             <TouchableHighlight
-                                                                            style={this.state.pressStatus
-                                                                            ? styles.botonNo
-                                                                            : styles.boton
-                                                                            }
-                                                                            onPress={ this.myfun}
-                                                                            onHideUnderlay={this._onHideUnderlay.bind(this)}
-                                                                            onShowUnderlay={this._onShowUnderlay.bind(this)}>
+                                                                            style={styles.boton}
+                                                                            onPress={() => this._handleClick('any flag', '2')}
+                                                                            underlayColor="red">
+                                                                            <View style={{backgroundColor: (this.state.SelectedButton === '2' ? 'red' : 'grey')}}>
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
+                                                                            </View>
                                                                             </TouchableHighlight>
                                                                             <TouchableHighlight
-                                                                            style={
-                                                                                this.state.pressStatus
-                                                                                ? styles.botonApply
-                                                                                : styles.boton
-                                                                                }
-                                                                                onPress={ this.myfun}
-                                                                                onHideUnderlay={this._onHideUnderlay.bind(this)}
-                                                                                onShowUnderlay={this._onShowUnderlay.bind(this)}>
+                                                                            style={styles.boton}
+                                                                            onPress={() => this._handleClick('any flag', '3')}
+                                                                            underlayColor="red">
+                                                                            <View style={{backgroundColor: (this.state.SelectedButton === '3' ? 'orange' : 'grey')}}>
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
+                                                                            </View>
                                                                             </TouchableHighlight>
                                                                             
                                                                         </View>
