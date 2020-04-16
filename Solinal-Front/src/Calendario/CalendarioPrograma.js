@@ -38,9 +38,9 @@ export default class CalendarioVacia extends Component {
                         <Calendar
   onChange={(range) => console.log(range)}
 minDate={'2020-01-01'}
-                            maxDate={'2020-04-30'}
-  startDate={new Date(2020, 3, 1)}
-    endDate={new Date(2020, 3, 5)}
+                            maxDate={'2020-12-31'}
+  startDate={new Date(2020, 4, 15)}
+    endDate={new Date(2020, 4, 19)}
   theme={{
     activeDayColor: {},
     monthTitleTextStyle: {
