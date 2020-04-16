@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container, Header, Item, Input, Icon, Button, Title, Content, Card, CardItem, CheckBox, List, ListItem, Button, Left, Right, Body,  Font } from 'native-base';
-import { Icon,Divider } from 'react-native-elements'
+import {Icon, Container, Item, Input, Button, Title, Content, Card, CardItem, CheckBox, List,  Left, Right, Body,  Font } from 'native-base';
+import { Divider } from 'react-native-elements'
 import {
   StyleSheet,
   TouchableHighlight,
@@ -11,6 +11,8 @@ import {
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 import { ListItem } from 'react-native-elements';
+
+import Header from '../../shared/Header';
 
 export default class InvitarMiembros extends Component {
 
@@ -25,25 +27,19 @@ export default class InvitarMiembros extends Component {
 
     render(){
         return(
+            
             <Container>
-                <Header>
-                    <View style={{flexDirection:'row', backgroundColor:'#1ed695', height:'11%', paddingTop:'15%', alignContent:'center'}}>
-                        <View style={{width: Dimensions.get('screen').width, flexDirection: 'row', alignItems:'center', marginLeft:10}}>
-                            <TouchableHighlight onPress={()=>this.props.navigation.navigate('EquipoVacio')}>
-                                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/back.png?raw=true'}} style= {{height:40, width:40}}/>
-                            </TouchableHighlight>
-                            <Text style={{color:'white', fontSize:21, marginLeft:10}}>
-                                INVITAR MIEMBROS
-                            </Text>
-                        </View>
-                    </View>
-                </Header>
+            <Header encabezado='Invitar Miembros'/>
+                
+                    
                 <Content padder>
                     <Card searchBar rounded>
-                        <CardItem>
-                            <Icon name="ios-search" />
-                            <Input placeholder="Buscar" />
-                        </CardItem>
+                        <View style={{flexDirection:'row',alignItems:'center'}}>
+                        
+                            <Icon style={{marginLeft:10}} name="ios-search" />
+                        
+                            <Input style={{marginLeft:5}} placeholder="Buscar" />
+                        </View>
                     </Card>
                     <Card>
                         <List>
@@ -85,7 +81,7 @@ export default class InvitarMiembros extends Component {
                         </List>
                     </Card>
                     <View style={{alignItems: 'center'}}>
-                        <TouchableHighlight style={{ alignItems: 'center', backgroundColor: '#1ed695', padding: 10, width:142, borderRadius: 4, borderWidth: 1, borderColor: '#d6d7da'}}
+                        <TouchableHighlight style={styles.botonLogin}
                             onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
                             <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> ENVIAR INVITACIÓN </Text>
                         </TouchableHighlight>                        
@@ -95,3 +91,21 @@ export default class InvitarMiembros extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    
+
+    botonLogin:{
+        alignItems: 'center',
+        backgroundColor: '#1ed695',
+        padding: 10,
+        width:175,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: '#d6d7da',
+        marginTop:35,
+        
+   
+
+    }
+})

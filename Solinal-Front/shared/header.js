@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
     back:{
         flexDirection:'row',
          backgroundColor:'#1ed695',
-        height:'11%',
-        paddingTop:'15%',
+        height:'8%',
+        paddingTop:'1%',
         alignContent:'center'
         
     },

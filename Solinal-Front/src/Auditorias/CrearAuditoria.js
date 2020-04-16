@@ -95,7 +95,7 @@ export default class CrearAuditoria extends Component {
 
                     <View style={{margin:7}}>
 
-                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')}>
+                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasLista')}>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2035.png'}} 
                                        style={{height: 100, 
                                                width: 100}}/>

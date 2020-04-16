@@ -22,7 +22,7 @@ const list = [
     name: 'Crear Equipo',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/equipo.png?raw=true',
     subtitle: 'Vice President',
-    url: 'AuditoriasBuscar',
+    url: 'EquipoVacio',
     altura:30,
     anchura:40
   },
@@ -30,7 +30,7 @@ const list = [
     name: 'Mis Auditorias',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true',
     subtitle: 'Vice Chairman',
-    url: 'AuditoriasBuscar',
+    url: 'AuditoriasVacia',
     altura:32,
     anchura:23
   },

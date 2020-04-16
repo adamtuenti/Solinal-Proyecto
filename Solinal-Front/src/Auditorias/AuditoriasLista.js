@@ -32,7 +32,7 @@ export default class AuditoriasLista extends Component {
         this.state = {
             selected2: undefined,
             selected3: undefined,
-            idPais: this.props.navigation.state.params.idPais
+            //idPais: this.props.navigation.state.params.idPais
         };
     }
     onValueChange2(value) {
@@ -56,7 +56,7 @@ export default class AuditoriasLista extends Component {
 
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
-                    <EstadoCuenta cantidad={global.idPa}  tipoCuenta='GRATIS'/>
+                    <EstadoCuenta cantidad='0'  tipoCuenta='GRATIS'/>
 
                     <View style={{paddingBottom:25}}>
 
@@ -102,7 +102,7 @@ export default class AuditoriasLista extends Component {
                                 <View>
                                     <Text style={{color:'green'}}>
                                         Buscaste:
-                                        <Text style={{color:'black',fontWeight: "bold"}}> {this.state.idPais}</Text>
+                                        <Text style={{color:'black',fontWeight: "bold"}}> FDA</Text>
                                     </Text>
                                 </View>
                                 <View>

@@ -21,11 +21,15 @@ import CalendarioPrograma from './src/Calendario/CalendarioPrograma';
 
 
 import Router from './src/Router';
-import Carusel from './src/Carusel'
+import Carusel from './src/Carusel';
+import FooterAuditoria from './shared/FooterAuditoria';
+import EquipoLista from './src/Equipo/EquipoLista';
+import EquipoVacio from './src/Equipo/EquipoVacio';
+import InvitarMiembros from './src/Equipo/InvitarMiembros'
 
 const AppNavigator = createStackNavigator(
   {
-    Carusel,AuditoriasBuscar,NormaEcBPM,CalendarioVacia,CalendarioPrograma,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar
+    Carusel,CalendarioVacia,NormaEcBPM,EquipoVacio,EquipoLista,InvitarMiembros,AuditoriasBuscar,CalendarioPrograma,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar,FooterAuditoria
   },
   {
     headerMode: 'none',

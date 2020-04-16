@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container,  Title, Content, Card, CardItem,  Button, List, ListItem, Left, Right, Body,  Font } from 'native-base';
+import { Container,  Title, Content, Card, CardItem,  Button, List, Left, Right, Body,  Font } from 'native-base';
 import { Icon,Divider } from 'react-native-elements'
 import {
   StyleSheet,
@@ -12,9 +12,10 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { ListItem } from 'react-native-elements';
 
-import Footer from './../shared/Footer';
-import Header from './../shared/Header';
-import EstadoCuenta from './../shared/estadoCuenta';
+import Footer from '../../shared/Footer';
+
+import Header from '../../shared/Header';
+import EstadoCuenta from '../../shared/estadoCuenta';
 
 export default class EquipoVacio extends Component {
 

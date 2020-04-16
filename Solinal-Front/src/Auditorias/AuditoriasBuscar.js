@@ -323,7 +323,7 @@ export default class AuditoriasBuscar extends Component {
                     <CardItem style={{alignItems: 'center', marginTop:25, backgroundColor:'f6f6f6'}}>
                             <Body style={{alignItems: 'center'}}>
                                 <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')}>
+                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('NormaEcBPM')}>
                                     <Text style={{fontWeight: 'bold',color:'white',fontSize:19}}> Crear Auditoria </Text>
                                     </TouchableHighlight>
                             </Body>

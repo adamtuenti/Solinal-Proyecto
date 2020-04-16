@@ -25,6 +25,16 @@ export default class Footer extends React.Component{
                     </View>
                 </TouchableHighlight>
 
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario.png?raw=true'}}
+                                   style= {{height: 35,
+                                            width: 32}}>
+                            </Image>
+                    <Text style={styles.letra}>Calendario</Text>
+                    </View>
+                </TouchableHighlight>
+
                 
 
 
@@ -38,15 +48,7 @@ export default class Footer extends React.Component{
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                    <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario.png?raw=true'}}
-                                   style= {{height: 35,
-                                            width: 32}}>
-                            </Image>
-                    <Text style={styles.letra}>Calendario</Text>
-                    </View>
-                </TouchableHighlight>
+                
 
                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>

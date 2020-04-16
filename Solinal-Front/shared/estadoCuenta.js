@@ -12,7 +12,8 @@ export default class EstadoCuenta extends React.Component{
 
     return(
 
-        <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10}}>
+        <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10, backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 2,
+        borderWidth: 1,}}>
             <View style={{marginRight:35, flexDirection:'row'}}>
                 <View>
                 <Text style={{color: '#636363'}}>

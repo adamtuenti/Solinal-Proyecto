@@ -7,6 +7,21 @@ import {StyleSheet,TouchableHighlight,Text,View,TextInput} from 'react-native'
 
 
 export default class FooterAuditoria extends React.Component{
+    constructor(props) {
+        super(props);
+        global.idPa ='neira'
+        this.state = {
+            selected2: undefined,
+            selected3: undefined,
+            loading: false,
+            paises: [],
+            url: 'http://accountsolinal.pythonanywhere.com/api/pais',
+            urlnorma: 'http://accountsolinal.pythonanywhere.com/api/norma',
+            normas:[],
+            loadingnorma: false,
+            idPais:'hola',
+        };
+    }
     render(){
     
 

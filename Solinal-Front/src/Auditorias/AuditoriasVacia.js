@@ -61,7 +61,7 @@ export default class AuditoriasVacia extends Component {
                             <Body style={{alignItems: 'center'}}>
 
                                 <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
+                                    style={styles.botonLogin} onPress={()=>this.props.n+avigation.navigate('CrearAuditoria')}>
                                     <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> Crear </Text>
                                     </TouchableHighlight>
                                                         

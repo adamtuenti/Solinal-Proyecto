@@ -33,7 +33,7 @@ export default class Carusel extends Component {
                         <View style={styles.textLine}>
                             <Text>¿Ya tienes una cuenta? </Text>
                             <Text 
-                            onPress={()=>this.props.navigation.navigate('AuditoriasVacia')}
+                            onPress={()=>this.props.navigation.navigate('Main')}
                             style={{color: '#1ed695'}}>
                             Inicia Sesión</Text>
                         </View>

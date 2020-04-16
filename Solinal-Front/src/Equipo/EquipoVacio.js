@@ -12,9 +12,8 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { ListItem } from 'react-native-elements';
 
-import Footer from './../shared/Footer';
-import Header from './../shared/Header';
-import EstadoCuenta from './../shared/estadoCuenta';
+import Header from '../../shared/Header';
+import EstadoCuenta from './../../shared/estadoCuenta';
 
 export default class EquipoVacio extends Component {
 
@@ -30,27 +29,36 @@ export default class EquipoVacio extends Component {
     render(){
         return(
             <Container>
-                <Header>
-                    <View style={{flexDirection:'row', backgroundColor:'#1ed695', height:'11%', paddingTop:'15%', alignContent:'center'}}>
-                        <View style={{width: Dimensions.get('screen').width, flexDirection: 'row', alignItems:'center', marginLeft:10}}>
-                            <TouchableHighlight onPress={()=>this.props.navigation.navigate('Main')}>
-                                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/back.png?raw=true'}} style= {{height:40, width:40}}/>
-                            </TouchableHighlight>
-                            <Text style={{color:'white', fontSize:21, marginLeft:10}}>
-                                EQUIPO
-                            </Text>
-                        </View>
-                    </View>
-                </Header>
+                <Header encabezado='Equipo'/>
+                    
                 <Content>
-                    <View>
-                        <View>
-                            <Text style={{color:'#1ed695'}}>EQUIPO DE [NOMBRE DE USUARIO]</Text>
-                        </View>
-                        <View>
-                            <Text>0/5 miembros de equipo</Text>
-                        </View>
-                    </View>
+
+                
+        <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10, backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 2,
+        borderWidth: 1,}}>
+            <View style={{marginRight:35, flexDirection:'row'}}>
+                <View>
+                <Text style={{color: '#636363',fontSize:15}}>
+                    Equipo de:
+                </Text>
+                </View>  
+                <View>
+                    <Text style={{color: '#2ba855', marginLeft:2,fontSize:15}}>
+                        {this.props.cantidad} Lenin
+                    </Text>
+                </View>
+                
+            </View>
+            <View style={{flexDirection:'row',marginLeft:15}}>
+                <Text style={{color: '#2ba855',fontSize:15}}>
+                    0/5 
+                </Text>
+                <Text style={{color: '#2ba855',marginLeft:5,fontSize:15}}>
+                    miembros de equipo
+                </Text>
+            </View>
+        </View>
+                    
                     <Card>
                         <View style={{flex: 1, flexDirection: 'row', height:100, justifyContent:'flex-end', marginTop:15}}>
                             <View style={{margin:7}}>
@@ -71,14 +79,14 @@ export default class EquipoVacio extends Component {
                             </View>
                         </View>
                     </Card>
-                    <View style={{alignItems: 'center'}}>
+                    <View style={{alignItems: 'center',marginTop:'15%'}}>
                         <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/team.png?raw=true'}} 
-                                        style={{height: 200, 
-                                           width: 200, 
+                                        style={{height: 175, 
+                                           width: 175, 
                                            alignItems: 'center'}}/>
                     </View>
                     <View style={{alignItems: 'center'}}>
-                        <TouchableHighlight style={{ alignItems: 'center', backgroundColor: '#1ed695', padding: 10, width:142, borderRadius: 4, borderWidth: 1, borderColor: '#d6d7da'}}
+                        <TouchableHighlight style={styles.botonLogin}
                             onPress={()=>this.props.navigation.navigate('InvitarMiembros')}>
                             <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> INVITAR MIEMBROS </Text>
                         </TouchableHighlight>                        
@@ -88,3 +96,22 @@ export default class EquipoVacio extends Component {
         )
     }  
 }
+
+
+const styles = StyleSheet.create({
+    
+
+    botonLogin:{
+        alignItems: 'center',
+        backgroundColor: '#1ed695',
+        padding: 10,
+        width:175,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: '#d6d7da',
+        marginTop:35,
+        
+   
+
+    }
+})

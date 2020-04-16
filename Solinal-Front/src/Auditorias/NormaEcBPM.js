@@ -18,351 +18,6 @@ import { ListItem , Divider} from 'react-native-elements';
 import Header from './../../shared/Header';
 import FooterAuditoria from '../../shared/FooterAuditoria';
 
-/*
-<Collapse>
-                        <CollapseHeader>
-                            <Card>
-                            <View>
-                                <Text>De las instalaciones y requisitos de buenas prácticas de manufactura</Text>
-                            </View>
-                            </Card>
-                        </CollapseHeader>
-                        <CollapseBody>
-                            <Collapse>
-                                <CollapseHeader>
-                                    <Card>
-                                    <View>
-                                        <Text>Art. 73: De las condiciones mínimas básicas</Text>
-                                    </View>
-                                    </Card>
-                                </CollapseHeader>
-                                <CollapseBody>
-                                    <Card>
-                                    <View>
-                                        <View>
-                                            <Text>De las instalaciones y requisitos de buenas prácticas de manufactura</Text>
-                                        </View>
-                                        <View>
-                                            <Text>a. Que el riesgo de contaminación y alteración sea el mismo.</Text>
-                                        </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
-                                        </View>
-                                    </View>
-                                    </Card>
-                                    <Card>
-                                    <View>
-                                        <View>
-                                            <Text>b. Que el diseño y distribución de las áreas permita un mantenimiento, limpieza y desinfección apropiada;
-                                            y, que minimice los riesgos de contaminación.</Text>
-                                        </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
-                                        </View>
-                                    </View>
-                                    </Card>
-                                    <Card>
-                                    <View>
-                                        <View>
-                                            <Text>c. Que las superficies y materiales, particularmente aquellos que estén en contacto con los alimentos,
-                                            no sean tóxicos, y están diseñados para el uso pretendido, fáciles de mantener, limpiar y desinfectar.</Text>
-                                        </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
-                                        </View>
-                                    </View>
-                                    </Card>
-                                    <Card>  
-                                    <View>
-                                        <View>
-                                            <Text>d. Que facilite un control efectivo de plagas y dificulte el acceso y refugio de las mismas.</Text>
-                                        </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
-                                        </View>
-                                    </View>
-                                    </Card>     
-                                </CollapseBody>
-                            </Collapse>
-                            <Collapse>
-                                <CollapseHeader>
-                                    <Card>
-                                    <View>
-                                        <Text>Art. 74: De la localización</Text>
-                                    </View>
-                                    </Card>
-                                </CollapseHeader>
-                                <CollapseBody>
-                                    <Card>
-                                    <View>
-                                        <Text>Bruto</Text>
-                                    </View>
-                                    </Card>
-                                </CollapseBody>
-                            </Collapse>
-                            <Collapse>
-                                <CollapseHeader>
-                                    <Card>
-                                    <View>
-                                        <Text>Art. 75: Diseño y construcción</Text>
-                                    </View>
-                                    </Card>
-                                </CollapseHeader>
-                                <CollapseBody>
-                                    <Card>
-                                    <View>
-                                        <View>
-                                            <Text>La edificicación debe construirse de manera que:</Text>
-                                        </View>
-                                        <View>
-                                            <Text>a. Ofrezca protección contra polvo, materias extrañas, insectos, roedores, aves y otros elementos de ambiente exterior
-                                            y que mantenga las condiciones sanitarias apropiadas según el proceso. </Text>
-                                        </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
-                                        </View>
-                                    </View>
-                                    </Card>
-                                    <Card>
-                                    <View>
-                                        <View>
-                                            <Text>b. La construcción sea sólida y disponga de espacio suficiente para la instalación, operación y mantenimiento de los equipos
-                                            así como para el movimiento del personal y el traslado de materiales o alimentos</Text>
-                                        </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
-                                        </View>
-                                    </View>
-                                    </Card>
-                                    <Card>
-                                    <View>
-                                        <View>
-                                            <Text>c. Brinde facilidades para la higiene del personal.</Text>
-                                        </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
-                                        </View>
-                                    </View>
-                                    </Card>
-                                    <Card> 
-                                    <View>
-                                        <View>
-                                            <Text>d. Las áreas internas de protección se deben dividir en zonas según el nivel de higiene que requieran y dependiendo
-                                            de los riesgos de contaminación de los alimentos.</Text>
-                                        </View>
-                                        <View>    
-                                            <Button disabled rounded>
-                                                <Text>SÍ</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO</Text>
-                                            </Button>
-                                            <Button disabled rounded>
-                                                <Text>NO APLICA</Text>
-                                            </Button>
-                                        </View>
-                                    </View>
-                                    </Card> 
-                                </CollapseBody>
-                            </Collapse>
-                            <Collapse>
-                                <CollapseHeader>
-                                    <Card>
-                                    <View>
-                                        <Text>Art. 76: Condiciones específicas de las áreas, estructuras internas y accesorios</Text>
-                                    </View>
-                                    </Card>
-                                </CollapseHeader>
-                                <CollapseBody>
-                                    <Card>
-                                    <View>
-                                        <Text>Bruto</Text>
-                                    </View>
-                                    </Card>
-                                </CollapseBody>
-                            </Collapse>
-                            <Collapse>
-                                <CollapseHeader>
-                                    <Card>
-                                    <View>
-                                        <Text>Art. 77: Suministro de Agua</Text>
-                                    </View>
-                                    </Card>
-                                </CollapseHeader>
-                                <CollapseBody>
-                                    <Card>
-                                    <View>
-                                        <Text>Bruto</Text>
-                                    </View>
-                                    </Card>
-                                </CollapseBody>
-                            </Collapse>
-                        </CollapseBody>
-                    </Collapse>
-                    <Collapse>
-                        <CollapseHeader>
-                            <Card>
-                            <View>
-                                <Text>De los equipos y utensilios</Text>
-                            </View>
-                            </Card>
-                        </CollapseHeader>
-                        <CollapseBody>
-                            <Card>
-                            <View>
-                                <Text>Collapse 2</Text>
-                            </View>
-                            </Card>
-                        </CollapseBody>
-                    </Collapse>
-                    <Collapse>
-                        <CollapseHeader>
-                            <Card>
-                            <View>
-                                <Text>Requisitos higiénicos de fabricación</Text>
-                            </View>
-                            </Card>
-                        </CollapseHeader>
-                        <CollapseBody>
-                            <Card>
-                            <View>
-                                <Text>Collapse 3</Text>
-                            </View>
-                            </Card>
-                        </CollapseBody>
-                    </Collapse>
-                    <Collapse>
-                        <CollapseHeader>
-                            <Card>
-                            <View>
-                                <Text>Envasado, etiquetado y empaquetado</Text>
-                            </View>
-                            </Card>
-                        </CollapseHeader>
-                        <CollapseBody>
-                            <Card>
-                            <View>
-                                <Text>Collapse 4</Text>
-                            </View>
-                            </Card>
-                        </CollapseBody>
-                    </Collapse>
-                    <Collapse>
-                        <CollapseHeader>
-                            <Card>
-                            <View>
-                                <Text>Almacenamiento, distribución, transporte y comercialización</Text>
-                            </View>
-                            </Card>
-                        </CollapseHeader>
-                        <CollapseBody>
-                            <Card>
-                            <View>
-                                <Text>Collapse 5</Text>
-                            </View>
-                            </Card>
-                        </CollapseBody>
-                    </Collapse>
-                    <Collapse>
-                        <CollapseHeader>
-                            <Card>
-                            <View>
-                                <Text>Del aseguramiento y control de calidad</Text>
-                            </View>
-                            </Card>
-                        </CollapseHeader>
-                        <CollapseBody>
-                            <Card>
-                            <View>
-                                <Text>Collapse 6</Text>
-                            </View>
-                            </Card>
-                        </CollapseBody>
-                    </Collapse>
-                    <Collapse>
-                        <CollapseHeader>
-                            <Card>
-                            <View>
-                                <Text>Firma del auditor</Text>
-                            </View>
-                            </Card>
-                        </CollapseHeader>
-                        <CollapseBody>
-                            <Card>
-                            <View>
-                                <Text>Nombre y Firma del Auditor</Text>
-                            </View>
-                            <Form>
-                                <Item inlineLabel>
-                                <Label>Escriba su nombre y su apellido</Label>
-                                <Input />
-                                </Item>
-                            </Form>
-                            <View>
-                                <Button warning rounded>
-                                    <Text>FINALIZAR AUDITORIA</Text>
-                                </Button>
-                            </View>
-                            </Card>
-                        </CollapseBody>
-                    </Collapse>*/
-
 
 const dataItem1 = [
     { title: "Art. 73: De las condiciones mínimas básicas", content: "Lorem ipsum dolor sit amet" },
@@ -395,7 +50,7 @@ const list = [
   {
    titulo: 'De los equipos y utensilios',
     menu: ['1a','2a'],
-    submenu:['sub menu1','submenu2'],
+    submenu:['sub menu3','submenu4'],
     url: 'AuditoriasBuscar',
     altura:32,
     anchura:23
@@ -403,7 +58,7 @@ const list = [
   {
     titulo: 'Requisitos higiénicos de fabricación',
     menu: ['1 a','2a'],
-    submenu:['sub menu1','submenu2'],
+    submenu:['sub menu5','submenu6'],
     url: 'AuditoriasBuscar',
     altura:30,
     anchura:35
@@ -423,18 +78,34 @@ export default class NormaEcBPM extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { chosenDate: new Date(), pressStatus: false };
+        this.state = { chosenDate: new Date(), pressStatus: false, selected: null, SelectedButton: '' };
         this.setDate = this.setDate.bind(this);
       }
 
       _onHideUnderlay() {
     this.setState({ pressStatus: false });
-}
-_onShowUnderlay() {
-    this.setState({ pressStatus: true });
-}
+    }
 
-myfun=()=>{
+    _onShowUnderlay() {
+    this.setState({ pressStatus: true });
+    }
+
+    getInitialState=()=>{
+        return({toggled: false});
+    }
+
+    handlePress=()=>{
+        this.setState({ toggled: !this.state.toggled })
+    }
+
+     _handleClick(flag, button) {
+        if (flag == 1) {
+          this.setState({selected: true});
+        }
+        this.setState({SelectedButton: button})
+      }
+
+    myfun=()=>{
     alert("clave mal ingresada");
 
     this.setState({ pressStatus: true });
@@ -484,9 +155,10 @@ myfun=()=>{
                             <Input style={styles.input} placeholder="Email de contacto" />
                        
                             <Input style={styles.input} placeholder="Alcance de la auditoría" />
+                        <View style={{alignContent:'flex-end'}}>
                        
                         <DatePicker
-                            style={styles.input}
+                            style={{backgroundColor:'blue'}}
                             defaultDate={new Date()}
                             minimumDate={new Date(2020, 1, 1)}
                             maximumDate={new Date(2020, 12, 31)}
@@ -496,11 +168,12 @@ myfun=()=>{
                             animationType={"fade"}
                             androidMode={"default"}
                             placeHolderText="Fecha de la auditoría"
-                            textStyle={{ color: "blue" }}
-                            placeHolderTextStyle={{ color: "#d3d3d3" }}
+                            textStyle={styles.inputDate}
+                            placeHolderTextStyle={styles.inputDate}
                             onDateChange={this.setDate}
                             disabled={false}
                         />
+                        </View>
                         
                             <Input style={styles.input} placeholder="Nombre de la persona que audita" />
                        
@@ -510,10 +183,12 @@ myfun=()=>{
 
 
               <View style={styles.colapse}>
+                  
                 {
                   list.map((l, i) => (
                       <Collapse>
                         <CollapseHeader>
+                        
                             
                             <View style={styles.titulo}>
                                 <Text style={styles.tituloLetra}>{l.titulo}</Text>
@@ -523,7 +198,7 @@ myfun=()=>{
                         <CollapseBody>
 
                             
-                         
+                         {console.log(l.size)}
                                         
                                             
                                             <View>
@@ -531,6 +206,7 @@ myfun=()=>{
                                                 l.menu.map((m, n) => (
 
                                                     <Collapse>
+                                                    
 
                                                         <CollapseHeader>
                                                                 <View style={styles.menu}>
@@ -550,24 +226,36 @@ myfun=()=>{
 
                                                                         <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
                                                                             <TouchableHighlight
-                                                                            style={
-                    this.state.pressStatus
-                        ? styles.buttonPress
-                        : styles.button
-                }
-                
-                onPress={() =>{ this.myfun}}
-                
-               >
+                                                                            style={{backgroundColor: (this.state.SelectedButton === '1' ? 'green' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}}
+                                                                            onPress={() => this._handleClick('any flag', '1')}
+                                                                            underlayColor="red"
+                                                                            >
+                                                                            <View>
+
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> Si </Text>
+                                                                            </View>
                                                                             </TouchableHighlight>
                                                                             <TouchableHighlight
-                                                                            style={styles.boton} onPress={() =>{ this.myfun}}>
+
+                                                                            style={{backgroundColor: (this.state.SelectedButton === '2' ? 'red' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}}
+                                                                            onPress={() => this._handleClick('any flag', '2')}
+                                                                            underlayColor="red">
+                                                                            <View >
+
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> No </Text>
+                                                                            </View>
                                                                             </TouchableHighlight>
+
+
                                                                             <TouchableHighlight
-                                                                            style={styles.boton} onPress={() =>{ this.myfun}}>
+                                                                            style={ {backgroundColor: (this.state.SelectedButton === '3' ? 'orange' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}}
+          
+                                                                            onPress={() => this._handleClick('any flag', '3')}
+                                                                            underlayColor="red">
+                                                                            <View >
+
                                                                             <Text style={{fontWeight: 'bold',color:'white'}}> N/A </Text>
+                                                                            </View>
                                                                             </TouchableHighlight>
                                                                             
                                                                         </View>
@@ -631,15 +319,28 @@ const styles = StyleSheet.create({
       
       backgroundColor: '#f6f6f6', borderBottomColor:2,width:'90%',alignItems:'center',marginLeft:'5%'
     },
-    button: {
+button: {
     borderColor: "#000066",
-    backgroundColor:'green',
+    backgroundColor:'gray',
     borderWidth: 1,
     borderRadius: 10
 },
-buttonPress: {
+buttonPressYes: {
     borderColor: "#000066",
-    backgroundColor: "blue",
+    backgroundColor: "green",
+    borderWidth: 1,
+    borderRadius: 10
+},
+buttonPressNo: {
+    borderColor: "#000066",
+    backgroundColor: "red",
+    borderWidth: 1,
+    borderRadius: 10
+},
+
+buttonPressApply: {
+    borderColor: "#000066",
+    backgroundColor: "orange",
     borderWidth: 1,
     borderRadius: 10
 },
@@ -688,7 +389,7 @@ buttonPress: {
 
     boton:{
          alignItems: 'center',
-        backgroundColor: '#35E119',
+        backgroundColor: 'gray',
         padding: 10,
         width:'30%',
         borderRadius: 4,
@@ -698,6 +399,42 @@ buttonPress: {
    
 
     },
+    botonYes:{
+        alignItems: 'center',
+       backgroundColor: '#35E119',
+       padding: 10,
+       width:'30%',
+       borderRadius: 4,
+       borderWidth: 1,
+       borderColor: '#d6d7da',
+       marginLeft:7
+  
+
+   },
+   botonNo:{
+    alignItems: 'center',
+   backgroundColor: 'red',
+   padding: 10,
+   width:'30%',
+   borderRadius: 4,
+   borderWidth: 1,
+   borderColor: '#d6d7da',
+   marginLeft:7
+
+
+},
+botonApply:{
+    alignItems: 'center',
+   backgroundColor: 'orange',
+   padding: 10,
+   width:'30%',
+   borderRadius: 4,
+   borderWidth: 1,
+   borderColor: '#d6d7da',
+   marginLeft:7
+
+
+},
     Textboton:{
         fontSize:14,
         alignItems:'center',
@@ -716,6 +453,22 @@ buttonPress: {
         margin:5, 
         padding:5,
         fontSize: 14,
+        color: 'black'
+    
+
+    },
+    inputDate: {
+        height: 30,
+        borderBottomColor: '#1ed796',
+        borderBottomWidth: 1,
+        paddingLeft: 10,
+        paddingRight: 10,
+        width: '100%',
+        alignItems: 'flex-start',
+        margin:5, 
+        padding:5,
+        fontSize: 14,
+        color: 'black'
     
 
     },input1: {

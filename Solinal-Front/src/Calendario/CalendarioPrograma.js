@@ -8,10 +8,11 @@ import {
   Text,
   View,
 } from 'react-native';
-import {Calendar, CalendarList, Agenda, LocaleConfig} from 'react-native-calendars';
+
 import Header from '../../shared/Header';
 import AuditoriasProgramadas from '../../shared/AuditoriasProgramadas';
 import FooterCalendario from '../../shared/FooterCalendario';
+import { Calendar } from 'react-native-calendario';
 
 export default class CalendarioVacia extends Component {
 
@@ -31,25 +32,61 @@ export default class CalendarioVacia extends Component {
                     <Content padder style={{backgroundColor: '#f6f6f6'}}>
                         <AuditoriasProgramadas cantidad='0' tipoCuenta='GRATIS'/>
                         <Card>
-                            <Calendar 
-                            current={Date()}
-                            minDate={'2020-04-01'}
-                            maxDate={'2020-04-30'}
-                            onDayPress={(day) => {console.log('selected day', day)}}
-                            onDayLongPress={(day) => {console.log('selected day', day)}}
-                            monthFormat={'yyyy MM'}
-                            onMonthChange={(month) => {console.log('month changed', month)}}
-                            hideArrows={true}
-                            renderArrow={(direction) => (<Arrow />)}
-                            hideExtraDays={true}
-                            disableMonthChange={true}
-                            firstDay={1}
-                            hideDayNames={true}
-                            showWeekNumbers={true}
-                            onPressArrowLeft={substractMonth => substractMonth()}
-                            onPressArrowRight={addMonth => addMonth()}
-                            />
+                           
                         </Card>
+                        <View>
+                        <Calendar
+  onChange={(range) => console.log(range)}
+minDate={'2020-01-01'}
+                            maxDate={'2020-04-30'}
+  startDate={new Date(2020, 3, 1)}
+    endDate={new Date(2020, 3, 5)}
+  theme={{
+    activeDayColor: {},
+    monthTitleTextStyle: {
+      color: '#6d95da',
+      fontWeight: '300',
+      fontSize: 16,
+      flexDirection:'row'
+    },
+    emptyMonthContainerStyle: {},
+    emptyMonthTextStyle: {
+      fontWeight: '200',
+    },
+    weekColumnsContainerStyle: {},
+    weekColumnStyle: {
+      paddingVertical: 10,
+    },
+    weekColumnTextStyle: {
+      color: '#b6c1cd',
+      fontSize: 13,
+    },
+    nonTouchableDayContainerStyle: {},
+    nonTouchableDayTextStyle: {},
+    startDateContainerStyle: {},
+    endDateContainerStyle: {},
+    dayContainerStyle: {},
+    dayTextStyle: {
+      color: '#2d4150',
+      fontWeight: '200',
+      fontSize: 15,
+    },
+    dayOutOfRangeContainerStyle: {},
+    dayOutOfRangeTextStyle: {},
+    todayContainerStyle: {},
+    todayTextStyle: {
+      color: '#6d95da',
+    },
+    activeDayContainerStyle: {
+      backgroundColor: '#6d95da',
+    },
+    activeDayTextStyle: {
+      color: 'white',
+    },
+    nonTouchableLastMonthDayTextStyle: {},
+  }}
+/>
+                        </View>
 
                         <View style={{flexDirection:'row',marginTop:'2.5%',marginBottom:'2.5%',marginLeft:'2%'}}>
 
