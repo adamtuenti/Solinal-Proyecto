@@ -13,6 +13,8 @@ export default class Header extends React.Component{
     return(
 
         <View  style={styles.back}>
+
+        <View style={styles.container}>
             <View style={styles.izquierdo}>
                 
                 <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/user.png?raw=true'}}
@@ -35,6 +37,7 @@ export default class Header extends React.Component{
                 <MaterialIcons name='menu' size={30}  style={styles.icon}/>
             </View>
 
+        </View>
         </View>
         
     );
@@ -61,8 +64,8 @@ const styles = StyleSheet.create({
     back:{
         flexDirection:'row',
          backgroundColor:'#1ed695',
-        height:'8%',
-        paddingTop:'1%',
+        height:'11%',
+        paddingTop:'8%',
         alignContent:'center'
         
     },
@@ -72,5 +75,10 @@ const styles = StyleSheet.create({
         
        // marginLeft:10,
         //marginTop:8
+    },
+    container:{
+        marginTop:'4.5%',
+        flexDirection:'row',
+    
     }
 })
