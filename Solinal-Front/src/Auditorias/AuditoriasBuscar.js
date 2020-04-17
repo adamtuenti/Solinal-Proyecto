@@ -16,7 +16,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { Ionicons } from '@expo/vector-icons';
 
 import FooterAuditoria from './../../shared/FooterAuditoria';
-import Header from './../../shared/Header';
+import HeaderBack from './../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 
 export const idPa = 'neira';
@@ -183,7 +183,7 @@ export default class AuditoriasBuscar extends Component {
             <Container>
             
 
-                <Header encabezado='Auditoria'/>
+                <HeaderBack encabezado='Auditoria'/>
 
 
 

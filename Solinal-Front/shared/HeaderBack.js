@@ -1,11 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions,Image } from 'react-native';
+import { StyleSheet, Text, View, Dimensions,Image,TouchableHighlight } from 'react-native';
 import { Input, Button, SocialIcon } from 'react-native-elements';
 import Form from 'react-bootstrap/Form'
-import {MaterialIcons} from '@expo/vector-icons'
+import {MaterialIcons} from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
-
-export default class Header extends React.Component{
+export default class HeaderBack extends React.Component{
 
     
     render(){
@@ -16,12 +16,13 @@ export default class Header extends React.Component{
 
         <View style={styles.container}>
             <View style={styles.izquierdo}>
+
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate(this.props.url)}>
                 
-                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%201.png?raw=true'}}
-                            style= {styles.imagen}/>
+                <MaterialIcons name="arrow-back" size={32} color="white" />
                 
 
-                
+                </TouchableHighlight>
 
 
 
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     },
     imagen:{
         height:40,
-        width:28,
+        width:40,
         
        // marginLeft:10,
         //marginTop:8

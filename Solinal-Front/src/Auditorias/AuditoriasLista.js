@@ -11,7 +11,7 @@ import {
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 import Footer from './../../shared/Footer';
-import Header from './../../shared/Header';
+import HeaderBack from './../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterAuditoria from '../../shared/FooterAuditoria';
 //import {idPais} from './AuditoriasBuscar'

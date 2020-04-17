@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Header,  Button, Left, Label,Right, Body, Font, Form, Item, Picker, Input } from 'native-base';
-import { Icon } from 'react-native-elements'
+import { Icon} from 'react-native-elements'
 import {StyleSheet,TouchableHighlight,Text,View,TextInput} from 'react-native'
-
+import {MaterialIcons,
+MaterialCommunityIcons} from '@expo/vector-icons';
 
 
 export default class FooterCalendario extends React.Component{
@@ -27,6 +28,27 @@ export default class FooterCalendario extends React.Component{
 
                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
+                                   style= {{height: 35,
+                                            width: 28}}>
+                            </Image>
+               <Text style={styles.letra}>Accion Correctiva</Text>
+                    </View>
+                </TouchableHighlight>
+
+                
+
+                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones1}>
+                    <View style={{flexDirection:'column',alignItems:'center',justifyContent:'center',marginBottom:'8%'}}>
+                            <MaterialCommunityIcons name="home-circle" size={50} />
+                            
+
+
+                    </View>
+                </TouchableHighlight>
+
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
                             <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario-active.png?raw=true'}}
                                    style= {{height: 35,
                                             width: 32}}>
@@ -35,24 +57,7 @@ export default class FooterCalendario extends React.Component{
                     </View>
                 </TouchableHighlight>
 
-                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones1}>
-                    <View style={{flexDirection:'column',}}>
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2013.png'}}
-                                   style= {{height: 45,
-                                            width: 45}}>
-                            </Image>
-                    </View>
-                </TouchableHighlight>
-
-                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
-                    <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
-                                   style= {{height: 35,
-                                            width: 28}}>
-                            </Image>
-               <Text style={styles.letra}>Accion Correctiva</Text>
-                    </View>
-                </TouchableHighlight>
+                
 
                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
@@ -82,9 +87,9 @@ const styles = StyleSheet.create({
         
     },
     botones1:{
-        marginLeft:'4%',
-        marginRight:'3%',
-        justifyContent:'center'
+      marginLeft:'1.5%',
+        marginRight:'2%',
+        alignItems:'center',justifyContent:'center'
 
     },
     letra:{

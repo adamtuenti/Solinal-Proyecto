@@ -11,10 +11,18 @@ import {
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 import FooterAuditoria from './../../shared/FooterAuditoria';
-import Header from './../../shared/Header';
+import HeaderBack from './../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 
+
 export default class AuditoriasVacia extends Component {
+
+      constructor(props) {
+        super(props);
+        this.state = {
+            paginaAnterior: this.props.navigation.state.params.paginaActual
+        };
+    }
 
     async componentDidMount() {
         await Font.loadAsync({
@@ -30,7 +38,7 @@ export default class AuditoriasVacia extends Component {
             <Container>
 
 
-                <Header encabezado='Auditoria'/>
+                <HeaderBack encabezado={this.state.paginaAnterior}/>
 
 
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
@@ -61,7 +69,7 @@ export default class AuditoriasVacia extends Component {
                             <Body style={{alignItems: 'center'}}>
 
                                 <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>this.props.n+avigation.navigate('CrearAuditoria')}>
+                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
                                     <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> Crear </Text>
                                     </TouchableHighlight>
                                                         

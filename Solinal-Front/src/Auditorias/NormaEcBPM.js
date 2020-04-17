@@ -2,15 +2,8 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container,  Title, DatePicker, Content, Card, CardItem, Button, Left, Label, Accordion, Right, Body, Font, Form, Item, Picker, Input, List,  Separator } from 'native-base';
 import { Icon } from 'react-native-elements'
-import {
-  StyleSheet,
-  TouchableHighlight,
-  Text,
-  View,
-  TextInput,
-  
-} from 'react-native'
-import Dropdown from 'react-bootstrap/Dropdown';
+import {StyleSheet,TouchableHighlight,Text,View,TextInput} from 'react-native'
+import {MaterialIcons,AntDesign,MaterialCommunityIcons} from '@expo/vector-icons';
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 import { Collapse, CollapseHeader, CollapseBody } from "accordion-collapse-react-native";
@@ -262,6 +255,8 @@ export default class NormaEcBPM extends Component {
                                                                         <View style={{marginTop:5,marginBottom:7,marginLeft:5}}>
                                                                         <Collapse>
                                                                             <CollapseHeader>
+
+                                                                            <View style={{flexDirection:'row',alignItems: 'center',}}>
                                                                             
                                                                                 <View style={{flexDirection:'row',alignItems: 'center',}}>
                                                                                         <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}} 
@@ -271,6 +266,18 @@ export default class NormaEcBPM extends Component {
                                                                                                     }}/>
                                                                                 <Text style={{fontSize:12,marginLeft:5,marginTop:2}}>Agregar nota</Text>
                                                                                 </View>
+
+
+                                                                                <View>
+                                                                                <TouchableHighlight>
+                                                                                <View style={{flexDirection:'row',marginLeft:'5%',alignItems:'center'}}>
+                                                                                <AntDesign name="camera" size={45} />
+                                                                                <Text>Agregar evidencia</Text>
+                                                                                </View>
+                                                                                </TouchableHighlight>
+                                                                                </View>
+
+                                                                              </View>
                                                                             
                                                                             </CollapseHeader>
                                                                             <CollapseBody>

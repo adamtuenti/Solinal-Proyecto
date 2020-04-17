@@ -46,6 +46,13 @@ const list = [
 
 export default class Main extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+           paginaActual:'Main'
+        };
+    }
+
   
 
   async componentDidMount() {
@@ -94,7 +101,7 @@ export default class Main extends Component {
                         <Text style={{fontSize:15}}> {l.name}</Text>
                         </View>
                       }       
-                      onPress={()=>this.props.navigation.navigate(l.url)}
+                      onPress={()=>this.props.navigation.navigate(l.url,{paginaActual:this.state.paginaActual})}
                       bottomDivider
                     />
                   ))

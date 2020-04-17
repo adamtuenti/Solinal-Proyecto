@@ -11,7 +11,7 @@ import {
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 import Footer from './../../shared/Footer';
-import Header from './../../shared/Header';
+import HeaderBack from './../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterAuditoria from '../../shared/FooterAuditoria';
 
@@ -49,7 +49,7 @@ export default class CrearAuditoria extends Component {
     render() {
         return (
             <Container>
-                <Header encabezado='Auditoria'/>
+                <HeaderBack encabezado='Auditoria'/>
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
                     <EstadoCuenta cantidad='0' tipoCuenta='GRATIS'/>
