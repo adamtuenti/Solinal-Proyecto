@@ -36,7 +36,7 @@ export default class Carusel extends Component {
                             <Text>¿Ya tienes una cuenta? </Text>
                             <Text 
                             onPress={()=>this.props.navigation.navigate('Main')}
-                            style={{color: '#1ed695'}}>
+                            style={{color: '#23d697'}}>
                             Inicia Sesión</Text>
                         </View>
                        
@@ -70,7 +70,7 @@ export default class Carusel extends Component {
                             <Text>¿Ya tienes una cuenta? </Text>
                             <Text 
                             onPress={()=>this.props.navigation.navigate('Login')}
-                            style={{color: '#1ed695'}}>
+                            style={{color: '#23d697'}}>
                             Inicia Sesión</Text>
                         </View>
                        
@@ -82,7 +82,7 @@ export default class Carusel extends Component {
 
 
                 
-                    <View style={{ flexDirection:'column',paddingTop:'15%'}}>
+                    <View style={{ flexDirection:'column',paddingTop:'12%'}}>
 
                         <View style={{alignItems:'center'}}>
                         <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%205.png?raw=true'}}style= {styles.imagen3}></Image>
@@ -105,7 +105,7 @@ export default class Carusel extends Component {
                             <Text>¿Ya tienes una cuenta? </Text>
                             <Text 
                             onPress={()=>this.props.navigation.navigate('Login')}
-                            style={{color: '#1ed695'}}>
+                            style={{color: '#23d697'}}>
                             Inicia Sesión</Text>
                         </View>
                        
@@ -160,10 +160,10 @@ const styles = StyleSheet.create({
 
     }, botonLogin:{
         alignItems: 'center',
-        backgroundColor: '#8DFA92',
+        backgroundColor: '#B3F1C9',
         alignItems:'center',
-        width:'45%',
-        height:35,
+        width:'62%',
+        height:45,
         borderRadius: 4,
         borderWidth: 1,
         borderColor: '#d6d7da',
@@ -202,8 +202,10 @@ const styles = StyleSheet.create({
     },
     letraBoton:{
         alignItems:'center',
-        fontWeight: 'bold',color:'white',
-        fontSize:19
+        fontWeight: 'bold',color:'#565958',
+        fontSize:23,
+        textAlign:'center',
+        marginTop:2,
 
 
     },

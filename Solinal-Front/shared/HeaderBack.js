@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     },
     back:{
         flexDirection:'row',
-         backgroundColor:'#1ed695',
+         backgroundColor:'#1ED695',
         height:'11%',
         paddingTop:'8%',
         alignContent:'center'

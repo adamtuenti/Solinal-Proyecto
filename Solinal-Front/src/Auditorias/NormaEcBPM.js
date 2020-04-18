@@ -8,7 +8,7 @@ import {MaterialIcons,AntDesign,MaterialCommunityIcons} from '@expo/vector-icons
 import { Ionicons } from '@expo/vector-icons';
 import { Collapse, CollapseHeader, CollapseBody } from "accordion-collapse-react-native";
 import { ListItem , Divider} from 'react-native-elements';
-import Header from './../../shared/Header';
+import HeaderBack from './../../shared/HeaderBack';
 import FooterAuditoria from '../../shared/FooterAuditoria';
 
 
@@ -113,7 +113,7 @@ export default class NormaEcBPM extends Component {
         return (
             <Container>
 
-                <Header encabezado='Auditoria'/>
+                <HeaderBack encabezado='Auditoria'/>
 
                 
                 
@@ -257,31 +257,43 @@ export default class NormaEcBPM extends Component {
                                                                             <CollapseHeader>
 
                                                                             <View style={{flexDirection:'row',alignItems: 'center',}}>
-                                                                            
                                                                                 <View style={{flexDirection:'row',alignItems: 'center',}}>
-                                                                                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}} 
+                                                                                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/nota.png?raw=true'}} 
                                                                                         style={{height: 35, 
-                                                                                                    width: 25,
+                                                                                                    width: 35,
                                                                                                     marginLeft:7
                                                                                                     }}/>
                                                                                 <Text style={{fontSize:12,marginLeft:5,marginTop:2}}>Agregar nota</Text>
                                                                                 </View>
 
-
-                                                                                <View>
-                                                                                <TouchableHighlight>
-                                                                                <View style={{flexDirection:'row',marginLeft:'5%',alignItems:'center'}}>
-                                                                                <AntDesign name="camera" size={45} />
-                                                                                <Text>Agregar evidencia</Text>
+                                                                                <View style={{flexDirection:'row',alignItems: 'center',marginLeft:5}}>
+                                                                                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/evidencia.png?raw=true'}} 
+                                                                                        style={{height: 35, 
+                                                                                                    width: 35,
+                                                                                                    marginLeft:7
+                                                                                                    }}/>
+                                                                                <Text style={{fontSize:12,marginLeft:5,marginTop:2}}>Agregar evidencia</Text>
                                                                                 </View>
-                                                                                </TouchableHighlight>
-                                                                                </View>
 
-                                                                              </View>
+                                                                            </View>
                                                                             
                                                                             </CollapseHeader>
                                                                             <CollapseBody>
-                                                                            <Input style={styles.input} placeholder="Escriba su nota" />
+                                                                            <View style={{flexDirection:'column',marginTop:5,backgroundColor:'#F5F5F5'}}>
+                                                                                <View>
+                                                                                <Input numberOfLines={4} style={styles.input} placeholder="Escriba su nota" />
+                                                                                </View>
+
+                                                                                <View style={{flexDirection:'row-reverse',marginTop:2, marginBottom:10,marginLeft:10 }}>
+                                                                                <TouchableHighlight style={styles.botonAgregarNota}>
+                                                                                    <View>
+                                                                                        <Text style={{fontSize:12}}>Agregar</Text>
+                                                                                    </View>
+                                                                                </TouchableHighlight>
+                                                                                </View>
+                                                                            
+
+                                                                            </View>
                                                                             </CollapseBody>
                                                                             </Collapse>
                                                                         </View>
@@ -325,7 +337,7 @@ const styles = StyleSheet.create({
     container: {
       
       backgroundColor: '#f6f6f6', borderBottomColor:2,width:'90%',alignItems:'center',marginLeft:'5%'
-    },
+    },botonAgregarNota:{height:30,width:75,backgroundColor:'green',borderRadius: 4,alignItems: 'center',borderWidth: 1,borderColor: '#d6d7da',alignContent:'center'},
 button: {
     borderColor: "#000066",
     backgroundColor:'gray',
@@ -359,10 +371,10 @@ buttonPressApply: {
 
     },
     titulo:{
-        backgroundColor:'#70FA76',
+        backgroundColor:'#B3F1C9',
         borderBottomColor: 'white',
         borderBottomWidth: 5,
-        padding:7
+        padding:6
         
 
     },tituloLetra:{
@@ -371,7 +383,7 @@ buttonPressApply: {
 
     },
     menu:{
-        backgroundColor:'#FBFE91',
+        backgroundColor:'#FCF7B9',
         borderBottomColor: 'white',
         borderBottomWidth: 3,
         padding:6
@@ -451,16 +463,17 @@ botonApply:{
     },
     input: {
         height: 30,
-        borderBottomColor: '#1ed796',
+        borderBottomColor: '#515254',
         borderBottomWidth: 1,
-        paddingLeft: 10,
+        paddingLeft: 5,
         paddingRight: 10,
-        width: '100%',
+        width: '97%',
         alignItems: 'center',
         margin:5, 
         padding:5,
         fontSize: 14,
-        color: 'black'
+        color: 'black',
+        
     
 
     },

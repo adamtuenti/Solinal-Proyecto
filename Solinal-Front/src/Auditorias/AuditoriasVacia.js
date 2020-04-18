@@ -70,7 +70,7 @@ export default class AuditoriasVacia extends Component {
 
                                 <TouchableHighlight
                                     style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
-                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> Crear </Text>
+                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:23}}> Crear </Text>
                                     </TouchableHighlight>
                                                         
                             </Body>
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
 
     botonLogin:{
         alignItems: 'center',
-        backgroundColor: '#1ed695',
-        padding: 10,
+        backgroundColor: '#1ED695',
+        padding:5,
         width:142,
         borderRadius: 4,
         borderWidth: 1,

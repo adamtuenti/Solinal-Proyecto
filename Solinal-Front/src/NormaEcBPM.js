@@ -536,14 +536,26 @@ export default class NormaEcBPM extends Component {
                                                                         <Collapse>
                                                                             <CollapseHeader>
                                                                             
+                                                                            <View style={{flexDirection:'row',alignItems: 'center',}}>
                                                                                 <View style={{flexDirection:'row',alignItems: 'center',}}>
-                                                                                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}} 
+                                                                                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/nota.png?raw=true'}} 
                                                                                         style={{height: 35, 
                                                                                                     width: 25,
                                                                                                     marginLeft:7
                                                                                                     }}/>
                                                                                 <Text style={{fontSize:12,marginLeft:5,marginTop:2}}>Agregar nota</Text>
                                                                                 </View>
+
+                                                                                <View style={{flexDirection:'row',alignItems: 'center',}}>
+                                                                                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/evidencia.png?raw=true'}} 
+                                                                                        style={{height: 35, 
+                                                                                                    width: 25,
+                                                                                                    marginLeft:7
+                                                                                                    }}/>
+                                                                                <Text style={{fontSize:12,marginLeft:5,marginTop:2}}>Agregar evidenc</Text>
+                                                                                </View>
+
+                                                                            </View>
                                                                             
                                                                             </CollapseHeader>
                                                                             <CollapseBody>

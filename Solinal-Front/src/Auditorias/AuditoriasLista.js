@@ -51,7 +51,7 @@ export default class AuditoriasLista extends Component {
         return (
             <Container>
 
-                <Header encabezado='Auditoria'/>
+                <HeaderBack encabezado='Auditoria'/>
 
 
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
@@ -100,13 +100,13 @@ export default class AuditoriasLista extends Component {
                         <CardItem bordered>
                             <Body>
                                 <View>
-                                    <Text style={{color:'green'}}>
+                                    <Text style={{color:'#1ED695'}}>
                                         Buscaste:
                                         <Text style={{color:'black',fontWeight: "bold"}}> FDA</Text>
                                     </Text>
                                 </View>
                                 <View>
-                                    <Text style={{color:'green'}}>
+                                    <Text style={{color:'#1ED695'}}>
                                         Encontramos:
                                         <Text style={{color:'black',fontWeight: "bold"}}> 'Part 110 current good manufacturing practice in manufacturing, packing, or holding human food</Text>
                                     </Text>

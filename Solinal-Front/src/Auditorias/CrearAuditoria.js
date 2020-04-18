@@ -58,9 +58,9 @@ export default class CrearAuditoria extends Component {
 
                     <Card style={{height:175}}>
 
-                    <View style={{flex: 1, flexDirection: 'column', height:100, justifyContent:'center', marginTop:5}}>
+                    <View style={{flex: 1, flexDirection: 'column', height:100, justifyContent:'center', marginTop:3}}>
 
-                        <Text style={{color: '#1ed695', marginLeft:10, fontSize:15}}>CREAR UNA NUEVA PLANTILLA</Text>
+                        <Text style={{color: '#1ED695', marginLeft:10, fontSize:15}}>CREAR UNA NUEVA PLANTILLA</Text>
 
                     <View style={{flexDirection: 'row', marginTop:5}}>    
                     
@@ -86,9 +86,9 @@ export default class CrearAuditoria extends Component {
 
                     <Card style={{height:175}} onPress={()=>this.props.navigation.navigate('AuditoriasLista')}>
 
-                    <View style={{flex: 1, flexDirection: 'column', height:100, justifyContent:'center', marginTop:5}}>
+                    <View style={{flex: 1, flexDirection: 'column', height:100, justifyContent:'center', marginTop:3}}>
 
-                        <Text style={{color: '#1ed695', marginLeft:10, fontSize:15}}>BUSCAR AUDITORÍAS BASADA EN NORMAS</Text>
+                        <Text style={{color: '#1ED695', marginLeft:10, fontSize:15}}>BUSCAR AUDITORÍAS BASADA EN NORMAS</Text>
 
                     <View style={{flexDirection: 'row', marginTop:5}}>    
                     

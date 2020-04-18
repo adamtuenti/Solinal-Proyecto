@@ -23,13 +23,14 @@ import CalendarioPrograma from './src/Calendario/CalendarioPrograma';
 import Router from './src/Router';
 import Carusel from './src/Carusel';
 import FooterAuditoria from './shared/FooterAuditoria';
+import Footer from './shared/Footer';
 import EquipoLista from './src/Equipo/EquipoLista';
 import EquipoVacio from './src/Equipo/EquipoVacio';
 import InvitarMiembros from './src/Equipo/InvitarMiembros'
 
 const AppNavigator = createStackNavigator(
   {
-    Carusel,CalendarioVacia,NormaEcBPM,EquipoVacio,EquipoLista,InvitarMiembros,AuditoriasBuscar,CalendarioPrograma,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar,FooterAuditoria
+    Carusel,Footer,CalendarioVacia,NormaEcBPM,EquipoVacio,EquipoLista,InvitarMiembros,AuditoriasBuscar,CalendarioPrograma,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar,FooterAuditoria
   },
   {
     headerMode: 'none',

@@ -241,8 +241,14 @@ export default class AuditoriasBuscar extends Component {
                         <CollapseHeader>
                             
                             <View style={styles.seleccion}>
-                                <Text style={styles.letraSeleccion}>Seleccione el pais</Text>
+                                <View>
+                                    <Text style={{marginRight:10, color: '#636363', fontWeight: "bold"}}>Seleccione el pais</Text>
+                                </View>
+                                <View style={{flex: 1, flexDirection: 'row-reverse'}}>
+                                    <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}style= {{height: 25,width: 15}}></Image>
+                                </View>
                             </View>
+
                             
                         </CollapseHeader>
 
@@ -330,10 +336,10 @@ export default class AuditoriasBuscar extends Component {
                     </CardItem>
 
 
-                    <View style={{flex: 1, flexDirection: 'column', margin:5,padding:10,  backgroundColor:'#9A9E9A',marginTop:35, borderRadius: 5,}}>
+                    <View style={{flex: 1, flexDirection: 'column', margin:5,padding:10,  backgroundColor:'#515254',marginTop:35, borderRadius: 5,}}>
 
                         <View style={{marginRight:35}}>
-                            <Text style={{color: '#AFF9AF', fontSize:14, marginBottom:5}}>
+                            <Text style={{color: '#B3F1C9', fontSize:14, marginBottom:5}}>
                                 ¿No encuentras a tu país en tu lista?  
                             </Text>
 
@@ -408,6 +414,7 @@ width:'100%'
         borderColor: '#d6d7da',
           padding:'3%',
        backgroundColor:'white',
+       flexDirection:'row',
       
         
         borderBottomWidth: 3,
@@ -473,7 +480,7 @@ width:'100%'
     },
     botonEnviar:{
         alignItems: 'center',
-        backgroundColor: '#FAFDC2',
+        backgroundColor: '#FCF7B9',
         padding: 10,
         width:75,
         borderRadius: 4,
