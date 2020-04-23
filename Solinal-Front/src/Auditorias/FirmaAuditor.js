@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, AppRegistry, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, AppRegistry, TouchableHighlight,Image} from 'react-native';
 import Signature from 'react-native-signature-canvas';
 
 export default class FirmaAuditor extends React.Component {
@@ -10,10 +10,11 @@ export default class FirmaAuditor extends React.Component {
      
       handleSignature = signature => {
         this.setState({ signature });
+       
       };
      
       handleEmpty = () => {
-        console.log('Empty');
+        alert('Firma vacia')
       }
      
       render() {
@@ -30,15 +31,16 @@ export default class FirmaAuditor extends React.Component {
                   resizeMode={"contain"}
                   style={{ width: 335, height: 114 }}
                   source={{ uri: this.state.signature }}
-                />
+                />,
+                this.props.navigation.navigate('Carusel',{url:this.state.signature})
               ) : null}
             </View>
             <Signature
               onOK={this.handleSignature}
               onEmpty={this.handleEmpty}
-              descriptionText="Sign"
+              descriptionText="Firma"
               clearText="Clear"
-              confirmText="Save"
+              confirmText="Guardar"
               webStyle={style}
             />
           </View>

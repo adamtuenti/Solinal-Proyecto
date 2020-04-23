@@ -3,6 +3,18 @@ import React, {Component} from 'react';
 import {PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator} from 'react-native-best-viewpager';
  import ViewPagerAndroid from "@react-native-community/viewpager";
 export default class Carusel extends Component {
+
+
+
+    super(props){
+        //set value in state for initial date
+         this.state = {
+           
+           urlImage: this.props.navigation.state.params.url
+        };
+    }
+
+
     render() {
         return (
             <View style={{flex:1}}>
