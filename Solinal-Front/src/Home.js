@@ -10,26 +10,67 @@ import { Container, Header, Content, Accordion } from "native-base";
 
 export default class Home extends Component{
 
+    constructor(props) {
+        super(props);
+        this.state = {
+         
+            username: this.props.navigation.state.params.username,
+            idUser: this.props.navigation.state.params.idUser,
+
+            loading: false,
+          datos: [],
+    
+          url: 'http://accountsolinal.pythonanywhere.com/api/user/'+this.props.navigation.state.params.idUser
+        };
+    }
+
+
+    componentDidMount(){
+        this.getDatos();
+    }
+
+    getDatos = () => {
+      console.log(this.state.idUser)
+      console.log(this.state.url)
+        this.setState({loading:true})
+        fetch(this.state.url)
+
+        .then(res=>res.json())
+       
+        .then(res=>{ 
+          console.log('--')
+            console.log(res.cuenta_usuario);
+            this.setState({
+            datos: res,
+            url: res.next,
+            loading: false,    
+            })
+        })
+    }
+
     render() {
     return (
     
-      <View style={{flex: 1, flexDirection: 'column', backgroundColor: 'green', alignItems: 'center', justifyContent: 'center'}}>
+      <View style={{flex: 1, flexDirection: 'column', backgroundColor: '#1ED695', alignItems: 'center', justifyContent: 'center'}}>
 
         <Image
                         style={{width: 125, height: 175, margin:25,padding:10}}
                         source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
         />
 
-        <Text style={{fontWeight: 'bold', fontSize: 25, color: 'white',paddingTop:25,paddingBottom:195}}>Bienvenido</Text>
+        <Text style={{fontWeight: 'bold', fontSize: 28, color: 'white',paddingTop:25,paddingBottom:175}}>Bienvenido {this.state.datos.username}</Text>
 
         <Icon style={{paddingTop:15}}
             raised
             name='home'
             type='font-awesome'
             color='green'
+            size={35}
             
             
-            onPress={() => this.props.navigation.navigate('Main')}
+            onPress={() => 
+           
+            this.props.navigation.navigate('Main',{username:this.state.datos.username,tipoCuenta:this.state.datos.cuenta_usuario})}
         />
       </View>
      

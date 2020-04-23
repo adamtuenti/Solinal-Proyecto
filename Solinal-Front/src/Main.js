@@ -49,7 +49,9 @@ export default class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-           paginaActual:'Main'
+           paginaActual:'Main',
+           username: this.props.navigation.state.params.username,
+           tipoCuenta:this.props.navigation.state.params.tipoCuenta,
         };
     }
 
@@ -70,7 +72,7 @@ export default class Main extends Component {
     return (
       <Container>
 
-      <Header encabezado='Bienvenido'/>
+      <Header encabezado={this.state.username}/>
 
       
 
@@ -81,7 +83,7 @@ export default class Main extends Component {
 
         <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
-        <EstadoCuenta cantidad='0' tipoCuenta='GRATIS'/>
+        <EstadoCuenta cantidad='0' tipocuenta={this.state.tipoCuenta}/>
 
           <Card>
 

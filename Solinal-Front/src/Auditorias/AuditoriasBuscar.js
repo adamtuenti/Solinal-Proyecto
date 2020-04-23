@@ -81,7 +81,50 @@ export const idPa = 'neira';
                             
                                 
                             </Picker>
-                        </Item>*/
+                        </Item>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                         <CardItem style={{alignItems: 'center', marginTop:25, backgroundColor:'f6f6f6'}}>
+                            <Body style={{alignItems: 'center'}}>
+                                <TouchableHighlight
+                                    style={styles.botonLogin} onPress={()=>{
+                                     this.props.navigation.navigate('Crear',{idPais:this.state.idPais})   
+                                    }}>
+                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:19}}> Buscar </Text>
+                                    </TouchableHighlight>
+                            </Body>
+                    </CardItem>
+
+
+                    <CardItem style={{alignItems: 'center', marginTop:25, backgroundColor:'f6f6f6'}}>
+                            <Body style={{alignItems: 'center'}}>
+                                <TouchableHighlight
+                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('NormaEcBPM')}>
+                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:19}}> Crear Auditoria </Text>
+                                    </TouchableHighlight>
+                            </Body>
+                    </CardItem>
+
+
+                    <TouchableHighlight  style={styles.normaStyle}onPress={() => {
+                                                             this.setState({idPais: m});
+                                                             alert('seleccionaste: '+m)
+
+                                                           // this.myfun(m.norma); 
+                                                        }}>
+                                                        <View >
+                                                        <Text  style={styles.letraNorma}>{m}</Text>
+
+                                                        
+                                                        </View></TouchableHighlight>
+                    */
 
 export default class AuditoriasBuscar extends Component {
     async componentDidMount() {
@@ -160,14 +203,11 @@ export default class AuditoriasBuscar extends Component {
     myfun=(variable)=>{
 
         
-        console.log(variable)
-        console.log(':)')
-        console.log(this.state.idPais);
+       
         this.setState({idPais:variable})
         
         
-        console.log(this.state.idPais)
-        console.log('-')
+     
         this.props.navigation.navigate('AuditoriasLista',variable)
         
 
@@ -270,14 +310,28 @@ export default class AuditoriasBuscar extends Component {
                                         
                                                 
                                                 
-                                                <View style={{flexDirection: 'row',alignItems:'center'}}>
-                                                <TouchableHighlight  style={styles.normaStyle}onPress={() => {
-                                                             this.setState({idPais: m});
-                                                             alert('seleccionaste: '+m)
+                                                <View style={styles.normaStyle}>
 
-                                                           // this.myfun(m.norma); 
-                                                        }}>
-                                                        <View ><Text  style={styles.letraNorma}>{m}</Text></View></TouchableHighlight>
+                                                <View>
+                                                <Text  style={styles.letraNorma}>{m}</Text>
+                                                </View>
+
+                                                <View style={{flexDirection:'row-reverse'}}>
+
+
+                                                <TouchableHighlight
+                                                            style={styles.botonLogin} onPress={()=>{
+                                                            this.props.navigation.navigate('Crear',{norma:m,pais:r.pais})   
+                                                            }}>
+                                                        <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> Crear </Text>
+                                                        </TouchableHighlight>
+
+                                                </View>
+                                                
+
+
+
+                                                        
                                                
                                                 </View>
                                                 
@@ -314,26 +368,7 @@ export default class AuditoriasBuscar extends Component {
                     
                     </Form>
 
-                    <CardItem style={{alignItems: 'center', marginTop:25, backgroundColor:'f6f6f6'}}>
-                            <Body style={{alignItems: 'center'}}>
-                                <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>{
-                                     this.props.navigation.navigate('AuditoriasLista',{idPais:this.state.idPais})   
-                                    }}>
-                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:19}}> Buscar </Text>
-                                    </TouchableHighlight>
-                            </Body>
-                    </CardItem>
-
-
-                    <CardItem style={{alignItems: 'center', marginTop:25, backgroundColor:'f6f6f6'}}>
-                            <Body style={{alignItems: 'center'}}>
-                                <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('NormaEcBPM')}>
-                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:19}}> Crear Auditoria </Text>
-                                    </TouchableHighlight>
-                            </Body>
-                    </CardItem>
+                   
 
 
                     <View style={{flex: 1, flexDirection: 'column', margin:5,padding:10,  backgroundColor:'#515254',marginTop:35, borderRadius: 5,}}>
@@ -392,8 +427,8 @@ const styles = StyleSheet.create({
     botonLogin:{
         alignItems: 'center',
         backgroundColor: '#1ed695',
-        padding: 10,
-        width:175,
+        padding: 2,
+        width:110,
         borderRadius: 4,
         borderWidth: 1,
         borderColor: '#d6d7da',
@@ -401,7 +436,7 @@ const styles = StyleSheet.create({
    
 
     },colapse:{
-width:'100%'
+        width:'100%'
     },
     letraSeleccion:{
         fontSize:15.5,
@@ -456,6 +491,7 @@ width:'100%'
         borderBottomWidth: 3,
         borderRadius: 4,
         borderColor: '#d6d7da',
+        alignItems:'center'
 
     },
     botonCrear:{

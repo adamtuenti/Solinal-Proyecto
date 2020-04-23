@@ -27,7 +27,7 @@ export default class Header extends React.Component{
 
                 
                 <Text style={{color:'white', fontSize:21, marginLeft:10}}>
-                    {this.props.encabezado}
+                    Bienvenido {this.props.encabezado}
                 </Text>
             </View>
 

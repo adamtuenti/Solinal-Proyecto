@@ -18,7 +18,8 @@ class Login extends Component{
           password : '',
           loading: false,
           pacientes: [],
-          url: 'http://accountsolinal.pythonanywhere.com/api/user'
+          idUser:'1',
+          url: 'http://accountsolinal.pythonanywhere.com/api/users'
         }
         /*super(props)
 
@@ -97,12 +98,16 @@ class Login extends Component{
         console.log(this.state.pacientes)
 
         const array1 = this.state.pacientes
+        var idA = 1
         
         var bandera = 0
 
         array1.forEach(function(element){
             var name = element.username
-            var pass = element.id
+            var pass = element.user
+            var idU = element.user
+            
+
 
             if (name==username){
                 
@@ -113,6 +118,10 @@ class Login extends Component{
                 
                 if (password == pass){
                     bandera = 1;
+                    console.log('aqui')
+                    idA = idU
+                   
+                    
                     
 
                 }
@@ -130,8 +139,16 @@ class Login extends Component{
 
         }
         else if(bandera==1){
-            this.props.navigation.navigate('Home')
+            
+           // console.log(pass)
+            console.log('..')
+            console.log(idA)
+            console.log(this.state.idUser)
+            this.cambiarPestana(idA,username)
+            
         }
+
+        this.setState({idUser:idA});
 
 
        
@@ -145,6 +162,11 @@ class Login extends Component{
             this.props.navigation.navigate('Registro')
 
         }*/
+    }
+
+    cambiarPestana(idUser,username){
+        console.log(this.state.idUser)
+        this.props.navigation.navigate('Home',{username:this.state.username,idUser:this.state.idUser})
     }
     
     componentDidMount(){

@@ -28,11 +28,11 @@ export default class EstadoCuenta extends React.Component{
                 
             </View>
             <View style={{flexDirection:'row',marginLeft:15}}>
-                <Text style={{color: '#2ba855'}}>
-                    CUENTA 
+                <Text style={{color: '#2ba855',fontSize:15}}>
+                    Cuenta
                 </Text>
-                <Text style={{color: '#2ba855',marginLeft:5}}>
-                    {this.props.tipoCuenta}
+                <Text style={{color: '#2ba855',marginLeft:5,fontSize:15}}>
+                    {this.props.tipocuenta}
                 </Text>
             </View>
         </View>

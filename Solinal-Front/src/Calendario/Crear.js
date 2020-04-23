@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image ,TouchableOpacity} from 'react-native';
-import { Container, Title, Content, Card, CardItem, Footer, Button, Left, Right, Body,  Font } from 'native-base';
+import { Container, Title, Content, Card, CardItem, Footer, Button, Left, Right, Body,  Font,Input,DatePicker } from 'native-base';
 import { Icon } from 'react-native-elements'
 import {
   StyleSheet,
@@ -8,8 +8,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import DatePicker from 'react-native-datepicker';
-import Header from '../../shared/Header';
+//import DatePicker from 'react-native-datepicker';
+import HeaderBack from '../../shared/HeaderBack';
 import AuditoriasProgramadas from '../../shared/AuditoriasProgramadas';
 import FooterCalendario from '../../shared/FooterCalendario';
 import { Calendar } from 'react-native-calendario';
@@ -35,7 +35,8 @@ export default class Crear extends Component {
            dateInicio:'',
            dateFin:'',
            time: '09:00',
-           timeFin: 'Seleccione Hora de fin'
+           timeFin: 'Seleccione Hora de fin',
+           norma: this.props.navigation.state.params.norma
         };
     }
 
@@ -59,15 +60,42 @@ export default class Crear extends Component {
               <Container>
 
 
-                    <Header encabezado='Calendario'/>
+                    <HeaderBack encabezado='Calendario'/>
+
+
                     <Content padder style={{backgroundColor: '#f6f6f6'}}>
-                        <AuditoriasProgramadas cantidad='0' tipoCuenta='GRATIS'/>
-                        <Card>
-                           
-                        </Card>
+
+
+                       
+
+                      
                         <View>
 
+
+                        
+                    <View style = {{ backgroundColor: '#f6f6f6', borderBottomColor:2,width:'90%',alignItems:'center',marginLeft:'5%'}}>
+                        
+                            <Text style={styles.input}> {this.state.norma} </Text>
+                        
+                            <Input style={styles.input} placeholder="Organización" />
+                        
+                            <Input style={styles.input} placeholder="Dirección" />
+                       
+                       
+                       
+                            <Input style={styles.input} placeholder="Alcance de la auditoría" />
+
+                            
+                           
+                        
+                        
+                           
+                    </View>
+                    <Text style={styles.input}>Fecha de la auditoria</Text>
+
                         <View style={styles.container}>
+
+                        
 
 
                         <View style={{flexDirection:'column'}}>
@@ -84,6 +112,7 @@ export default class Crear extends Component {
                             date={this.state.dateInicio} //initial date from state
                             mode="date" //The enum of date, datetime and time
                             placeholder="DD/MM/AA"
+                            placeHolderText="DD/MM/AA"
                             format="DD-MM-YYYY"
                             minDate="01-04-2020"
                             maxDate="31-12-2020"
@@ -132,7 +161,6 @@ export default class Crear extends Component {
 
 
 
-                            
 
 
                     
@@ -150,7 +178,8 @@ export default class Crear extends Component {
                             style={{width: 100,fontSize:50,color:'green'}}
                             date={this.state.dateInicio} //initial date from state
                             mode="date" //The enum of date, datetime and time
-                            placeholder="DD/MM/AA"
+                            placeHolderText="DD/MM/AA"
+
                             format="DD-MM-YYYY"
                             minDate="01-04-2020"
                             maxDate="31-12-2020"
@@ -223,7 +252,20 @@ export default class Crear extends Component {
 const styles = StyleSheet.create({
   datos:{
     fontSize:14
-  },
+  }, input: {
+        height: 30,
+        borderBottomColor: '#1ed796',
+        borderBottomWidth: 1,
+        paddingLeft: 10,
+        paddingRight: 10,
+        width: '100%',
+        alignItems: 'center',
+        margin:5, 
+        padding:5,
+        fontSize: 14,
+    
+
+    },
   valores:{
     color:'green',
     fontSize:14,
@@ -241,7 +283,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#CED3CE",
     marginTop:15,
     marginBottom:15,
-    flexDirection:'row'
+    flexDirection:'row',
+    paddingLeft: 10,
+        paddingRight: 10,
+        width: '100%',
+        alignItems: 'center',
+        margin:5, 
+        padding:5,
+        fontSize: 14,
  
   },
   text: {
