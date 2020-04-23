@@ -32,9 +32,28 @@ export default class AuditoriasLista extends Component {
         this.state = {
             selected2: undefined,
             selected3: undefined,
-            //idPais: this.props.navigation.state.params.idPais
+            idPais: this.props.navigation.state.params.idPais
         };
     }
+
+    componentDidMount(){
+        this.getPaises();
+    }
+
+    getPaises = () => {
+        this.setState({loading:true})
+        fetch(this.state.urlPaises)
+        .then(res=>res.json())
+        .then(res=>{ 
+            console.log(res);
+            this.setState({
+            paises: res,
+            urlPaises: res.next,
+            loading: false,    
+            })
+        })
+    }
+
     onValueChange2(value) {
         this.setState({
           selected2: value
@@ -56,7 +75,7 @@ export default class AuditoriasLista extends Component {
 
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
-                    <EstadoCuenta cantidad='0'  tipoCuenta='GRATIS'/>
+                    <EstadoCuenta cantidad={this.state.idPais}  tipoCuenta='GRATS'/>
 
                     <View style={{paddingBottom:25}}>
 
@@ -93,6 +112,11 @@ export default class AuditoriasLista extends Component {
                     </Card>
 
                     </View> 
+
+                    <View>
+
+
+                    </View>
 
 
 

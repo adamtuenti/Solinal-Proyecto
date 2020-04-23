@@ -28,6 +28,8 @@ export default class CalendarioVacia extends Component {
       render(){
           return(
               <Container>
+
+
                     <Header encabezado='Calendario'/>
                     <Content padder style={{backgroundColor: '#f6f6f6'}}>
                         <AuditoriasProgramadas cantidad='0' tipoCuenta='GRATIS'/>
@@ -35,6 +37,8 @@ export default class CalendarioVacia extends Component {
                            
                         </Card>
                         <View>
+
+
                         <Calendar
   onChange={(range) => console.log(range)}
 minDate={'2020-01-01'}
@@ -47,7 +51,7 @@ minDate={'2020-01-01'}
       color: '#6d95da',
       fontWeight: '300',
       fontSize: 16,
-      flexDirection:'row'
+      flexDirection:'column'
     },
     emptyMonthContainerStyle: {},
     emptyMonthTextStyle: {

@@ -103,7 +103,7 @@ export default class AuditoriasBuscar extends Component {
             selected3: undefined,
             loading: false,
             paises: [],
-            url: 'http://accountsolinal.pythonanywhere.com/api/pais',
+            urlPaises: 'http://accountsolinal.pythonanywhere.com/api/pais',
             urlnorma: 'http://accountsolinal.pythonanywhere.com/api/norma',
             normas:[],
             loadingnorma: false,
@@ -118,13 +118,13 @@ export default class AuditoriasBuscar extends Component {
 
     getPaises = () => {
         this.setState({loading:true})
-        fetch(this.state.url)
+        fetch(this.state.urlPaises)
         .then(res=>res.json())
         .then(res=>{ 
             console.log(res);
             this.setState({
             paises: res,
-            url: res.next,
+            urlPaises: res.next,
             loading: false,    
             })
         })
@@ -266,18 +266,18 @@ export default class AuditoriasBuscar extends Component {
 
                                 <CollapseBody>  
                                                                     
-                                        {this.state.normas.map(m =>
+                                        {r.normas.map(m =>
                                         
                                                 
                                                 
                                                 <View style={{flexDirection: 'row',alignItems:'center'}}>
                                                 <TouchableHighlight  style={styles.normaStyle}onPress={() => {
-                                                             this.setState({idPais: m.norma});
-                                                             alert('seleccionaste: '+m.norma)
+                                                             this.setState({idPais: m});
+                                                             alert('seleccionaste: '+m)
 
                                                            // this.myfun(m.norma); 
                                                         }}>
-                                                        <View ><Text  style={styles.letraNorma}>{m.norma}</Text></View></TouchableHighlight>
+                                                        <View ><Text  style={styles.letraNorma}>{m}</Text></View></TouchableHighlight>
                                                
                                                 </View>
                                                 
