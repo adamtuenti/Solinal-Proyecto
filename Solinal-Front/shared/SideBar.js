@@ -24,7 +24,7 @@ export default class SideBar extends React.Component {
                         <ListItem thumbnail>
                            <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org/restaurantes')}>
                                <Left>
-                                    <Thumbnail square source={{ uri: 'Image URL' }} />
+                                    <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar01.jpg' }} />
                                </Left>
                                <Body>
                                    <View>
@@ -39,7 +39,7 @@ export default class SideBar extends React.Component {
                          <ListItem thumbnail>
                            <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org/industrias')}>
                                <Left>
-                                    <Thumbnail square source={{ uri: 'Image URL' }} />
+                                    <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar02.jpg' }} />
                                </Left>
                                 <Body>
                                     <View>
@@ -54,7 +54,7 @@ export default class SideBar extends React.Component {
                         <ListItem thumbnail>
                             <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org/competencia')}>
                                 <Left>
-                                    <Thumbnail square source={{ uri: 'Image URL' }} />
+                                    <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar03.jpg' }} />
                                 </Left>
                                 <Body>
                                     <View>
@@ -69,7 +69,7 @@ export default class SideBar extends React.Component {
                         <ListItem thumbnail>
                             <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org/asesorias')}>
                                 <Left>
-                                    <Thumbnail square source={{ uri: 'Image URL' }} />
+                                    <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar04.png' }} />
                                 </Left>
                                 <Body>
                                     <View>
