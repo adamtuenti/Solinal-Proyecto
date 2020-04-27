@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import {MaterialIcons} from '@expo/vector-icons'
 import {Drawer} from 'native-base';
 
-import SideBar from './SideBar';
+import { SideBar } from './SideBar';
 
 
 export default class Header extends React.Component{
