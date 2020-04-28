@@ -13,7 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { ListItem } from 'react-native-elements';
 
 import Footer from './../shared/Footer';
-import Header from './../shared/Header';
+import Header  from './../shared/Header';
 import EstadoCuenta from './../shared/estadoCuenta';
 
 
@@ -44,7 +44,7 @@ const list = [
   }
 ]
 
-export default class Main extends Component {
+export default class Main extends React.Component {
 
     constructor(props) {
         super(props);

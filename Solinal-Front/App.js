@@ -30,9 +30,10 @@ import EquipoLista from './src/Equipo/EquipoLista';
 import EquipoVacio from './src/Equipo/EquipoVacio';
 import InvitarMiembros from './src/Equipo/InvitarMiembros'
 
+
 const AppNavigator = createStackNavigator(
   {
-    Crear,FirmaAuditor,AuditoriasBuscar,Crear,Login,Main,CalendarioPrograma,Carusel,Footer,CalendarioVacia,NormaEcBPM,EquipoVacio,EquipoLista,InvitarMiembros,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar,FooterAuditoria
+   Login,Main,Login,Crear,FirmaAuditor,AuditoriasBuscar,Crear,Login,Main,CalendarioPrograma,Carusel,Footer,CalendarioVacia,NormaEcBPM,EquipoVacio,EquipoLista,InvitarMiembros,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar,FooterAuditoria
   },
   {
     headerMode: 'none',

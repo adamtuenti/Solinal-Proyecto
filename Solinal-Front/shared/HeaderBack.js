@@ -4,13 +4,26 @@ import { Input, Button, SocialIcon } from 'react-native-elements';
 import Form from 'react-bootstrap/Form'
 import {MaterialIcons} from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import {Drawer} from 'native-base';
+import SideBar from './SideBar';
 
 export default class HeaderBack extends React.Component{
 
-    
+    closeDrawer(){
+        this._drawer._root.close()
+    };
+
+    openDrawer(){
+        this._drawer._root.open()
+    };
+
     render(){
 
     return(
+
+        <Drawer ref={(ref) => { this._drawer = ref; }} 
+                content={<SideBar navigator={this._navigator} />} 
+                onClose={() => this.closeDrawer()}>
 
         <View  style={styles.back}>
 
@@ -34,12 +47,15 @@ export default class HeaderBack extends React.Component{
 
             
 
-            <View style={{flex: 1, flexDirection: 'row-reverse',marginLeft:5, alignItems:'center'}}>
+            <Button style={{flex: 1, flexDirection: 'row-reverse',marginLeft:5, alignItems:'center'}}
+            onPress={() => this.openDrawer()}>
                 <MaterialIcons name='menu' size={30}  style={styles.icon}/>
-            </View>
+            </Button>
 
         </View>
         </View>
+
+        </Drawer>
         
     );
     }
