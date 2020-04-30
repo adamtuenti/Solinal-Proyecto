@@ -20,17 +20,11 @@ export default class CalendarioPrograma extends Component {
 
     super(props);
     this.state = {
-          username: this.props.navigation.state.params.username,
-          idUser: this.props.navigation.state.params.idUser,
           loading: false,
           datos: [],
           idUser:'1',
           username:'',
-          url: 'http://accountsolinal.pythonanywhere.com/api/fechas_get/'+this.props.navigation.state.params.idUser
-    }
-
-    componentDidMount = () => {
-      this.getDatos();
+          url: 'http://accountsolinal.pythonanywhere.com/api/fechas_get/1'
     }
 
     getDatos = () => {
@@ -61,6 +55,7 @@ export default class CalendarioPrograma extends Component {
           /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
         });
         this.setState({ isReady: true });
+        this.getDatos();
       }
 
       render(){
@@ -81,8 +76,8 @@ export default class CalendarioPrograma extends Component {
   onChange={(range) => console.log(range)}
 minDate={'2020-01-01'}
                             maxDate={'2020-12-31'}
-  startDate={this.state.datos.fecha_inicio}
-    endDate={this.state.datos.fecha_fin}
+  startDate={'2020-04-06'}
+    endDate={'2020-04-20'}
   theme={{
     activeDayColor: {},
     monthTitleTextStyle: {
@@ -161,7 +156,7 @@ minDate={'2020-01-01'}
                                   </Text>
                                   </View>
                                   <View>
-                                    <Text style={styles.valores}>{this.state.datos.hora_inicio}</Text>
+                                    <Text style={styles.valores}>6:00</Text>
                                   </View>
                                 
                               
@@ -171,14 +166,14 @@ minDate={'2020-01-01'}
                                   </Text>
                                   </View>
                                   <View style={{marginBottom:'15%',}}>
-                                    <Text style={styles.valores}>{this.state.datos.hora_fin}</Text>
+                                    <Text style={styles.valores}>18:00</Text>
                                   </View>
                             </View>
 
                             <View style={{backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 2,borderWidth: 1,alignItems:'center',width:'72%',marginLeft:'3%'}}>
                           
                               <Text style={styles.descrip}>
-                                {this.state.datos.detalle_auditoria}
+                                detalle1.....
                               </Text>
                             </View>
                           
