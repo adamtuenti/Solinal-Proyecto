@@ -14,7 +14,45 @@ import AuditoriasProgramadas from '../../shared/AuditoriasProgramadas';
 import FooterCalendario from '../../shared/FooterCalendario';
 import { Calendar } from 'react-native-calendario';
 
-export default class CalendarioVacia extends Component {
+export default class CalendarioPrograma extends Component {
+
+  constructor(props){
+
+    super(props);
+    this.state = {
+          username: this.props.navigation.state.params.username,
+          idUser: this.props.navigation.state.params.idUser,
+          loading: false,
+          datos: [],
+          idUser:'1',
+          username:'',
+          url: 'http://accountsolinal.pythonanywhere.com/api/fechas_get/'+this.props.navigation.state.params.idUser
+    }
+
+    componentDidMount = () => {
+      this.getDatos();
+    }
+
+    getDatos = () => {
+      console.log(this.state.idUser)
+      console.log(this.state.url)
+        this.setState({loading:true})
+        fetch(this.state.url)
+
+        .then(res=>res.json())
+       
+        .then(res=>{ 
+          console.log('--')
+            console.log(res.detalle_auditoria);
+            this.setState({
+            datos: res,
+            url: res.next,
+            loading: false,    
+            })
+        })
+  }
+
+  }
 
     async componentDidMount() {
         await Font.loadAsync({
@@ -43,8 +81,8 @@ export default class CalendarioVacia extends Component {
   onChange={(range) => console.log(range)}
 minDate={'2020-01-01'}
                             maxDate={'2020-12-31'}
-  startDate={new Date(2020, 4, 15)}
-    endDate={new Date(2020, 4, 19)}
+  startDate={this.state.datos.fecha_inicio}
+    endDate={this.state.datos.fecha_fin}
   theme={{
     activeDayColor: {},
     monthTitleTextStyle: {
@@ -123,7 +161,7 @@ minDate={'2020-01-01'}
                                   </Text>
                                   </View>
                                   <View>
-                                    <Text style={styles.valores}>09:00 A.M.</Text>
+                                    <Text style={styles.valores}>{this.state.datos.hora_inicio}</Text>
                                   </View>
                                 
                               
@@ -133,16 +171,14 @@ minDate={'2020-01-01'}
                                   </Text>
                                   </View>
                                   <View style={{marginBottom:'15%',}}>
-                                    <Text style={styles.valores}>09:30 A.M.</Text>
+                                    <Text style={styles.valores}>{this.state.datos.hora_fin}</Text>
                                   </View>
                             </View>
 
                             <View style={{backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 2,borderWidth: 1,alignItems:'center',width:'72%',marginLeft:'3%'}}>
                           
                               <Text style={styles.descrip}>
-                                Normativa técnica sanitaria para alimentos procesados, plantas procesadoras
-                                de alimentos, establecimientos de distribución, comercialización, transporte
-                                y establecimientos de alimentación colectiva
+                                {this.state.datos.detalle_auditoria}
                               </Text>
                             </View>
                           
