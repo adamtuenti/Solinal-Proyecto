@@ -21,110 +21,6 @@ import EstadoCuenta from './../../shared/estadoCuenta';
 
 export const idPa = 'neira';
 
-/*
-                    <Form style ={{paddingTop:25}}>
-
-
-                    
-                    
-                    
-                      
-                     
-                    
-                        <Item picker>
-
-                        
-                        
-                            <Picker
-                                mode="dropdown"
-                                iosIcon={<Icon name="arrow-down" />}
-                                style={{ width: undefined }}
-                                placeholder="¿A qué país pertenece la norma o reglamento?"
-                                placeholderStyle={{ color: "#bfc6ea" }}
-                                placeholderIconColor="#007aff"
-                                selectedValue={this.state.idPais}
-                                onValueChange={(itemValue, itemIndex) => this.setState({idPais: itemValue})}
-
-                             >
-                            
-                            {this.state.paises.map(r =>
-                                <Picker.Item label={r.pais} value={r.id_pais} />
-                              
-                             )}
-                                
-                            </Picker>
-                        </Item>
-
-                   
-                    </Form>
-                    
-                    
-                        <Item picker>
-                            <Picker
-                                mode="dropdown"
-                                iosIcon={<Icon name="arrow-down" />}
-                                style={{ width: undefined }}
-                                placeholder="hola"
-                                placeholderStyle={{ color: "#bfc6ea" }}
-                                placeholderIconColor="#007aff"
-                                selectedValue={this.state.selected3}
-                                onValueChange={this.onValueChange3.bind(this)}
-                            >
-                         
-                             {this.state.normas.map(r =>
-                                
-                                <Picker.Item label={r.norma} value={r.id_norma} />
-                                
-                              
-                             )}
-                            
-                            
-                                
-                            </Picker>
-                        </Item>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                         <CardItem style={{alignItems: 'center', marginTop:25, backgroundColor:'f6f6f6'}}>
-                            <Body style={{alignItems: 'center'}}>
-                                <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>{
-                                     this.props.navigation.navigate('Crear',{idPais:this.state.idPais})   
-                                    }}>
-                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:19}}> Buscar </Text>
-                                    </TouchableHighlight>
-                            </Body>
-                    </CardItem>
-
-
-                    <CardItem style={{alignItems: 'center', marginTop:25, backgroundColor:'f6f6f6'}}>
-                            <Body style={{alignItems: 'center'}}>
-                                <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('NormaEcBPM')}>
-                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:19}}> Crear Auditoria </Text>
-                                    </TouchableHighlight>
-                            </Body>
-                    </CardItem>
-
-
-                    <TouchableHighlight  style={styles.normaStyle}onPress={() => {
-                                                             this.setState({idPais: m});
-                                                             alert('seleccionaste: '+m)
-
-                                                           // this.myfun(m.norma); 
-                                                        }}>
-                                                        <View >
-                                                        <Text  style={styles.letraNorma}>{m}</Text>
-
-                                                        
-                                                        </View></TouchableHighlight>
-                    */
 
 export default class AuditoriasBuscar extends Component {
     async componentDidMount() {
@@ -317,15 +213,17 @@ export default class AuditoriasBuscar extends Component {
                                                 <Text  style={styles.letraNorma}>{m}</Text>
                                                 </View>
 
-                                                <View style={{flexDirection:'row-reverse'}}>
+                                                <View style={{flexDirection:'row-reverse',flex:1}}>
+                                               
 
 
                                                 <TouchableHighlight
                                                             style={styles.botonLogin} onPress={()=>{
                                                             this.props.navigation.navigate('Crear',{norma:m,pais:r.pais,paginaActual:'Auditorias'})   
                                                             }}>
-                                                        <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> Crear </Text>
+                                                        <Text style={{fontWeight: 'bold',color:'white',fontSize:15.5}}> Crear </Text>
                                                         </TouchableHighlight>
+                                              
 
                                                 </View>
                                                 
@@ -429,7 +327,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#1ed695',
         padding: 2,
-        width:110,
+        width:90,
         borderRadius: 4,
         borderWidth: 1,
         borderColor: '#d6d7da',
@@ -492,7 +390,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 3,
         borderRadius: 4,
         borderColor: '#d6d7da',
-        alignItems:'center'
+        alignItems:'center',
+       
 
     },
     botonCrear:{

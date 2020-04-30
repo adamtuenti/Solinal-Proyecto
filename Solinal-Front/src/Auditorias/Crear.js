@@ -77,7 +77,7 @@ export default class Crear extends Component {
            dateFin:'',
            paginaAnterior: this.props.navigation.state.params.paginaActual,
            time: '09:00',
-           timeFin: '09:00',
+           timeFin: '09:10',
            norma: this.props.navigation.state.params.norma,
             chosenDate: new Date(), pressStatus: false, selected: null, SelectedButton: '' 
         };
@@ -118,12 +118,12 @@ export default class Crear extends Component {
     this.TimePicker.close();
   }
  
-  onConfirm(hour, minute) {
-    this.setState({ time: `${hour}:${minute}` });
+  onConfirm(hourI, minuteI) {
+    this.setState({ time: `${hourI}:${minuteI}` });
     this.TimePicker.close();
   }
 
-  onConfirm1(hour, minute) {
+  onConfirmFin(hour, minute) {
     this.setState({ timeFin: `${hour}:${minute}` });
     this.TimePicker.close();
   }
@@ -237,7 +237,7 @@ export default class Crear extends Component {
                                 }}
                                 
                                 onCancel={() => this.onCancel()}
-                                onConfirm={(hour, minute) => this.onConfirm(hour, minute)}
+                                onConfirm={(hourI, minuteI) => this.onConfirm(hourI, minuteI)}
                                 />
                                 </View>
 
@@ -266,7 +266,7 @@ export default class Crear extends Component {
 
                             <DatePicker
                            
-                            date={this.state.dateInicio} //initial date from state
+                            date={this.state.dateFin} //initial date from state
                             mode="date" //The enum of date, datetime and time
                             placeHolderText="D/M/AA"
 
@@ -289,7 +289,7 @@ export default class Crear extends Component {
                                 color:'green'
                                 }
                             }}
-                            onDateChange={(date) => {this.setState({dateInicio: date})}}
+                            onDateChange={(date) => {this.setState({dateFin: date})}}
                             />
 
                         </View>
@@ -302,7 +302,7 @@ export default class Crear extends Component {
                                 </View>
                                 <View style={{marginLeft:2,  alignItems:'center',backgroundColor:'white',borderRadius: 8,borderWidth: 1,borderColor: '#d6d7da',width:'30%'}}>
                                 <TouchableOpacity onPress={() => this.TimePicker.open()}>
-                                <Text style={styles.text}>{this.state.time}</Text>
+                                <Text style={styles.text}>{this.state.timeFin}</Text>
                                 </TouchableOpacity>
                                 <TimePicker
                                 ref={ref => {
@@ -310,7 +310,7 @@ export default class Crear extends Component {
                                 }}
                                 
                                 onCancel={() => this.onCancel()}
-                                onConfirm={(hour, minute) => this.onConfirm(hour, minute)}
+                                onConfirm={(hour, minute) => this.onConfirmFin(hour, minute)}
                                 />
                                 </View>
                             </View>
@@ -335,8 +335,8 @@ export default class Crear extends Component {
                          <View style={styles.colapse}>
                   
                 {
-                  list.map((l, i,a,a1) => (
-                    console.log(a1),
+                  list.map((l, i) => (
+                   
 
                     
                     

@@ -20,30 +20,33 @@ export default class CalendarioPrograma extends Component {
 
     super(props);
     this.state = {
-          username: this.props.navigation.state.params.username,
-          idUser: this.props.navigation.state.params.idUser,
+          //username: this.props.navigation.state.params.username,
+          //idUser: this.props.navigation.state.params.idUser,
           loading: false,
           datos: [],
           idUser:'1',
           username:'',
-          url: 'http://accountsolinal.pythonanywhere.com/api/fechas_get/'+this.props.navigation.state.params.idUser
+          url: 'http://accountsolinal.pythonanywhere.com/api/fechas_get/1'
     }
+  }
 
-    componentDidMount = () => {
+    componentDidMount () {
       this.getDatos();
     }
 
-    getDatos = () => {
-      console.log(this.state.idUser)
+    getDatos () {
+    //  console.log(this.state.idUser)
       console.log(this.state.url)
         this.setState({loading:true})
         fetch(this.state.url)
 
         .then(res=>res.json())
+        
        
         .then(res=>{ 
           console.log('--')
-            console.log(res.detalle_auditoria);
+          console.log(res[0].username`);
+            
             this.setState({
             datos: res,
             url: res.next,
@@ -52,17 +55,9 @@ export default class CalendarioPrograma extends Component {
         })
   }
 
-  }
+  
 
-    async componentDidMount() {
-        await Font.loadAsync({
-          Roboto: require("native-base/Fonts/Roboto.ttf"),
-          Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-          /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
-        });
-        this.setState({ isReady: true });
-      }
-
+   
       render(){
           return(
               <Container>

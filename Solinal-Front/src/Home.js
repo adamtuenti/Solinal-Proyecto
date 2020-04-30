@@ -33,7 +33,7 @@ export default class Home extends Component{
             
             onPress={() => 
            
-            this.props.navigation.navigate('Main')}
+            this.props.navigation.navigate('CalendarioPrograma')}
         />
       </View>
      
