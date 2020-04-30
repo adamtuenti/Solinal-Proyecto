@@ -140,7 +140,8 @@ export default class AuditoriasBuscar extends Component {
 
     constructor(props) {
         super(props);
-        global.idPa ='neira'
+        
+
         this.state = {
             selected2: undefined,
             selected3: undefined,
@@ -150,7 +151,7 @@ export default class AuditoriasBuscar extends Component {
             urlnorma: 'http://accountsolinal.pythonanywhere.com/api/norma',
             normas:[],
             loadingnorma: false,
-            idPais:'hola',
+            paginaActual:'AuditoriasBuscar',
         };
     }
 
@@ -204,7 +205,7 @@ export default class AuditoriasBuscar extends Component {
 
         
        
-        this.setState({idPais:variable})
+       
         
         
      
@@ -229,7 +230,7 @@ export default class AuditoriasBuscar extends Component {
 
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
-                <EstadoCuenta cantidad='0' tipoCuenta='GRATIS'/>
+                <EstadoCuenta/>
 
                     
 
@@ -321,7 +322,7 @@ export default class AuditoriasBuscar extends Component {
 
                                                 <TouchableHighlight
                                                             style={styles.botonLogin} onPress={()=>{
-                                                            this.props.navigation.navigate('Crear',{norma:m,pais:r.pais})   
+                                                            this.props.navigation.navigate('Crear',{norma:m,pais:r.pais,paginaActual:'Auditorias'})   
                                                             }}>
                                                         <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> Crear </Text>
                                                         </TouchableHighlight>
