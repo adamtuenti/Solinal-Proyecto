@@ -37,22 +37,25 @@ export default class Carusel extends Component {
 
 
                         <View style={{alignItems:'center'}}>
-                        <TouchableHighlight style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('Main')}>
+                        <TouchableHighlight style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('Registro')}>
                             <View>
                             <Text style={styles.letraBoton}>Comenzar</Text>
                             </View>
                         </TouchableHighlight>
                         </View>
 
+                        
+
                         <View style={styles.textLine}>
+                        
                             <Text>¿Ya tienes una cuenta? </Text>
                             <Text 
-                            onPress={()=>this.props.navigation.navigate('Main')}
+                            onPress={()=>this.props.navigation.navigate('Login')}
                             style={{color: '#23d697'}}>
                             Inicia Sesión</Text>
                         </View>
                        
-                        <View style={{alignItems:'center',marginTop:'2%'}}>
+                        <View style={{alignItems:'center'}}>
                             <Image 
                             source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Facebook-share-icon.png?raw=true'}} style={styles.imageStyle}></Image>
                         </View>
@@ -86,7 +89,7 @@ export default class Carusel extends Component {
                             Inicia Sesión</Text>
                         </View>
                        
-                        <View style={{alignItems:'center',marginTop:'2%'}}>
+                        <View style={{alignItems:'center'}}>
                             <Image 
                             source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Facebook-share-icon.png?raw=true'}} style={styles.imageStyle}></Image>
                         </View>
@@ -94,13 +97,13 @@ export default class Carusel extends Component {
 
 
                 
-                    <View style={{ flexDirection:'column',paddingTop:'12%'}}>
+                    <View style={{ flexDirection:'column',paddingTop:'15%'}}>
 
                         <View style={{alignItems:'center'}}>
                         <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%205.png?raw=true'}}style= {styles.imagen3}></Image>
                         <View styles={{width:150}}>
                          <Text style={styles.tituloText}>Cierra no conformidades sin necesidad de tanto papel</Text>
-                        <Text style={styles.bodyText}>Olvídate de esas reuniones que no llegan a nada. Gestiona de una forma más intuitiva las acciones correctivar a implementar para cerrar las no conformidades.</Text>
+                        <Text style={styles.bodyText1}>Olvídate de esas reuniones que no llegan a nada. Gestiona de una forma más intuitiva las acciones correctivar a implementar para cerrar las no conformidades.</Text>
                         </View>
                         </View>
                    
@@ -113,7 +116,7 @@ export default class Carusel extends Component {
                         </TouchableHighlight>
                         </View>
 
-                        <View style={styles.textLine}>
+                        <View style={styles.textLine1}>
                             <Text>¿Ya tienes una cuenta? </Text>
                             <Text 
                             onPress={()=>this.props.navigation.navigate('Login')}
@@ -121,7 +124,7 @@ export default class Carusel extends Component {
                             Inicia Sesión</Text>
                         </View>
                        
-                        <View style={{alignItems:'center',marginTop:'2%'}}>
+                        <View style={{alignItems:'center'}}>
                             <Image 
                             source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Facebook-share-icon.png?raw=true'}} style={styles.imageStyle}></Image>
                         </View>
@@ -208,7 +211,13 @@ const styles = StyleSheet.create({
     },
     bodyText: {
         marginTop: '5%',
-        marginBottom: 15,
+        marginBottom: 12,
+        fontSize: 15,
+        textAlign: 'center',
+    },
+    bodyText1: {
+        marginTop: '5%',
+        marginBottom: 9.5,
         fontSize: 15,
         textAlign: 'center',
     },
@@ -221,17 +230,24 @@ const styles = StyleSheet.create({
 
 
     },
-    
-   
- 
- 
     textLine: {
-        flex: 1,
+       
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent:'center',
         fontSize:15,
-        marginTop:'7%'
+        marginTop:'3.5%'
+    },
+   
+ 
+ 
+    textLine1: {
+        
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent:'center',
+        fontSize:15,
+        marginTop:'2.5%'
     },
     imageStyle: {
         width: 50,

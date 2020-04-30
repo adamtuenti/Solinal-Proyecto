@@ -13,89 +13,25 @@ class Login extends Component{
 
         
         super(props);
+        global.idUserGlobal = 5;
+        global.userNameGlobal = '';
         this.state = {
           username : '',
           password : '',
           loading: false,
           pacientes: [],
-          idUser:'1',
+          //idUser:'1',
           url: 'http://accountsolinal.pythonanywhere.com/api/users'
         }
-        /*super(props)
-
-
-        https://pokeapi.co/api/v2/pokemon/
-
-
-            this.timestamp =1;
-            this.public_key="36700780168bdcf1bb2901333a59575a";
-            this.private_key="55323dc109f7cc180247ef518c2155dd51aca969";
-            this.state={
-                loaded: false,
-                marvel: [],
-                url: 'http://gateway.marvel.com:80/v1/public/characters'
-            }*/
-               /* dataSource: new FlatList.Da({
-                    rowHasChanged: (row1,row2)=>row1!=row2
-                }),
-                loaded: false*/
-
-
-                /*<Button
-          title="Press me"
-          onPress={() => Alert.alert('Simple Button pressed')}
-        />
-        
-        
-        <TextInput
-                    
-                    placeholder='Clave'
-                    onChangeText={
-                        password => this.setState({password})
-                    }
-                    class="form-control"
-                    autoCapitalize="none"
-                    placeholderTextColor='blue'
-            //onChangeText={val => this.onChangeText('username', val)}
-
-             //onPress={() => this.props.navigation.navigate('Registro')}
-                />
-                
-                 <Input
-                    style={styles.default}
-                    placeholder='Usuario'
-                    onChangeText={username=>this.setState({username})}
-                    leftIcon={
-                        <Icon
-                        name='user'
-                        size={24}
-                        color='black'
-                        />
-                    }
-                    />
-                    
-                    
-                     <TextInput
-                    style={{height: 35,width:  142,borderColor: "gray",borderWidth: 1, alignItems:'center', fontWeight: 'bold',margin:5, padding:5}}
-                    placeholder='Usuario'
-                    autoCapitalize="none"
-                    onChangeText={username=>this.setState({username})}
-                    
-                    />
-                    
-                    */
-            
+      
     }
-    cambiar=()=>{
-        this.props.navigation.navigate('Registro');
-
-    }
+  
 
 
 
     myfun=()=>{
         const{username,password}=this.state;
-        console.log(this.state.pacientes)
+      
 
         const array1 = this.state.pacientes
         var idA = 1
@@ -111,15 +47,16 @@ class Login extends Component{
 
             if (name==username){
                 
-                console.log(name);
-                console.log(pass);
+             
                 
                 
                 
                 if (password == pass){
                     bandera = 1;
-                    console.log('aqui')
+           
+                   
                     idA = idU
+                  
                    
                     
                     
@@ -139,34 +76,25 @@ class Login extends Component{
 
         }
         else if(bandera==1){
+            idUserGlobal = idA;
+            userNameGlobal=username;
+             this.props.navigation.navigate('Home')
             
-           // console.log(pass)
-            console.log('..')
-            console.log(idA)
-            console.log(this.state.idUser)
-            this.cambiarPestana(idA,username)
+          
+            
             
         }
+      
 
-        this.setState({idUser:idA});
-
-
-       
-       // console.log(element.name)
-       
         
-        /*if (username == "A") {
-            alert("Clave o usuario incorrecto");
-        }
-        else{
-            this.props.navigation.navigate('Registro')
 
-        }*/
+
+      
     }
 
     cambiarPestana(idUser,username){
-        console.log(this.state.idUser)
-        this.props.navigation.navigate('Home',{username:this.state.username,idUser:this.state.idUser})
+       
+        this.props.navigation.navigate('Home',{username:this.state.username,idUser})
     }
     
     componentDidMount(){

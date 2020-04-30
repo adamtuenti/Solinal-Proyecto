@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, Dimensions,Image } from 'react-native';
 import { Input, Button, SocialIcon } from 'react-native-elements';
 import Form from 'react-bootstrap/Form'
 import {MaterialIcons} from '@expo/vector-icons'
-import {Drawer} from 'native-base';
+//import {Drawer} from 'native-base';
 
-import { SideBar } from './SideBar';
+
 
 
 export default class Header extends React.Component{
@@ -22,16 +22,16 @@ export default class Header extends React.Component{
 
     return(
 
-        <Drawer ref={(ref) => { this._drawer = ref; }} 
-                content={<SideBar navigator={this._navigator} />} 
-                onClose={() => this.closeDrawer()}>
+       // <Drawer ref={(ref) => { this._drawer = ref; }} 
+         //       content={<SideBar navigator={this._navigator} />} 
+           //     onClose={() => this.closeDrawer()}>
 
         <View  style={styles.back}>
 
         <View style={styles.container}>
             <View style={styles.izquierdo}>
                 
-                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%201.png?raw=true'}}
+                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/user.png?raw=true'}}
                             style= {styles.imagen}/>
                 
 
@@ -40,21 +40,21 @@ export default class Header extends React.Component{
 
 
                 
-                <Text style={{color:'white', fontSize:21, marginLeft:10}}>
-                    Bienvenido {this.props.encabezado}
+                <Text style={{color:'white', fontSize:19, marginLeft:10}}>
+                    Bienvenido {userNameGlobal}
                 </Text>
             </View>
 
             
 
-            <Button style={{flex: 1, flexDirection: 'row-reverse',marginLeft:5, alignItems:'center'}}
-            onPress={() => this.openDrawer()}>
+            <Button style={{flex: 1, flexDirection: 'row-reverse',marginLeft:5, alignItems:'center'}}>
+           // onPress={() => this.openDrawer()}>
                 <MaterialIcons name='menu' size={30}  style={styles.icon}/>
             </Button>
 
         </View>
         </View>
-        </Drawer>
+       // </Drawer>
     );
     }
 }
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
     imagen:{
         height:40,
-        width:28,
+        width:40,
         
        // marginLeft:10,
         //marginTop:8

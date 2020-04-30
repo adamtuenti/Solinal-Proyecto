@@ -6,6 +6,42 @@ import {MaterialIcons} from '@expo/vector-icons'
 
 
 export default class EstadoCuenta extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+
+
+            loading: false,
+          datos: [],
+    
+          url: 'http://accountsolinal.pythonanywhere.com/api/user/'+idUserGlobal
+        };
+    }
+
+
+     componentDidMount(){
+        this.getDatos();
+    }
+
+    getDatos = () => {
+
+        this.setState({loading:true})
+        fetch(this.state.url)
+
+        .then(res=>res.json())
+       
+        .then(res=>{ 
+
+            this.setState({
+            datos: res,
+            url: res.next,
+            loading: false,    
+            })
+        })
+    }
+
+
+    
 
     
     render(){
@@ -22,17 +58,18 @@ export default class EstadoCuenta extends React.Component{
                 </View>  
                 <View>
                     <Text style={{color: '#2ba855', marginLeft:5}}>
-                        {this.props.cantidad}
+                    {this.state.datos.numero_auditorias_pendientes}
+                  
                     </Text>
                 </View>
                 
             </View>
-            <View style={{flexDirection:'row',marginLeft:15}}>
+            <View style={{flexDirection:'row',marginLeft:25}}>
                 <Text style={{color: '#2ba855',fontSize:15}}>
                     Cuenta
                 </Text>
                 <Text style={{color: '#2ba855',marginLeft:5,fontSize:15}}>
-                    {this.props.tipocuenta}
+                    {this.state.datos.cuenta_usuario}
                 </Text>
             </View>
         </View>

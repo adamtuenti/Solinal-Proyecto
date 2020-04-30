@@ -308,19 +308,6 @@ class Registro extends Component {
                                 <Text style={styles.TextStyle}> Login Using Facebook </Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={styles.GooglePlusStyle} activeOpacity={0.5} onPress={this.onG}>
-                                <Image
-
-                                    source={{
-                                        uri:
-                                            'https://raw.githubusercontent.com/AboutReact/sampleresource/master/google-plus.png',
-                                    }}
-
-                                    style={styles.ImageIconStyle}
-                                />
-                                <View style={styles.SeparatorLine} />
-                                <Text style={styles.TextStyle}> Login Using Google Plus </Text>
-                            </TouchableOpacity>
                         </View>
 
 

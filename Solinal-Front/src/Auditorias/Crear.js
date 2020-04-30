@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 //import DatePicker from 'react-native-datepicker';
-import HeaderBack from '../../shared/HeaderBack';
+
 import AuditoriasProgramadas from '../../shared/AuditoriasProgramadas';
 import FooterCalendario from '../../shared/FooterCalendario';
 import { Calendar } from 'react-native-calendario';
@@ -17,7 +17,7 @@ import {MaterialIcons,FontAwesome,
 MaterialCommunityIcons} from '@expo/vector-icons';
 import TimePicker from "react-native-24h-timepicker";
 import { Collapse, CollapseHeader, CollapseBody } from "accordion-collapse-react-native";
-
+import HeaderBack  from './../../shared/HeaderBack';
 
 const dataItem1 = [
     { title: "Art. 73: De las condiciones mínimas básicas", content: "Lorem ipsum dolor sit amet" },
@@ -75,9 +75,10 @@ export default class Crear extends Component {
          this.state = {
            dateInicio:'',
            dateFin:'',
+           paginaAnterior: this.props.navigation.state.params.paginaActual,
            time: '09:00',
-           timeFin: 'Seleccione Hora de fin',
-           norma: 'norma',//this.props.navigation.state.params.norma,
+           timeFin: '09:00',
+           norma: this.props.navigation.state.params.norma,
             chosenDate: new Date(), pressStatus: false, selected: null, SelectedButton: '' 
         };
     }
@@ -133,8 +134,10 @@ export default class Crear extends Component {
           return(
               <Container>
 
+              <HeaderBack encabezado={this.state.paginaAnterior}/>
 
-                    <HeaderBack encabezado='Calendario'/>
+
+       
 
 
                     <Content padder style={{backgroundColor: '#f6f6f6'}}>
@@ -334,6 +337,8 @@ export default class Crear extends Component {
                 {
                   list.map((l, i,a,a1) => (
                     console.log(a1),
+
+                    
                     
                     
 
