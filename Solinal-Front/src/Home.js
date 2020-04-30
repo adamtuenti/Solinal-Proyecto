@@ -7,46 +7,9 @@ import { Container, Header, Content, Accordion } from "native-base";
 
 
 
-
 export default class Home extends Component{
 
-    constructor(props) {
-        super(props);
-        this.state = {
-         
-            username: this.props.navigation.state.params.username,
-            idUser: this.props.navigation.state.params.idUser,
-
-            loading: false,
-          datos: [],
-    
-          url: 'http://accountsolinal.pythonanywhere.com/api/user/'+this.props.navigation.state.params.idUser
-        };
-    }
-
-
-    componentDidMount(){
-        this.getDatos();
-    }
-
-    getDatos = () => {
-      console.log(this.state.idUser)
-      console.log(this.state.url)
-        this.setState({loading:true})
-        fetch(this.state.url)
-
-        .then(res=>res.json())
-       
-        .then(res=>{ 
-          console.log('--')
-            console.log(res.cuenta_usuario);
-            this.setState({
-            datos: res,
-            url: res.next,
-            loading: false,    
-            })
-        })
-    }
+   
 
     render() {
     return (
@@ -54,23 +17,23 @@ export default class Home extends Component{
       <View style={{flex: 1, flexDirection: 'column', backgroundColor: '#1ED695', alignItems: 'center', justifyContent: 'center'}}>
 
         <Image
-                        style={{width: 125, height: 175, margin:25,padding:10}}
+                        style={{width: '58%', height: '39%', margin:25,padding:10,marginTop:'11%'}}
                         source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
         />
 
-        <Text style={{fontWeight: 'bold', fontSize: 28, color: 'white',paddingTop:25,paddingBottom:175}}>Bienvenido {this.state.datos.username}</Text>
+        <Text style={{fontWeight: 'bold', fontSize: 28, color: 'white',paddingTop:25,paddingBottom:150}}>Bienvenido {userNameGlobal}</Text>
 
-        <Icon style={{paddingTop:15}}
+        <Icon style={{paddingTop:8}}
             raised
             name='home'
             type='font-awesome'
             color='green'
-            size={35}
+            size={40}
             
             
             onPress={() => 
            
-            this.props.navigation.navigate('Main',{username:this.state.datos.username,tipoCuenta:this.state.datos.cuenta_usuario})}
+            this.props.navigation.navigate('Main')}
         />
       </View>
      

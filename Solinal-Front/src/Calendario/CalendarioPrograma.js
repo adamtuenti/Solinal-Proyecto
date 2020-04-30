@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import Header from '../../shared/Header';
-import AuditoriasProgramadas from '../../shared/AuditoriasProgramadas';
+import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterCalendario from '../../shared/FooterCalendario';
 import { Calendar } from 'react-native-calendario';
 
@@ -70,7 +70,7 @@ export default class CalendarioPrograma extends Component {
 
                     <Header encabezado='Calendario'/>
                     <Content padder style={{backgroundColor: '#f6f6f6'}}>
-                        <AuditoriasProgramadas cantidad='0' tipoCuenta='GRATIS'/>
+                        <EstadoCuenta/>
                         <Card>
                            
                         </Card>

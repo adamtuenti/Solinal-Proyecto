@@ -17,11 +17,41 @@ import EstadoCuenta from './../../shared/estadoCuenta';
 
 export default class AuditoriasVacia extends Component {
 
+
+
       constructor(props) {
         super(props);
         this.state = {
-            paginaAnterior: this.props.navigation.state.params.paginaActual
+            paginaAnterior: this.props.navigation.state.params.paginaActual,
+            
+            loading: false,
+          datos: [],
+    
+          url: 'http://accountsolinal.pythonanywhere.com/api/user/'+idUserGlobal
         };
+    }
+
+    
+    componentDidMount(){
+        this.getDatos();
+    }
+
+    getDatos = () => {
+
+        this.setState({loading:true})
+        fetch(this.state.url)
+
+        .then(res=>res.json())
+       
+        .then(res=>{ 
+
+            this.setState({
+            datos: res,
+            url: res.next,
+            loading: false, 
+               
+            })
+        })
     }
 
     async componentDidMount() {
@@ -34,6 +64,7 @@ export default class AuditoriasVacia extends Component {
       }
 
     render() {
+        if(this.state.datos.numero_auditorias_pendientes<1){
         return (
             <Container>
 
@@ -43,7 +74,7 @@ export default class AuditoriasVacia extends Component {
 
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
-                    <EstadoCuenta cantidad='0' tipoCuenta='GRATIS'/>
+                    <EstadoCuenta/>
 
                     <Card>
                         <CardItem>
@@ -80,7 +111,15 @@ export default class AuditoriasVacia extends Component {
                  <FooterAuditoria/>
             </Container>
         );
-    }  
+    
+    }
+    else{
+        return(
+        this.props.navigation.navigate('AuditoriasBuscar')
+        );
+    }
+    }
+     
 }
 
 

@@ -70,7 +70,7 @@ export default class AuditoriasLista extends Component {
         return (
             <Container>
 
-                <HeaderBack encabezado='Auditoria'/>
+                <HeaderBack />
 
 
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>

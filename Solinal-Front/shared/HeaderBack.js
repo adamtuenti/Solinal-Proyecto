@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import {MaterialIcons} from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import {Drawer} from 'native-base';
-import SideBar from './SideBar';
+//import SideBar from './SideBar';
 
 export default class HeaderBack extends React.Component{
 
@@ -21,9 +21,9 @@ export default class HeaderBack extends React.Component{
 
     return(
 
-        <Drawer ref={(ref) => { this._drawer = ref; }} 
-                content={<SideBar navigator={this._navigator} />} 
-                onClose={() => this.closeDrawer()}>
+      //  <Drawer ref={(ref) => { this._drawer = ref; }} 
+        //        content={<SideBar navigator={this._navigator} />} 
+          //      onClose={() => this.closeDrawer()}>
 
         <View  style={styles.back}>
 
@@ -47,15 +47,15 @@ export default class HeaderBack extends React.Component{
 
             
 
-            <Button style={{flex: 1, flexDirection: 'row-reverse',marginLeft:5, alignItems:'center'}}
-            onPress={() => this.openDrawer()}>
+            <Button style={{flex: 1, flexDirection: 'row-reverse',marginLeft:5, alignItems:'center'}}>
+     
                 <MaterialIcons name='menu' size={30}  style={styles.icon}/>
             </Button>
 
         </View>
         </View>
 
-        </Drawer>
+     //  </Drawer>
         
     );
     }

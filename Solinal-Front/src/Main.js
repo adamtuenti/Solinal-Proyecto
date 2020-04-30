@@ -13,7 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { ListItem } from 'react-native-elements';
 
 import Footer from './../shared/Footer';
-import { Header } from './../shared/Header';
+import Header  from './../shared/Header';
 import EstadoCuenta from './../shared/estadoCuenta';
 
 
@@ -50,8 +50,8 @@ export default class Main extends React.Component {
         super(props);
         this.state = {
            paginaActual:'Main',
-           username: this.props.navigation.state.params.username,
-           tipoCuenta:this.props.navigation.state.params.tipoCuenta,
+           tipoCuenta:'Premium'
+          
         };
     }
 
@@ -69,10 +69,12 @@ export default class Main extends React.Component {
   
 
   render() {
+
+    
     return (
       <Container>
 
-      <Header encabezado={this.state.username}/>
+      <Header/>
 
       
 
@@ -83,7 +85,7 @@ export default class Main extends React.Component {
 
         <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
-        <EstadoCuenta cantidad='0' tipocuenta={this.state.tipoCuenta}/>
+        <EstadoCuenta />
 
           <Card>
 
@@ -158,9 +160,10 @@ export default class Main extends React.Component {
         </Content>
 
 
-      <Footer title='Main'/>
+      <Footer />
     
       </Container>
     );
+   
   }
 }
