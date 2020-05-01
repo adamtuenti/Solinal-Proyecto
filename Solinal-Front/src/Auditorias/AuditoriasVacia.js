@@ -22,17 +22,18 @@ export default class AuditoriasVacia extends Component {
       constructor(props) {
         super(props);
         this.state = {
-            paginaAnterior: this.props.navigation.state.params.paginaActual,
-            
+
+
             loading: false,
+            paginaAnterior: this.props.navigation.state.params.paginaActual,
           datos: [],
     
           url: 'http://accountsolinal.pythonanywhere.com/api/user/'+idUserGlobal
         };
     }
 
-    
-    componentDidMount(){
+
+     componentDidMount(){
         this.getDatos();
     }
 
@@ -44,27 +45,22 @@ export default class AuditoriasVacia extends Component {
         .then(res=>res.json())
        
         .then(res=>{ 
+            
 
             this.setState({
             datos: res,
             url: res.next,
-            loading: false, 
-               
+            loading: false,    
             })
         })
     }
 
-    async componentDidMount() {
-        await Font.loadAsync({
-          Roboto: require("native-base/Fonts/Roboto.ttf"),
-          Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-          /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
-        });
-        this.setState({ isReady: true });
-      }
+
+  
 
     render() {
-        if(this.state.datos.numero_auditorias_pendientes<1){
+       // if(this.state.datos.numero_auditorias_pendientes<2){
+        
         return (
             <Container>
 
@@ -112,12 +108,15 @@ export default class AuditoriasVacia extends Component {
             </Container>
         );
     
-    }
-    else{
+    //}
+    /*else{
+        console.log(idUserGlobal)
+        console.log('-')
+        console.log(this.state.datos.numero_auditorias_pendientes)
         return(
-        this.props.navigation.navigate('AuditoriasBuscar')
+        this.props.navigation.navigate('Home')
         );
-    }
+    }*/
     }
      
 }

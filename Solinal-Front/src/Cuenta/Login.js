@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, SafeAreaView,FlatList, TouchableHighlight,Image, TextInput,Alert,TouchableOpacity } from 'react-native';
 import { Input, Button, SocialIcon } from 'react-native-elements';
-import Form from 'react-bootstrap/Form'
-
-
+//import Form from 'react-bootstrap/Form'
+import PasswordInputText from 'react-native-hide-show-password-input';
+import {MaterialIcons,
+MaterialCommunityIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Login extends Component{
@@ -21,6 +22,8 @@ class Login extends Component{
           loading: false,
           pacientes: [],
           mensajeError:'',
+          iconName : 'eye',
+          secureTextEntry:true,
           //idUser:'1',
           url: 'http://accountsolinal.pythonanywhere.com/api/users'
         }
@@ -40,6 +43,7 @@ class Login extends Component{
 
         const array1 = this.state.pacientes
         var idA = 1
+        var nameUser = ''
         
         var bandera = 0
 
@@ -47,6 +51,7 @@ class Login extends Component{
             var name = element.username
             var pass = element.user
             var idU = element.user
+            var nameU = element.first_name
             
 
 
@@ -61,6 +66,7 @@ class Login extends Component{
            
                    
                     idA = idU
+                    nameUser = nameU
                   
                    
                     
@@ -87,7 +93,7 @@ class Login extends Component{
         
         else if(bandera==1){
             idUserGlobal = idA;
-            userNameGlobal=username;
+            userNameGlobal=nameUser;
              this.props.navigation.navigate('Home')
             
           
@@ -97,18 +103,19 @@ class Login extends Component{
 
          }
       
-
-        
-
-
       
     }
 
-    cambiarPestana(idUser,username){
-       
-        this.props.navigation.navigate('Home',{username:this.state.username,idUser})
+    mostrarClave =()=>{
+        let iconName = (this.state.secureTextEntry)? "eye-off":"eye";
+        this.setState({
+            secureTextEntry:!this.state.secureTextEntry,
+            iconName:iconName
+        });
+
     }
-    
+
+
     componentDidMount(){
         this.getPacientes();
     }
@@ -155,17 +162,35 @@ class Login extends Component{
                                     onChangeText={username => this.setState({ username })}
 
                 />
-                    
+                
+                <View style={{flexDirection:'row',alignItems:'center'}}>
+
+                <View style={{marginLeft:'7%'}}>
                 
                 <TextInput
                                     style={styles.input}
                                     placeholder='Password'
 
                                     autoCapitalize="none"
+                                    secureTextEntry={this.state.secureTextEntry}
                                     placeholderTextColor='lightgrey'
+                                     minLength={2}
                                     onChangeText={password => this.setState({ password})}
 
                 />
+                
+                </View>
+                <View style={{marginLeft:'1%'}}>
+                <TouchableHighlight onPress={this.mostrarClave}>
+                <MaterialCommunityIcons name = {this.state.iconName} size={19}/>
+                </TouchableHighlight>
+                </View>
+                </View>
+
+               
+                
+
+                <Text style={{color:'red',marginTop:'2%',marginBottom:'2%'}}>{this.state.mensajeError}</Text>
 
                     
 
@@ -177,7 +202,7 @@ class Login extends Component{
                 </TouchableHighlight>
                     
                 
-                <Text style={{color:'red',marginTop:'2%'}}>{this.state.mensajeError}</Text>
+                
 
 
 
@@ -207,10 +232,10 @@ class Login extends Component{
 
                 
 
-                <SocialIcon style={{height: 35,width:  175}}
-                    title='Sign in With Google'
+                <SocialIcon style={{height: 35,width:  185}}
+                    title='Sign in With Facebook'
                     button
-                    type='google'
+                    type='facebook'
                     />
 
                 

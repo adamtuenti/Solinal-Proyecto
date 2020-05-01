@@ -53,7 +53,7 @@ export default class EstadoCuenta extends React.Component{
             <View style={{marginRight:35, flexDirection:'row'}}>
                 <View>
                 <Text style={{color: '#636363'}}>
-                    Auditorias realizadas:
+                    Auditorias pendientes:
                 </Text>
                 </View>  
                 <View>

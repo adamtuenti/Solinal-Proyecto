@@ -44,10 +44,21 @@ class Registro extends Component {
         //formData.append('password','nuedsd');
         //formData.append('email','email@espol.ecom')
 
+        
+
 
         
         if (nombre === '' || apellido === '' || password === '' || email === ''||usuario=='') { this.setState({mensajeError:'Llene todos los campos!'}) }
 
+
+        
+        else if(password.length<8){
+             this.setState({mensajeError:'Clave muy corta!'})
+
+        }
+       
+   
+        
         else{
 
             let errorM = ''
@@ -73,69 +84,49 @@ class Registro extends Component {
             .then((response) => response.json())
            
             .then((responseJson) => {
-                //alert(JSON.stringify(responseJson));
+                this.mostrarError();
+                
+                console.log('aca')
                 errorM='a'
+                console.log(errorM)
                 
                 //this.setState({mensajeError:responseJson})
             })
             
             .catch((error) => {
                 //alert(JSON.stringify(error));
-                errorM = error
+                //console.log('aqui')
+                //errorM = error
+                //this.avanzarRegistro();
             });
 
-            if(errorM==''){
-                this.props.navigation.navigate('Registro')
-            }else{
-                this.setState({mensajeError:'usuario ya en uso!'})
 
+
+
+            if(errorM==''){
+                console.log('ninguno error')
+                this.props.navigation.navigate('Login')
+                this.setState({mensajeError:'ningun error!'})
             }
 
             
 
         }
-        
-          /*  try{
 
-            fetch('http://accountsolinal.pythonanywhere.com/api/register', {
-            method: 'POST',
-           
-            body: JSON.stringify({
-                username: 'aditaa',
-                                        password: 'clave',
-                                        email: 'a@espol.edu.ec'
-            }),
-            });
-
-            }catch(e){
-                alert(e)
-            }*/
-
-           /* try{
-                await fetch('http://accountsolinal.pythonanywhere.com/api/register',{
-                    method: 'post',
-                    mode: 'no-cors',
-                    body: JSON.stringify(
-                        {
-                            usernme: 'aditaa',
-                            passwrd: 'clave',
-                            email: 'a@espol.edu.ec'
-
-                        }
-                    )
-                })
-
-
-            } catch(e){
-                alert(e)
-            }*/
-            
-          
-
-
-            //}
             
     
+    }
+
+    mostrarError = () =>{
+
+        this.setState({mensajeError:'Usuario ya en uso!'})
+
+    }
+
+    avanzarRegistro = () =>{
+        alert('Debes iniciar sesion')
+        this.props.navigation.navigate('Login')
+
     }
 
 
@@ -150,17 +141,7 @@ class Registro extends Component {
         this.validar();
 
     }
-    onFB = () => {
-
-        alert('Registro por facebook');
-
-    }
-    onG = () => {
-
-        alert('Registro por Google');
-
-    }
-
+  
     render() {
      
         return (
@@ -188,15 +169,15 @@ class Registro extends Component {
                                 <TextInput
 
                                     style={styles.input}
-                                    placeholder='USER NAME'
+                                    placeholder='Usuario'
                                     autoCapitalize="none"
                                     placeholderTextColor='lightgrey'
                                     onChangeText={usuario => this.setState({ usuario })}
                                 />
 
                                 <TextInput
-                                    style={styles.input} placeholder='NOMBRE'
-                                    autoCapitalize="none"
+                                    style={styles.input} placeholder='Nombre'
+                                    autoCapitalize="words"
                                     placeholderTextColor='lightgrey'
                                     name="nombre"
                                     onChangeText={nombre => this.setState({ nombre })}
@@ -205,9 +186,9 @@ class Registro extends Component {
 
                                 <TextInput
                                     style={styles.input}
-                                    placeholder='APELLIDO'
+                                    placeholder='Apellido'
 
-                                    autoCapitalize="none"
+                                    autoCapitalize="words"
                                     placeholderTextColor='lightgrey'
                                     onChangeText={apellido => this.setState({ apellido })}
 
@@ -215,7 +196,7 @@ class Registro extends Component {
                                 <TextInput
 
                                     style={styles.input}
-                                    placeholder='E-MAIL'
+                                    placeholder='E-mail'
                                     autoCapitalize="none"
                                     placeholderTextColor='lightgrey'
                                     onChangeText={email => this.setState({ email })}
@@ -233,18 +214,18 @@ class Registro extends Component {
 
 
 
-                                    placeholder='CONTRASEÑA'
+                                    placeholder='Clave (min 8 caracteres)'
                                     onChangeText={password => this.setState({ password })} />
 
                              
-
-                        <Text style={{color:'red',paddingLeft: 15,marginTop:'2%'}}>{this.state.mensajeError}</Text>
-
-
-                            </View>
-
+                        <View style={{alignContent:'center',alignItems:'center',justifyContent:'center'}}>
+                        <Text style={{color:'red',marginTop:'2%'}}>{this.state.mensajeError}</Text>
                         </View>
-                        {}
+
+                    </View>
+
+                </View>
+                      
                         <View style={styles.MainContainer}>
                             <TouchableOpacity
                                 style={styles.botonRegister} onPress={this.onRegistro}>
@@ -284,7 +265,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
 
         marginTop: "20%",
-        marginBottom: 10
+        marginBottom: 10,
+        alignContent: 'center'
     },
 
     center: {
@@ -312,7 +294,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         paddingLeft: 15,
         paddingRight: 15,
-        width: 200,
+        width: 185,
         alignItems: 'flex-start'
     },
     botonRegister: {

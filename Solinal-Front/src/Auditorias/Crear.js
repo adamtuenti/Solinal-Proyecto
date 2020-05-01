@@ -161,6 +161,7 @@ export default class Crear extends Component {
                        
                        
                             <Input style={styles.input} placeholder="Alcance de la auditoría" />
+                            <Input style={styles.input} placeholder="Nombre del auditado" />
 
                             
                            
@@ -517,6 +518,17 @@ export default class Crear extends Component {
                 ))
                 }
               </View>
+
+              <View style={{alignItems:'center',marginTop:'5%'}}>
+              <TouchableHighlight onPress={()=>this.props.navigation.navigate('FirmaAuditor')} style={styles.botonFirma}>
+              <View>
+                  <Text style={{fontSize:15}}>Firmar</Text>
+              </View>
+          </TouchableHighlight>
+
+
+
+              </View>
                     
 
                      
@@ -530,6 +542,18 @@ export default class Crear extends Component {
 
 
 const styles = StyleSheet.create({
+  botonFirma:{
+  
+        alignItems: 'center',
+        backgroundColor: '#35E119',
+        padding: 10,
+        width:142,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: '#d6d7da',
+        marginTop:'1%'
+
+  },
   datos:{
     fontSize:14
   }, input: {

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, SafeAreaView,FlatList, TouchableHighlight,Image, TextInput,Alert,TouchableOpacity } from 'react-native';
 import { Input, Button, SocialIcon, Icon } from 'react-native-elements';
 import { Container, Header, Content, Accordion } from "native-base";
-
+import {MaterialIcons,
+MaterialCommunityIcons} from '@expo/vector-icons';
 
 
 
@@ -14,27 +15,18 @@ export default class Home extends Component{
     render() {
     return (
     
-      <View style={{flex: 1, flexDirection: 'column', backgroundColor: '#1ED695', alignItems: 'center', justifyContent: 'center'}}>
+      <View style={{flex: 1, flexDirection: 'column', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center'}}>
 
         <Image
-                        style={{width: '58%', height: '39%', margin:25,padding:10,marginTop:'11%'}}
+                        style={{width: '48.3%', height: '32.5%', margin:25,padding:10,marginTop:'11%'}}
                         source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
         />
 
-        <Text style={{fontWeight: 'bold', fontSize: 28, color: 'white',paddingTop:25,paddingBottom:150}}>Bienvenido {userNameGlobal}</Text>
+        <Text style={{fontWeight: 'bold', fontSize: 32, color: '#1ED695',paddingTop:25,paddingBottom:125,marginTop:15}}>Bienvenido {userNameGlobal}</Text>
 
-        <Icon style={{paddingTop:8}}
-            raised
-            name='home'
-            type='font-awesome'
-            color='green'
-            size={40}
-            
-            
-            onPress={() => 
-           
-            this.props.navigation.navigate('Main')}
-        />
+       
+
+          <MaterialCommunityIcons name="home-circle" size={85} color='#1ED695' onPress={() => this.props.navigation.navigate('Main')} />
       </View>
      
     );
