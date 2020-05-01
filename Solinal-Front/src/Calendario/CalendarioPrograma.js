@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container, Title, Content, Card, CardItem, Footer, Button, Left, Right, Body,  Font } from 'native-base';
+import { Container, Title, Content, Card, CardItem, Footer, Button, Left, Right, Body,  Font , Arrow} from 'native-base';
 import { Icon } from 'react-native-elements'
 import {
   StyleSheet,
@@ -12,7 +12,7 @@ import {
 import Header from '../../shared/Header';
 import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterCalendario from '../../shared/FooterCalendario';
-import { Calendar } from 'react-native-calendario';
+import { Calendar } from 'react-native-calendars';
 
 export default class CalendarioPrograma extends Component {
 
@@ -42,9 +42,9 @@ export default class CalendarioPrograma extends Component {
         this.getFechas();
       }
 
-      componentDidMount(){
+      componentDidMount = () => {
         this.getFechas();
-    }
+      }
 
       getFechas = () => {
         const array = [];
@@ -82,57 +82,46 @@ export default class CalendarioPrograma extends Component {
                         </Card>
                         <View>
 
-                        
-                          <Calendar
-                          onChange={(range) => console.log(range)}
-                          minDate={'2020-01-01'}
-                          maxDate={'2020-12-31'}
-                          startDate={new Date ('06-04-2020')}
-                          endDate={new Date ('30-04-2020')}
+                       
+                        <Calendar
+                          current={'2020-04-01'}
+                          minDate={'2020-03-01'}
+                          onDayPress={(day) => {console.log('selected day', day)}}
+                          onDayLongPress={(day) => {console.log('selected day', day)}}
+                          monthFormat={'MMMM yyyy'}
+                          onMonthChange={(month) => {console.log('month changed', month)}}
+                          firstDay={1}
+                          onPressArrowLeft={substractMonth => substractMonth()}
+                          onPressArrowRight={addMonth => addMonth()}
+                          markedDates={{               
+                            '2020-04-19': {startingDay: true, endingDay: false, color: 'green', textColor: 'white'},
+                            '2020-04-20': {selected: true, startingDay: false, endingDay: true, color: 'green', textColor: 'white'},
+                          }}
+                          markingType={'period'}
                           theme={{
-                          activeDayColor: {},
-                          monthTitleTextStyle: {
-                          color: '#6d95da',
-                          fontWeight: '300',
-                          fontSize: 16,
-                          flexDirection:'column'
-                          },
-                          emptyMonthContainerStyle: {},
-                          emptyMonthTextStyle: {
-                          fontWeight: '200',
-                          },
-                          weekColumnsContainerStyle: {},
-                          weekColumnStyle: {
-                            paddingVertical: 10,
-                          },
-                          weekColumnTextStyle: {
-                            color: '#b6c1cd',
-                            fontSize: 13,
-                          },
-                          nonTouchableDayContainerStyle: {},
-                          nonTouchableDayTextStyle: {},
-                          startDateContainerStyle: {},
-                          endDateContainerStyle: {},
-                          dayContainerStyle: {},
-                          dayTextStyle: {
-                            color: '#2d4150',
-                            fontWeight: '200',
-                            fontSize: 15,
-                          },
-                          dayOutOfRangeContainerStyle: {},
-                          dayOutOfRangeTextStyle: {},
-                          todayContainerStyle: {},
-                          todayTextStyle: {
-                            color: '#6d95da',
-                          },
-                          activeDayContainerStyle: {
-                            backgroundColor: '#6d95da',
-                          },
-                          activeDayTextStyle: {
-                            color: 'white',
-                          },
-                          nonTouchableLastMonthDayTextStyle: {},
-                        }}
+                            backgroundColor: '#ffffff',
+                            calendarBackground: '#ffffff',
+                            textSectionTitleColor: '#b6c1cd',
+                            selectedDayBackgroundColor: '#00adf5',
+                            selectedDayTextColor: '#ffffff',
+                            todayTextColor: '#00adf5',
+                            dayTextColor: '#2d4150',
+                            textDisabledColor: '#d9e1e8',
+                            dotColor: '#00adf5',
+                            selectedDotColor: '#ffffff',
+                            arrowColor: 'orange',
+                            monthTextColor: 'blue',
+                            indicatorColor: 'blue',
+                            textDayFontFamily: 'monospace',
+                            textMonthFontFamily: 'monospace',
+                            textDayHeaderFontFamily: 'monospace',
+                            textDayFontWeight: '300',
+                            textMonthFontWeight: 'bold',
+                            textDayHeaderFontWeight: '300',
+                            textDayFontSize: 16,
+                            textMonthFontSize: 16,
+                            textDayHeaderFontSize: 16
+                          }}
                         />
                         
                         </View>
