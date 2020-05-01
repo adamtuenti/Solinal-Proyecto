@@ -64,7 +64,7 @@ export default class EstadoCuenta extends React.Component{
                 </View>
                 
             </View>
-            <View style={{flexDirection:'row',marginLeft:25}}>
+            <View style={{flexDirection:'row',marginLeft:19}}>
                 <Text style={{color: '#2ba855',fontSize:15}}>
                     Cuenta
                 </Text>

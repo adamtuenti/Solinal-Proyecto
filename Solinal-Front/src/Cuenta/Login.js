@@ -20,6 +20,7 @@ class Login extends Component{
           password : '',
           loading: false,
           pacientes: [],
+          mensajeError:'',
           //idUser:'1',
           url: 'http://accountsolinal.pythonanywhere.com/api/users'
         }
@@ -31,6 +32,10 @@ class Login extends Component{
 
     myfun=()=>{
         const{username,password}=this.state;
+
+         if ( username === ''||password=='') { this.setState({mensajeError:'Ingrese usuario y clave!'}) }
+
+         else{
       
 
         const array1 = this.state.pacientes
@@ -64,7 +69,7 @@ class Login extends Component{
                 }
                 else{
                     bandera = 2;
-                    alert("clave mal ingresada");
+                  //  this.setState({mensajeError:'Clave mal ingresada!'})
                     
 
                 }
@@ -72,9 +77,14 @@ class Login extends Component{
 
         }); 
         if(bandera==0){
-            alert("Usuario no registrado");
+            this.setState({mensajeError:'Usuario no registrado!'})
 
         }
+        else if(bandera==2){
+            this.setState({mensajeError:'Clave mal ingresada!'})
+            
+        }
+        
         else if(bandera==1){
             idUserGlobal = idA;
             userNameGlobal=username;
@@ -84,6 +94,8 @@ class Login extends Component{
             
             
         }
+
+         }
       
 
         
@@ -124,7 +136,7 @@ class Login extends Component{
                 
 
                 <Image
-                        style={{width: 125, height: 175, margin:25}}
+                        style={{width: '45%', height: 212, margin:25}}
                         source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
                 />
 
@@ -160,9 +172,14 @@ class Login extends Component{
                 
 
                 <TouchableHighlight
-         style={styles.botonLogin} onPress={this.myfun}>
-         <Text style={{fontWeight: 'bold',color:'white'}}> Conectar </Text>
-        </TouchableHighlight>
+                    style={styles.botonLogin} onPress={this.myfun}>
+                    <Text style={{fontWeight: 'bold',color:'white'}}> Conectar </Text>
+                </TouchableHighlight>
+                    
+                
+                <Text style={{color:'red',marginTop:'2%'}}>{this.state.mensajeError}</Text>
+
+
 
         
 
@@ -234,7 +251,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     
-      marginTop: "70%",
+      marginTop: "50%",
       margin:10
     },
     input: {
@@ -258,6 +275,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 1,
         borderColor: '#d6d7da',
+        marginTop:'1%'
         
    
 
