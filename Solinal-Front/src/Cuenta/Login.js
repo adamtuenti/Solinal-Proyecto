@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, SafeAreaView,FlatList, TouchableHighlight,Image, TextInput,Alert,TouchableOpacity } from 'react-native';
 import { Input, Button, SocialIcon } from 'react-native-elements';
-import Form from 'react-bootstrap/Form'
-
-
+//import Form from 'react-bootstrap/Form'
+import PasswordInputText from 'react-native-hide-show-password-input';
+import {MaterialIcons,
+MaterialCommunityIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Login extends Component{
@@ -20,6 +21,9 @@ class Login extends Component{
           password : '',
           loading: false,
           pacientes: [],
+          mensajeError:'',
+          iconName : 'eye',
+          secureTextEntry:true,
           //idUser:'1',
           url: 'http://accountsolinal.pythonanywhere.com/api/users'
         }
@@ -31,10 +35,15 @@ class Login extends Component{
 
     myfun=()=>{
         const{username,password}=this.state;
+
+         if ( username === ''||password=='') { this.setState({mensajeError:'Ingrese usuario y clave!'}) }
+
+         else{
       
 
         const array1 = this.state.pacientes
         var idA = 1
+        var nameUser = ''
         
         var bandera = 0
 
@@ -42,6 +51,7 @@ class Login extends Component{
             var name = element.username
             var pass = element.user
             var idU = element.user
+            var nameU = element.first_name
             
 
 
@@ -56,6 +66,7 @@ class Login extends Component{
            
                    
                     idA = idU
+                    nameUser = nameU
                   
                    
                     
@@ -64,7 +75,7 @@ class Login extends Component{
                 }
                 else{
                     bandera = 2;
-                    alert("clave mal ingresada");
+                  //  this.setState({mensajeError:'Clave mal ingresada!'})
                     
 
                 }
@@ -72,31 +83,39 @@ class Login extends Component{
 
         }); 
         if(bandera==0){
-            alert("Usuario no registrado");
+            this.setState({mensajeError:'Usuario no registrado!'})
 
         }
+        else if(bandera==2){
+            this.setState({mensajeError:'Clave mal ingresada!'})
+            
+        }
+        
         else if(bandera==1){
             idUserGlobal = idA;
-            userNameGlobal=username;
+            userNameGlobal=nameUser;
              this.props.navigation.navigate('Home')
             
           
             
             
         }
+
+         }
       
-
-        
-
-
       
     }
 
-    cambiarPestana(idUser,username){
-       
-        this.props.navigation.navigate('Home',{username:this.state.username,idUser})
+    mostrarClave =()=>{
+        let iconName = (this.state.secureTextEntry)? "eye-off":"eye";
+        this.setState({
+            secureTextEntry:!this.state.secureTextEntry,
+            iconName:iconName
+        });
+
     }
-    
+
+
     componentDidMount(){
         this.getPacientes();
     }
@@ -124,7 +143,7 @@ class Login extends Component{
                 
 
                 <Image
-                        style={{width: 125, height: 175, margin:25}}
+                        style={{width: '45%', height: 212, margin:25}}
                         source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
                 />
 
@@ -143,26 +162,49 @@ class Login extends Component{
                                     onChangeText={username => this.setState({ username })}
 
                 />
-                    
+                
+                <View style={{flexDirection:'row',alignItems:'center'}}>
+
+                <View style={{marginLeft:'7%'}}>
                 
                 <TextInput
                                     style={styles.input}
                                     placeholder='Password'
 
                                     autoCapitalize="none"
+                                    secureTextEntry={this.state.secureTextEntry}
                                     placeholderTextColor='lightgrey'
+                                     minLength={2}
                                     onChangeText={password => this.setState({ password})}
 
                 />
+                
+                </View>
+                <View style={{marginLeft:'1%'}}>
+                <TouchableHighlight onPress={this.mostrarClave}>
+                <MaterialCommunityIcons name = {this.state.iconName} size={19}/>
+                </TouchableHighlight>
+                </View>
+                </View>
+
+               
+                
+
+                <Text style={{color:'red',marginTop:'2%',marginBottom:'2%'}}>{this.state.mensajeError}</Text>
 
                     
 
                 
 
                 <TouchableHighlight
-         style={styles.botonLogin} onPress={this.myfun}>
-         <Text style={{fontWeight: 'bold',color:'white'}}> Conectar </Text>
-        </TouchableHighlight>
+                    style={styles.botonLogin} onPress={this.myfun}>
+                    <Text style={{fontWeight: 'bold',color:'white'}}> Conectar </Text>
+                </TouchableHighlight>
+                    
+                
+                
+
+
 
         
 
@@ -190,10 +232,10 @@ class Login extends Component{
 
                 
 
-                <SocialIcon style={{height: 35,width:  175}}
-                    title='Sign in With Google'
+                <SocialIcon style={{height: 35,width:  185}}
+                    title='Sign in With Facebook'
                     button
-                    type='google'
+                    type='facebook'
                     />
 
                 
@@ -234,7 +276,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     
-      marginTop: "70%",
+      marginTop: "50%",
       margin:10
     },
     input: {
@@ -258,6 +300,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 1,
         borderColor: '#d6d7da',
+        marginTop:'1%'
         
    
 

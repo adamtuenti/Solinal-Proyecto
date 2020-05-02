@@ -32,7 +32,8 @@ export default class FirmaAuditor extends React.Component {
                   style={{ width: 335, height: 114 }}
                   source={{ uri: this.state.signature }}
                 />,
-                this.props.navigation.navigate('Carusel')//,{signature:this.state.signature})
+                //this.props.navigation.navigate('Carusel')//,
+                {signature:this.state.signature}
               ) : null}
             </View>
             <Signature

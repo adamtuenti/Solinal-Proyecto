@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 
-import Header from '../../shared/Header';
+import HeaderBack from '../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterCalendario from '../../shared/FooterCalendario';
 import { Calendar } from 'react-native-calendars';
@@ -27,10 +27,12 @@ export default class CalendarioPrograma extends Component {
           loading: false,
           fechas: [],
           url: 'http://accountsolinal.pythonanywhere.com/api/fechas_get/1',
+          paginaAnterior: this.props.navigation.state.params.paginaActual,
     }
-
-
   }
+
+
+
 
     async componentDidMount() {
         await Font.loadAsync({
@@ -69,12 +71,13 @@ export default class CalendarioPrograma extends Component {
           
       }
 
+   
       render(){
           return(
               <Container>
 
                 
-                    <Header encabezado='Calendario'/>
+                    <HeaderBack encabezado={this.state.paginaAnterior}/>
                     <Content padder style={{backgroundColor: '#f6f6f6'}}>
                         <EstadoCuenta/>
                         <Card>
@@ -174,7 +177,7 @@ export default class CalendarioPrograma extends Component {
                                   </View>
                             </View>
 
-                            <View style={{backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 2,borderWidth: 1,alignItems:'center',width:'72%',marginLeft:'3%'}}>
+                            <View style={{backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 2,borderWidth: 1,alignItems:'center',width:'70%',marginLeft:'5%'}}>
                           
                               <Text key={i} style={styles.descrip}>
                                 {r.detalle_auditoria}
@@ -202,9 +205,11 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   descrip:{
-    fontSize:12,
+    fontSize:14,
     alignItems:'center',
-    padding:5
+    padding:2,
+    width:'100%',
+    marginLeft:'1%'
     
   }
   });

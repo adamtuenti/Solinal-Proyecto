@@ -6,27 +6,12 @@ import {
     TextInput, Alert
 } from 'react-native';
 import { Input, Button } from 'react-native-elements';
+import FormData from 'form-data';
 
 
 import { Ionicons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
-/*
-const sports = [
-    {
-        label: 'Football',
-        value: 'football',
-    },
-    {
-        label: 'Baseball',
-        value: 'baseball',
-    },
-    {
-        label: 'Hockey',
-        value: 'hockey',
-    },
-];
 
-*/
 
 class Registro extends Component {
 
@@ -38,6 +23,8 @@ class Registro extends Component {
             apellido: '',
             password: '',
             email: '',
+            usuario: '',
+            mensajeError:'',
 
             loading: false,
 
@@ -45,129 +32,123 @@ class Registro extends Component {
     }
 
 
-    /*
-            this.inputRefs = {
-                firstTextInput: null,
-                favSport0: null,
-                favSport1: null,
-                lastTextInput: null,
-                favSport5: null,
-            };
-    
-            this.state = {
-                numbers: [
-                    {
-                        label: '1',
-                        value: 1,
-                        color: 'orange',
-                    },
-                    {
-                        label: '2',
-                        value: 2,
-                        color: 'green',
-                    },
-                ],
-                favSport0: undefined,
-                favSport1: undefined,
-                favSport2: undefined,
-                favSport3: undefined,
-                favSport4: 'baseball',
-                previousFavSport5: undefined,
-                favSport5: null,
-                favNumber: undefined,
-            };
-    
-            this.InputAccessoryView = this.InputAccessoryView.bind(this);
-        }
-    
-        InputAccessoryView() {
-            return (
-                <View style={defaultStyles.modalViewMiddle}>
-                    <TouchableWithoutFeedback
-                        onPress={() => {
-                            this.setState(
-                                {
-                                    favSport5: this.state.previousFavSport5,
-                                },
-                                () => {
-                                    this.inputRefs.favSport5.togglePicker(true);
-                                }
-                            );
-                        }}
-                        hitSlop={{ top: 4, right: 4, bottom: 4, left: 4 }}>
-                        <View testID="needed_for_touchable">
-                            <Text
-                                style={[
-                                    defaultStyles.done,
-                                    { fontWeight: 'normal', color: 'red' },
-                                ]}>
-                                Cancel
-                    </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <Text>Name | Prefer</Text>
-                    <TouchableWithoutFeedback
-                        onPress={() => {
-                            this.inputRefs.favSport5.togglePicker(true);
-                        }}
-                        hitSlop={{ top: 4, right: 4, bottom: 4, left: 4 }}>
-                        <View testID="needed_for_touchable">
-                            <Text style={defaultStyles.done}>Done</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                </View>
-            );
-        }
-        
 
-    state = {
-        isValid: null,
-    };
-*/
+    validar=async()=> {
+       /* try{
+            var formData = new FormData();
+            } catch (error) {
+            console.error('FormData ERROR', error);
+            }*/
+        const { nombre, password, apellido, email,usuario } = this.state;
+       // formData.append('username','adaita');
+        //formData.append('password','nuedsd');
+        //formData.append('email','email@espol.ecom')
 
-    validar() {
-
-        const { nombre, password, apellido, email } = this.state;
-        if (nombre === '' || apellido === '' || password === '' || email === '') { alert('Debe de llenar todos los campos'); }
-        else
-            alert('Usuario registrado');
         
 
 
+        
+        if (nombre === '' || apellido === '' || password === '' || email === ''||usuario=='') { this.setState({mensajeError:'Llene todos los campos!'}) }
 
 
+        
+        else if(password.length<8){
+             this.setState({mensajeError:'Clave muy corta!'})
+
+        }
+       
+   
+        
+        else{
+
+            let errorM = ''
+
+
+
+
+            var dataToSend = {username: usuario, password: password, email: email,first_name:nombre,last_name:apellido};
+            var formBody = [];
+            for (var key in dataToSend) {
+            var encodedKey = encodeURIComponent(key);
+            var encodedValue = encodeURIComponent(dataToSend[key]);
+            formBody.push(encodedKey + "=" + encodedValue);
+            }
+            formBody = formBody.join("&");
+            fetch('http://accountsolinal.pythonanywhere.com/api/register', {
+            method: "POST",//Request Type 
+            body: formBody,//post body 
+            headers: {//Header Defination 
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            })
+            .then((response) => response.json())
+           
+            .then((responseJson) => {
+                this.mostrarError();
+                
+                console.log('aca')
+                errorM='a'
+                console.log(errorM)
+                
+                //this.setState({mensajeError:responseJson})
+            })
+            
+            .catch((error) => {
+                //alert(JSON.stringify(error));
+                //console.log('aqui')
+                //errorM = error
+                //this.avanzarRegistro();
+            });
+
+
+
+
+            if(errorM==''){
+                console.log('ninguno error')
+                this.props.navigation.navigate('Login')
+                this.setState({mensajeError:'ningun error!'})
+            }
+
+            
+
+        }
+
+            
+    
+    }
+
+    mostrarError = () =>{
+
+        this.setState({mensajeError:'Usuario ya en uso!'})
 
     }
+
+    avanzarRegistro = () =>{
+        alert('Debes iniciar sesion')
+        this.props.navigation.navigate('Login')
+
+    }
+
+
+    
+
+
+
+
+
     onRegistro = () => {
 
         this.validar();
 
     }
-    onFB = () => {
-
-        alert('Registro por facebook');
-
-    }
-    onG = () => {
-
-        alert('Registro por Google');
-
-    }
-
+  
     render() {
-        /*
-        const placeholder = {
-            label: 'Select  sport...',
-            value: null,
-            color: '#9EA0A4',
-        };
- 
-        */
+     
         return (
             <ScrollView
                 style={styles.scrollContainer}
                 contentContainerStyle={styles.scrollContentContainer}>
-                {/*const {isValid} = this.state*/}
+              
                     <SafeAreaView >
 
                         <View style={styles.top}>
@@ -184,9 +165,19 @@ class Registro extends Component {
                         <View style={styles.center}>
                             <View>
 
+
                                 <TextInput
-                                    style={styles.input} placeholder='NOMBRE'
+
+                                    style={styles.input}
+                                    placeholder='Usuario'
                                     autoCapitalize="none"
+                                    placeholderTextColor='lightgrey'
+                                    onChangeText={usuario => this.setState({ usuario })}
+                                />
+
+                                <TextInput
+                                    style={styles.input} placeholder='Nombre'
+                                    autoCapitalize="words"
                                     placeholderTextColor='lightgrey'
                                     name="nombre"
                                     onChangeText={nombre => this.setState({ nombre })}
@@ -195,9 +186,9 @@ class Registro extends Component {
 
                                 <TextInput
                                     style={styles.input}
-                                    placeholder='APELLIDO'
+                                    placeholder='Apellido'
 
-                                    autoCapitalize="none"
+                                    autoCapitalize="words"
                                     placeholderTextColor='lightgrey'
                                     onChangeText={apellido => this.setState({ apellido })}
 
@@ -205,26 +196,13 @@ class Registro extends Component {
                                 <TextInput
 
                                     style={styles.input}
-                                    placeholder='E-MAIL'
+                                    placeholder='E-mail'
                                     autoCapitalize="none"
                                     placeholderTextColor='lightgrey'
                                     onChangeText={email => this.setState({ email })}
                                 />
 
-
-
-                                {/** 
-                            <Input
-                                placeholder="Password"
-                                style={styles.input}
-                                pattern={[
-                                    '^.{8,}$', // min 8 chars
-                                    '(?=.*\\d)', // number required
-                                    '(?=.*[A-Z])', // uppercase letter
-                                ]}
-                                onValidation={isValid => this.setState({ isValid })}
-                            />
-*/}
+        
                                 <TextInput secureTextEntry={true} style={styles.input}
 
 
@@ -236,57 +214,18 @@ class Registro extends Component {
 
 
 
-                                    placeholder='CONTRASEÑA'
+                                    placeholder='Clave (min 8 caracteres)'
                                     onChangeText={password => this.setState({ password })} />
 
-                                {/* PARA LISTPICKER
-
-                            <View style={styles.container}>
-
-                                <Text>werwe</Text>
-                               
-                                <RNPickerSelect
-                                    placeholder={placeholder}
-                                    items={sports}
-                                    onValueChange={value => {
-                                        this.setState({
-                                            favSport0: value,
-                                        });
-                                    }}
-                                    onUpArrow={() => {
-                                        this.inputRefs.firstTextInput.focus();
-                                    }}
-                                    onDownArrow={() => {
-                                        this.inputRefs.favSport1.togglePicker();
-                                    }}
-                                    style={pickerSelectStyles}
-                                    value={this.state.favSport0}
-                                    ref={el => {
-                                        this.inputRefs.favSport0 = el;
-                                    }}
-                                />
-                                <View paddingVertical={5} />
-
-                            </View>
-                        and iOS onUpArrow/onDownArrow toggle example */}
-
-
-                            </View>
-
+                             
+                        <View style={{alignContent:'center',alignItems:'center',justifyContent:'center'}}>
+                        <Text style={{color:'red',marginTop:'2%'}}>{this.state.mensajeError}</Text>
                         </View>
-                        {/** 
-                    <View>
-                        <Text style={{ color: isValid && isValid[0] ? 'green' : 'red' }}>
-                            Rule 1: min 8 chars
-          </Text>
-                        <Text style={{ color: isValid && isValid[1] ? 'green' : 'red' }}>
-                            Rule 2: number required
-          </Text>
-                        <Text style={{ color: isValid && isValid[2] ? 'green' : 'red' }}>
-                            Rule 3: uppercase letter
-          </Text>
+
                     </View>
-*/}
+
+                </View>
+                      
                         <View style={styles.MainContainer}>
                             <TouchableOpacity
                                 style={styles.botonRegister} onPress={this.onRegistro}>
@@ -326,7 +265,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
 
         marginTop: "20%",
-        marginBottom: 10
+        marginBottom: 10,
+        alignContent: 'center'
     },
 
     center: {
@@ -354,7 +294,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         paddingLeft: 15,
         paddingRight: 15,
-        width: 200,
+        width: 185,
         alignItems: 'flex-start'
     },
     botonRegister: {
@@ -375,7 +315,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 10,
+        margin: 8,
     },
 
     GooglePlusStyle: {
@@ -391,7 +331,7 @@ const styles = StyleSheet.create({
     },
 
     FacebookStyle: {
-        marginTop: 50,
+        marginTop: 35,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#485a96',
