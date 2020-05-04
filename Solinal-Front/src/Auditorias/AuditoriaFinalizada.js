@@ -15,8 +15,22 @@ import HeaderBack from './../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterAuditoria from '../../shared/FooterAuditoria';
 
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
+
 export default class AuditoriaFinalizada extends Component{
 
+    createPDF(){
+        let options = {
+            html: '<h1>PDF TEST</h1>',
+            fileName: 'test',
+            directory: 'Documents',
+          };
+
+        let file = await RNHTMLtoPDF.convert(options)
+        // console.log(file.filePath);
+        alert(file.filePath);
+    }
+    
     async componentDidMount() {
         await Font.loadAsync({
           Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -54,7 +68,7 @@ export default class AuditoriaFinalizada extends Component{
                             <Body style={{alignItems: 'center'}}>
 
                                 <TouchableHighlight
-                                     onPress={()=>this.props.navigation.navigate()}>
+                                     onPress={()=>this.createPDF()}>
                                     <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2063.png'}}></Image>
                                 </TouchableHighlight>                    
                             </Body>
