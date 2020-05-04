@@ -7,12 +7,13 @@ import {
   TouchableHighlight,
   Text,
   View,
+  TextInput
 } from 'react-native'
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 import { ListItem } from 'react-native-elements';
 
-import Header from '../../shared/Header';
+import HeaderBack from '../../shared/HeaderBack';
 
 export default class InvitarMiembros extends Component {
 
@@ -28,65 +29,49 @@ export default class InvitarMiembros extends Component {
     render(){
         return(
             
-            <Container>
-            <Header encabezado='Invitar Miembros'/>
+            <Container style={{flex:1}}>
+            <HeaderBack encabezado='Invitar Miembros'/>
+
+
+            <Card style={{marginBottom:'10%',marginTop:'5%',marginLeft:'2.5%',width:'95%',alignItems:'center',alignContent:'center',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
+
+            <View style={{alignItems:'center',padding:'2%'}} >
+
+            <Text style={{marginLeft:'2%', fontWeight:'bold',textAlign:'center'}}>Escriba el correo del usuario que desea que forme parte de su equipo.</Text>
+            </View>
+
+
+            </Card>
+
+            
+                    
                 
                     
-                <Content padder>
-                    <Card searchBar rounded>
-                        <View style={{flexDirection:'row',alignItems:'center'}}>
+                        <View style={{alignItems:'center',marginTop:'5%'}}>
+                        <View style={{flexDirection:'row',justifyContent:'center'}}>
                         
-                            <Icon style={{marginLeft:10}} name="ios-search" />
+                            <Icon style={{height:30,marginTop:'1%'}}  name="ios-search" />
                         
-                            <Input style={{marginLeft:5}} placeholder="Buscar" />
+                             <TextInput
+                                    style={styles.input}
+                                    placeholder='Ingrese correo'
+
+                                    autoCapitalize="none"
+                                    placeholderTextColor='lightgrey'
+                                    onChangeText={username => this.setState({ username })}
+
+                            />
                         </View>
-                    </Card>
-                    <Card>
-                        <List>
-                            <ListItem>
-                                <CheckBox checked={false} color='#1ed695'/>
-                                <Body>
-                                    <Text>Nombre y Apellido del contacto</Text>
-                                    <Text note>contacto@correo.com</Text>
-                                </Body>
-                            </ListItem>
-                            <ListItem>
-                                <CheckBox checked={false} color='#1ed695'/>
-                                <Body>
-                                    <Text>Nombre y Apellido del contacto</Text>
-                                    <Text note>contacto@correo.com</Text>
-                                </Body>
-                            </ListItem>
-                            <ListItem>
-                                <CheckBox checked={true} color='#1ed695'/>
-                                <Body>
-                                    <Text>Nombre y Apellido del contacto</Text>
-                                    <Text note>contacto@correo.com</Text>
-                                </Body>
-                            </ListItem>
-                            <ListItem>
-                                <CheckBox checked={false} color='#1ed695'/>
-                                <Body>
-                                    <Text>Nombre y Apellido del contacto</Text>
-                                    <Text note>contacto@correo.com</Text>
-                                </Body>
-                            </ListItem>
-                            <ListItem>
-                                <CheckBox checked={false} color='#1ed695'/>
-                                <Body>
-                                    <Text>Nombre y Apellido del contacto</Text>
-                                    <Text note>contacto@correo.com</Text>
-                                </Body>
-                            </ListItem>
-                        </List>
-                    </Card>
+                        </View>
+              
+                    
                     <View style={{alignItems: 'center'}}>
-                        <TouchableHighlight style={styles.botonLogin}
+                        <TouchableHighlight style={styles.botonEnviar}
                             onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
                             <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> ENVIAR INVITACIÓN </Text>
                         </TouchableHighlight>                        
                     </View>
-                </Content>
+             
             </Container>
         )
     }
@@ -95,7 +80,7 @@ export default class InvitarMiembros extends Component {
 const styles = StyleSheet.create({
     
 
-    botonLogin:{
+    botonEnviar:{
         alignItems: 'center',
         backgroundColor: '#1ed695',
         padding: 10,
@@ -107,5 +92,17 @@ const styles = StyleSheet.create({
         
    
 
-    }
+    },
+     input: {
+        height: 35,
+        borderBottomColor: '#1ed796',
+        borderBottomWidth: 1,
+        paddingLeft: 8,
+        paddingRight: 10,
+        width: 175,
+        alignItems: 'center',
+        marginLeft:'2%', 
+       
+        fontSize: 15
+    },
 })

@@ -15,7 +15,8 @@ class Login extends Component{
         
         super(props);
         global.idUserGlobal = 5;
-        global.userNameGlobal = '';
+        global.nameGlobal = '';
+        global.userNameGlobal='';
         this.state = {
           username : '',
           password : '',
@@ -44,6 +45,7 @@ class Login extends Component{
         const array1 = this.state.pacientes
         var idA = 1
         var nameUser = ''
+        var user = ''
         
         var bandera = 0
 
@@ -53,20 +55,18 @@ class Login extends Component{
             var idU = element.user
             var nameU = element.first_name
             
+            
 
 
             if (name==username){
-                
-             
-                
-                
-                
+
                 if (password == pass){
                     bandera = 1;
            
                    
                     idA = idU
                     nameUser = nameU
+                    user = name
                   
                    
                     
@@ -93,7 +93,8 @@ class Login extends Component{
         
         else if(bandera==1){
             idUserGlobal = idA;
-            userNameGlobal=nameUser;
+            nameGlobal=nameUser;
+            userNameGlobal=user;
              this.props.navigation.navigate('Home')
             
           
@@ -198,7 +199,7 @@ class Login extends Component{
 
                 <TouchableHighlight
                     style={styles.botonLogin} onPress={this.myfun}>
-                    <Text style={{fontWeight: 'bold',color:'white'}}> Conectar </Text>
+                    <Text style={{fontWeight: 'bold', color: '#515254'}}> CONECTAR </Text>
                 </TouchableHighlight>
                     
                 
@@ -213,22 +214,22 @@ class Login extends Component{
                 
                     
                 <View style = {styles.abajo}>
+
+                        <Text 
+                            onPress={()=>this.props.navigation.navigate('Reestablecer')}
+                            style={{color: 'black',marginTop:'10%'}}>
+                            ¿Olvidó su clave?</Text>
                     
 
                     
 
-                    <Button
-                        title="Crear cuenta" //cuando presiones crear cuenta se ira a su pestana. Posi
-                        type="clear"
-                        style={styles.botonLogin} 
-                        onPress={()=>this.props.navigation.navigate('Registro')} 
-                    
-                    />
-                    <Button
-                        title="¿Olvidó su clave?"
-                        type="clear"
-                        onPress={()=>this.props.navigation.navigate('Reestablecer')} 
-                        />
+                   
+                        <Text 
+                            onPress={()=>this.props.navigation.navigate('Registro')}
+                            style={{color: 'black',marginTop:'2.5%',marginBottom:'3.5%'}}>
+                            Crear cuenta</Text>
+
+                       
 
                 
 
@@ -294,7 +295,7 @@ const styles = StyleSheet.create({
 
     botonLogin:{
         alignItems: 'center',
-        backgroundColor: '#35E119',
+        backgroundColor: '#B3F1C9',
         padding: 10,
         width:142,
         borderRadius: 4,

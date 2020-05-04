@@ -12,7 +12,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { ListItem } from 'react-native-elements';
 
-import Header from '../../shared/Header';
+import HeaderBack from '../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 
 export default class EquipoVacio extends Component {
@@ -29,27 +29,27 @@ export default class EquipoVacio extends Component {
     render(){
         return(
             <Container>
-                <Header encabezado='Equipo'/>
+                <HeaderBack encabezado='Equipo'/>
                     
-                <Content>
+                <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
                 
-        <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10, backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 2,
+        <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10, backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 4,
         borderWidth: 1,}}>
-            <View style={{marginRight:35, flexDirection:'row'}}>
+            <View style={{ flexDirection:'row'}}>
                 <View>
                 <Text style={{color: '#636363',fontSize:15}}>
                     Equipo de:
                 </Text>
                 </View>  
                 <View>
-                    <Text style={{color: '#2ba855', marginLeft:2,fontSize:15}}>
-                        {this.props.cantidad} Lenin
+                    <Text style={{color: '#2ba855', marginLeft:'5%',fontSize:15}}>
+                        {nameGlobal}
                     </Text>
                 </View>
                 
             </View>
-            <View style={{flexDirection:'row',marginLeft:15}}>
+            <View style={{flexDirection:'row',alignItems:'center',flex:1}}>
                 <Text style={{color: '#2ba855',fontSize:15}}>
                     0/5 
                 </Text>
@@ -58,9 +58,25 @@ export default class EquipoVacio extends Component {
                 </Text>
             </View>
         </View>
+
+       
+
+
+        <View style={{marginTop:'2%',marginBottom:'2%'}}>
+
+        <Card style={{borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',padding:'2%'}}>
+        <View>
+        <Text style={{fontWeight:'bold',marginLeft:'1%',fontSize:15}}>Adan Navarrete</Text>
+        <Text style={{marginLeft:'1%',fontSize:13.5,fontStyle:'italic'}}>micorreo@gmail.com</Text>
+        </View>
+        </Card>
+
+        </View>
+
+   
                     
-                    <Card>
-                        <View style={{flex: 1, flexDirection: 'row', height:100, justifyContent:'flex-end', marginTop:15}}>
+                    <Card style={{borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
+                        <View style={{flex: 1, flexDirection: 'row', height:85, justifyContent:'flex-end', marginTop:'3%'}}>
                             <View style={{margin:7}}>
                                 <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/premium.png?raw=true'}}
                                         style= {{height: 50,
@@ -69,12 +85,12 @@ export default class EquipoVacio extends Component {
                             </View>
                             <View style={{flex: 1, flexDirection: 'column',marginLeft:5}}>
                                 <Text style={{color: '#1ed695'}}>CONVIÉRTETE EN PREMIUM</Text>
-                                <Text style={{color: '#636363'}}>Vea estadísticas de cumplimiento, cierre no conformidades, o crea más checklists de auditoría</Text>          
+                                <Text style={{color: '#636363',fontSize:13}}>Vea estadísticas de cumplimiento, cierre no conformidades, o crea más checklists de auditoría</Text>          
                             </View>
-                            <View style={{marginLeft:5, marginRight:3,marginTop:10}}>
+                            <View style={{marginLeft:'3%', marginRight:'1.5%',marginTop:"3.5%"}}>
                                 <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}
-                                        style= {{height: 56,
-                                        width: 25}}>
+                                        style= {{height: 45,
+                                        width: 24,marginRight:'1.5%'}}>
                                 </Image>
                             </View>
                         </View>

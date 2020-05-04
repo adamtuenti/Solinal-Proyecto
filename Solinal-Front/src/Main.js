@@ -87,7 +87,7 @@ export default class Main extends React.Component {
 
         <EstadoCuenta />
 
-          <Card>
+          <Card style={{borderRadius: 5,borderWidth: 1,borderColor: '#d6d7da'}}>
 
 
               <View>
@@ -122,38 +122,26 @@ export default class Main extends React.Component {
           </Card>
 
 
-          <Card>
-
-
-
-
-        <View style={{flex: 1, flexDirection: 'row', height:100, justifyContent:'flex-end', marginTop:15}}>
-
-          <View style={{margin:7}}>
-            
-            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/premium.png?raw=true'}}
-                            style= {{height: 50,
-                                     width: 70}}>
-              </Image>
-          </View>
-        <View style={{flex: 1, flexDirection: 'column',marginLeft:5}}>
-            
-                <Text style={{color: '#1ed695'}}>CONVIÉRTETE EN PREMIUM</Text>
-                <Text style={{color: '#636363'}}>Vea estadísticas de cumplimiento, cierre no conformidades, o crea más checklists de auditoría</Text>
-              
-
-        </View>
-
-          <View style={{marginLeft:5, marginRight:3,marginTop:10}}>    
-                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}
-                              style= {{height: 56,
-                                      width: 25}}>
-                </Image>
-          
-          </View>
-        </View>
-
-      </Card>
+         <Card style={{borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
+                        <View style={{flex: 1, flexDirection: 'row', height:85, justifyContent:'flex-end', marginTop:'3%'}}>
+                            <View style={{margin:7}}>
+                                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/premium.png?raw=true'}}
+                                        style= {{height: 50,
+                                        width: 70}}>
+                                </Image>
+                            </View>
+                            <View style={{flex: 1, flexDirection: 'column',marginLeft:5}}>
+                                <Text style={{color: '#1ed695'}}>CONVIÉRTETE EN PREMIUM</Text>
+                                <Text style={{color: '#636363',fontSize:13}}>Vea estadísticas de cumplimiento, cierre no conformidades, o crea más checklists de auditoría</Text>          
+                            </View>
+                            <View style={{marginLeft:'3%', marginRight:'1.5%',marginTop:"3.5%"}}>
+                                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}
+                                        style= {{height: 45,
+                                        width: 24,marginRight:'1.5%'}}>
+                                </Image>
+                            </View>
+                        </View>
+                    </Card>
         
        
               

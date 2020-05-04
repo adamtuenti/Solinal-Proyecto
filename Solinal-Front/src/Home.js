@@ -22,7 +22,7 @@ export default class Home extends Component{
                         source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
         />
 
-        <Text style={{fontWeight: 'bold', fontSize: 32, color: '#1ED695',paddingTop:25,paddingBottom:125,marginTop:15}}>Bienvenido {userNameGlobal}</Text>
+        <Text style={{fontWeight: 'bold', fontSize: 32, color: '#1ED695',paddingTop:25,paddingBottom:125,marginTop:15}}>Bienvenido {nameGlobal}</Text>
 
        
 

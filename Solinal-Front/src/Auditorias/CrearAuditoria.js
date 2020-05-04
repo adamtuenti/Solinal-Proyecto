@@ -56,7 +56,7 @@ export default class CrearAuditoria extends Component {
                     
 
 
-                    <Card style={{height:175}}>
+                    <Card style={{height:175,borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
 
                     <View style={{flex: 1, flexDirection: 'column', height:100, justifyContent:'center', marginTop:3}}>
 
@@ -84,7 +84,7 @@ export default class CrearAuditoria extends Component {
                
 
 
-                    <Card style={{height:175}} onPress={()=>this.props.navigation.navigate('AuditoriasLista')}>
+                    <Card style={{height:175,borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}} onPress={()=>this.props.navigation.navigate('AuditoriasLista')}>
 
                     <View style={{flex: 1, flexDirection: 'column', height:100, justifyContent:'center', marginTop:3}}>
 

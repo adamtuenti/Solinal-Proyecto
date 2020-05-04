@@ -7,7 +7,7 @@ import {MaterialIcons,
 MaterialCommunityIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class Reestablecer extends Component{
+class ValidacionClave extends Component{
 
 
     constructor(props){
@@ -17,81 +17,74 @@ class Reestablecer extends Component{
        // global.idUserGlobal = 5;
         //global.userNameGlobal = '';
         this.state = {
-          email : '',
+          codigo : '',
+          pass:'',
          // password : '',
           loading: false,
-          pacientes: [],
+          datos: [],
           mensajeError:'',
          // iconName : 'eye',
          // secureTextEntry:true,
           //idUser:'1',
-          url: 'http://accountsolinal.pythonanywhere.com/api/users'
+          url: 'http://accountsolinal.pythonanywhere.com/api/user/'+this.props.navigation.state.params.idA,
         }
       
+    }
+
+    componentDidMount(){
+        this.getDatos();
+    }
+
+    getDatos = () => {
+        this.setState({loading:true})
+        fetch(this.state.url)
+        .then(res=>res.json())
+        .then(res=>{ 
+            //console.log('-');
+            this.setState({
+            
+            datos: res,
+            url: res.next,
+            loading: false,   
+            })
+        })
     }
   
 
 
 
     myfun=()=>{
-        const{email}=this.state;
+        const{pass,codigo}=this.state;
+       // console.log(this.state.datos)
 
-         if ( email === '') { this.setState({mensajeError:'Ingrese su e-mail!'}) }
+         if ( codigo === ''||pass=='') { this.setState({mensajeError:'Ingrese todos los campos!'}) }
 
          else{
+
+
+             if(this.state.datos.user==codigo){
+
+                 if(pass.length<7){
+                     this.setState({mensajeError:'Clave muy corta!'})
+
+                 }else{
+                     this.setState({mensajeError:'Contrasena reestablecida!'})
+
+                 }
+                 
+
+             }
+             else{
+                 this.setState({mensajeError:'Codigo erroneo!'})
+
+             }
       
 
-        const array1 = this.state.pacientes
-         var idA = 1
-        //var nameUser = ''
+      
         
-        var bandera = 0
+ 
 
-        array1.forEach(function(element){
-            var correo = element.email
-            var codigo = element.user
-            var idU = element.user
-            //var nameU = element.first_name
-            
-
-
-            if (correo==email){
-                
-             
-                
-                
-                
-              //  if (password == pass){
-                    bandera = 1;
-           
-                   
-                    idA = idU
-                  //  nameUser = nameU
-                  
-                   
-                    
-                    
-
-               // }
-                //else{
-                  //  bandera = 2;
-                  //  this.setState({mensajeError:'Clave mal ingresada!'})
-                    
-
-           //     }
-            }
-
-        }); 
-        if(bandera==0){
-            this.setState({mensajeError:'Email no registrado!'})
-
-        }
-        else if(bandera==1){
-            this.props.navigation.navigate('ValidacionClave',{idA})
-            
-        }
-        
-        }
+         }
       
       
     }
@@ -99,23 +92,7 @@ class Reestablecer extends Component{
    
 
 
-    componentDidMount(){
-        this.getPacientes();
-    }
-
-    getPacientes = () => {
-        this.setState({loading:true})
-        fetch(this.state.url)
-        .then(res=>res.json())
-        .then(res=>{ 
-            //console.log(res);
-            this.setState({
-            pacientes: res,
-            url: res.next,
-            loading: false,    
-            })
-        })
-    }
+    
 
     render() {
         return ( 
@@ -132,17 +109,27 @@ class Reestablecer extends Component{
 
 
                 <View style={{marginTop:'5%',width:'75%',alignItems:'center',alignContent:'center',marginBottom:'15%'}}>               
-                <Text style={{fontSize:15,alignItems:'center'}}>Escriba su correo para reestablecer su clave</Text>       
+                <Text style={{fontSize:15,alignItems:'center'}}>Revise su correo e ingrese el codigo</Text>       
                 </View>
                
                 
                 <TextInput
                                     style={styles.input}
-                                    placeholder='E-mail'
+                                    placeholder='Codigo de validacion'
 
                                     autoCapitalize="none"
                                     placeholderTextColor='lightgrey'
-                                    onChangeText={email => this.setState({ email })}
+                                    onChangeText={codigo => this.setState({ codigo })}
+
+                />
+
+                <TextInput
+                                    style={styles.input}
+                                    placeholder='Nueva clave'
+
+                                    autoCapitalize="none"
+                                    placeholderTextColor='lightgrey'
+                                    onChangeText={pass => this.setState({ pass })}
 
                 />
                 
@@ -163,7 +150,7 @@ class Reestablecer extends Component{
 
                 <TouchableHighlight
                     style={styles.botonLogin} onPress={this.myfun}>
-                    <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> Enviar e-mail </Text>
+                    <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> Cambiar clave </Text>
                 </TouchableHighlight>
                     
                 
@@ -173,6 +160,15 @@ class Reestablecer extends Component{
 
         
 
+                </View>
+
+                <View style={{alignItems:'center',marginTop:'10%'}}>
+                        
+                            <Text>¿Ya reestableciste la clave? </Text>
+                            <Text 
+                            onPress={()=>this.props.navigation.navigate('Login')}
+                            style={{color: '#23d697',marginTop:'1%'}}>
+                            Inicia Sesión</Text>
                 </View>
 
                 
@@ -195,7 +191,7 @@ class Reestablecer extends Component{
 }
 
 
-export default Reestablecer;
+export default ValidacionClave;
 
 
 

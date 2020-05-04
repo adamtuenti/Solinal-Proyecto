@@ -75,7 +75,7 @@ export default class AuditoriasVacia extends Component {
                     <Card>
                         <CardItem>
                             <Body style={{alignItems: 'center'}}>
-                                <Text style={{alignItems: 'center',fontSize: 15,}}>Mis Auditorías</Text>
+                                <Text style={{alignItems: 'center',fontSize: 19,}}>Mis Auditorías</Text>
                             </Body>
                         </CardItem>
                         <CardItem cardBody style={{alignItems: 'center'}}>
@@ -88,8 +88,8 @@ export default class AuditoriasVacia extends Component {
                         </CardItem>
                         <CardItem>
                             <Body style={{alignItems: 'center', width:24,fontWeight: 'bold'}}>
-                                <Text style={{color: '#636363', fontSize: 12, alignItems: 'center'}}>Aún no has realizado ninguna auditoría</Text>
-                                <Text style={{color: '#636363', fontSize: 12, alignItems: 'center'}}>Encuentra las normas actualizadas y empieza a auditar</Text>
+                                <Text style={{color: '#636363', fontSize: 14, alignItems: 'center'}}>Aún no has realizado ninguna auditoría</Text>
+                                <Text style={{color: '#636363', fontSize: 14, alignItems: 'center',textAlign:'center'}}>Encuentra las normas actualizadas y empieza a auditar</Text>
                             </Body>
                         </CardItem>
                         <CardItem style={{alignItems: 'center'}}>

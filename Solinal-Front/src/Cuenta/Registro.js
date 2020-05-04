@@ -7,6 +7,9 @@ import {
 } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import FormData from 'form-data';
+import PasswordInputText from 'react-native-hide-show-password-input';
+import {MaterialIcons,
+MaterialCommunityIcons} from '@expo/vector-icons';
 
 
 import { Ionicons } from '@expo/vector-icons';
@@ -25,6 +28,8 @@ class Registro extends Component {
             email: '',
             usuario: '',
             mensajeError:'',
+            iconName : 'eye',
+          secureTextEntry:true,
 
             loading: false,
 
@@ -32,39 +37,32 @@ class Registro extends Component {
     }
 
 
+     mostrarClave =()=>{
+        let iconName = (this.state.secureTextEntry)? "eye-off":"eye";
+        this.setState({
+            secureTextEntry:!this.state.secureTextEntry,
+            iconName:iconName
+        });
+
+    }
+
+
+
 
     validar=async()=> {
-       /* try{
-            var formData = new FormData();
-            } catch (error) {
-            console.error('FormData ERROR', error);
-            }*/
+
         const { nombre, password, apellido, email,usuario } = this.state;
-       // formData.append('username','adaita');
-        //formData.append('password','nuedsd');
-        //formData.append('email','email@espol.ecom')
-
-        
-
 
         
         if (nombre === '' || apellido === '' || password === '' || email === ''||usuario=='') { this.setState({mensajeError:'Llene todos los campos!'}) }
 
 
-        
-        else if(password.length<8){
-             this.setState({mensajeError:'Clave muy corta!'})
+        else if(password.length<8){this.setState({mensajeError:'Clave muy corta!'})}
 
-        }
-       
-   
         
         else{
 
             let errorM = ''
-
-
-
 
             var dataToSend = {username: usuario, password: password, email: email,first_name:nombre,last_name:apellido};
             var formBody = [];
@@ -126,6 +124,46 @@ class Registro extends Component {
     avanzarRegistro = () =>{
         alert('Debes iniciar sesion')
         this.props.navigation.navigate('Login')
+
+    }
+
+    validar1=()=> {
+
+        const { paisEnvio } = 'ecu';
+
+        
+      //  if (paisEnvio=='') { this.setState({mensajeError:'Ingrese el pais o la norma!'}) }
+
+        //else{
+
+            let errorM = ''
+
+            var dataToSend = {pais_norma: 'ecua',usuario:2};
+            var formBody = [];
+            for (var key in dataToSend) {
+            var encodedKey = encodeURIComponent(key);
+            var encodedValue = encodeURIComponent(dataToSend[key]);
+            formBody.push(encodedKey + "=" + encodedValue);
+            }
+            formBody = formBody.join("&");
+            fetch('http://accountsolinal.pythonanywhere.com/api/correo_pais', {
+            method: "POST",//Request Type 
+            body: formBody,//post body 
+            headers: {//Header Defination 
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            })
+             .then((response) => response.json())
+    //If response is in json then in success
+    .then((responseJson) => {
+        alert(JSON.stringify(responseJson));
+        console.log(responseJson);
+    })
+    //If response is not in json then in error
+    .catch((error) => {
+      alert(JSON.stringify(error));
+      console.error(error);
+    });
 
     }
 
@@ -202,33 +240,48 @@ class Registro extends Component {
                                     onChangeText={email => this.setState({ email })}
                                 />
 
+                        </View>
+
         
-                                <TextInput secureTextEntry={true} style={styles.input}
 
+                                
+                                <View style={{flexDirection:'row',alignItems:'center',marginLeft:'7%'}}>
 
-                                    pattern={[
-                                        '^.{8,}$', // min 8 chars
-                                        '(?=.*\\d)', // number required
-                                        '(?=.*[A-Z])', // uppercase letter
-                                    ]}
-
-
-
+                                <View >
+                                
+                                <TextInput
+                                    style={styles.input}
                                     placeholder='Clave (min 8 caracteres)'
-                                    onChangeText={password => this.setState({ password })} />
+
+                                    autoCapitalize="none"
+                                    secureTextEntry={this.state.secureTextEntry}
+                                    placeholderTextColor='lightgrey'
+                                     minLength={2}
+                                    onChangeText={password => this.setState({ password})}
+
+                                />
+                
+                                </View>
+                                <View style={{marginLeft:'2%'}}>
+                                <TouchableHighlight onPress={this.mostrarClave}>
+                                <MaterialCommunityIcons name = {this.state.iconName} size={19}/>
+                                </TouchableHighlight>
+                                </View>
+                        </View>
+                                
 
                              
                         <View style={{alignContent:'center',alignItems:'center',justifyContent:'center'}}>
                         <Text style={{color:'red',marginTop:'2%'}}>{this.state.mensajeError}</Text>
                         </View>
 
-                    </View>
+                    
 
                 </View>
                       
                         <View style={styles.MainContainer}>
                             <TouchableOpacity
-                                style={styles.botonRegister} onPress={this.onRegistro}>
+                                style={styles.botonRegister} onPress={this.validar1}>
                                 <Text style={{ fontWeight: 'bold', color: '#515254' }}> REGISTRARME </Text>
                             </TouchableOpacity>
 
@@ -273,7 +326,12 @@ const styles = StyleSheet.create({
 
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 20
+        alignContent:'center',
+        marginBottom: 20,
+
+         
+     
+   
     },
 
     bot: {
@@ -305,7 +363,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 1,
         borderColor: '#c7f5d7',
-        marginBottom: 5
+        marginBottom: 2
 
 
 
@@ -315,7 +373,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 8,
+        margin: 5,
     },
 
     GooglePlusStyle: {
@@ -380,7 +438,7 @@ const styles = StyleSheet.create({
     },
     scrollContainer: {
         flex: 1,
-        paddingHorizontal: 15,
+      
     },
     scrollContentContainer: {
         paddingTop: 40,

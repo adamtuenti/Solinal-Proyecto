@@ -9,7 +9,8 @@ import {
   View,
 } from 'react-native';
 //import DatePicker from 'react-native-datepicker';
-
+import {RNCamera} from 'react-native-camera'
+//import RNFetchBlob from 'rn-fetch-blob'
 import AuditoriasProgramadas from '../../shared/AuditoriasProgramadas';
 import FooterCalendario from '../../shared/FooterCalendario';
 import { Calendar } from 'react-native-calendario';
@@ -336,7 +337,14 @@ export default class Crear extends Component {
                          <View style={styles.colapse}>
                   
                 {
-                  list.map((l, i) => (
+                 // const variable1 = 0
+
+                  list.map((l, i) => 
+                  
+                  (
+                    
+
+                    
                    
 
                     
@@ -364,7 +372,7 @@ export default class Crear extends Component {
 
                               <View style={{flexDirection:'column',alignItems:'flex-end',marginLeft:'7%'}}>
                                 <View>
-                                  <Text>1/{l.menu.length}</Text>
+                                  <Text>/{l.menu.length}</Text>
                                 </View>
                                 <View>
                                   <Text>{i}%</Text>
@@ -407,6 +415,7 @@ export default class Crear extends Component {
 
                                                                 {
                                                                     l.submenu.map((o,p)=>(
+                                                                    
                                                                      
                                                                         <View style={styles.submenu}>
                                                                         <Text style={styles.submenuLetra}>{o}</Text>

@@ -41,7 +41,7 @@ export default class Header extends React.Component{
 
                 
                 <Text style={{color:'white', fontSize:19, marginLeft:10}}>
-                    Bienvenido {userNameGlobal}
+                    Bienvenido {nameGlobal}
                 </Text>
             </View>
 
