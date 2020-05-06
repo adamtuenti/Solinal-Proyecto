@@ -17,6 +17,7 @@ import AuditoriasBuscar from './src/Auditorias/AuditoriasBuscar';
 import NormaEcBPM from './src/Auditorias/NormaEcBPM';
 import FirmaAuditor from './src/Auditorias/FirmaAuditor';
 import Crear from './src/Auditorias/Crear';
+import AuditoriaFinalizada from './src/Auditorias/AuditoriaFinalizada';
 
 import CalendarioVacia from './src/Calendario/CalendarioVacia';
 import CalendarioPrograma from './src/Calendario/CalendarioPrograma';
@@ -34,7 +35,7 @@ import InvitarMiembros from './src/Equipo/InvitarMiembros'
 
 const AppNavigator = createStackNavigator(
   {
-   Carusel,Login,Main,Login,Crear,FirmaAuditor,AuditoriasBuscar,Crear,Login,Main,CalendarioPrograma,Carusel,Footer,CalendarioVacia,NormaEcBPM,EquipoVacio,EquipoLista,InvitarMiembros,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar,FooterAuditoria
+    Login,Carusel,Main,Login,Crear,FirmaAuditor,AuditoriasBuscar,AuditoriaFinalizada,Crear,Login,Main,CalendarioPrograma,Carusel,Footer,CalendarioVacia,NormaEcBPM,EquipoVacio,EquipoLista,InvitarMiembros,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar,FooterAuditoria
   },
   {
     headerMode: 'none',

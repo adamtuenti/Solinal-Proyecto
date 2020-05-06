@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Dimensions,Image, Easing } from 'react-native';
 import { Input, Button, SocialIcon } from 'react-native-elements';
 import Form from 'react-bootstrap/Form'
 import {MaterialIcons} from '@expo/vector-icons';
-import { Container, Content, Text, List, ListItem, Left, Right, Body, TouchableHighlight, Thumbnail, View } from 'native-base';
+import { Container, Content, List, ListItem, Left, Right, Body, TouchableHighlight, Thumbnail, } from 'native-base';
 import Drawer from 'react-native-drawer-menu';
 
 
