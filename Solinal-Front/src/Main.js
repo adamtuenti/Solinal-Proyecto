@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container,  Title, Content, Card, CardItem,  Button, Left, Right, Body,  Font } from 'native-base';
-import { Icon,Divider } from 'react-native-elements'
-import {
+import { Container, Title, Content, Card, CardItem,  Button, Left, Right, Body,  Font } from 'native-base';
+import { Icon,Divider } from 'react-native-elements';
+/*import Container from 'native-base';*/
+import{
   StyleSheet,
   TouchableHighlight,
   Text,
   View,
-} from 'react-native'
+} from 'react-native';
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 import { ListItem } from 'react-native-elements';
 
 import Footer from './../shared/Footer';
-import Header  from './../shared/Header';
+import  Header   from './../shared/Header';
 import EstadoCuenta from './../shared/estadoCuenta';
 
 
