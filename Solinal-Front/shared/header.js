@@ -4,13 +4,20 @@ import { Input, Button, SocialIcon } from 'react-native-elements';
 import Form from 'react-bootstrap/Form'
 import {MaterialIcons} from '@expo/vector-icons';
 import { Container, Content, List, ListItem, Left, Right, Body, TouchableHighlight, Thumbnail, } from 'native-base';
-import Drawer from 'react-native-drawer-menu';
+import MenuDrawer from 'react-native-side-drawer';
 
 
 
 
 export default class Header extends React.Component{
 
+    constructor(props) {
+        super(props);
+        this.state = {
+          open: false
+        };
+      }
+    
     closeDrawer(){
         this._drawer._root.close()
     };
@@ -18,11 +25,15 @@ export default class Header extends React.Component{
     openDrawer(){
         this._drawer._root.open()
     };
-    
-    render(){
 
-        var drawerContent = (<View>
-            <List>
+    toggleOpen = () => {
+        this.setState({ open: !this.state.open });
+      };
+    
+    drawerContent = () => {
+        return (
+            
+                    <List>
                        <ListItem itemHeader>
                             <View>
                                 <View>
@@ -110,7 +121,13 @@ export default class Header extends React.Component{
                             </View>
                         </ListItem>
                     </List>
-          </View>);
+                
+        );
+    };
+
+    render(){
+
+       
           // customize drawer's style (Optional)
           var customStyles = {
             drawer: {
@@ -143,31 +160,26 @@ export default class Header extends React.Component{
 
                 
                 <Text style={{color:'white', fontSize:19, marginLeft:10}}>
-                    Bienvenido {userNameGlobal}
+                    Bienvenido Robin
                 </Text>
             </View>
 
-            <Drawer
-            style={styles.container}
-            drawerWidth={300}
-            drawerContent={drawerContent}
-            type={Drawer.types.Overlay}
-            customStyles={{drawer: styles.drawer}}
-            drawerPosition={Drawer.positions.Right}
-            onDrawerOpen={() => {console.log('Drawer is opened');}}
-            onDrawerClose={() => {console.log('Drawer is closed')}}
-            easingFunc={Easing.ease}
-            >
-                <View style={styles.content}>
-                    <Text>{Object.values(Drawer.positions).join(' ')}</Text>
-                    <Text>{Object.values(Drawer.types).join(' ')}</Text>
-                </View>
-            </Drawer>
+            <MenuDrawer 
+          open={this.state.open} 
+          drawerContent={this.drawerContent()}
+          drawerPercentage={45}
+          animationTime={250}
+          overlay={true}
+          opacity={0.4}
+        >
+        
 
             <Button style={{flex: 1, flexDirection: 'row-reverse',marginLeft:5, alignItems:'center'}}>
            // onPress={() => this.openDrawer()}>
                 <MaterialIcons name='menu' size={30}  style={styles.icon}/>
             </Button>
+
+            </MenuDrawer>
 
         </View>
         </View>

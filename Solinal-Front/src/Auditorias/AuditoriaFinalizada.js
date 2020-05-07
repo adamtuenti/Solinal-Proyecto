@@ -16,20 +16,79 @@ import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterAuditoria from '../../shared/FooterAuditoria';
 
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import PDFLib, { PDFDocument, PDFPage } from 'react-native-pdf-lib';
+import RNPrint from 'react-native-print';
+
 
 export default class AuditoriaFinalizada extends Component{
 
-    createPDF(){
-        let options = {
-            html: '<h1>PDF TEST</h1>',
-            fileName: 'test',
-            directory: 'Documents',
-          };
+  state = {
+    selectedPrinter: null,
+  };
 
-        let file = await RNHTMLtoPDF.convert(options)
-        // console.log(file.filePath);
-        alert(file.filePath);
+    createPDF = async () => {
+        const page1 = PDFPage
+.create()
+.setMediaBox(200, 200)
+.drawText('You can add text and rectangles to the PDF!', {
+  x: 5,
+  y: 235,
+  color: '#007386',
+})
+.drawRectangle({
+  x: 25,
+  y: 25,
+  width: 150,
+  height: 150,
+  color: '#FF99CC',
+})
+.drawRectangle({
+  x: 75,
+  y: 75,
+  width: 50,
+  height: 50,
+  color: '#99FFCC',
+});
+
+const page2 = PDFPage
+  .create()
+  .setMediaBox(250, 250)
+  .drawText('You can add JPG images too!')
+  
+
+  const docsDir =  await PDFLib.getDocumentsDirectory();
+const pdfPath = `${docsDir}/sample.pdf`;
+PDFDocument
+  .create(pdfPath)
+  .addPages(page1, page2)
+  .write() // Returns a promise that resolves with the PDF's path
+  .then(path => {
+    console.log('PDF created at: ' + path);
+    // Do stuff with your shiny new PDF!
+  });
     }
+
+    constructor(props) {
+        super(props)
+        this.state ={}
+    };
+
+    generatePDF = () => {
+        var document = new jsPDF('p', 'pt');
+        
+        document.text(20, 20, 'This is the first title.')
+  
+        document.setFont('helvetica')
+        document.setFontType('normal')
+        document.text(20, 60, 'This is the second title.')
+  
+        document.setFont('helvetica')
+        document.setFontType('normal')
+        document.text(20, 100, 'This is the thrid title.')      
+  
+        
+        document.save('demo.pdf')
+      }   
     
     async componentDidMount() {
         await Font.loadAsync({
@@ -38,6 +97,28 @@ export default class AuditoriaFinalizada extends Component{
           /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
         });
         this.setState({ isReady: true });
+      }
+
+      async printHTML() {
+        await RNPrint.print({
+          html:
+            '<h1>Here will be Heading 1</h1><h2>Here will be Heading 2</h2><h3>Here will be Heading 3</h3>',
+        });
+      }
+
+      async printPDF() {
+        const results = await RNHTMLtoPDF.convert({
+          html: '<h1>Demo Text to converted to PDF</h1>',
+          fileName: 'test',
+          base64: true,
+        });
+        await RNPrint.print({ filePath: results.filePath });
+      }
+
+      async printRemotePDF() {
+        await RNPrint.print({
+          filePath: 'http://www.africau.edu/images/default/sample.pdf',
+        });
       }
 
       render() {
@@ -64,12 +145,15 @@ export default class AuditoriaFinalizada extends Component{
                                 <Text style={{color: '#636363', fontSize: 12, alignItems: 'center'}}>AUDITORÍA FINALIZADA</Text>
                             </Body>
                         </CardItem>
+
                         <CardItem style={{alignItems: 'center'}}>
                             <Body style={{alignItems: 'center'}}>
 
                                 <TouchableHighlight
-                                     onPress={()=>this.createPDF()}>
-                                    <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2063.png'}}></Image>
+                                     onPress={()=>this.printPDF()}>
+                                    <View>
+                                        <Text>Descargar informe</Text>
+                                    </View>
                                 </TouchableHighlight>                    
                             </Body>
                             <Body style={{alignItems: 'center'}}>
