@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Dimensions,Image, Easing } from 'react-native';
 import { Input, Button, SocialIcon } from 'react-native-elements';
 import Form from 'react-bootstrap/Form'
 import {MaterialIcons} from '@expo/vector-icons';
-import { Container, Content, List, ListItem, Left, Right, Body, TouchableHighlight, Thumbnail, } from 'native-base';
+import { Container, Content, List, ListItem, Left, Right, Body, TouchableHighlight, TouchableOpacity, Thumbnail, } from 'native-base';
 import MenuDrawer from 'react-native-side-drawer';
 
 
@@ -32,7 +32,8 @@ export default class Header extends React.Component{
     
     drawerContent = () => {
         return (
-            
+            <Container>
+                <Content>
                     <List>
                        <ListItem itemHeader>
                             <View>
@@ -47,7 +48,8 @@ export default class Header extends React.Component{
                             </View>
                         </ListItem>
                         <ListItem thumbnail>
-                           <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org/restaurantes')}>
+                            <View>
+                            
                                <Left>
                                     <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar01.jpg' }} />
                                </Left>
@@ -59,10 +61,11 @@ export default class Header extends React.Component{
                                         <Text note>Entrenamiento en el servicio, la manipulación de alimentos y administradores de restaurantes</Text>
                                     </View>
                                </Body>
-                           </TouchableHighlight>
-                        </ListItem>
-                         <ListItem thumbnail>
-                           <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org/industrias')}>
+                            
+                            </View>
+                        </ListItem>   
+                        <ListItem thumbnail>
+                           
                                <Left>
                                     <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar02.jpg' }} />
                                </Left>
@@ -74,10 +77,10 @@ export default class Header extends React.Component{
                                         <Text note>Certificado de personas en la seguridad de los alimentos y auditores calificados</Text>
                                     </View>
                                 </Body>
-                            </TouchableHighlight>
+                    
                         </ListItem>
                         <ListItem thumbnail>
-                            <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org/competencia')}>
+                            
                                 <Left>
                                     <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar03.jpg' }} />
                                 </Left>
@@ -89,10 +92,10 @@ export default class Header extends React.Component{
                                         <Text note>Certificamos la experiencia de trabajo, habilidades y destrezas basados en las normas INEN</Text>
                                     </View>
                                 </Body>
-                            </TouchableHighlight>
+                            
                         </ListItem>
                         <ListItem thumbnail>
-                            <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org/asesorias')}>
+                            
                                 <Left>
                                     <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar04.png' }} />
                                 </Left>
@@ -104,7 +107,7 @@ export default class Header extends React.Component{
                                         <Text note>Resolución de problemas frecuentes presentes en restaurantes e industrias de alimentos</Text>
                                     </View>
                                 </Body>
-                            </TouchableHighlight>
+                            
                         </ListItem>
                         <ListItem itemHeader>
                             <View>
@@ -113,14 +116,16 @@ export default class Header extends React.Component{
                                 </View>
                             </View>
                             <View>
-                                <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org')}>
+                                
                                     <View>
                                         <Text>www.solinalfoodschool.org</Text>
                                     </View>
-                                </TouchableHighlight>
+                                
                             </View>
                         </ListItem>
                     </List>
+                </Content>
+            </Container>
                 
         );
     };
@@ -160,7 +165,7 @@ export default class Header extends React.Component{
 
                 
                 <Text style={{color:'white', fontSize:19, marginLeft:10}}>
-                    Bienvenido Robin
+                    Bienvenido {userNameGlobal}
                 </Text>
             </View>
 
