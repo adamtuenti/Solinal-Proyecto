@@ -22,7 +22,7 @@ export default class SideBar extends React.Component {
                             </View>
                         </ListItem>
                         <ListItem thumbnail>
-                           <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org/restaurantes')}>
+                           
                                <Left>
                                     <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar01.jpg' }} />
                                </Left>
@@ -34,10 +34,10 @@ export default class SideBar extends React.Component {
                                         <Text note>Entrenamiento en el servicio, la manipulación de alimentos y administradores de restaurantes</Text>
                                     </View>
                                </Body>
-                           </TouchableHighlight>
+                           
                         </ListItem>
                          <ListItem thumbnail>
-                           <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org/industrias')}>
+                           
                                <Left>
                                     <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar02.jpg' }} />
                                </Left>
@@ -49,10 +49,10 @@ export default class SideBar extends React.Component {
                                         <Text note>Certificado de personas en la seguridad de los alimentos y auditores calificados</Text>
                                     </View>
                                 </Body>
-                            </TouchableHighlight>
+                            
                         </ListItem>
                         <ListItem thumbnail>
-                            <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org/competencia')}>
+                            
                                 <Left>
                                     <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar03.jpg' }} />
                                 </Left>
@@ -64,10 +64,10 @@ export default class SideBar extends React.Component {
                                         <Text note>Certificamos la experiencia de trabajo, habilidades y destrezas basados en las normas INEN</Text>
                                     </View>
                                 </Body>
-                            </TouchableHighlight>
+                            
                         </ListItem>
                         <ListItem thumbnail>
-                            <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org/asesorias')}>
+                            
                                 <Left>
                                     <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar04.png' }} />
                                 </Left>
@@ -79,7 +79,7 @@ export default class SideBar extends React.Component {
                                         <Text note>Resolución de problemas frecuentes presentes en restaurantes e industrias de alimentos</Text>
                                     </View>
                                 </Body>
-                            </TouchableHighlight>
+                            
                         </ListItem>
                         <ListItem itemHeader>
                             <View>
@@ -88,11 +88,11 @@ export default class SideBar extends React.Component {
                                 </View>
                             </View>
                             <View>
-                                <TouchableHighlight onPress={()=> this._linkPressed('http://www.solinalfoodschool.org')}>
+                                
                                     <View>
                                         <Text>www.solinalfoodschool.org</Text>
                                     </View>
-                                </TouchableHighlight>
+                                
                             </View>
                         </ListItem>
                     </List>

@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions,Image, Easing } from 'react-native';
+import { StyleSheet, Text, View, Dimensions,Image, Easing, NativeModules } from 'react-native';
 import { Input, Button, SocialIcon } from 'react-native-elements';
 import Form from 'react-bootstrap/Form'
 import {MaterialIcons} from '@expo/vector-icons';
-import { Container, Content, List, ListItem, Left, Right, Body, TouchableHighlight, TouchableOpacity, Thumbnail, } from 'native-base';
+import { Container, Drawer, Content, List, ListItem, Left, Right, Body, TouchableHighlight, TouchableOpacity, Thumbnail, } from 'native-base';
 import MenuDrawer from 'react-native-side-drawer';
+import SideBar from './SideBar';
 
 
 
@@ -16,6 +17,7 @@ export default class Header extends React.Component{
         this.state = {
           open: false
         };
+        this.drawerContent = this.drawerContent.bind(this);
       }
     
     closeDrawer(){
@@ -130,6 +132,7 @@ export default class Header extends React.Component{
         );
     };
 
+
     render(){
 
        
@@ -146,9 +149,6 @@ export default class Header extends React.Component{
 
     return(
 
-       // <Drawer ref={(ref) => { this._drawer = ref; }} 
-         //       content={<SideBar navigator={this._navigator} />} 
-           //     onClose={() => this.closeDrawer()}>
 
         <View  style={styles.back}>
 
@@ -169,29 +169,24 @@ export default class Header extends React.Component{
                 </Text>
             </View>
 
-            <MenuDrawer 
-          open={this.state.open} 
-          drawerContent={this.drawerContent()}
-          drawerPercentage={45}
-          animationTime={250}
-          overlay={true}
-          opacity={0.4}
-        >
+            
         
 
             <Button style={{flex: 1, flexDirection: 'row-reverse',marginLeft:5, alignItems:'center'}}>
-           // onPress={() => this.openDrawer()}>
+            onPress={() => this.toggleOpen()}>
                 <MaterialIcons name='menu' size={30}  style={styles.icon}/>
             </Button>
 
-            </MenuDrawer>
+            
 
         </View>
         </View>
-       // </Drawer>
+       
     );
     }
 }
+
+NativeModules.expo
 
 const styles = StyleSheet.create({
     izquierdo:{
