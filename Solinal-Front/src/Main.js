@@ -89,18 +89,14 @@ export default class Main extends React.Component {
                 <List>
                    <ListItem itemHeader>
                         <View>
-                            <View>
                                 <Text>Solinal®</Text>
-                            </View>
                         </View>
                         <View>
-                            <View>
                                 <Text>Training {'&'} Certification Services</Text>
-                            </View>
                         </View>
                     </ListItem>
                     <ListItem thumbnail>
-                        <View>
+                        
                         
                            <Left>
                                 <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar01.jpg' }} />
@@ -114,7 +110,7 @@ export default class Main extends React.Component {
                                 </View>
                            </Body>
                         
-                        </View>
+                        
                     </ListItem>   
                     <ListItem thumbnail>
                        
@@ -163,16 +159,10 @@ export default class Main extends React.Component {
                     </ListItem>
                     <ListItem itemHeader>
                         <View>
-                            <View>
                                 <Text>Comparta nuestros servicios</Text>
-                            </View>
                         </View>
                         <View>
-                            
-                                <View>
-                                    <Text>www.solinalfoodschool.org</Text>
-                                </View>
-                            
+                                    <Text>www.solinalfoodschool.org</Text>                      
                         </View>
                     </ListItem>
                 </List>
