@@ -9,6 +9,8 @@ import {
   View,
 } from 'react-native'
 /*import * as Font from 'expo-font';*/
+import * as Print from 'expo-print';
+import * as FileSystem from 'expo-file-system';
 import { Ionicons } from '@expo/vector-icons';
 import Footer from './../../shared/Footer';
 import HeaderBack from './../../shared/HeaderBack';
@@ -25,6 +27,20 @@ export default class AuditoriaFinalizada extends Component{
   state = {
     selectedPrinter: null,
   };
+
+  expoPDF = async () => {
+    let filePath = await Print.printToFileAsync({
+      html: "<h1>PDF TEST SOLINAL</h1>",
+      width: 612,
+      height: 792,
+      base64: false
+    });
+    alert('PDF Generado',filePath.uri);
+
+    console.log(filePath.uri);
+    console.log(FileSystem.cacheDirectory);
+    console.log(FileSystem.documentDirectory);
+  }
 
     createPDF = async () => {
         const page1 = PDFPage
@@ -150,7 +166,7 @@ PDFDocument
                             <Body style={{alignItems: 'center'}}>
 
                                 <TouchableHighlight
-                                     onPress={()=>this.printPDF()}>
+                                     onPress={()=>this.expoPDF()}>
                                     <View>
                                         <Text>Descargar informe</Text>
                                     </View>
