@@ -166,7 +166,7 @@ PDFDocument
                             <Body style={{alignItems: 'center'}}>
 
                                 <TouchableHighlight
-                                     onPress={()=>this.expoPDF()}>
+                                     onPress={()=>this.createPDF()}>
                                     <View>
                                         <Text>Descargar informe</Text>
                                     </View>
