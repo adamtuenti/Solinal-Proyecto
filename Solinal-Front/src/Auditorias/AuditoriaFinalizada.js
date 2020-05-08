@@ -11,6 +11,7 @@ import {
 /*import * as Font from 'expo-font';*/
 import * as Print from 'expo-print';
 import * as FileSystem from 'expo-file-system';
+import * as IntentLauncher from 'expo-intent-launcher';
 import { Ionicons } from '@expo/vector-icons';
 import Footer from './../../shared/Footer';
 import HeaderBack from './../../shared/HeaderBack';
@@ -40,6 +41,15 @@ export default class AuditoriaFinalizada extends Component{
     console.log(filePath.uri);
     console.log(FileSystem.cacheDirectory);
     console.log(FileSystem.documentDirectory);
+
+    FileSystem.getContentUriAsync(filePath.uri).then(cUri => {
+      console.log(cUri);
+      IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
+          data: cUri.uri,
+          flags: 1,
+          type: 'application/pdf'
+       });
+    });
   }
 
     createPDF = async () => {
@@ -166,7 +176,7 @@ PDFDocument
                             <Body style={{alignItems: 'center'}}>
 
                                 <TouchableHighlight
-                                     onPress={()=>this.createPDF()}>
+                                     onPress={()=>this.expoPDF()}>
                                     <View>
                                         <Text>Descargar informe</Text>
                                     </View>
