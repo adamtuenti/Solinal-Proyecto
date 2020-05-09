@@ -13,6 +13,7 @@ import HeaderBack from '../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterCalendario from '../../shared/FooterCalendario';
 import { Calendar } from 'react-native-calendars';
+import {MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
 
 export default class CalendarioPrograma extends Component {
 
@@ -27,22 +28,13 @@ export default class CalendarioPrograma extends Component {
           loading: false,
           fechas: [],
           url: 'http://accountsolinal.pythonanywhere.com/api/fechas_get/1',
-          paginaAnterior: this.props.navigation.state.params.paginaActual,
     }
   }
 
 
 
 
-    async componentDidMount() {
-        await Font.loadAsync({
-          Roboto: require("native-base/Fonts/Roboto.ttf"),
-          Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-          /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
-        });
-        this.setState({ isReady: true });
-        this.getFechas();
-      }
+  
 
       componentDidMount = () => {
         this.getFechas();
@@ -50,23 +42,16 @@ export default class CalendarioPrograma extends Component {
 
       getFechas = () => {
         const array = [];
-        console.log(this.state.idUser)
-        console.log(this.state.url)
-          this.setState({loading:true})
+        this.setState({loading:true})
           fetch(this.state.url)
-  
           .then(res=>res.json())
-         
           .then(res=>{ 
-            console.log('--')
               console.log(res);
               this.setState({
               fechas: res,
               url: res.next,
               loading: false,    
               })
-              console.log('----')
-              console.log(this.state.fechas);
           })
           
       }
@@ -77,7 +62,15 @@ export default class CalendarioPrograma extends Component {
               <Container>
 
                 
-                    <HeaderBack encabezado={this.state.paginaAnterior}/>
+                      <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:'11%',paddingTop:'8%',alignContent:'center'}}>
+                      <View style={{marginTop:'4.5%',flexDirection:'row',}}>
+                          <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
+                              <TouchableHighlight onPress={()=>this.props.navigation.navigate('Main')}><MaterialIcons name="arrow-back" size={32} color="white" /></TouchableHighlight>         
+                              <Text style={{color:'white', fontSize:21, marginLeft:10}}>Calendario</Text>
+                          </View>
+                      </View>
+                      </View>
+
                     <Content padder style={{backgroundColor: '#f6f6f6'}}>
                         <EstadoCuenta/>
                         <Card>
@@ -168,7 +161,7 @@ export default class CalendarioPrograma extends Component {
                                 
                               
                                 <View style={{marginTop:'5%'}}>
-                                  <Text style={styles.datos}>
+                                  <Text style={{fontSize:14}}>
                                     FINALIZA
                                   </Text>
                                   </View>
@@ -196,9 +189,7 @@ export default class CalendarioPrograma extends Component {
 
 
 const styles = StyleSheet.create({
-  datos:{
-    fontSize:14
-  },
+
   valores:{
     color:'green',
     fontSize:14,

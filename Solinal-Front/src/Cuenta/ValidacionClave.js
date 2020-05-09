@@ -14,8 +14,6 @@ class ValidacionClave extends Component{
 
         
         super(props);
-       // global.idUserGlobal = 5;
-        //global.userNameGlobal = '';
         this.state = {
           codigo : '',
           pass:'',
@@ -26,6 +24,7 @@ class ValidacionClave extends Component{
          // iconName : 'eye',
          // secureTextEntry:true,
           //idUser:'1',
+          userId :this.props.navigation.state.params.idA,
           url: 'http://accountsolinal.pythonanywhere.com/api/user/'+this.props.navigation.state.params.idA,
         }
       
@@ -40,9 +39,8 @@ class ValidacionClave extends Component{
         fetch(this.state.url)
         .then(res=>res.json())
         .then(res=>{ 
-            //console.log('-');
+            console.log(res);
             this.setState({
-            
             datos: res,
             url: res.next,
             loading: false,   
@@ -51,24 +49,41 @@ class ValidacionClave extends Component{
     }
   
 
-
-
-    myfun=()=>{
-        const{pass,codigo}=this.state;
-       // console.log(this.state.datos)
-
+    restablecerClave=()=>{
+        const{pass,codigo,idUser}=this.state;
          if ( codigo === ''||pass=='') { this.setState({mensajeError:'Ingrese todos los campos!'}) }
-
          else{
+             console.log(this.state.datos.codigoVerificacion)
+             if(this.state.datos.codigoVerificacion==codigo){
 
-
-             if(this.state.datos.user==codigo){
 
                  if(pass.length<7){
                      this.setState({mensajeError:'Clave muy corta!'})
 
                  }else{
-                     this.setState({mensajeError:'Contrasena reestablecida!'})
+
+                     var dataToSend = {id:idUser,password:pass};
+                        var formBody = [];
+                        for (var key in dataToSend) {
+                        var encodedKey = encodeURIComponent(key);
+                        var encodedValue = encodeURIComponent(dataToSend[key]);
+                        formBody.push(encodedKey + "=" + encodedValue);
+                        }
+                        formBody = formBody.join("&");
+                        fetch('http://accountsolinal.pythonanywhere.com/api/newpassword', {
+                        method: "POST",//Request Type 
+                        body: formBody,//post body 
+                        headers: {//Header Defination 
+                            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                        },
+                        })
+                        .then((response) => response.json())
+                        //If response is in json then in success
+                        .then((responseJson) => {
+                        console.log(responseJson)
+                        this.setState({mensajeError:'Contrasena reestablecida!'})
+                        })
+                            
 
                  }
                  
@@ -149,7 +164,7 @@ class ValidacionClave extends Component{
                 
 
                 <TouchableHighlight
-                    style={styles.botonLogin} onPress={this.myfun}>
+                    style={styles.botonLogin} onPress={this.restablecerClave}>
                     <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> Cambiar clave </Text>
                 </TouchableHighlight>
                     

@@ -30,6 +30,24 @@ class Login extends Component{
         }
       
     }
+
+    componentDidMount(){
+        this.getPacientes();
+    }
+
+    getPacientes = () => {
+        this.setState({loading:true})
+        fetch(this.state.url)
+        .then(res=>res.json())
+        .then(res=>{ 
+            //console.log(res);
+            this.setState({
+            pacientes: res,
+            url: res.next,
+            loading: false,    
+            })
+        })
+    }
   
 
 
@@ -41,7 +59,7 @@ class Login extends Component{
 
          else{
       
-
+/*
         const array1 = this.state.pacientes
         var idA = 1
         var nameUser = ''
@@ -59,17 +77,12 @@ class Login extends Component{
 
 
             if (name==username){
-
                 if (password == pass){
                     bandera = 1;
-           
-                   
                     idA = idU
                     nameUser = nameU
                     user = name
-                  
-                   
-                    
+
                     
 
                 }
@@ -100,7 +113,46 @@ class Login extends Component{
           
             
             
-        }
+        }*/
+
+        var dataToSend = {username:username,password:password};
+            var formBody = [];
+            for (var key in dataToSend) {
+            var encodedKey = encodeURIComponent(key);
+            var encodedValue = encodeURIComponent(dataToSend[key]);
+            formBody.push(encodedKey + "=" + encodedValue);
+            }
+            formBody = formBody.join("&");
+            fetch('http://accountsolinal.pythonanywhere.com/api/login', {
+            method: "POST",//Request Type 
+            body: formBody,//post body 
+            headers: {//Header Defination 
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            })
+             .then((response) => response.json())
+             //console.log(responseJson.user.id)
+            //If response is in json then in success
+            .then((responseJson) => {
+               // alert(JSON.stringify(responseJson));
+                //console.log(responseJson)
+                if("user" in responseJson){
+                    idUserGlobal = responseJson.user.id;
+                    nameGlobal=responseJson.user.first_name;
+                    userNameGlobal=responseJson.user.username;
+                    this.props.navigation.navigate('Home')
+                    
+                }
+                else{
+                    this.setState({mensajeError:'Credenciales incorrectas!'})
+
+                }
+            
+            })
+            .catch((error) => {
+      //alert(JSON.stringify(error));
+      //console.error(error);
+    });
 
          }
       
@@ -117,23 +169,7 @@ class Login extends Component{
     }
 
 
-    componentDidMount(){
-        this.getPacientes();
-    }
-
-    getPacientes = () => {
-        this.setState({loading:true})
-        fetch(this.state.url)
-        .then(res=>res.json())
-        .then(res=>{ 
-            //console.log(res);
-            this.setState({
-            pacientes: res,
-            url: res.next,
-            loading: false,    
-            })
-        })
-    }
+    
 
     render() {
         return ( 

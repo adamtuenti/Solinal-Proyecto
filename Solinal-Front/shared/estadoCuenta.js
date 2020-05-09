@@ -58,19 +58,21 @@ export default class EstadoCuenta extends React.Component{
                 </View>  
                 <View>
                     <Text style={{color: '#2ba855', marginLeft:5}}>
-                    {this.state.datos.numero_auditorias_pendientes}
+                    {this.state.datos.auditoriasPendientes}
                   
                     </Text>
                 </View>
                 
             </View>
-            <View style={{flexDirection:'row',marginLeft:19}}>
+            <View style={{flexDirection:'row-reverse',flex:1}}>
+            <View style={{flexDirection:'row'}}>
                 <Text style={{color: '#2ba855',fontSize:15}}>
                     Cuenta
                 </Text>
                 <Text style={{color: '#2ba855',marginLeft:5,fontSize:15}}>
-                    {this.state.datos.cuenta_usuario}
+                    {this.state.datos.tipoCuenta}
                 </Text>
+            </View>
             </View>
         </View>
         

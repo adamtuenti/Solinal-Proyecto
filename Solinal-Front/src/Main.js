@@ -1,27 +1,21 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
-import { Container,  Title, Content, Card, CardItem,  Button, Left, Right, Body,  Font } from 'native-base';
-import { Icon,Divider } from 'react-native-elements'
-import {
-  StyleSheet,
-  TouchableHighlight,
-  Text,
-  View,
-} from 'react-native'
+import { Container, Drawer, Title, Content, Card, Thumbnail, CardItem, Header, Button, Left, Right, Body,  Font } from 'native-base';
+import { Icon,Divider, List, ListItem, } from 'react-native-elements';
+import{StyleSheet,TouchableHighlight,TouchableOpacity,Text,View,Dimensions,Linking,Image} from 'react-native';
 /*import * as Font from 'expo-font';*/
-import { Ionicons } from '@expo/vector-icons';
-import { ListItem } from 'react-native-elements';
+/*import { ListItem } from 'react-native-elements';*/
+import {MaterialIcons,MaterialCommunityIcons,Ionicons} from '@expo/vector-icons';
 
 import Footer from './../shared/Footer';
-import Header  from './../shared/Header';
+/*import Header from '../shared/Header';*/
 import EstadoCuenta from './../shared/estadoCuenta';
+import MenuDrawer from 'react-native-side-drawer';
 
 
 const list = [
   {
     name: 'Crear Equipo',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/equipo.png?raw=true',
-    subtitle: 'Vice President',
     url: 'EquipoVacio',
     altura:30,
     anchura:40
@@ -29,7 +23,6 @@ const list = [
   {
     name: 'Mis Auditorias',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true',
-    subtitle: 'Vice Chairman',
     url: 'AuditoriasVacia',
     altura:32,
     anchura:23
@@ -38,7 +31,7 @@ const list = [
     name: 'Recomienda Solinal Auditor',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/compartir.png?raw=true',
     subtitle: 'Vice Chairman',
-    url: 'CalendarioPrograma',
+    url: 'CalendarioVacia',
     altura:30,
     anchura:35
   }
@@ -66,16 +59,146 @@ export default class Main extends React.Component {
     this.setState({ isReady: true });
   }
 
+   toggleOpen = () => {
+    this.setState({ open: !this.state.open });
+  };
+
+  drawerContent = () => {
+    return (
+        
+                <View style={{backgroundColor:'#616261',justifyContent:'center',alignContent:'center',height:'100%'}}>
+
+                <View style={{marginBottom:'10%',marginLeft:'3.5%'}}>
+                   
+                        <View style={{flexDirection:'column'}}>
+                        <View>
+                                <Text style={{color:'white',fontSize:25, fontWeight: 'bold'}}>Solinal ®</Text>
+                        </View>
+                        <View>
+                                <Text style={{color:'white',fontSize:17}}>Training {'&'} Certification Services</Text>
+                        </View>
+
+                        </View>
+                  </View>
+                 
+                    <View style={{flexDirection:'row'}}>
+                        
+                        
+                           <View style={{marginLeft:'3.5%',marginTop:'2.5%'}}>
+                                <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar01.jpg' }} />
+                           </View>
+                           
+                           <View style={{flexDirection:'column',marginLeft:'5%',width:'72%'}}>
+                               <View >
+                                    <Text style={{color:'white',fontSize:15.5, fontWeight: 'bold'}}>Solinal para restaurantes</Text>
+                                </View>
+                                <View>
+                                    <Text style={{color:'white',fontSize:12,fontStyle:'italic',marginTop:'1.5%',marginRight:'2%'}}>Entrenamiento en el servicio, la manipulación de alimentos y administradores de restaurantes</Text>
+                                </View>
+
+                          </View>
+                          
+                        
+                        
+                    </View>   
+                    <View style={{flexDirection:'row',marginTop:'5%'}}>
+                       
+                           <View style={{marginLeft:'3.5%',marginTop:'2.5%'}}>
+                                <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar02.jpg' }} />
+                           </View>
+                            <View style={{flexDirection:'column',marginLeft:'5%',width:'72%'}}>
+                                <View>
+                                    <Text style={{color:'white',fontSize:15.5, fontWeight: 'bold'}}>Solinal para industrias</Text>
+                                </View>
+                                <View>
+                                    <Text style={{color:'white',fontSize:12,fontStyle:'italic',marginTop:'1.5%',marginRight:'2%'}}>Certificado de personas en la seguridad de los alimentos y auditores calificados</Text>
+                                </View>
+                             </View>
+                
+                    </View>
+                    <View style={{flexDirection:'row',marginTop:'5%'}}>
+                        
+                            <View style={{marginLeft:'3.5%',marginTop:'2.5%'}}>
+                                <Thumbnail square source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar03.jpg' }} />
+                            </View>
+                            <View style={{flexDirection:'column',marginLeft:'5%',width:'72%'}}>
+                                <View>
+                                    <Text style={{color:'white',fontSize:15.5, fontWeight: 'bold'}}>Solinal en la competencia laboral</Text>
+                                </View>
+                                <View>
+                                    <Text style={{color:'white',fontSize:12,fontStyle:'italic',marginTop:'1%',marginRight:'2%'}}>Certificamos la experiencia de trabajo, habilidades y destrezas basados en las normas INEN</Text>
+                                </View>
+                            </View>
+                        
+                    </View>
+                    <View style={{flexDirection:'row',marginTop:'5%',}}>
+                        
+                            <View style={{marginLeft:'3.5%',marginTop:'2.5%'}}>
+                                <Thumbnail square  source={{ uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar04.png' }} />
+                            </View>
+                            <View style={{flexDirection:'column',marginLeft:'5%',width:'72%'}}>
+                                <View>
+                                    <Text style={{color:'white',fontSize:15.5, fontWeight: 'bold'}} onPress={ ()=>{ Linking.openURL('https://google.com')}}>Solinal servicios de asesoría</Text>
+                                </View>
+                                <View>
+                                    <Text style={{color:'white',fontSize:12,fontStyle:'italic',marginTop:'1.5%',marginRight:'2%'}}>Resolución de problemas frecuentes presentes en restaurantes e industrias de alimentos</Text>
+                                </View>
+                            </View>
+                        
+                    </View>
+                    <View style={{flexDirection:'column',marginLeft:'3.5%'}}>
+                        <View>
+                                <Text style={{color:'white',fontSize:14,marginTop:'10%'}}>Comparta nuestros servicios</Text>
+                               
+                        </View>
+                        <View >
+                                    <Text style={{color:'yellow',fontSize:14,marginTop:'1%',fontStyle:'italic'}} onPress={ ()=>{ Linking.openURL('https://google.com')}}>www.solinalfoodschool.org</Text>                      
+                        </View>
+                    </View>
+                </View>
+           
+            
+    );
+};
+
   
 
-  render() {
+render() {
 
     
     return (
-      <Container>
 
-      <Header/>
+      <Container style={{marginTop:'6.50%'}}>
 
+      <MenuDrawer 
+          open={this.state.open} 
+          drawerContent={this.drawerContent()}
+          drawerPercentage={80}
+          animationTime={250}
+          overlay={true}
+          opacity={0.4}
+        >
+
+      <View style={{backgroundColor:'#1ED695',height:'8%',width:'100%',alignContent:'center'}}>
+
+      <View  style={{  alignContent:'center',marginTop:'1.5%',   width:'100%',flexDirection:'row',}}>
+
+        <View style={{flexDirection: 'row',marginLeft:'3.75%'}}>
+                
+                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/user.png?raw=true'}}
+                            style= {{ height:40,width:40,}}/>
+                <Text style={{color:'white', fontSize:19, marginLeft:10,marginTop:'3.25%'}}>Bienvenido {nameGlobal}
+                </Text>
+        </View>
+        <View style={{flexDirection:'row-reverse',flex:1}}>
+          <TouchableHighlight onPress={this.toggleOpen}  style={{ alignItems:'center'}}>
+          <View><MaterialCommunityIcons size={35} name="menu"/></View>
+          </TouchableHighlight>
+        </View>
+        </View>
+
+    </View>
+      
       
 
 
@@ -111,7 +234,6 @@ export default class Main extends React.Component {
                   ))
                 }
               </View>
-
            
 
 
@@ -142,16 +264,62 @@ export default class Main extends React.Component {
                             </View>
                         </View>
                     </Card>
+
+                          
         
        
               
+            
         </Content>
 
 
       <Footer />
-    
+
+      </MenuDrawer>                         
       </Container>
     );
    
   }
 }
+
+
+const styles = StyleSheet.create({
+  izquierdo:{
+      width: Dimensions.get('screen').width,
+
+      
+     
+      flexDirection: 'row',
+      alignItems:'center',
+      marginLeft:250
+        
+      
+  },
+  icon:{
+     position:'absolute',
+     left:25,
+     //marginTop:12
+      
+  },
+  back:{
+      flexDirection:'row',
+       backgroundColor:'#1ED695',
+      height:'11%',
+      paddingTop:'8%',
+      alignContent:'center',
+      flex:1
+      
+  },
+  imagen:{
+      height:40,
+      width:40,
+      
+     // marginLeft:10,
+      //marginTop:8
+  },
+  container:{
+      marginTop:'4.5%',
+      flexDirection:'row',
+  
+  }
+})

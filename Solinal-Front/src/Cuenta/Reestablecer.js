@@ -35,50 +35,25 @@ class Reestablecer extends Component{
 
     myfun=()=>{
         const{email}=this.state;
-
-         if ( email === '') { this.setState({mensajeError:'Ingrese su e-mail!'}) }
-
-         else{
-      
-
-        const array1 = this.state.pacientes
-         var idA = 1
-        //var nameUser = ''
         
+
+        if ( email === '') { this.setState({mensajeError:'Ingrese su e-mail!'}) }
+
+        else{
+        const array1 = this.state.pacientes
+        var idA = 1
+
         var bandera = 0
 
         array1.forEach(function(element){
             var correo = element.email
             var codigo = element.user
             var idU = element.user
-            //var nameU = element.first_name
-            
-
 
             if (correo==email){
-                
-             
-                
-                
-                
-              //  if (password == pass){
-                    bandera = 1;
-           
-                   
+                    bandera = 1;                   
                     idA = idU
-                  //  nameUser = nameU
-                  
-                   
-                    
-                    
 
-               // }
-                //else{
-                  //  bandera = 2;
-                  //  this.setState({mensajeError:'Clave mal ingresada!'})
-                    
-
-           //     }
             }
 
         }); 
@@ -87,11 +62,37 @@ class Reestablecer extends Component{
 
         }
         else if(bandera==1){
-            this.props.navigation.navigate('ValidacionClave',{idA})
+
             
-        }
+            var dataToSend = {correo:email};
+            var formBody = [];
+            for (var key in dataToSend) {
+            var encodedKey = encodeURIComponent(key);
+            var encodedValue = encodeURIComponent(dataToSend[key]);
+            formBody.push(encodedKey + "=" + encodedValue);
+            }
+            formBody = formBody.join("&");
+            fetch('http://accountsolinal.pythonanywhere.com/api/correo_password', {
+            method: "POST",//Request Type 
+            body: formBody,//post body 
+            headers: {//Header Defination 
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            })
+             .then((response) => response.json())
+            //If response is in json then in success
+            .then((responseJson) => {
+            this.props.navigation.navigate('ValidacionClave',{idA})
+            })
+   
+    
+
+         }
+            
+            
         
-        }
+        
+    }
       
       
     }
@@ -132,7 +133,7 @@ class Reestablecer extends Component{
 
 
                 <View style={{marginTop:'5%',width:'75%',alignItems:'center',alignContent:'center',marginBottom:'15%'}}>               
-                <Text style={{fontSize:15,alignItems:'center'}}>Escriba su correo para reestablecer su clave</Text>       
+                <Text style={{fontSize:15,alignItems:'center',textAlign:'center'}}>Escriba su correo para reestablecer su clave</Text>       
                 </View>
                
                 

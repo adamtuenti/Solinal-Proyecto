@@ -2,15 +2,11 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Title, Content, Card, CardItem, Footer, Button, Left, Right, Body,  Font } from 'native-base';
 import { Icon } from 'react-native-elements'
-import {
-  StyleSheet,
-  TouchableHighlight,
-  Text,
-  View,
-} from 'react-native';
+import {StyleSheet,TouchableHighlight,Text,View} from 'react-native';
 import Header from '../../shared/Header';
 import AuditoriasProgramadas from '../../shared/AuditoriasProgramadas';
 import FooterCalendario from '../../shared/FooterCalendario';
+import {MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
 
 export default class CalendarioVacia extends Component {
 
@@ -26,7 +22,15 @@ export default class CalendarioVacia extends Component {
       render(){
           return(
               <Container>
-                <Header encabezado='Calendario'/>
+                <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:'11%',paddingTop:'8%',alignContent:'center'}}>
+            <View style={{marginTop:'4.5%',flexDirection:'row',}}>
+                <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('Main')}><MaterialIcons name="arrow-back" size={32} color="white" /></TouchableHighlight>         
+                    <Text style={{color:'white', fontSize:21, marginLeft:10}}>Calendario</Text>
+                </View>
+            </View>
+            </View>
+
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
                     <AuditoriasProgramadas cantidad='0' tipoCuenta='GRATIS'/>
 
@@ -40,15 +44,15 @@ export default class CalendarioVacia extends Component {
                         <CardItem cardBody style={{alignItems: 'center'}}>
                             <Body style={{alignItems: 'center'}}>
                                 <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2065.png'}} 
-                                   style={{height: 250, 
-                                           width: 250, 
+                                   style={{height: 200, 
+                                           width: 200, 
                                            alignItems: 'center'}}/>
                             </Body>               
                         </CardItem>
                         <CardItem>
                             <View style={{alignItems: 'center', width:'100%',marginTop:10,justifyContent: 'center',}}>
                                 <Text style={{color: '#636363', fontSize: 14, alignItems: 'center'}}>Aún no existen auditorías programadas</Text>
-                                <Text style={{color: '#636363', fontSize: 12, alignItems: 'center',marginTop:5}}>Para programar auditorías, debes crear una auditoría</Text>
+                                <Text style={{color: '#636363', fontSize: 14, alignItems: 'center',marginTop:5,textAlign:'center'}}>Para programar auditorías, debes crear una auditoría</Text>
                             </View>
                         </CardItem>
                         <CardItem style={{alignItems: 'center'}}>

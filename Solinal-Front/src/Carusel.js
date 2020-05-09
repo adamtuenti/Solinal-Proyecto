@@ -207,7 +207,7 @@ export default class Carusel extends Component {
    
  
     _renderDotIndicator() {
-        return <PagerDotIndicator style={{height:'4%',color:'blue'}} pageCount={3} />;
+        return <PagerDotIndicator style={{height:'4%',backgroundColor:'#B3F1C9',borderEndColor:"green"}} pageCount={3} />;
     }
     
  

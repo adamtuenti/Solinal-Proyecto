@@ -42,8 +42,8 @@ const dataMain = [
 const list = [
   {
     titulo: 'De las instalaciones y requisitos de buenas prácticas de manufactura',
-    menu: ['Art. 73: De las condiciones mínimas básicas','Art. 74: De la localización','Art. 75: Diseño y construcción','Art. 76: Condiciones específicas de las áreas, estructuras internas y accesorios'],
-    submenu:['sub menu1','submenu2','ejemplo','a','n'],
+    menu: ['Art. 75: Diseño y construcción','Art. 76: Condiciones específicas de las áreas, estructuras internas y accesorios'],
+    submenu:['sub menu1','submenu2'],
     url: 'AuditoriasBuscar',
     altura:30,
     anchura:40
@@ -76,11 +76,17 @@ export default class Crear extends Component {
          this.state = {
            dateInicio:'',
            dateFin:'',
-           paginaAnterior: this.props.navigation.state.params.paginaActual,
+           array:[0,0,0],
+           subarray:[[10,0],[8,0],[0,0]],
+           cont:0,
+           paginaAnterior: 'Main',//this.props.navigation.state.params.paginaActual,
            time: '09:00',
            timeFin: '09:10',
-           norma: this.props.navigation.state.params.norma,
-            chosenDate: new Date(), pressStatus: false, selected: null, SelectedButton: '' 
+           norma: 'norma',//this.props.navigation.state.params.norma,
+            chosenDate: new Date(), 
+            pressStatus: false, 
+            selected: null, 
+            SelectedButton: '' 
         };
     }
 
@@ -107,11 +113,13 @@ export default class Crear extends Component {
         this.setState({ toggled: !this.state.toggled })
     }
 
-     _handleClick(flag, button) {
+     _handleClick(flag,button) {
+       console.log(button);
         if (flag == 1) {
           this.setState({selected: true});
         }
         this.setState({SelectedButton: button})
+       
       }
 
 
@@ -124,6 +132,63 @@ export default class Crear extends Component {
     this.TimePicker.close();
   }
 
+  onUpdateItem = i => {
+   // alert('hola')
+    this.setState(state => {
+      const array = state.array.map((item, j) => {
+         if (j === i) {
+          
+                return item+1;
+              } else {
+                return item;
+              }
+          });
+        
+     
+ 
+      return {
+        array
+      };
+    
+    });
+  
+  }
+
+  onUpdateItem1(i,n) {
+   // alert('hola')
+    this.setState(state => {
+      const subarray = state.subarray.map((item, j) => {   
+         if (j === i) {
+           const subarray1 = item.map((item1, o) => {
+             if (o === n) {
+               return item1+1
+             }else {
+                return item1;
+              }
+          });
+          return {
+            subarray1
+          };
+        } 
+        else{
+          return item
+        }          
+        })
+      return {
+        subarray
+      };
+
+      }
+    )
+      }
+        
+       
+    
+ 
+    
+
+
+
   onConfirmFin(hour, minute) {
     this.setState({ timeFin: `${hour}:${minute}` });
     this.TimePicker.close();
@@ -131,7 +196,8 @@ export default class Crear extends Component {
 
 
       render(){
-        const var1 = 1;
+        //var array = [0,10,5];
+        var contador = 0;
           return(
               <Container>
 
@@ -337,11 +403,13 @@ export default class Crear extends Component {
                          <View style={styles.colapse}>
                   
                 {
-                 // const variable1 = 0
+                 // const variable1 = 0'
+                // console.log(list),
 
                   list.map((l, i) => 
                   
                   (
+                   // this.state.array.push(0),
                     
 
                     
@@ -372,10 +440,10 @@ export default class Crear extends Component {
 
                               <View style={{flexDirection:'column',alignItems:'flex-end',marginLeft:'7%'}}>
                                 <View>
-                                  <Text>/{l.menu.length}</Text>
+                                  <Text>{this.state.array[i]}/{l.menu.length}</Text>
                                 </View>
                                 <View>
-                                  <Text>{i}%</Text>
+                                  <Text>{this.state.array[i]/l.menu.length*100}%</Text>
                                 </View>
                               </View>
                            
@@ -394,6 +462,9 @@ export default class Crear extends Component {
                                              {
                                                 l.menu.map((m, n) => (
 
+                                                 // i = i+n,
+                                                  
+
                                                     <Collapse>
                                                     
 
@@ -403,7 +474,7 @@ export default class Crear extends Component {
                                                                 <Text style={styles.menuLetra}>{m} </Text>
                                                                 </View>
                                                                 <View style={{marginLeft:'15%',flexDirection:'row-reverse', alignItems:'center',alignContent:'center'}}>
-                                                                <View><Text>  0/{l.submenu.length}</Text></View>
+                                                                <View><Text>  {this.state.subarray[i][n]}/{l.submenu.length}</Text></View>
                                                                 </View>
                                                                 </View>
                                                         
@@ -415,15 +486,32 @@ export default class Crear extends Component {
 
                                                                 {
                                                                     l.submenu.map((o,p)=>(
+
+                                                                    contador+=1,
                                                                     
                                                                      
                                                                         <View style={styles.submenu}>
-                                                                        <Text style={styles.submenuLetra}>{o}</Text>
+                                                                        <Text style={styles.submenuLetra}>   {o}</Text>
 
                                                                         <View style={{flexDirection:'row',marginTop:7,marginBottom:5}}>    
                                                                             <TouchableHighlight
-                                                                            style={{backgroundColor: (this.state.SelectedButton === '1' ? 'green' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}}
-                                                                            onPress={() => this._handleClick('any flag', '1')}
+                                                                            id={p}
+                                                                            style={{backgroundColor: (this.state.SelectedButton === p+'1' ? 'green' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}}
+                                                                           onPress={() =>this.onUpdateItem(i)
+                                                                            }
+
+                                                                           // onPress={() =>
+                                                                            //this.onUpdateItem1(n)}
+                                                                            
+                                                                            
+
+                                                                             // state=> {const array = state.array[i]+1
+                                                                               // cont: this.state.cont + 1
+                                                                             // })
+                                                                            //console.log(this.state.array)
+                                                                            //this._handleClick('any flag', p+'1',n),console.log(i)
+                                                                            
+                                                                           // }
                                                                             underlayColor="red"
                                                                             >
                                                                             <View>
@@ -432,9 +520,10 @@ export default class Crear extends Component {
                                                                             </View>
                                                                             </TouchableHighlight>
                                                                             <TouchableHighlight
+                                                                            id={p}
 
-                                                                            style={{backgroundColor: (this.state.SelectedButton === '2' ? 'red' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}}
-                                                                            onPress={() => this._handleClick('any flag', '2')}
+                                                                            style={{backgroundColor: (this.state.SelectedButton === p+'2' ? 'red' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}}
+                                                                            onPress={() => this._handleClick('any flag', p+'2',n)}
                                                                             underlayColor="red">
                                                                             <View >
 
@@ -444,9 +533,10 @@ export default class Crear extends Component {
 
 
                                                                             <TouchableHighlight
-                                                                            style={ {backgroundColor: (this.state.SelectedButton === '3' ? 'orange' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}}
+                                                                            id={p}
+                                                                            style={ {backgroundColor: (this.state.SelectedButton === p+'3' ? 'orange' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}}
           
-                                                                            onPress={() => this._handleClick('any flag', '3')}
+                                                                            onPress={() => this._handleClick('any flag', p+'3',n)}
                                                                             underlayColor="red">
                                                                             <View >
 

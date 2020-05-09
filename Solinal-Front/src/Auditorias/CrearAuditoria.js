@@ -9,33 +9,15 @@ import {
   View,
 } from 'react-native'
 /*import * as Font from 'expo-font';*/
-import { Ionicons } from '@expo/vector-icons';
+
 import Footer from './../../shared/Footer';
 import HeaderBack from './../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterAuditoria from '../../shared/FooterAuditoria';
+import {MaterialIcons,MaterialCommunityIcons,Ionicons } from '@expo/vector-icons';
 
 export default class CrearAuditoria extends Component {
 
-    /*<Card style={{height: 200}}>
-                        <CardItem>
-                            <Body>
-                                <Text style={{color: '#1ed695'}}>BUSCAR LISTAS DE AUDITORÍAS BASADA EN NORMAS</Text>
-                            </Body>
-                        </CardItem>
-                        <CardItem cardBody style={{alignItems: 'center', paddingLeft: 10}}>
-                            <Left style={{alignItems: 'center'}}>
-                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2035.png'}} 
-                                       style={{height: 100, 
-                                               width: 100}}/>
-                            </Left>
-                            <Body style={{alignItems: 'center'}}>
-                                <Text style={{color: '#636363'}}>
-                                    Busca las normas que quieras auditar, ya sea por entidad privada o gobernamental, como el Codex Alimentarius, FDA, BRC, ISO International, y las que se encuentran vigentes en tu país.
-                                </Text>
-                            </Body>               
-                        </CardItem>
-                    </Card>*/
 
     async componentDidMount() {
         await Font.loadAsync({
@@ -49,7 +31,19 @@ export default class CrearAuditoria extends Component {
     render() {
         return (
             <Container>
-                <HeaderBack encabezado='Auditoria'/>
+                 <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:'11%',paddingTop:'8%',alignContent:'center'}}>
+                <View style={{marginTop:'4.5%',flexDirection:'row',}}>
+                    <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
+                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('Main')}>       
+                        <MaterialIcons name="arrow-back" size={32} color="white" />
+                        </TouchableHighlight>         
+                        <Text style={{color:'white', fontSize:21, marginLeft:10}}>
+                            Auditorias
+                        </Text>
+                    </View>
+                </View>
+                </View>
+                
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
                     <EstadoCuenta cantidad='0' tipoCuenta='GRATIS'/>

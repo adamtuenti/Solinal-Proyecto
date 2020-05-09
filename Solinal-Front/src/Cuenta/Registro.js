@@ -49,7 +49,7 @@ class Registro extends Component {
 
 
 
-    validar=async()=> {
+    registrarUsuario=async()=> {
 
         const { nombre, password, apellido, email,usuario } = this.state;
 
@@ -72,7 +72,7 @@ class Registro extends Component {
             formBody.push(encodedKey + "=" + encodedValue);
             }
             formBody = formBody.join("&");
-            fetch('http://accountsolinal.pythonanywhere.com/api/register', {
+            fetch('http://accountsolinal.pythonanywhere.com/api/registroUsuario', {
             method: "POST",//Request Type 
             body: formBody,//post body 
             headers: {//Header Defination 
@@ -104,7 +104,7 @@ class Registro extends Component {
             if(errorM==''){
                 console.log('ninguno error')
                 this.props.navigation.navigate('Login')
-                this.setState({mensajeError:'ningun error!'})
+               // this.setState({mensajeError:'ningun error!'})
             }
 
             
@@ -281,7 +281,7 @@ class Registro extends Component {
                       
                         <View style={styles.MainContainer}>
                             <TouchableOpacity
-                                style={styles.botonRegister} onPress={this.validar1}>
+                                style={styles.botonRegister} onPress={this.registrarUsuario}>
                                 <Text style={{ fontWeight: 'bold', color: '#515254' }}> REGISTRARME </Text>
                             </TouchableOpacity>
 

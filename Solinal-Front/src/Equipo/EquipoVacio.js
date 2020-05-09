@@ -1,62 +1,94 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
 import { Container,  Title, Content, Card, CardItem,  Button, Left, Right, Body,  Font } from 'native-base';
-import { Icon,Divider } from 'react-native-elements'
-import {
-  StyleSheet,
-  TouchableHighlight,
-  Text,
-  View,
-} from 'react-native'
+import { Icon,Divider, } from 'react-native-elements'
+import {StyleSheet,TouchableHighlight,Text,View,Image} from 'react-native'
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 import { ListItem } from 'react-native-elements';
-
+import {MaterialIcons,MaterialCommunityIcons,AntDesign} from '@expo/vector-icons';
 import HeaderBack from '../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 
 export default class EquipoVacio extends Component {
 
-    async componentDidMount() {
-        await Font.loadAsync({
-          Roboto: require("native-base/Fonts/Roboto.ttf"),
-          Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-          /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
-        });
-        this.setState({ isReady: true });
-      }
+
+    constructor(props){
+        super(props);
+        this.state = {
+          loading: false,
+          equipo: [],
+          mensajeError:'',
+          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/'+idUserGlobal
+        }  
+    }
+
+    componentDidMount(){
+        this.getMiembrosEquipo();
+    }
+
+    getMiembrosEquipo = () => {
+        this.setState({loading:true})
+        fetch(this.state.urlEquipo)
+        .then(res=>res.json())
+        .then(res=>{ 
+            console.log(res);
+            this.setState({
+            equipo: res,
+            urlEquipo: res.next,
+            loading: false,    
+            })
+        })
+    }
+
+    validarInvitaciones(){
+        
+
+        const { equipo } = this.state;
+
+        if(equipo.length<5){
+            this.props.navigation.navigate('InvitarMiembros')
+        }
+        else{
+            alert('Miembros completos!')
+        }
+        
+        
+    }
+ 
       
     render(){
         return(
             <Container>
-                <HeaderBack encabezado='Equipo'/>
+                <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:'11%',paddingTop:'8%',alignContent:'center'}}>
+                <View style={{marginTop:'4.5%',flexDirection:'row',}}>
+                    <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
+                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('Main')}>       
+                        <MaterialIcons name="arrow-back" size={32} color="white" />
+                        </TouchableHighlight>         
+                        <Text style={{color:'white', fontSize:21, marginLeft:10}}>
+                            Equipo
+                        </Text>
+                    </View>
+                </View>
+                </View>
                     
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
                 
-        <View style={{flex: 1, flexDirection: 'row', margin:5,padding:10, backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 4,
-        borderWidth: 1,}}>
-            <View style={{ flexDirection:'row'}}>
-                <View>
-                <Text style={{color: '#636363',fontSize:15}}>
-                    Equipo de:
-                </Text>
-                </View>  
-                <View>
-                    <Text style={{color: '#2ba855', marginLeft:'5%',fontSize:15}}>
-                        {nameGlobal}
-                    </Text>
+        <View style={{flex: 1, flexDirection: 'row', margin:5,padding:5, backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 4,
+        borderWidth: 1}}>
+            <View style={{ flexDirection:'column',marginLeft:'2%'}}>
+                <View style={{flexDirection:'row'}}>
+                    <Text style={{color: '#636363',fontSize:15}}>Equipo de:</Text>
+                    <Text style={{color: '#2ba855', marginLeft:'5%',fontSize:15}}>{nameGlobal}</Text>
+                </View>
+                <View style={{flexDirection:'row'}}>
+                    <Text style={{color: '#2ba855',fontSize:15}}>{this.state.equipo.length}/5 </Text>
+                    <Text style={{color: '#2ba855',marginLeft:5,fontSize:15}}>miembros de equipo</Text>
                 </View>
                 
             </View>
-            <View style={{flexDirection:'row',alignItems:'center',flex:1}}>
-                <Text style={{color: '#2ba855',fontSize:15}}>
-                    0/5 
-                </Text>
-                <Text style={{color: '#2ba855',marginLeft:5,fontSize:15}}>
-                    miembros de equipo
-                </Text>
-            </View>
+        
         </View>
 
        
@@ -64,46 +96,37 @@ export default class EquipoVacio extends Component {
 
         <View style={{marginTop:'2%',marginBottom:'2%'}}>
 
+        {this.state.equipo.map(a=>
+
         <Card style={{borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',padding:'2%'}}>
+        <View style={{flexDirection:'row'}}>
         <View>
-        <Text style={{fontWeight:'bold',marginLeft:'1%',fontSize:15}}>Adan Navarrete</Text>
-        <Text style={{marginLeft:'1%',fontSize:13.5,fontStyle:'italic'}}>micorreo@gmail.com</Text>
+        <Text style={{fontWeight:'bold',marginLeft:'1%',fontSize:15}}>{a.nombreIntegrante} {a.apellidoIntegrante}</Text>
+        <Text style={{marginLeft:'1%',fontSize:13.5,fontStyle:'italic'}}>{a.correoIntegrante}</Text>
+        </View>
+        <View style={{flexDirection:'row-reverse',flex:1}}>
+        <AntDesign name="deleteuser" size={35}/>
+        </View>
         </View>
         </Card>
+        )}
+
+       
 
         </View>
 
    
                     
-                    <Card style={{borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
-                        <View style={{flex: 1, flexDirection: 'row', height:85, justifyContent:'flex-end', marginTop:'3%'}}>
-                            <View style={{margin:7}}>
-                                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/premium.png?raw=true'}}
-                                        style= {{height: 50,
-                                        width: 70}}>
-                                </Image>
-                            </View>
-                            <View style={{flex: 1, flexDirection: 'column',marginLeft:5}}>
-                                <Text style={{color: '#1ed695'}}>CONVIÉRTETE EN PREMIUM</Text>
-                                <Text style={{color: '#636363',fontSize:13}}>Vea estadísticas de cumplimiento, cierre no conformidades, o crea más checklists de auditoría</Text>          
-                            </View>
-                            <View style={{marginLeft:'3%', marginRight:'1.5%',marginTop:"3.5%"}}>
-                                <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/ir.png?raw=true'}}
-                                        style= {{height: 45,
-                                        width: 24,marginRight:'1.5%'}}>
-                                </Image>
-                            </View>
-                        </View>
-                    </Card>
+                    
                     <View style={{alignItems: 'center',marginTop:'15%'}}>
                         <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/team.png?raw=true'}} 
-                                        style={{height: 175, 
-                                           width: 175, 
+                                        style={{height: 150, 
+                                           width: 150, 
                                            alignItems: 'center'}}/>
                     </View>
                     <View style={{alignItems: 'center'}}>
                         <TouchableHighlight style={styles.botonLogin}
-                            onPress={()=>this.props.navigation.navigate('InvitarMiembros')}>
+                            onPress={()=>this.validarInvitaciones()}>
                             <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> INVITAR MIEMBROS </Text>
                         </TouchableHighlight>                        
                     </View>

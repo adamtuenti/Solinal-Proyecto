@@ -17,6 +17,7 @@ import AuditoriasLista from './src/Auditorias/AuditoriasLista';
 import AuditoriasBuscar from './src/Auditorias/AuditoriasBuscar';
 import NormaEcBPM from './src/Auditorias/NormaEcBPM';
 import FirmaAuditor from './src/Auditorias/FirmaAuditor';
+import AuditoriaFinalizada from './src/Auditorias/AuditoriaFinalizada';
 import Crear from './src/Auditorias/Crear';
 
 import CalendarioVacia from './src/Calendario/CalendarioVacia';
@@ -30,12 +31,13 @@ import FooterAuditoria from './shared/FooterAuditoria';
 import Footer from './shared/Footer';
 import EquipoLista from './src/Equipo/EquipoLista';
 import EquipoVacio from './src/Equipo/EquipoVacio';
-import InvitarMiembros from './src/Equipo/InvitarMiembros'
+import InvitarMiembros from './src/Equipo/InvitarMiembros';
+import RecomiendaSolinal from './src/Equipo/RecomiendaSolinal'
 
 
 const AppNavigator = createStackNavigator(
   {
-   Login,Carusel,Main,Login,Crear,ValidacionClave,FirmaAuditor,AuditoriasBuscar,Crear,Login,Main,CalendarioPrograma,Carusel,Footer,CalendarioVacia,NormaEcBPM,EquipoVacio,EquipoLista,InvitarMiembros,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar,FooterAuditoria
+   Carusel,RecomiendaSolinal,Login,AuditoriaFinalizada,Login,Crear,Carusel,Login,Main,Login,Crear,ValidacionClave,FirmaAuditor,AuditoriasBuscar,Crear,Login,Main,CalendarioPrograma,Carusel,Footer,CalendarioVacia,NormaEcBPM,EquipoVacio,EquipoLista,InvitarMiembros,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar,FooterAuditoria
   },
   {
     headerMode: 'none',

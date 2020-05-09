@@ -2,18 +2,11 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Title, Content, Card, CardItem,  Button, Left, Right, Body,  Font } from 'native-base';
 import { Icon } from 'react-native-elements'
-import {
-  StyleSheet,
-  TouchableHighlight,
-  Text,
-  View,
-} from 'react-native'
-/*import * as Font from 'expo-font';*/
-import { Ionicons } from '@expo/vector-icons';
+import {StyleSheet,TouchableHighlight,Text,View} from 'react-native'
 import FooterAuditoria from './../../shared/FooterAuditoria';
 import HeaderBack from './../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
-
+import {MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
 
 export default class AuditoriasVacia extends Component {
 
@@ -22,12 +15,9 @@ export default class AuditoriasVacia extends Component {
       constructor(props) {
         super(props);
         this.state = {
-
-
             loading: false,
-            paginaAnterior: this.props.navigation.state.params.paginaActual,
+            //paginaAnterior: this.props.navigation.state.params.paginaActual,
           datos: [],
-    
           url: 'http://accountsolinal.pythonanywhere.com/api/user/'+idUserGlobal
         };
     }
@@ -65,7 +55,18 @@ export default class AuditoriasVacia extends Component {
             <Container>
 
 
-                <HeaderBack encabezado={this.state.paginaAnterior}/>
+                <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:'11%',paddingTop:'8%',alignContent:'center'}}>
+            <View style={{marginTop:'4.5%',flexDirection:'row',}}>
+                <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
+                    <TouchableHighlight onPress={()=>this.props.navigation.navigate('Main')}>       
+                    <MaterialIcons name="arrow-back" size={32} color="white" />
+                    </TouchableHighlight>         
+                    <Text style={{color:'white', fontSize:21, marginLeft:10}}>
+                        Auditorias
+                    </Text>
+                </View>
+            </View>
+            </View>
 
 
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
@@ -75,7 +76,7 @@ export default class AuditoriasVacia extends Component {
                     <Card>
                         <CardItem>
                             <Body style={{alignItems: 'center'}}>
-                                <Text style={{alignItems: 'center',fontSize: 19,}}>Mis Auditorías</Text>
+                                <Text style={{alignItems: 'center',fontSize: 19,fontWeight: 'bold',marginTop:5,marginBottom:5}}>Mis Auditorías</Text>
                             </Body>
                         </CardItem>
                         <CardItem cardBody style={{alignItems: 'center'}}>
