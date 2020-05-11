@@ -22,8 +22,6 @@ import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import PDFLib, { PDFDocument, PDFPage } from 'react-native-pdf-lib';
 import RNPrint from 'react-native-print';
 
-const html = '';
-
 
 export default class AuditoriaFinalizada extends Component{
 
@@ -72,25 +70,37 @@ export default class AuditoriaFinalizada extends Component{
   }
 
   renderTableData() {
-    const array = this.state.users
+    const array = this.state.users;
+
+    var iduser = ''
 
     array.forEach(function(element){
-      var iduser = element.user
+      console.log(element)
+      iduser = element.user
       var nombre = element.first_name
       var apellido = element.last_name
       var correo = element.email
       var tipoC = element.tipoCuenta
 
-      return (
-        <tr key={iduser}>
-           <td>{iduser}</td>
+      console.log(iduser)
+      console.log(nombre)
+      console.log(apellido)
+      console.log(correo)
+      console.log(tipoC)
+
+      tabledata = `
+        <tr key=`+{iduser}+`>
+           <td>`+{iduser}+`</td>
            <td>{nombre}</td>
            <td>{apellido}</td>
-           <td>{email}</td>
+           <td>{correo}</td>
            <td>{tipoC}</td>
         </tr>
-     )
+        `
     });
+
+    console.log(tabledata)
+    return tabledata;
  }
 
  renderTableHeader() {
@@ -100,23 +110,27 @@ export default class AuditoriaFinalizada extends Component{
   })
 }
 
-  makeHTML = () => {
+  makeHTML = (tabledata) => {
     const htmlstring = `
     <div>
       <h1 id='title'>Tabla de Usuarios</h1>
-        <table id='usuario'>
+        <table id='usuarios'>
                <tbody>
-               `+this.renderTableData()+`
+                `+tabledata+`
                </tbody>
             </table>
     </div>
  `
+ console.log(htmlstring)
  return htmlstring;
+ 
   }
 
   expoPDF = async () => {
+    const tabledatahtml = this.renderTableData();
+    console.log(tabledatahtml);
     let filePath = await Print.printToFileAsync({
-      html: this.makeHTML(),
+      html: this.makeHTML(tabledatahtml),
       width: 612,
       height: 792,
       base64: false
