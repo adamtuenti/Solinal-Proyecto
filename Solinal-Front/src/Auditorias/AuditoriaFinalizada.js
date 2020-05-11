@@ -73,10 +73,11 @@ export default class AuditoriaFinalizada extends Component{
     const array = this.state.users;
 
     var iduser = ''
+    var tabledata = ''
 
     array.forEach(function(element){
       console.log(element)
-      iduser = element.user
+      var iduser = element.user
       var nombre = element.first_name
       var apellido = element.last_name
       var correo = element.email
@@ -88,7 +89,7 @@ export default class AuditoriaFinalizada extends Component{
       console.log(correo)
       console.log(tipoC)
 
-      tabledata = `
+      tabledata += `
         <tr key=`+{iduser}+`>
            <td>`+{iduser}+`</td>
            <td>{nombre}</td>
