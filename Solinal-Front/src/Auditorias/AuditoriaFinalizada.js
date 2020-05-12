@@ -77,25 +77,33 @@ export default class AuditoriaFinalizada extends Component{
 
     array.forEach(function(element){
       console.log(element)
+
       var iduser = element.user
       var nombre = element.first_name
       var apellido = element.last_name
       var correo = element.email
       var tipoC = element.tipoCuenta
 
+      var jiduser = JSON.stringify(iduser)
+      var jnombre = JSON.stringify(nombre)
+      var japellido= JSON.stringify(apellido)
+      var jcorreo = JSON.stringify(correo)
+      var jtipoC = JSON.stringify(tipoC)
+
       console.log(iduser)
+      console.log(jiduser)
       console.log(nombre)
       console.log(apellido)
       console.log(correo)
       console.log(tipoC)
 
       tabledata += `
-        <tr key=`+{iduser}+`>
-           <td>`+{iduser}+`</td>
-           <td>{nombre}</td>
-           <td>{apellido}</td>
-           <td>{correo}</td>
-           <td>{tipoC}</td>
+        <tr key=`+jiduser+`>
+           <td>`+jiduser+`</td>
+           <td>`+jnombre+`</td>
+           <td>`+japellido+`</td>
+           <td>`+jcorreo+`</td>
+           <td>`+jtipoC+`</td>
         </tr>
         `
     });
@@ -105,22 +113,78 @@ export default class AuditoriaFinalizada extends Component{
  }
 
  renderTableHeader() {
+   var tableheader = ''
+   var k = ''
   let header = Object.keys(this.state.users[0])
-  return header.map((key, index) => {
-     return <th key={index}>{key.toUpperCase()}</th>
+  console.log(header)
+   header.map((key, index) => {
+    var i = index;
+    var k = key.toUpperCase();
+    var jk = JSON.stringify(k);
+    console.log(k);
+
+     tableheader = `<th key=`+index+`}>`+jk+`</th>`
   })
+
+  console.log(tableheader);
+  return tableheader;
 }
 
-  makeHTML = (tabledata) => {
+  makeHTML = (tableheader,tabledata) => {
     const htmlstring = `
-    <div>
-      <h1 id='title'>Tabla de Usuarios</h1>
-        <table id='usuarios'>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <style>
+        #title {
+          text-align: center;
+          font-family: arial, sans-serif;
+        }
+        
+        #students {
+          text-align: center;
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          border: 3px solid #ddd;
+          width: 100%;
+        }
+        
+        #students td, #students th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #students tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #students tr:hover {background-color: #ddd;}
+        
+        #students th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: center;
+          background-color: #4CAF50;
+          color: white;
+        }
+        </style>
+      </head
+      <body>
+        <div>
+          <h1 id='title'>Tabla de Usuarios</h1>
+          <table id='usuarios'>
                <tbody>
+               <tr>
+                <th key=1>ID</th>
+                <th key=2>NOMBRE</th>
+                <th key=3>APELLIDO</th>
+                <th key=4>CORREO</th>
+                <th key=5>TIPO DE CUENTA</th>
+               </tr>
                 `+tabledata+`
                </tbody>
-            </table>
-    </div>
+          </table>
+        </div>
+      </body>
+    </html>
  `
  console.log(htmlstring)
  return htmlstring;
@@ -129,9 +193,10 @@ export default class AuditoriaFinalizada extends Component{
 
   expoPDF = async () => {
     const tabledatahtml = this.renderTableData();
+    const tableheaderhtml = this.renderTableHeader();
     console.log(tabledatahtml);
     let filePath = await Print.printToFileAsync({
-      html: this.makeHTML(tabledatahtml),
+      html: this.makeHTML(tableheaderhtml,tabledatahtml),
       width: 612,
       height: 792,
       base64: false
