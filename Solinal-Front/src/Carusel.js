@@ -31,7 +31,12 @@ export default class Carusel extends Component {
                         </View>
 */
 
-
+/*<View style={{width:'87%',alignItems:'center',marginTop:'3.5%'}}>
+                        <Text style={styles.tituloText}>Ahorra tiempo y dinero mientras ejecutas una auditoría</Text>
+                        </View>
+                        <View style={{width:'87%',alignItems:'center',marginTop:'3%'}}>
+                        <Text style={styles.bodyText}>Deshazte de tanto papel, todas las auditorias internas, de proveedor, inspecciones y checklist de verificación, en una app amigable.</Text>
+                        </View>*/
 
     super(props){
         //set value in state for initial date
@@ -60,12 +65,23 @@ export default class Carusel extends Component {
                         
                         </View>
 
-                        <View style={{width:'87%',alignItems:'center',marginTop:'3.5%'}}>
-                        <Text style={styles.tituloText}>Ahorra tiempo y dinero mientras ejecutas una auditoría</Text>
-                        </View>
-                        <View style={{width:'87%',alignItems:'center',marginTop:'3%'}}>
-                        <Text style={styles.bodyText}>Deshazte de tanto papel, todas las auditorias internas, de proveedor, inspecciones y checklist de verificación, en una app amigable.</Text>
-                        </View>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        
 
                     
 

@@ -82,18 +82,27 @@ class Registro extends Component {
             .then((response) => response.json())
            
             .then((responseJson) => {
-                this.mostrarError();
+                //this.mostrarError();
                 
-                console.log('aca')
-                errorM='a'
-                console.log(errorM)
+              /*  console.log('aca')
+                errorM='a'*/
+                console.log(responseJson)
+                if("username" in responseJson){
+                    this.setState({mensajeError:'Username en uso!'})
+                }
+                else if("email" in responseJson){
+                    this.setState({mensajeError:'Email en uso!'})
+                }
+                else{
+                    this.props.navigation.navigate('Login')
+                }
                 
                 //this.setState({mensajeError:responseJson})
             })
             
             .catch((error) => {
-                //alert(JSON.stringify(error));
-                //console.log('aqui')
+                alert(JSON.stringify(error));
+                console.log(error)
                 //errorM = error
                 //this.avanzarRegistro();
             });
@@ -101,11 +110,11 @@ class Registro extends Component {
 
 
 
-            if(errorM==''){
+           /* if(errorM==''){
                 console.log('ninguno error')
                 this.props.navigation.navigate('Login')
                // this.setState({mensajeError:'ningun error!'})
-            }
+            }*/
 
             
 

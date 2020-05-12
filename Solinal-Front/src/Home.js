@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, SafeAreaView,FlatList, TouchableHighlight,Image, TextInput,Alert,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView,FlatList, TouchableHighlight,Image, TextInput,Alert,TouchableOpacity,Dimensions } from 'react-native';
 import { Input, Button, SocialIcon, Icon } from 'react-native-elements';
 import { Container, Header, Content, Accordion } from "native-base";
 import {MaterialIcons,
@@ -11,18 +11,18 @@ MaterialCommunityIcons} from '@expo/vector-icons';
 export default class Home extends Component{
 
    
-
+//w181 h250
     render() {
     return (
     
-      <View style={{flex: 1, flexDirection: 'column', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center'}}>
+      <View style={{flex: 1, flexDirection: 'column', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center',height:Dimensions.get('window').height}}>
 
         <Image
-                        style={{width: '48.3%', height: '32.5%', margin:25,padding:10,marginTop:'11%'}}
+                        style={{width: '15%', height: '25%', margin:25,padding:10,marginTop:'5%'}}
                         source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
         />
 
-        <Text style={{fontWeight: 'bold', fontSize: 32, color: '#1ED695',paddingTop:25,paddingBottom:125,marginTop:15}}>Bienvenido {nameGlobal}</Text>
+        <Text style={{fontWeight: 'bold', fontSize: 32, color: '#1ED695',paddingTop:25,paddingBottom:'10%',marginTop:'1%'}}>Bienvenido {nameGlobal}</Text>
 
        
 

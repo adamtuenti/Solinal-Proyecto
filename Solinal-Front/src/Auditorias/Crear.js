@@ -132,13 +132,13 @@ export default class Crear extends Component {
     this.TimePicker.close();
   }
 
-  onUpdateItem = i => {
+  onUpdateItem (i,str) {
    // alert('hola')
     this.setState(state => {
       const array = state.array.map((item, j) => {
          if (j === i) {
           
-                return item+1;
+                return str;
               } else {
                 return item;
               }
@@ -151,6 +151,7 @@ export default class Crear extends Component {
       };
     
     });
+    console.log(this.state.array)
   
   }
 
@@ -497,7 +498,9 @@ export default class Crear extends Component {
                                                                             <TouchableHighlight
                                                                             id={p}
                                                                             style={{backgroundColor: (this.state.SelectedButton === p+'1' ? 'green' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}}
-                                                                           onPress={() =>this.onUpdateItem(i)
+                                                                           onPress={() =>this.onUpdateItem(i,'Si')
+                                                                          // this.state.array[i]='Si',
+                                                                           //console.log(this.state.array)
                                                                             }
 
                                                                            // onPress={() =>

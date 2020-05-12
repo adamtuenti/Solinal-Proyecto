@@ -62,35 +62,7 @@ class InvitarMiembros extends Component {
                 var correo = element.email
                 if (email==correo){bandera = 1;}
             });
-            if(bandera==0){
-                let errorM = ''
-
-                    var dataToSend = {correo_add: email,usuario:idUserGlobal};
-                    var formBody = [];
-                    for (var key in dataToSend) {
-                    var encodedKey = encodeURIComponent(key);
-                    var encodedValue = encodeURIComponent(dataToSend[key]);
-                    formBody.push(encodedKey + "=" + encodedValue);
-                    }
-                    formBody = formBody.join("&");
-                    fetch('http://accountsolinal.pythonanywhere.com/api/correo_add', {
-                    method: "POST",//Request Type 
-                    body: formBody,//post body 
-                    headers: {//Header Defination 
-                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                    },
-                    })
-                    .then((response) => response.json())
-                    //If response is in json then in success
-                    .then((responseJson) => {
-                    // alert(JSON.stringify(responseJson));
-                        //console.log(responseJson);
-                        this.setState({mensajeError:'Invitacion enviada, espere a que el usuario se registre en la app!'})
-                    })
-                    
-
-            }
-            else if(bandera==1){
+            
                 var dataToSend = {correoIntegrante: email,idUsuario:idUserGlobal};
                     var formBody = [];
                     for (var key in dataToSend) {
@@ -110,14 +82,23 @@ class InvitarMiembros extends Component {
                     //If response is in json then in success
                     .then((responseJson) => {
                     // alert(JSON.stringify(responseJson));
-                        //console.log(responseJson);
-                        this.setState({mensajeError:'Usuario agregado!'})
+                        if("idEquipo"  in responseJson){
+                            alert('enviado')
+                        }
+                        else{
+                            alert('mal correo')
+                        }
+                        //this.setState({mensajeError:'Usuari agregado!'})
+                       // this.props.navigation.navigate('EquipoVacio')
                     })
+                //errorM = error
+                //this.avanzarRegistro();
+            
                     
                 
             }
 
-            }
+         
 
       
     }
@@ -135,7 +116,7 @@ class InvitarMiembros extends Component {
         return (
             <View style={{flex:1}}>
             
-            <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:'11%',paddingTop:'8%',alignContent:'center'}}>
+            <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:80,paddingTop:'8%',alignContent:'center'}}>
             <View style={{marginTop:'4.5%',flexDirection:'row',}}>
                 <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
                     <TouchableHighlight onPress={()=>this.props.navigation.navigate('EquipoVacio')}>       

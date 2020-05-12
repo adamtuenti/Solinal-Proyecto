@@ -17,6 +17,7 @@ class Login extends Component{
         global.idUserGlobal = 5;
         global.nameGlobal = '';
         global.userNameGlobal='';
+        global.emailGlobal='';
         this.state = {
           username : '',
           password : '',
@@ -140,6 +141,7 @@ class Login extends Component{
                     idUserGlobal = responseJson.user.id;
                     nameGlobal=responseJson.user.first_name;
                     userNameGlobal=responseJson.user.username;
+                    emailGlobal=responseJson.user.email;
                     this.props.navigation.navigate('Home')
                     
                 }

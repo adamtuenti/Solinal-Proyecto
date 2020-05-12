@@ -26,6 +26,7 @@ class ValidacionClave extends Component{
           //idUser:'1',
           userId :this.props.navigation.state.params.idA,
           url: 'http://accountsolinal.pythonanywhere.com/api/user/'+this.props.navigation.state.params.idA,
+          urlPass: 'http://accountsolinal.pythonanywhere.com/api/newpassword/'+this.props.navigation.state.params.idA,
         }
       
     }
@@ -62,7 +63,27 @@ class ValidacionClave extends Component{
 
                  }else{
 
-                     var dataToSend = {id:idUser,password:pass};
+                     
+/*fetch('http://accountsolinal.pythonanywhere.com/api/newpassword', {
+  method: 'PUT',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    idbgjh:idUser,
+    passjword:pass
+  }),
+})
+.then((response) => response.json())
+.then((responseJson) => {
+   alert(responseJson)
+})
+.catch((error) => {
+ console.error(error)
+})*/
+
+                    var dataToSend = {password:pass};
                         var formBody = [];
                         for (var key in dataToSend) {
                         var encodedKey = encodeURIComponent(key);
@@ -70,8 +91,8 @@ class ValidacionClave extends Component{
                         formBody.push(encodedKey + "=" + encodedValue);
                         }
                         formBody = formBody.join("&");
-                        fetch('http://accountsolinal.pythonanywhere.com/api/newpassword', {
-                        method: "POST",//Request Type 
+                        fetch(this.state.urlPass, {
+                        method: "PUT",//Request Type 
                         body: formBody,//post body 
                         headers: {//Header Defination 
                             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -82,7 +103,9 @@ class ValidacionClave extends Component{
                         .then((responseJson) => {
                         console.log(responseJson)
                         this.setState({mensajeError:'Contrasena reestablecida!'})
-                        })
+                        }).catch((error) => {
+      console.error(error);
+    });
                             
 
                  }

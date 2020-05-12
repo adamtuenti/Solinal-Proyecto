@@ -25,26 +25,193 @@ import RNPrint from 'react-native-print';
 
 export default class AuditoriaFinalizada extends Component{
 
-  state = {
-    selectedPrinter: null,
-    
-  };
+  constructor(props) {
+    super(props);
+    this.state = { 
+      loading: false,
+      users: [],
+      url: 'http://accountsolinal.pythonanywhere.com/api/users',
+      file: '',
+      cFile:''
+      };
+  }
+
+
+
+  componentDidMount = () => {
+    this.getUsers();
+  }
+
+  getUsers = () => {
+    const array = [];
+    console.log(this.state.url)
+      this.setState({loading:true})
+      fetch(this.state.url)
+
+      .then(res=>res.json())
+     
+      .then(res=>{ 
+        console.log('--')
+          console.log(res);
+          this.setState({
+          users: res,
+          url: res.next,
+          loading: false,    
+          })
+          console.log('----')
+          console.log(this.state.users);
+      })
+      
+  }
+
+  renderTableData() {
+    const array = this.state.users;
+
+    var iduser = ''
+    var tabledata = ''
+
+    array.forEach(function(element){
+      console.log(element)
+
+      var iduser = element.user
+      var nombre = element.first_name
+      var apellido = element.last_name
+      var correo = element.email
+      var tipoC = element.tipoCuenta
+
+      var jiduser = JSON.stringify(iduser)
+      var jnombre = JSON.stringify(nombre)
+      var japellido= JSON.stringify(apellido)
+      var jcorreo = JSON.stringify(correo)
+      var jtipoC = JSON.stringify(tipoC)
+
+      console.log(iduser)
+      console.log(jiduser)
+      console.log(nombre)
+      console.log(apellido)
+      console.log(correo)
+      console.log(tipoC)
+
+      tabledata += `
+        <tr key=`+jiduser+`>
+           <td>`+jiduser+`</td>
+           <td>`+jnombre+`</td>
+           <td>`+japellido+`</td>
+           <td>`+jcorreo+`</td>
+           <td>`+jtipoC+`</td>
+        </tr>
+        `
+    });
+
+    console.log(tabledata)
+    return tabledata;
+ }
+
+ renderTableHeader() {
+   var tableheader = ''
+   var k = ''
+  let header = Object.keys(this.state.users[0])
+  console.log(header)
+   header.map((key, index) => {
+    var i = index;
+    var k = key.toUpperCase();
+    var jk = JSON.stringify(k);
+    console.log(k);
+
+     tableheader = `<th key=`+index+`}>`+jk+`</th>`
+  })
+
+  console.log(tableheader);
+  return tableheader;
+}
+
+  makeHTML = (tableheader,tabledata) => {
+    const htmlstring = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <style>
+        #title {
+          text-align: center;
+          font-family: arial, sans-serif;
+        }
+        
+        #students {
+          text-align: center;
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          border: 3px solid #ddd;
+          width: 100%;
+        }
+        
+        #students td, #students th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #students tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #students tr:hover {background-color: #ddd;}
+        
+        #students th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: center;
+          background-color: #4CAF50;
+          color: white;
+        }
+        </style>
+      </head
+      <body>
+        <div>
+          <h1 id='title'>Tabla de Usuarios</h1>
+          <table id='usuarios'>
+               <tbody>
+               <tr>
+                <th key=1>ID</th>
+                <th key=2>NOMBRE</th>
+                <th key=3>APELLIDO</th>
+                <th key=4>CORREO</th>
+                <th key=5>TIPO DE CUENTA</th>
+               </tr>
+                `+tabledata+`
+               </tbody>
+          </table>
+        </div>
+      </body>
+    </html>
+ `
+ console.log(htmlstring)
+ return htmlstring;
+ 
+  }
 
   expoPDF = async () => {
+    const tabledatahtml = this.renderTableData();
+    const tableheaderhtml = this.renderTableHeader();
+    console.log(tabledatahtml);
     let filePath = await Print.printToFileAsync({
-      html: "<h1>PDF TEST SOLINAL</h1>",
+      html: this.makeHTML(tableheaderhtml,tabledatahtml),
       width: 612,
       height: 792,
       base64: false
     });
     alert('PDF Generado',filePath.uri);
+    this.setState({file:filePath.uri})
+    console.log('/')
+    console.log(this.state.file)
 
-    console.log(filePath.uri);
-    console.log(FileSystem.cacheDirectory);
-    console.log(FileSystem.documentDirectory);
+    
+
+    // console.log(filePath.uri);
+    // console.log(FileSystem.cacheDirectory);
+    // console.log(FileSystem.documentDirectory);
 
     FileSystem.getContentUriAsync(filePath.uri).then(cUri => {
       console.log(cUri);
+      this.setState({cFile:cUri.uri})
+      console.log('hola')
+      console.log(this.state.cFile)
       IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
           data: cUri.uri,
           flags: 1,
@@ -52,104 +219,6 @@ export default class AuditoriaFinalizada extends Component{
        });
     });
   }
-
-    createPDF = async () => {
-        const page1 = PDFPage
-.create()
-.setMediaBox(200, 200)
-.drawText('You can add text and rectangles to the PDF!', {
-  x: 5,
-  y: 235,
-  color: '#007386',
-})
-.drawRectangle({
-  x: 25,
-  y: 25,
-  width: 150,
-  height: 150,
-  color: '#FF99CC',
-})
-.drawRectangle({
-  x: 75,
-  y: 75,
-  width: 50,
-  height: 50,
-  color: '#99FFCC',
-});
-
-const page2 = PDFPage
-  .create()
-  .setMediaBox(250, 250)
-  .drawText('You can add JPG images too!')
-  
-
-  const docsDir =  await PDFLib.getDocumentsDirectory();
-const pdfPath = `${docsDir}/sample.pdf`;
-PDFDocument
-  .create(pdfPath)
-  .addPages(page1, page2)
-  .write() // Returns a promise that resolves with the PDF's path
-  .then(path => {
-    console.log('PDF created at: ' + path);
-    // Do stuff with your shiny new PDF!
-  });
-    }
-
-    constructor(props) {
-        super(props)
-        this.state ={}
-    };
-
-    generatePDF = () => {
-        var document = new jsPDF('p', 'pt');
-        
-        document.text(20, 20, 'This is the first title.')
-  
-        document.setFont('helvetica')
-        document.setFontType('normal')
-        document.text(20, 60, 'This is the second title.')
-  
-        document.setFont('helvetica')
-        document.setFontType('normal')
-        document.text(20, 100, 'This is the thrid title.')      
-  
-        
-        document.save('demo.pdf')
-      }   
-    
-    async componentDidMount() {
-        await Font.loadAsync({
-          Roboto: require("native-base/Fonts/Roboto.ttf"),
-          Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-          /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
-        });
-        this.setState({ isReady: true });
-      }
-
-      async printHTML() {
-        await RNPrint.print({
-          html:
-            '<h1>Here will be Heading 1</h1><h2>Here will be Heading 2</h2><h3>Here will be Heading 3</h3>',
-        });
-      }
-
-      async printPDF() {
-        const results = await RNHTMLtoPDF.convert({
-          html: '<h1>Demo Text to converted to PDF</h1>',
-          fileName: 'test',
-          base64: true,
-        });
-        await RNPrint.print({ filePath: results.filePath });
-      }
-
-      async printRemotePDF() {
-        await RNPrint.print({
-          filePath: 'http://www.africau.edu/images/default/sample.pdf',
-        });
-      }
-
-
-
 
       render() {
         return (
@@ -201,8 +270,25 @@ PDFDocument
                                     </View>
                                 </TouchableHighlight>                    
                             </View>
+
+                            <View style={{alignItems: 'center',marginTop:'10%'}}>
+
+                                <TouchableHighlight onPress={()=>this.props.navigation.navigate('PdfCompartido',{file:this.state.file,cFile:this.state.cFile})} style={{backgroundColor:'#B3F1C9',padding: 10,width:'55%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
+                                    <View style={{flexDirection:'row',alignContent:'center',justifyContent:'center'}}>
+
+                                    <Feather style={{justifyContent:'center'}} name="download" size={28}  />
+
+
+                                        <Text style={{fontWeight:'bold',fontSize:15,marginLeft:'3.5%',marginTop:'1.5%'}}>Compartir informe</Text>
+                                    </View>
+                                </TouchableHighlight>                    
+                            </View>
+
+                            
                        
                         </View>
+
+
                     
                 </Content>
             </Container>

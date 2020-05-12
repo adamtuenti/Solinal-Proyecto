@@ -28,7 +28,7 @@ class AuditoriasBuscar extends Component {
             normas:[],
             loadingnorma: false,
             paginaActual:'AuditoriasBuscar',
-            paisEnvio:'',
+            paisEnvio:'a',
             mensajeError:'',
         };
     }
@@ -109,7 +109,7 @@ class AuditoriasBuscar extends Component {
                // alert(JSON.stringify(responseJson));
                 //console.log(responseJson);
                 this.setState({mensajeError:'Pais/Norma enviado!'})
-                this.setState({paisEnvio:'Pais/Norma enviado!'})
+               // this.setState({paisEnvio:''})
 
             })
             //If response is not in json then in error
@@ -122,6 +122,14 @@ class AuditoriasBuscar extends Component {
 
 
 
+  async componentDidMount() {
+    await Font.loadAsync({
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+      /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
+    });
+    this.setState({ isReady: true });
+  }
 
 
   
@@ -166,7 +174,7 @@ class AuditoriasBuscar extends Component {
                         <CardItem bordered>
                             <View style={{flex: 1, flexDirection: 'row'}}>
                                 <View>  
-                                    <Text style={{marginRight:10, color: '#636363', fontWeight: "bold"}}>Filtar por entidad (FDA, Codex, BRC, etc.)</Text>
+                                    <Text style={{marginRight:10, color: '#636363', fontWeight: "bold"}}>Filtrar por entidad (FDA, Codex, BRC, etc.)</Text>
                                 </View>
 
                                 <View style={{flex: 1, flexDirection: 'row-reverse'}}>

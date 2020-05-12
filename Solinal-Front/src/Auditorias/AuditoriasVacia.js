@@ -55,7 +55,7 @@ export default class AuditoriasVacia extends Component {
             <Container>
 
 
-                <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:'11%',paddingTop:'8%',alignContent:'center'}}>
+                <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:80,paddingTop:'8%',alignContent:'center'}}>
             <View style={{marginTop:'4.5%',flexDirection:'row',}}>
                 <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
                     <TouchableHighlight onPress={()=>this.props.navigation.navigate('Main')}>       

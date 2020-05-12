@@ -5,14 +5,14 @@ import {StyleSheet,TouchableHighlight,Text,View,Image,FlatList,ListItem,Dimensio
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 
-import {MaterialIcons,MaterialCommunityIcons,AntDesign} from '@expo/vector-icons';
+import {MaterialIcons,MaterialCommunityIcons,Feather} from '@expo/vector-icons';
 import HeaderBack from '../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 //import Toast from 'react-native-simple-toast';
 //import Toast from 'react-native-tiny-toast'
+import * as FileSystem from 'expo-file-system';
 
-
-export default class EquipoVacio extends Component {
+export default class PdfCompartido extends Component {
 
 
     constructor(props){
@@ -22,7 +22,9 @@ export default class EquipoVacio extends Component {
           equipo: [],
           mensajeError:'',
           urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/'+idUserGlobal,
-          forceUpdateHandler : this.forceUpdateHandler.bind(this)
+          file: this.props.navigation.state.params.file,
+         // cFile: this.props.navigation.state.params.cFile,
+          //forceUpdateHandler : this.forceUpdateHandler.bind(this)
         }  
     }
 
@@ -48,26 +50,6 @@ export default class EquipoVacio extends Component {
         })
     }
 
-    validarInvitaciones(){
-        
-
-        const { equipo } = this.state;
-
-        if(equipo.length<5){
-            
-                        this.props.navigation.navigate('InvitarMiembros')
-                   
-
-
-         
-            
-        }
-        else{
-            alert('miembros completos')
-        }
-        
-        
-    }
 
     eliminarIntegrante(correoIntegrante){
         
@@ -97,6 +79,16 @@ export default class EquipoVacio extends Component {
 
                     })
                     
+    }
+    mostrarPdf(){
+        console.log('a')
+        console.log(this.state.cFile)
+        console.log(this.state.file)
+        FileSystem.getContentUriAsync(filePath.uri).then(cUri => {
+      console.log(cUri);
+      this.setState({cFile:cUri.uri})
+    
+    });
     }
  
       
@@ -152,8 +144,8 @@ export default class EquipoVacio extends Component {
         <Text style={{fontWeight:'bold',marginLeft:'1%',fontSize:15}}>{a.nombreIntegrante} {a.apellidoIntegrante}</Text>
         <Text style={{marginLeft:'1%',fontSize:13.5,fontStyle:'italic'}}>{a.correoIntegrante}</Text>
         </View>
-        <View style={{flexDirection:'row-reverse',flex:1}}>
-        <AntDesign onPress={()=>this.eliminarIntegrante(a.correoIntegrante)} name="deleteuser" size={35}/>
+        <View style={{flexDirection:'row-reverse',flex:1,alignItems:'center'}}>
+        <Feather onPress={()=>this.mostrarPdf()} name="send" size={30}/>
         </View>
         </View>
         </Card>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Drawer, Title, Content, Card, Thumbnail, CardItem, Header, Button, Left, Right, Body,  Font } from 'native-base';
+import { Container, Drawer, Title, Content, Card, Thumbnail, CardItem, Header, Button, Left, Right, Body,  Font,Footer, FooterTab,Badge  } from 'native-base';
 import { Icon,Divider, List, ListItem, } from 'react-native-elements';
 import{StyleSheet,TouchableHighlight,TouchableOpacity,Text,View,Dimensions,Linking,Image} from 'react-native';
 /*import * as Font from 'expo-font';*/
 /*import { ListItem } from 'react-native-elements';*/
 import {MaterialIcons,MaterialCommunityIcons,Ionicons} from '@expo/vector-icons';
 
-import Footer from './../shared/Footer';
+//import Footer from './../shared/Footer';
 /*import Header from '../shared/Header';*/
 import EstadoCuenta from './../shared/estadoCuenta';
 import MenuDrawer from 'react-native-side-drawer';
@@ -23,7 +23,7 @@ const list = [
   {
     name: 'Mis Auditorias',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true',
-    url: 'AuditoriasVacia',
+    url: 'AuditoriaFinalizada',
     altura:32,
     anchura:23
   },
@@ -43,7 +43,7 @@ export default class Main extends React.Component {
         super(props);
         this.state = {
            paginaActual:'Main',
-           tipoCuenta:'Premium'
+           tipoCuenta:'Premium',
           
         };
     }
@@ -168,9 +168,9 @@ render() {
     
     return (
 
-      <Container style={{marginTop:'6.50%'}}>
+      <View style={{height:Dimensions.get('window').height}}>
 
-      <MenuDrawer 
+              <MenuDrawer 
           open={this.state.open} 
           drawerContent={this.drawerContent()}
           drawerPercentage={80}
@@ -179,9 +179,11 @@ render() {
           opacity={0.4}
         >
 
-      <View style={{backgroundColor:'#1ED695',height:'8%',width:'100%',alignContent:'center'}}>
+      
 
-      <View  style={{  alignContent:'center',marginTop:'1.5%',   width:'100%',flexDirection:'row',}}>
+      <View style={{backgroundColor:'#1ED695',height:58,width:'100%',alignContent:'center'}}>
+
+      <View  style={{  alignContent:'center',marginTop:10,   width:'100%',flexDirection:'row',}}>
 
         <View style={{flexDirection: 'row',marginLeft:'3.75%'}}>
                 
@@ -208,6 +210,8 @@ render() {
 
         <Content padder style={{backgroundColor: '#f6f6f6'}}>
 
+
+
         <EstadoCuenta />
 
           <Card style={{borderRadius: 5,borderWidth: 1,borderColor: '#d6d7da'}}>
@@ -228,7 +232,7 @@ render() {
                         <Text style={{fontSize:15}}> {l.name}</Text>
                         </View>
                       }       
-                      onPress={()=>this.props.navigation.navigate(l.url,{paginaActual:this.state.paginaActual})}
+                      onPress={()=>this.props.navigation.navigate(l.url)}
                       bottomDivider
                     />
                   ))
@@ -267,16 +271,39 @@ render() {
 
                           
         
-       
+      
               
             
         </Content>
 
 
-      <Footer />
+      <Footer>
+          <FooterTab>
+            <Button badge vertical>
+              <Badge><Text>2</Text></Badge>
+              <Icon name="apps" />
+              <Text>Apps</Text>
+            </Button>
+            <Button vertical>
+              <Icon name="camera" />
+              <Text>Camera</Text>
+            </Button>
+            <Button active badge vertical>
+              <Badge ><Text>51</Text></Badge>
+              <Icon active name="navigate" />
+              <Text>Navigate</Text>
+            </Button>
+            <Button vertical>
+              <Icon name="person" />
+              <Text>Contact</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
 
-      </MenuDrawer>                         
-      </Container>
+       </MenuDrawer> 
+
+                              
+      </View>
     );
    
   }
