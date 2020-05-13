@@ -12,6 +12,7 @@ import EstadoCuenta from './../../shared/estadoCuenta';
 //import Toast from 'react-native-tiny-toast'
 import * as FileSystem from 'expo-file-system';
 import * as MailComposer from 'expo-mail-composer';
+import { Asset } from 'expo-asset';
 
 export default class PdfCompartido extends Component {
 
@@ -31,6 +32,7 @@ export default class PdfCompartido extends Component {
 
     componentDidMount(){
         this.getMiembrosEquipo();
+        Asset.fromModule(require('./test.pdf')).downloadAsync();
     }
 
     forceUpdateHandler(){
@@ -95,6 +97,8 @@ export default class PdfCompartido extends Component {
     }
 
     mailComposer(mailto){
+        const attachment = Asset.fromModule(require('./test.pdf')).localUri;
+        console.log(attachment)
         console.log('sendmail')
         MailComposer.composeAsync({
             recipients: [mailto],
