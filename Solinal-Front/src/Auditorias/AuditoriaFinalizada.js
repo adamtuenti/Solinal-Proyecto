@@ -12,7 +12,7 @@ import {
 import * as Print from 'expo-print';
 import * as FileSystem from 'expo-file-system';
 import * as IntentLauncher from 'expo-intent-launcher';
-import { Ionicons } from '@expo/vector-icons';
+import {MaterialIcons,MaterialCommunityIcons,AntDesign,Feather} from '@expo/vector-icons';
 import Footer from './../../shared/Footer';
 import HeaderBack from './../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
@@ -31,6 +31,8 @@ export default class AuditoriaFinalizada extends Component{
       loading: false,
       users: [],
       url: 'http://accountsolinal.pythonanywhere.com/api/users',
+      file: '',
+      cFile: ''
       };
   }
 
@@ -202,13 +204,17 @@ export default class AuditoriaFinalizada extends Component{
       base64: false
     });
     alert('PDF Generado',filePath.uri);
+    this.setState({file:filePath.uri})
+    console.log(filePath.uri)
+    console.log('/')
+    console.log(this.state.file)
 
-    console.log(filePath.uri);
-    console.log(FileSystem.cacheDirectory);
-    console.log(FileSystem.documentDirectory);
 
     FileSystem.getContentUriAsync(filePath.uri).then(cUri => {
       console.log(cUri);
+      this.setState({cFile:cUri.uri})
+      console.log('hola')
+      console.log(this.state.cFile)
       IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
           data: cUri.uri,
           flags: 1,
@@ -219,50 +225,76 @@ export default class AuditoriaFinalizada extends Component{
 
       render() {
         return (
-            <Container>
-                <HeaderBack encabezado='Auditoria'/>
-                <Content padder style={{backgroundColor: '#f6f6f6'}}>
-                    <Card>
-                        <CardItem>
-                            <Body style={{alignItems: 'center'}}>
-                                <Text style={{alignItems: 'center',fontSize: 15,}}>EXCELENTE</Text>
-                            </Body>
-                        </CardItem>
-                        <CardItem cardBody style={{alignItems: 'center'}}>
-                            <Body style={{alignItems: 'center'}}>
-                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2062.png'}} 
-                                   style={{height: 200, 
-                                           width: 200, 
-                                           alignItems: 'center'}}/>
-                            </Body>               
-                        </CardItem>
-                        <CardItem>
-                            <Body style={{alignItems: 'center', width:24,fontWeight: 'bold'}}>
-                                <Text style={{color: '#636363', fontSize: 12, alignItems: 'center'}}>AUDITORÍA FINALIZADA</Text>
-                            </Body>
-                        </CardItem>
+          <Container>
+          <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:'11%',paddingTop:'8%',alignContent:'center'}}>
+          <View style={{marginTop:'4.5%',flexDirection:'row',}}>
+              <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
+                  <TouchableHighlight onPress={()=>this.props.navigation.navigate('EquipoVacio')}>       
+                  <MaterialIcons name="arrow-back" size={32} color="white" />
+                  </TouchableHighlight>         
+                  <Text style={{color:'white', fontSize:21, marginLeft:10}}>
+                      Auditoria Finalizada
+                  </Text>
+              </View>
+          </View>
+          </View>
 
-                        <CardItem style={{alignItems: 'center'}}>
-                            <Body style={{alignItems: 'center'}}>
+          <Content padder style={{backgroundColor: '#f6f6f6'}}>
+             
+                  <View style={{flexDirection:'column',flex:1}}>
+                      <View style={{alignItems: 'center',marginTop:'15%'}}>
+                          <Text style={{alignItems: 'center',fontSize: 24,color:'#1ED695',fontWeight:'bold'}}>EXCELENTE</Text>
+                      </View>
+                
+                  <View style={{alignItems: 'center',marginTop:'10%'}}>
+                      
+                          <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2062.png'}} 
+                             style={{height: 225, 
+                                     width: 200, 
+                                     alignItems: 'center'}}/>
+                             
+                  </View>
+                  
+                      <View style={{alignItems: 'center',fontWeight: 'bold',marginTop:'10%'}}>
+                          <Text style={{alignItems: 'center',fontSize: 19,color:'#1ED695',fontWeight:'bold'}}>AUDITORÍA FINALIZADA</Text>
+                      </View>
+                  
 
-                                <TouchableHighlight
-                                     onPress={()=>this.expoPDF()}>
-                                    <View>
-                                        <Text>Descargar informe</Text>
-                                    </View>
-                                </TouchableHighlight>                    
-                            </Body>
-                            <Body style={{alignItems: 'center'}}>
+                 
+                      <View style={{alignItems: 'center',marginTop:'10%'}}>
 
-                                <TouchableHighlight
-                                     onPress={()=>this.props.navigation.navigate()}>
-                                    <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2064.png'}}></Image>
-                                </TouchableHighlight>                    
-                            </Body>
-                        </CardItem>
-                    </Card>
-                </Content>
-            </Container>
+                          <TouchableHighlight onPress={()=>this.expoPDF()} style={{backgroundColor:'#B3F1C9',padding: 10,width:'55%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
+                              <View style={{flexDirection:'row',alignContent:'center',justifyContent:'center'}}>
+
+                              <Feather style={{justifyContent:'center'}} name="download" size={28}  />
+
+
+                                  <Text style={{fontWeight:'bold',fontSize:15,marginLeft:'3.5%',marginTop:'1.5%'}}>Descargar informe</Text>
+                              </View>
+                          </TouchableHighlight>                    
+                      </View>
+
+                      <View style={{alignItems: 'center',marginTop:'10%'}}>
+
+                          <TouchableHighlight onPress={()=>this.props.navigation.navigate('PdfCompartido', {file:this.state.file, cFile:this.state.cFile})} style={{backgroundColor:'#B3F1C9',padding: 10,width:'55%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
+                              <View style={{flexDirection:'row',alignContent:'center',justifyContent:'center'}}>
+
+                              <Feather style={{justifyContent:'center'}} name="download" size={28}  />
+
+
+                                  <Text style={{fontWeight:'bold',fontSize:15,marginLeft:'3.5%',marginTop:'1.5%'}}>Compartir informe</Text>
+                              </View>
+                          </TouchableHighlight>                    
+                      </View>
+
+                      
+                 
+                  </View>
+
+
+              
+          </Content>
+      </Container>
         );
     } 
 }
