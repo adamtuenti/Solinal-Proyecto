@@ -158,7 +158,7 @@ export default class PdfCompartido extends Component {
         <Text style={{marginLeft:'1%',fontSize:13.5,fontStyle:'italic'}}>{a.correoIntegrante}</Text>
         </View>
         <View style={{flexDirection:'row-reverse',flex:1,alignItems:'center'}}>
-        <Feather onPress={()=>this.mailComposer(a.correoIntegrante)} name="send" size={30}/>
+        <Feather onPress={()=>this.mailComposer("jvivas.trecool@gmail.com")} name="send" size={30}/>
         </View>
         </View>
         </Card>
