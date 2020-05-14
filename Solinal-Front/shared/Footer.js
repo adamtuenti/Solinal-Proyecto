@@ -70,7 +70,7 @@ export default class Footer extends React.Component{
                 </TouchableHighlight>
           
 
-                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                <TouchableHighlight onPress={()=>imprimir} style={styles.botones}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2015.png'}}
                                    style= {{height: 35,

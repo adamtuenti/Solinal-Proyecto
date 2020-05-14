@@ -1,18 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component,useState } from 'react';
 import { Container,  Title, Content, Card, CardItem,  Button, Left, Right, Body,  Font } from 'native-base';
 import { Icon,Divider, } from 'react-native-elements'
 import {StyleSheet,TouchableHighlight,Text,View,Image,FlatList,ListItem,Dimensions } from 'react-native'
 /*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
-
+//import moment from 'moment'
 import {MaterialIcons,MaterialCommunityIcons,AntDesign} from '@expo/vector-icons';
 import HeaderBack from '../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 //import Toast from 'react-native-simple-toast';
 //import Toast from 'react-native-tiny-toast'
 
+//import DateTimePicker from '@react-native-community/datetimepicker';
 
+//import DateTimePickerModal from "react-native-modal-datetime-picker";
 export default class EquipoVacio extends Component {
+
+    
+
 
 
     constructor(props){
@@ -22,9 +27,13 @@ export default class EquipoVacio extends Component {
           equipo: [],
           mensajeError:'',
           urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/'+idUserGlobal,
-          forceUpdateHandler : this.forceUpdateHandler.bind(this)
+          forceUpdateHandler : this.forceUpdateHandler.bind(this),
+        
         }  
     }
+
+
+
 
     componentDidMount(){
         this.getMiembrosEquipo();
@@ -94,15 +103,27 @@ export default class EquipoVacio extends Component {
                         //console.log(responseJson);
                         
                         console.log('eliminado')
-
+                        this.forceUpdateHandler()
                     })
                     
     }
  
-      
+
+ forceUpdateHandler(){
+     console.log('aqui')
+    this.forceUpdate();
+  };
+
+ 
+
+
+
+   
+ 
     render(){
+        
         return(
-            <Container style={{height:Dimensions.get('window').height}}>
+            <View style={{height:Dimensions.get('window').height,flex:1,marginTop:25}}>
                 <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:55,alignContent:'center'}}>
                 <View style={{marginTop:5,flexDirection:'row',}}>
                     <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
@@ -137,14 +158,23 @@ export default class EquipoVacio extends Component {
         
         </View>
 
-       
-
-       
 
 
+
+   
         <View style={{marginTop:'2%',marginBottom:'2%'}}>
 
-        {this.state.equipo.map(a=>
+   
+      
+
+
+
+   
+      
+    
+      
+
+       {this.state.equipo.map(a=>
 
         <Card style={{borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',padding:'2%'}}>
         <View style={{flexDirection:'row'}}>
@@ -179,7 +209,81 @@ export default class EquipoVacio extends Component {
                         </TouchableHighlight>                        
                     </View>
                 </Content>
-            </Container>
+
+               
+
+      
+
+      
+
+       <View style={{height:62, flexDirection: 'row',width:'100%'}}>
+                <TouchableHighlight onPress={()=>this.navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 25,
+                                        }}/>
+                    <Text style={styles.letra}>Auditorias</Text>
+                    </View>
+                </TouchableHighlight>
+
+                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioVacia')} style={styles.botones}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
+                                   style= {{height: 35,
+                                            width: 28}}>
+                            </Image>
+               <Text style={styles.letra}>Accion Correctiva</Text>
+                    </View>
+                </TouchableHighlight>    
+
+                
+                
+
+
+
+                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones1}>
+                    <View style={{flexDirection:'column',alignItems:'center',justifyContent:'center',marginBottom:'8%'}}>
+                           <MaterialIcons name="home" size={50} color='#1ED695' />
+                            
+
+
+                    </View>
+                </TouchableHighlight>
+
+                
+
+                
+
+
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioPrograma')} style={styles.botones}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario.png?raw=true'}}
+                                   style= {{height: 35,
+                                            width: 32}}>
+                            </Image>
+                    <Text style={styles.letra}>Calendario</Text>
+                    </View>
+                </TouchableHighlight>
+          
+
+                <TouchableHighlight onPress={()=>imprimir} style={styles.botones}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2015.png'}}
+                                   style= {{height: 35,
+                                            width: 34}}>
+                            </Image>
+               <Text style={styles.letra}>No Conformidad</Text>
+                    </View>
+                </TouchableHighlight>
+                   
+                       
+                     
+                     
+               
+                </View>
+
+            </View>
         )
     }  
 }
@@ -200,5 +304,24 @@ const styles = StyleSheet.create({
         
    
 
+    },
+     botones:{
+        justifyContent:'center',
+        width:'20%'
+        
+    },
+    botones1:{
+        marginLeft:'2%',
+        marginRight:'2%',
+        alignItems:'center',justifyContent:'center'
+
+    },
+    letra:{
+        color: '#636363', fontSize: 9
+
     }
 })
+
+
+ 
+

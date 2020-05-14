@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Drawer, Title, Content, Card, Thumbnail, CardItem, Header, Button, Left, Right, Body,  Font,Footer, FooterTab,Badge  } from 'native-base';
+import { Container, Drawer, Title, Content, Card, Thumbnail, CardItem, Header, Button, Left, Right, Body,  Font,Badge  } from 'native-base';
 import { Icon,Divider, List, ListItem, } from 'react-native-elements';
 import{StyleSheet,TouchableHighlight,TouchableOpacity,Text,View,Dimensions,Linking,Image} from 'react-native';
 /*import * as Font from 'expo-font';*/
 /*import { ListItem } from 'react-native-elements';*/
 import {MaterialIcons,MaterialCommunityIcons,Ionicons} from '@expo/vector-icons';
 
-//import Footer from './../shared/Footer';
+import Footer from './../shared/Footer';
 /*import Header from '../shared/Header';*/
 import EstadoCuenta from './../shared/estadoCuenta';
 import MenuDrawer from 'react-native-side-drawer';
@@ -23,7 +23,7 @@ const list = [
   {
     name: 'Mis Auditorias',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true',
-    url: 'AuditoriaFinalizada',
+    url: 'Crear',
     altura:32,
     anchura:23
   },
@@ -48,6 +48,10 @@ export default class Main extends React.Component {
         };
     }
 
+
+imprimir(){
+  alert('no')
+}
   
 
   async componentDidMount() {
@@ -168,7 +172,7 @@ render() {
     
     return (
 
-      <View style={{height:Dimensions.get('window').height}}>
+      <View style={{height:Dimensions.get('window').height,flex:1,marginTop:21}}>
 
               <MenuDrawer 
           open={this.state.open} 
@@ -276,31 +280,83 @@ render() {
             
         </Content>
 
+        <View style={{backgroundColor:'green'}}> 
 
-      <Footer>
-          <FooterTab>
-            <Button badge vertical>
-              <Badge><Text>2</Text></Badge>
-              <Icon name="apps" />
-              <Text>Apps</Text>
-            </Button>
-            <Button vertical>
-              <Icon name="camera" />
-              <Text>Camera</Text>
-            </Button>
-            <Button active badge vertical>
-              <Badge ><Text>51</Text></Badge>
-              <Icon active name="navigate" />
-              <Text>Navigate</Text>
-            </Button>
-            <Button vertical>
-              <Icon name="person" />
-              <Text>Contact</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
 
-       </MenuDrawer> 
+      
+
+      
+
+       <View style={{height:62, flexDirection: 'row',width:'100%'}}>
+                <TouchableHighlight onPress={()=>navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}} 
+                            style={{height: 35, 
+                                        width: 25,
+                                        }}/>
+                    <Text style={styles.letra}>Auditorias</Text>
+                    </View>
+                </TouchableHighlight>
+
+                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioVacia')} style={styles.botones}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
+                                   style= {{height: 35,
+                                            width: 28}}>
+                            </Image>
+               <Text style={styles.letra}>Accion Correctiva</Text>
+                    </View>
+                </TouchableHighlight>    
+
+                
+                
+
+
+
+                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones1}>
+                    <View style={{flexDirection:'column',alignItems:'center',justifyContent:'center',marginBottom:'8%'}}>
+                           <MaterialIcons name="home" size={50} color='#1ED695' />
+                            
+
+
+                    </View>
+                </TouchableHighlight>
+
+                
+
+                
+
+
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioPrograma')} style={styles.botones}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario.png?raw=true'}}
+                                   style= {{height: 35,
+                                            width: 32}}>
+                            </Image>
+                    <Text style={styles.letra}>Calendario</Text>
+                    </View>
+                </TouchableHighlight>
+          
+
+                <TouchableHighlight onPress={()=>imprimir} style={styles.botones}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2015.png'}}
+                                   style= {{height: 35,
+                                            width: 34}}>
+                            </Image>
+               <Text style={styles.letra}>No Conformidad</Text>
+                    </View>
+                </TouchableHighlight>
+                   
+                       
+                     
+                     
+               
+                </View>
+
+            </View>
+
+     </MenuDrawer>
 
                               
       </View>

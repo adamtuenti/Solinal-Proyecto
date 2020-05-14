@@ -14,6 +14,7 @@ import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterCalendario from '../../shared/FooterCalendario';
 import { Calendar } from 'react-native-calendars';
 import {MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
+import moment from 'moment'
 
 export default class CalendarioPrograma extends Component {
 
@@ -28,6 +29,7 @@ export default class CalendarioPrograma extends Component {
           loading: false,
           fechas: [],
           url: 'http://accountsolinal.pythonanywhere.com/api/fechas_get/1',
+          array: ['2020-05-10','2020-05-11']
     }
   }
 
@@ -89,10 +91,17 @@ export default class CalendarioPrograma extends Component {
                           firstDay={1}
                           onPressArrowLeft={substractMonth => substractMonth()}
                           onPressArrowRight={addMonth => addMonth()}
-                          markedDates={{               
-                            '2020-04-19': {startingDay: true, endingDay: false, color: 'green', textColor: 'white'},
-                            '2020-04-20': {selected: true, startingDay: false, endingDay: true, color: 'green', textColor: 'white'},
-                          }}
+                          
+                            
+
+                             markedDates=  {this.state.array.map((r) => 
+                               r
+
+                             )}
+                                         
+                           
+                            
+                          
                           markingType={'period'}
                           theme={{
                             backgroundColor: '#ffffff',

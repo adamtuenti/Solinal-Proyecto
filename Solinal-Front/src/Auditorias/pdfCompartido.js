@@ -11,6 +11,7 @@ import EstadoCuenta from './../../shared/estadoCuenta';
 //import Toast from 'react-native-simple-toast';
 //import Toast from 'react-native-tiny-toast'
 import * as FileSystem from 'expo-file-system';
+import * as MailComposer from 'expo-mail-composer';
 
 export default class PdfCompartido extends Component {
 
@@ -23,7 +24,7 @@ export default class PdfCompartido extends Component {
           mensajeError:'',
           urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/'+idUserGlobal,
           file: this.props.navigation.state.params.file,
-         // cFile: this.props.navigation.state.params.cFile,
+          cFile: this.props.navigation.state.params.cFile,
           //forceUpdateHandler : this.forceUpdateHandler.bind(this)
         }  
     }
@@ -80,15 +81,28 @@ export default class PdfCompartido extends Component {
                     })
                     
     }
+
     mostrarPdf(){
         console.log('a')
         console.log(this.state.cFile)
         console.log(this.state.file)
-        FileSystem.getContentUriAsync(filePath.uri).then(cUri => {
+        FileSystem.getContentUriAsync(this.state.file).then(cUri => {
       console.log(cUri);
       this.setState({cFile:cUri.uri})
-    
+
+      console.log(this.state.cFile)
     });
+    }
+
+    mailComposer(mailto){
+        console.log('sendmail')
+        MailComposer.composeAsync({
+            recipients: [mailto],
+            subject: 'Informa Auditoría',
+            body: 'Informe de la auditoría',
+            attachments: [this.state.file]
+        },(response) => alert(response)
+        );
     }
  
       
@@ -145,7 +159,7 @@ export default class PdfCompartido extends Component {
         <Text style={{marginLeft:'1%',fontSize:13.5,fontStyle:'italic'}}>{a.correoIntegrante}</Text>
         </View>
         <View style={{flexDirection:'row-reverse',flex:1,alignItems:'center'}}>
-        <Feather onPress={()=>this.mostrarPdf()} name="send" size={30}/>
+        <Feather onPress={()=>this.mailComposer("adanavarrete15@gmail.com")} name="send" size={30}/>
         </View>
         </View>
         </Card>
@@ -189,8 +203,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#d6d7da',
         marginTop:35,
-        
-   
 
     }
 })

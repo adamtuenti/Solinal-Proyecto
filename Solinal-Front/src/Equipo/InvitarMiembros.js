@@ -83,10 +83,10 @@ class InvitarMiembros extends Component {
                     .then((responseJson) => {
                     // alert(JSON.stringify(responseJson));
                         if("idEquipo"  in responseJson){
-                            alert('enviado')
+                            this.setState({mensajeError:'Usuario agregado!'})
                         }
                         else{
-                            alert('mal correo')
+                           this.setState({mensajeError:'El correo no esta registrado, recomiendale que se descargue Solinal App'})
                         }
                         //this.setState({mensajeError:'Usuari agregado!'})
                        // this.props.navigation.navigate('EquipoVacio')
