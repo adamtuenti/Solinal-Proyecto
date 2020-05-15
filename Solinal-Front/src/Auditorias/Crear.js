@@ -15,8 +15,10 @@ import {MaterialIcons,FontAwesome,MaterialCommunityIcons,Ionicons} from '@expo/v
 import { Collapse, CollapseHeader, CollapseBody } from "accordion-collapse-react-native";
 import HeaderBack  from './../../shared/HeaderBack';
 import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
 import { Camera } from 'expo-camera';
 import * as Permissions from 'expo-permissions';
+import * as Expo from 'expo';
 
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -351,7 +353,7 @@ export default class Crear extends Component {
       this.setState({ capturing: false, captures: [videoData, ...this.state.captures] });
   };
 
-  tomarFoto(){
+  tomarFoto = () => {
     const { hasCameraPermission, flashMode, cameraType, capturing } = this.state;
 
     if (hasCameraPermission === null) {
@@ -395,7 +397,7 @@ export default class Crear extends Component {
      }
   }
 
-  verGaleria(){
+  verGaleria = () => {
     const { image, hasCameraPermission } = this.state;
 
     if (hasCameraPermission === null) {
@@ -416,7 +418,7 @@ export default class Crear extends Component {
        </View>
        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Button 
-          onPress={this._getPhotoLibrary.bind(this)} 
+          onPress={this._verFotoDesdeGaleria.bind(this)} 
           title="Pantalla de galería"
         />
        </View>
@@ -435,10 +437,12 @@ export default class Crear extends Component {
       buttonIndex => {
         switch(buttonIndex){
           case 0:
-            this.tomarFoto();
+            this.tomarFoto;
+            console.log('foto')
             break;
           case 1:
-            this.verGaleria();
+            this.verGaleria;
+            console.log('galeria')
             break;
           default:
             break;
@@ -775,6 +779,8 @@ export default class Crear extends Component {
                                                                             <CollapseHeader>
 
                                                                             <View style={{flexDirection:'row',alignItems: 'center',}}>
+
+                                                                              <TouchableHighlight onPress={() => this.onClickAddImage()}>
                                                                                 <View style={{flexDirection:'row',alignItems: 'center',}}>
                                                                                         <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/nota.png?raw=true'}} 
                                                                                         style={{height: 35, 
@@ -783,7 +789,9 @@ export default class Crear extends Component {
                                                                                                     }}/>
                                                                                 <Text style={{fontSize:12,marginLeft:5,marginTop:2}}>Agregar nota</Text>
                                                                                 </View>
+                                                                              </TouchableHighlight>  
 
+                                                                              <TouchableHighlight onPress={() => this.onClickAddImage()}>
                                                                                 <View style={{flexDirection:'row',alignItems: 'center',marginLeft:5}}>
                                                                                         <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/evidencia.png?raw=true'}} 
                                                                                         style={{height: 35, 
@@ -792,6 +800,7 @@ export default class Crear extends Component {
                                                                                                     }}/>
                                                                                 <Text style={{fontSize:12,marginLeft:5,marginTop:2}}>Agregar evidencia</Text>
                                                                                 </View>
+                                                                              </TouchableHighlight>
 
                                                                             </View>
                                                                             

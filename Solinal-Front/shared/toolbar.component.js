@@ -1,7 +1,9 @@
 import React from 'react';
-import { Camera } from 'expo';
+import { Camera } from 'expo-camera';
+import * as Expo from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import Constants from 'expo-constants';
 import { View, TouchableWithoutFeedback, TouchableOpacity, Dimensions } from 'react-native';
 
 const { width: winWidth, height: winHeight } = Dimensions.get('window');
