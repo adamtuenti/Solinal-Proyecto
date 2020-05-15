@@ -294,20 +294,7 @@ class Registro extends Component {
                                 <Text style={{ fontWeight: 'bold', color: '#515254' }}> REGISTRARME </Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={styles.FacebookStyle} activeOpacity={0.5} onPress={this.onFB}>
-
-                                <Image
-
-                                    source={{
-                                        uri:
-                                            'https://raw.githubusercontent.com/AboutReact/sampleresource/master/facebook.png',
-                                    }}
-
-                                    style={styles.ImageIconStyle}
-                                />
-                                <View style={styles.SeparatorLine} />
-                                <Text style={styles.TextStyle}> Login Using Facebook </Text>
-                            </TouchableOpacity>
+                           
 
                         </View>
 

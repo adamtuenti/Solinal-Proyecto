@@ -1,121 +1,48 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, SafeAreaView,FlatList, TouchableHighlight,Image, TextInput,Alert,TouchableOpacity } from 'react-native';
-import { Input, Button, SocialIcon } from 'react-native-elements';
+import { StyleSheet, Text, View, SafeAreaView,TouchableHighlight,Image, TextInput,Alert,TouchableOpacity } from 'react-native';
+import { Input, Button} from 'react-native-elements';
+import {Content} from 'native-base';
 //import Form from 'react-bootstrap/Form'
-import PasswordInputText from 'react-native-hide-show-password-input';
-import {MaterialIcons,
-MaterialCommunityIcons} from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
 
-class Login extends Component{
+export default class Login extends Component{
 
 
     constructor(props){
 
         
         super(props);
-        global.idUserGlobal = 5;
+        global.idUserGlobal = '';
         global.nameGlobal = '';
         global.userNameGlobal='';
         global.emailGlobal='';
+        
+        global.urifirma='https://i.pinimg.com/originals/e3/3c/2f/e33c2fa94c03efa06678116f80d62d0d.jpg'; 
+
         this.state = {
           username : '',
           password : '',
           loading: false,
-          pacientes: [],
+         
           mensajeError:'',
           iconName : 'eye',
           secureTextEntry:true,
-          //idUser:'1',
-          url: 'http://accountsolinal.pythonanywhere.com/api/users'
+         
         }
       
     }
 
-    componentDidMount(){
-        this.getPacientes();
-    }
-
-    getPacientes = () => {
-        this.setState({loading:true})
-        fetch(this.state.url)
-        .then(res=>res.json())
-        .then(res=>{ 
-            //console.log(res);
-            this.setState({
-            pacientes: res,
-            url: res.next,
-            loading: false,    
-            })
-        })
-    }
   
 
 
 
-    myfun=()=>{
+    iniciarSesion=()=>{
         const{username,password}=this.state;
 
          if ( username === ''||password=='') { this.setState({mensajeError:'Ingrese usuario y clave!'}) }
 
          else{
       
-/*
-        const array1 = this.state.pacientes
-        var idA = 1
-        var nameUser = ''
-        var user = ''
-        
-        var bandera = 0
-
-        array1.forEach(function(element){
-            var name = element.username
-            var pass = element.user
-            var idU = element.user
-            var nameU = element.first_name
-            
-            
-
-
-            if (name==username){
-                if (password == pass){
-                    bandera = 1;
-                    idA = idU
-                    nameUser = nameU
-                    user = name
-
-                    
-
-                }
-                else{
-                    bandera = 2;
-                  //  this.setState({mensajeError:'Clave mal ingresada!'})
-                    
-
-                }
-            }
-
-        }); 
-        if(bandera==0){
-            this.setState({mensajeError:'Usuario no registrado!'})
-
-        }
-        else if(bandera==2){
-            this.setState({mensajeError:'Clave mal ingresada!'})
-            
-        }
-        
-        else if(bandera==1){
-            idUserGlobal = idA;
-            nameGlobal=nameUser;
-            userNameGlobal=user;
-             this.props.navigation.navigate('Home')
-            
-          
-            
-            
-        }*/
-
         var dataToSend = {username:username,password:password};
             var formBody = [];
             for (var key in dataToSend) {
@@ -135,7 +62,7 @@ class Login extends Component{
              //console.log(responseJson.user.id)
             //If response is in json then in success
             .then((responseJson) => {
-               // alert(JSON.stringify(responseJson));
+                //alert(JSON.stringify(responseJson));
                 //console.log(responseJson)
                 if("user" in responseJson){
                     idUserGlobal = responseJson.user.id;
@@ -147,6 +74,7 @@ class Login extends Component{
                 }
                 else{
                     this.setState({mensajeError:'Credenciales incorrectas!'})
+                    
 
                 }
             
@@ -175,14 +103,18 @@ class Login extends Component{
 
     render() {
         return ( 
-            <SafeAreaView >
-                <View style = {styles.container}>
+            <SafeAreaView style={{}}>
+            
+             
+
+                <View style = {{ alignItems: 'center',justifyContent: 'center',margin:10}}>
                 
+                 
 
                 
 
                 <Image
-                        style={{width: '45%', height: 212, margin:25}}
+                        style={{width: '45%', height: 212,marginBottom:'8%',marginTop:'25%'}}
                         source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
                 />
 
@@ -236,7 +168,7 @@ class Login extends Component{
                 
 
                 <TouchableHighlight
-                    style={styles.botonLogin} onPress={this.myfun}>
+                    style={styles.botonLogin} onPress={this.iniciarSesion}>
                     <Text style={{fontWeight: 'bold', color: '#515254'}}> CONECTAR </Text>
                 </TouchableHighlight>
                     
@@ -246,17 +178,15 @@ class Login extends Component{
 
 
         
-
-                </View>
+                
 
                 
                     
-                <View style = {styles.abajo}>
-
+               
                         <Text 
                             onPress={()=>this.props.navigation.navigate('Reestablecer')}
-                            style={{color: 'black',marginTop:'10%'}}>
-                            ¿Olvidó su clave?</Text>
+                            style={{color: 'black',marginTop:'10%',fontWeight:'bold',fontStyle:'italic',fontSize:15,marginTop:'15%'}}>
+                            ¿Olvidó su clave</Text>
                     
 
                     
@@ -264,26 +194,22 @@ class Login extends Component{
                    
                         <Text 
                             onPress={()=>this.props.navigation.navigate('Registro')}
-                            style={{color: 'black',marginTop:'2.5%',marginBottom:'3.5%'}}>
+                            style={{color: 'black',marginTop:'2.5%',marginBottom:'3.5%',fontWeight:'bold',fontStyle:'italic',fontSize:15}}>
                             Crear cuenta</Text>
 
                        
 
                 
 
-                <SocialIcon style={{height: 35,width:  185}}
-                    title='Sign in With Facebook'
-                    button
-                    type='facebook'
-                    />
 
                 
 
 
 
-
-                    
                 </View>
+            
+                    
+                
             </SafeAreaView>
             )
         }
@@ -301,23 +227,13 @@ class Login extends Component{
 }
 
 
-export default Login;
+
 
 
 
 
 const styles = StyleSheet.create({
-    container: {
-      
-      
-      
-      
-      alignItems: 'center',
-      justifyContent: 'center',
-    
-      marginTop: "50%",
-      margin:10
-    },
+   
     input: {
         height: 30,
         borderBottomColor: '#1ed796',
@@ -365,16 +281,7 @@ const styles = StyleSheet.create({
     default:{
         backgroundColor:'blue'
     },
-    abajo: {    
-        alignItems: 'center',
-
-       // flexDirection: 'row',
-
-      justifyContent: 'center',
-        
-        
-      
-    },
+   
     contentContainer:{
         backgroundColor: '#98FF7A',
         borderColor: '#fff',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {StyleSheet, View, Text, StatusBar,TouchableOpacity, SafeAreaView,TouchableHighlight, Image, PixelRatio, ScrollView,TextInput, Alert} from 'react-native';
+import {StyleSheet, View, Text, StatusBar,TouchableOpacity, SafeAreaView,TouchableHighlight, Image, PixelRatio, Dimensions,ScrollView,TextInput, Alert} from 'react-native';
 import { Input } from 'react-native-elements';
 import { Container, Title, Content, Card, CardItem,  Button, Left, Right, Body,  Font } from 'native-base';
 import FormData from 'form-data';
@@ -28,7 +28,7 @@ class AuditoriasBuscar extends Component {
             normas:[],
             loadingnorma: false,
             paginaActual:'AuditoriasBuscar',
-            paisEnvio:'a',
+            paisEnvio:'',
             mensajeError:'',
         };
     }
@@ -136,10 +136,11 @@ class AuditoriasBuscar extends Component {
     render() {
      
         return (
-             <Container>
+             <View style={{height:Dimensions.get('window').height,flex:1,marginTop:25}}>
 
-                <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:'11%',paddingTop:'8%',alignContent:'center'}}>
-                <View style={{marginTop:'4.5%',flexDirection:'row',}}>
+
+                <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:55,alignContent:'center'}}>
+                <View style={{marginTop:5,flexDirection:'row',}}>
                     <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
                         <TouchableHighlight onPress={()=>this.props.navigation.navigate('Main')}>       
                         <MaterialIcons name="arrow-back" size={32} color="white" />
@@ -318,8 +319,48 @@ class AuditoriasBuscar extends Component {
                 </Content>
 
 
-                <FooterAuditoria/>
-            </Container>
+                    <View style={{height:62, flexDirection: 'row',width:'100%'}}>
+                <TouchableHighlight  style={{justifyContent:'center',width:'20%'}}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2047.png'}} 
+                            style={{height: 35, width: 25}}/>
+                    <Text style={{color: '#636363', fontSize: 9}}>Auditorias</Text>
+                    </View>
+                </TouchableHighlight>
+
+                 <TouchableHighlight onPress={()=>alert('en proceso')} style={{justifyContent:'center',width:'20%'}}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
+                                   style= {{height: 35,width: 28}}>
+                            </Image>
+               <Text style={{color: '#636363',fontSize: 9}}>Accion Correctiva</Text></View>
+                </TouchableHighlight>    
+
+                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('Main')} style={{marginLeft:'2%',marginRight:'2%',alignItems:'center',justifyContent:'center'}}>
+                    <View style={{flexDirection:'column',alignItems:'center',justifyContent:'center',marginBottom:'8%'}}>
+                           <MaterialCommunityIcons name="home-circle" size={50} />
+                    </View>
+                </TouchableHighlight>
+
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioVacio')} style={{justifyContent:'center',width:'20%'}}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario.png?raw=true'}}
+                                   style= {{height: 35,width: 32}}>
+                            </Image>
+                    <Text style={{color: '#636363', fontSize: 9}}>Calendario</Text></View>
+                </TouchableHighlight>
+          
+                <TouchableHighlight onPress={()=>alert('en proceso')} style={{justifyContent:'center',width:'20%'}}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2015.png'}}
+                                   style= {{height: 35,width: 34}}>
+                            </Image>
+               <Text style={{color: '#636363', fontSize: 9}}>No Conformidad</Text></View>
+                </TouchableHighlight>
+               
+                </View>
+
+            </View>
             )
     }
 

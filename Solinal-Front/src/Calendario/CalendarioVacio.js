@@ -1,62 +1,28 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container, Title, Content, Card, CardItem,  Button, Left, Right, Body,  Font } from 'native-base';
+import { Container, Title, Content, Card, CardItem, Footer, Button, Left, Right, Body,  Font } from 'native-base';
 import { Icon } from 'react-native-elements'
-import {StyleSheet,TouchableHighlight,Text,View,Dimensions} from 'react-native'
-import FooterAuditoria from './../../shared/FooterAuditoria';
-import HeaderBack from './../../shared/HeaderBack';
-import EstadoCuenta from './../../shared/estadoCuenta';
+import {StyleSheet,TouchableHighlight,Text,View,Dimensions} from 'react-native';
+import Header from '../../shared/Header';
+import AuditoriasProgramadas from '../../shared/AuditoriasProgramadas';
+import FooterCalendario from '../../shared/FooterCalendario';
 import {MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
 
-export default class AuditoriasVacia extends Component {
+export default class CalendarioVacio extends Component {
 
+    async componentDidMount() {
+        await Font.loadAsync({
+          Roboto: require("native-base/Fonts/Roboto.ttf"),
+          Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+          /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
+        });
+        this.setState({ isReady: true });
+      }
 
-
-      constructor(props) {
-        super(props);
-        this.state = {
-            loading: false,
-            //paginaAnterior: this.props.navigation.state.params.paginaActual,
-          datos: [],
-          url: 'http://accountsolinal.pythonanywhere.com/api/user/'+idUserGlobal
-        };
-    }
-
-
-     componentDidMount(){
-        this.getDatos();
-    }
-
-    getDatos = () => {
-
-        this.setState({loading:true})
-        fetch(this.state.url)
-
-        .then(res=>res.json())
-       
-        .then(res=>{ 
-            console.log(res)
-            
-
-            this.setState({
-            datos: res,
-            url: res.next,
-            loading: false,    
-            })
-        })
-    }
-
-
-  
-
-    render() {
-       // if(this.state.datos.numero_auditorias_pendientes<2){
-        if(0<1){
-        
-        return (
-            <View style={{height:Dimensions.get('window').height,flex:1,marginTop:25}}>
-
-
+      render(){
+          return(
+              <View style={{height:Dimensions.get('window').height,flex:1,marginTop:25}}>
+                
                 <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:55,alignContent:'center'}}>
                 <View style={{marginTop:5,flexDirection:'row',}}>
                     <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
@@ -64,56 +30,54 @@ export default class AuditoriasVacia extends Component {
                         <MaterialIcons name="arrow-back" size={32} color="white" />
                         </TouchableHighlight>         
                         <Text style={{color:'white', fontSize:21, marginLeft:10}}>
-                            Auditorias
+                            Calendario
                         </Text>
                     </View>
                 </View>
                 </View>
 
-
                 <Content padder style={{backgroundColor: '#f6f6f6'}}>
+                    <AuditoriasProgramadas cantidad='0' tipoCuenta='GRATIS'/>
 
-                    <EstadoCuenta/>
 
                     <Card>
                         <CardItem>
                             <Body style={{alignItems: 'center'}}>
-                                <Text style={{alignItems: 'center',fontSize: 19,fontWeight: 'bold',marginTop:5,marginBottom:5}}>Mis Auditorías</Text>
+                                <Text style={{alignItems: 'center',fontSize: 19,fontWeight: 'bold',marginTop:5,marginBottom:5}}>Auditorías Programadas</Text>
                             </Body>
                         </CardItem>
                         <CardItem cardBody style={{alignItems: 'center'}}>
                             <Body style={{alignItems: 'center'}}>
-                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2032.png'}} 
+                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2065.png'}} 
                                    style={{height: 200, 
                                            width: 200, 
                                            alignItems: 'center'}}/>
                             </Body>               
                         </CardItem>
                         <CardItem>
-                            <Body style={{alignItems: 'center', width:24,fontWeight: 'bold'}}>
-                                <Text style={{color: '#636363', fontSize: 14, alignItems: 'center'}}>Aún no has realizado ninguna auditoría</Text>
-                                <Text style={{color: '#636363', fontSize: 14, alignItems: 'center',textAlign:'center'}}>Encuentra las normas actualizadas y empieza a auditar</Text>
-                            </Body>
+                            <View style={{alignItems: 'center', width:'100%',marginTop:10,justifyContent: 'center',}}>
+                                <Text style={{color: '#636363', fontSize: 14, alignItems: 'center'}}>Aún no existen auditorías programadas</Text>
+                                <Text style={{color: '#636363', fontSize: 14, alignItems: 'center',marginTop:5,textAlign:'center'}}>Para programar auditorías, debes crear una auditoría</Text>
+                            </View>
                         </CardItem>
                         <CardItem style={{alignItems: 'center'}}>
                             <Body style={{alignItems: 'center'}}>
 
                                 <TouchableHighlight
-                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('CrearAuditoria')}>
-                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:23}}> Crear </Text>
+                                    style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('AgendarAuditorias')}>
+                                    <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> CREAR AUDITORÍA </Text>
                                     </TouchableHighlight>
                                                         
                             </Body>
                         </CardItem>
                     </Card>
                 </Content>
-                 
+                
 
-
-                 <View style={{height:62, flexDirection: 'row',width:'100%'}}>
-                <TouchableHighlight  style={{justifyContent:'center',width:'20%'}}>
+                <View style={{height:62, flexDirection: 'row',width:'100%'}}>
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasVacia')} style={{justifyContent:'center',width:'20%'}}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2047.png'}} 
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}} 
                             style={{height: 35, width: 25}}/>
                     <Text style={{color: '#636363', fontSize: 9}}>Auditorias</Text>
                     </View>
@@ -133,9 +97,9 @@ export default class AuditoriasVacia extends Component {
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioVacio')} style={{justifyContent:'center',width:'20%'}}>
+                <TouchableHighlight  style={{justifyContent:'center',width:'20%'}}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
-                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario.png?raw=true'}}
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario-active.png?raw=true'}}
                                    style= {{height: 35,width: 32}}>
                             </Image>
                     <Text style={{color: '#636363', fontSize: 9}}>Calendario</Text></View>
@@ -151,47 +115,47 @@ export default class AuditoriasVacia extends Component {
                
                 </View>
 
+
             </View>
-        );
-    
-    //}
-    /*else{
-        console.log(idUserGlobal)
-        console.log('-')
-        console.log(this.state.datos.numero_auditorias_pendientes)
-        return(
-        this.props.navigation.navigate('Home')
-        );
-    }*/
-    }
-    else{
-      
-        return(
-            alert(this.state.datos.auditoriasPendientes),
-        this.props.navigation.navigate('Home')
-        );
-    }
-
-    }
-    
-     
+          )
+      }
 }
-
-
 
 const styles = StyleSheet.create({
     
+  
 
     botonLogin:{
         alignItems: 'center',
-        backgroundColor: '#1ED695',
-        padding:5,
-        width:142,
+        backgroundColor: '#35E119',
+        padding: 10,
+        width:177,
         borderRadius: 4,
         borderWidth: 1,
         borderColor: '#d6d7da',
+        padding:10,
+        marginBottom:15
         
    
 
-    }
+    },botonGoogle:{
+        
+        padding: 10,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: '#d6d7da',
+        alignItems: 'center',
+        justifyContent: 'center',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 1.84,
+
+        elevation: 1,
+
+    },
+   
   });

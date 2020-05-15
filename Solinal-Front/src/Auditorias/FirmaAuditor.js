@@ -5,16 +5,33 @@ import Signature from 'react-native-signature-canvas';
 export default class FirmaAuditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signature: null };
+        this.state = { signature: null,firma:'' };
       }
      
       handleSignature = signature => {
-        this.setState({ signature });
+        this.setState({ signature ,firma:'ok'});
+        
        
       };
      
       handleEmpty = () => {
         alert('Firma vacia')
+      }
+
+      enviarFirma=()=>{
+        
+        urifirma=this.state.signature;
+
+        if(this.state.firma!=''){
+          this.props.navigation.navigate('Crear',{signature:this.state.signature})
+
+        }
+        else{
+          alert('firma no')
+        }
+        
+        
+       
       }
      
       render() {
@@ -26,16 +43,14 @@ export default class FirmaAuditor extends React.Component {
         return (
           <View style={{ flex: 1 }}>
             <View style={styles.preview}>
-              {this.state.signature ? (
-                <Image
-                  resizeMode={"contain"}
-                  style={{ width: 335, height: 114 }}
-                  source={{ uri: this.state.signature }}
-                />,
-                //this.props.navigation.navigate('Carusel')//,
-                {signature:this.state.signature}
-              ) : null}
-            </View>
+          {this.state.signature ? (
+            <Image
+              resizeMode={"contain"}
+              style={{ width: 335, height: 114 }}
+              source={{ uri: this.state.signature }}
+            />
+          ) : null}
+        </View>
             <Signature
               onOK={this.handleSignature}
               onEmpty={this.handleEmpty}
@@ -44,7 +59,18 @@ export default class FirmaAuditor extends React.Component {
               confirmText="Guardar"
               webStyle={style}
             />
+
+              <View>
+
+              <TouchableHighlight style={{alignItems:'center'}} onPress={()=>{this.enviarFirma()}}><View><Text>aceptar</Text></View></TouchableHighlight>
           </View>
+          </View>
+
+        
+
+          
+
+          
         );
       }
     }

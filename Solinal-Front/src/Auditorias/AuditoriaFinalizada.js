@@ -178,6 +178,9 @@ export default class AuditoriaFinalizada extends Component{
                </tbody>
           </table>
         </div>
+        <div>
+        <img src=" `+urifirma+`">
+        </div>
       </body>
     </html>
  `

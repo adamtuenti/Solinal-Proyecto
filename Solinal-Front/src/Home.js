@@ -18,7 +18,7 @@ export default class Home extends Component{
       <View style={{flex: 1, flexDirection: 'column', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center',height:Dimensions.get('window').height}}>
 
         <Image
-                        style={{width: '15%', height: '25%', margin:25,padding:10,marginTop:'5%'}}
+                        style={{width: 181, height: 250, margin:25,padding:10,marginTop:'5%'}}
                         source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
         />
 

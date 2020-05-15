@@ -31,7 +31,7 @@ const list = [
     name: 'Recomienda Solinal Auditor',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/compartir.png?raw=true',
     subtitle: 'Vice Chairman',
-    url: 'CalendarioVacia',
+    url: 'RecomiendaSolinal',
     altura:30,
     anchura:35
   }
@@ -236,7 +236,7 @@ render() {
                         <Text style={{fontSize:15}}> {l.name}</Text>
                         </View>
                       }       
-                      onPress={()=>this.props.navigation.navigate(l.url)}
+                      onPress={()=>this.props.navigation.navigate(l.url,{signature:'https://i0.wp.com/www.bitme.gg/wp-content/uploads/2020/05/Dragon-Ball_-%C2%BFPor-que%CC%81-se-celebra-el-Di%CC%81a-de-Goku-el-9-de-mayo_.jpg?fit=1280%2C720&ssl=1'})}
                       bottomDivider
                     />
                   ))
@@ -280,81 +280,50 @@ render() {
             
         </Content>
 
-        <View style={{backgroundColor:'green'}}> 
+        
 
+        
 
-      
-
-      
-
-       <View style={{height:62, flexDirection: 'row',width:'100%'}}>
-                <TouchableHighlight onPress={()=>navigation.navigate('AuditoriasBuscar')} style={styles.botones}>
+            <View style={{height:62, flexDirection: 'row',width:'100%'}}>
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasVacia')} style={{justifyContent:'center',width:'20%'}}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
                             <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}} 
-                            style={{height: 35, 
-                                        width: 25,
-                                        }}/>
-                    <Text style={styles.letra}>Auditorias</Text>
+                            style={{height: 35, width: 25}}/>
+                    <Text style={{color: '#636363', fontSize: 9}}>Auditorias</Text>
                     </View>
                 </TouchableHighlight>
 
-                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioVacia')} style={styles.botones}>
+                 <TouchableHighlight onPress={()=>alert('en proceso')} style={{justifyContent:'center',width:'20%'}}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
-                                   style= {{height: 35,
-                                            width: 28}}>
+                                   style= {{height: 35,width: 28}}>
                             </Image>
-               <Text style={styles.letra}>Accion Correctiva</Text>
-                    </View>
+               <Text style={{color: '#636363',fontSize: 9}}>Accion Correctiva</Text></View>
                 </TouchableHighlight>    
 
-                
-                
-
-
-
-                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasBuscar')} style={styles.botones1}>
+                 <TouchableHighlight  style={{marginLeft:'2%',marginRight:'2%',alignItems:'center',justifyContent:'center'}}>
                     <View style={{flexDirection:'column',alignItems:'center',justifyContent:'center',marginBottom:'8%'}}>
-                           <MaterialIcons name="home" size={50} color='#1ED695' />
-                            
-
-
+                           <MaterialCommunityIcons name="home-circle" size={50} color={'green'}/>
                     </View>
                 </TouchableHighlight>
 
-                
-
-                
-
-
-                <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioPrograma')} style={styles.botones}>
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioVacio')} style={{justifyContent:'center',width:'20%'}}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
                             <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario.png?raw=true'}}
-                                   style= {{height: 35,
-                                            width: 32}}>
+                                   style= {{height: 35,width: 32}}>
                             </Image>
-                    <Text style={styles.letra}>Calendario</Text>
-                    </View>
+                    <Text style={{color: '#636363', fontSize: 9}}>Calendario</Text></View>
                 </TouchableHighlight>
           
-
-                <TouchableHighlight onPress={()=>imprimir} style={styles.botones}>
+                <TouchableHighlight onPress={()=>alert('en proceso')} style={{justifyContent:'center',width:'20%'}}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2015.png'}}
-                                   style= {{height: 35,
-                                            width: 34}}>
+                                   style= {{height: 35,width: 34}}>
                             </Image>
-               <Text style={styles.letra}>No Conformidad</Text>
-                    </View>
+               <Text style={{color: '#636363', fontSize: 9}}>No Conformidad</Text></View>
                 </TouchableHighlight>
-                   
-                       
-                     
-                     
                
                 </View>
-
-            </View>
 
      </MenuDrawer>
 

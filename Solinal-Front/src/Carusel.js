@@ -49,43 +49,30 @@ export default class Carusel extends Component {
 
     render() {
         return (
-            <View style={{flex:1}}>
+           
                 <IndicatorViewPager
-                    style={{height:'100%',color:'green'}}
+                    style={{flex:1,color:'green'}}
                     indicator={this._renderDotIndicator()}
                 >
 
 
-                    <View style={{ flexDirection:'column',alignItems:'center'}}>
+                    <View style={{ flexDirection:'column',alignItems:'center',flex:1,justifyContent:'center'}}>
 
                        
-                        <View style={{marginTop:'19%',alignItems:'center'}}>
+                        <View style={{alignItems:'center'}}>
 
                         <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%203.png?raw=true'}}style= {styles.imagen}></Image>
                         
                         </View>
 
+                        <View style={{width:'87%',alignItems:'center',marginTop:'3.5%'}}>
+                        <Text style={styles.tituloText}>Ahorra tiempo y dinero mientras ejecutas una auditoría</Text>
+                        </View>
+                        <View style={{width:'87%',alignItems:'center',marginTop:'3%'}}>
+                        <Text style={styles.bodyText}>Deshazte de tanto papel, todas las auditorias internas, de proveedor, inspecciones y checklist de verificación, en una app amigable.</Text>
+                        </View>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        
-
-                    
-
-                        
 
                         <View style={{alignItems:'center',marginTop:'10%'}}>
                         <TouchableHighlight style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('Registro')}>
@@ -95,7 +82,6 @@ export default class Carusel extends Component {
                         </TouchableHighlight>
                         </View>
 
-                        
 
                         <View style={styles.textLine}>
                         
@@ -106,19 +92,16 @@ export default class Carusel extends Component {
                             Inicia Sesión</Text>
                         </View>
                        
-                        <View style={{alignItems:'center'}}>
-                            <Image 
-                            source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Facebook-share-icon.png?raw=true'}} style={styles.imageStyle}></Image>
-                        </View>
+                        
                     </View>
 
 
 
 
-                    <View style={{ flexDirection:'column',alignItems:'center'}}>
+                    <View style={{ flexDirection:'column',alignItems:'center',justifyContent:'center',flex:1}}>
 
                        
-                        <View style={{marginTop:'19%',alignItems:'center'}}>
+                        <View style={{alignItems:'center'}}>
 
                         <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%204.png?raw=true'}}style= {styles.imagen}></Image>
                         
@@ -154,10 +137,7 @@ export default class Carusel extends Component {
                             Inicia Sesión</Text>
                         </View>
                        
-                        <View style={{alignItems:'center'}}>
-                            <Image 
-                            source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Facebook-share-icon.png?raw=true'}} style={styles.imageStyle}></Image>
-                        </View>
+                        
                     </View>
 
 
@@ -165,10 +145,10 @@ export default class Carusel extends Component {
 
                     
 
-                    <View style={{ flexDirection:'column',alignItems:'center'}}>
+                    <View style={{ flexDirection:'column',alignItems:'center',justifyContent:'center',flex:1}}>
 
                        
-                        <View style={{marginTop:'19%',alignItems:'center'}}>
+                        <View style={{alignItems:'center'}}>
 
                         <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%205.png?raw=true'}}style= {styles.imagen3}></Image>
                         
@@ -204,10 +184,7 @@ export default class Carusel extends Component {
                             Inicia Sesión</Text>
                         </View>
                        
-                        <View style={{alignItems:'center'}}>
-                            <Image 
-                            source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Facebook-share-icon.png?raw=true'}} style={styles.imageStyle}></Image>
-                        </View>
+                     
                     </View>
 
 
@@ -216,7 +193,7 @@ export default class Carusel extends Component {
                 </IndicatorViewPager>
  
               
-            </View>
+          
         );
     }
  
@@ -237,11 +214,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     imagen:{
-        height:245,
-        width:242,
-        marginTop:'2%'
+        height:197,
+        width:195,
+        
+       
 
-    }, botonLogin:{
+    },
+    imagen3:{
+       height:199,
+        width:201.5,
+        
+    },
+    botonLogin:{
         alignItems: 'center',
         backgroundColor: '#B3F1C9',
         alignItems:'center',
@@ -254,11 +238,7 @@ const styles = StyleSheet.create({
    
 
     },
-     imagen3:{
-       height:245,
-        width:248,
-        marginTop:'2%'
-    },
+     
     item: {
         borderWidth: 2,
         backgroundColor: 'white',
