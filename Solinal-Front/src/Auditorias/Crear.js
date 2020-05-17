@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image ,TouchableOpacity} from 'react-native';
-import { Container, Title, Content, Card, CardItem, Footer, Button, Left, Right, Body,  Font,Input,DatePicker } from 'native-base';
+import { Root,ActionSheet,Container, Title, Content, Card, CardItem, Footer, Button, Left, Right, Body,  Font,Input,DatePicker } from 'native-base';
 import { Icon } from 'react-native-elements'
 import {StyleSheet,TouchableHighlight,Text,View,Dimensions} from 'react-native';
 //import DatePicker from 'react-native-datepicker';
@@ -17,6 +17,16 @@ import HeaderBack  from './../../shared/HeaderBack';
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment'
+
+
+
+
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
+import { Camera } from 'expo-camera';
+import * as Permissions from 'expo-permissions';
+import * as Expo from 'expo';
+import Toolbar from './../../shared/toolbar.component';
 
 const dataItem1 = [
     { title: "Art. 73: De las condiciones mínimas básicas", content: "Lorem ipsum dolor sit amet" },
@@ -41,7 +51,7 @@ const list = [
   {
     titulo: 'De las instalaciones y requisitos de buenas prácticas de manufactura',
     menu: ['Art. 75: Diseño y construcción','Art. 76: Condiciones específicas de las áreas, estructuras internas y accesorios'],
-    submenu:['sub menu1','submenu2'],
+    submenu:[['sub menu1','submenu2'],['hola','hola1']],
     url: 'AuditoriasBuscar',
     altura:30,
     anchura:40
@@ -49,14 +59,14 @@ const list = [
   {
    titulo: 'De los equipos y utensilios',
     menu: ['1a','2a'],
-    submenu:['sub menu3','submenu4'],
+    submenu:[['sub menu3','submenu4'],['hola','hola1']],
     url: 'AuditoriasBuscar',
     altura:32,
     anchura:23
   },
   {
     titulo: 'Requisitos higiénicos de fabricación',
-    menu: ['1 a','2a'],
+    menu: ['1 a'],
     submenu:['sub menu5','submenu6'],
     url: 'AuditoriasBuscar',
     altura:30,
@@ -66,16 +76,20 @@ const list = [
 
 export default class Crear extends Component {
 
+  camera = null;
+
    
 
       constructor(props){
+        
     super(props)
         //set value in state for initial date
+        global.urifirma='https://i.pinimg.com/originals/e3/3c/2f/e33c2fa94c03efa06678116f80d62d0d.jpg'; 
          this.state = {
            dateInicio:'',
            dateFin:'',
            array:[0,0,0],
-           subarray:[[10,0],[8,0],[0,0]],
+           subarray:[[10,0],[8,0],[0]],
            cont:0,
            paginaAnterior: 'Main',//this.props.navigation.state.params.paginaActual,
            time: '09:00',
@@ -85,7 +99,15 @@ export default class Crear extends Component {
             pressStatus: false, 
             selected: null, 
             SelectedButton: '' ,
-            signature:this.props.navigation.state.params.signature,
+            a:'http://accountsolinal.pythonanywhere.com/api/mainMenu/1',
+            loading: false,
+           // signature:this.props.navigation.state.params.signature,
+
+           arrayRespuestas: [ ['pregunta','si'] ,['pregunta 1','n/a'],['pregunta 2','si']   ],
+           arrayMain: ['main 1','main 2','main 3'],
+
+
+
 
 
             isVisibleFI:false,
@@ -97,6 +119,141 @@ export default class Crear extends Component {
             fechaFin:moment().format('DD-MM-YYYY'),
             horaInicio:moment().format('HH:mm'),
             horaFin:moment().format('HH:mm'),
+
+
+            captures: [],
+           flashMode: Camera.Constants.FlashMode.off,
+           capturing: null,
+           cameraType: Camera.Constants.Type.back,
+           hasCameraPermission: null,
+           image: null,
+
+           menu:['hola','hola1'],
+           submenu:[['a','n'],['m']],
+           item:[[['a1','a2'],['n1']],['m1']],
+
+            loading: false,
+          equipo: [],
+          mensajeError:'',
+          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/'+idUserGlobal,
+          vacio:[],
+
+
+           api:[
+    {
+      "id": 1,
+      "mainMenu": "main1",
+      "subMenuLista":['submenu1', 'sub menu1']
+    },
+    {
+      "id": 2,
+      "mainMenu": "main2",
+      "subMenuLista":['submenu2', 'sub menu2']
+    },
+    {
+      "id": 3,
+      "mainMenu": "main3",
+      "subMenuLista":['submenu3']
+    },
+ ],
+           api1: [
+             
+             
+    [[{
+      "subMenuItem": "submenu1",
+      "itemLista": ["item","item 0"]
+    }],[
+
+     {
+      "subMenuItem": "sub menu1",
+      "itemLista": ["item1","item 1"]
+    }]]
+
+
+           ,[[
+      {
+      "subMenuItem": "submenu2",
+      "itemLista": ["item2","item 2"]
+    }],[
+
+     {
+      "subMenuItem": "sub menu2",
+      "itemLista": ["item01","item 02"]
+    }
+    ]],[[
+      {
+      "subMenuItem": "submenu3",
+      "itemLista": ["item3"]
+    }]]
+    ],
+    
+           api2: [
+             
+    [[[{
+      "item": "item",
+      "subItemLista": ["goku","goku 1"]
+    }],[
+     {
+      "item": "item0",
+      "subItemLista": ["vegeta"]
+    }  ]],
+         
+           
+    [[{
+      "item": "item1",
+      "subItemLista": ["krilim","krilim 1"]
+    }],[
+     {
+      "item": "item 1",
+      "subItemLista": ["freezer",'papa frezer']
+    },]]],
+          
+
+
+          
+    [[[{
+      "item": "item2",
+      "subItemLista": ["goku saya","goku fase1"]
+    }],[
+     {
+      "item": "item 2",
+      "subItemLista": ["bulma","ulork"]
+    }]],
+          
+           [[
+    {
+      "item": "item01",
+      "subItemLista": ["rochi"]
+    }],[
+
+     {
+      "item": "item 02",
+      "subItemLista": ["bardock",'dodoria']
+    }]]],
+
+     [[[{
+      "item": "item2",
+      "subItemLista": ["goku saya","goku fase1"]
+    }],[
+     {
+      "item": "item 2",
+      "subItemLista": ["bulma","ulork"]
+    }]]],
+          
+           [[[
+    {
+      "item": "item3",
+      "subItemLista": ["yancha",'picoro','naruto']
+    }]]],
+
+
+
+
+           
+
+
+           
+           ]
   
         };
     }
@@ -108,7 +265,52 @@ export default class Crear extends Component {
           /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
         });
         this.setState({ isReady: true });
+
+        
+        
       }
+
+
+
+    getMiembrosEquipo = () => {
+        this.setState({loading:true})
+        fetch(this.state.urlEquipo)
+        .then(res=>res.json())
+        .then(res=>{ 
+         // console.log(res)
+           
+           
+            this.setState({
+            equipo: res,
+            urlEquipo: res.next,
+            loading: false,   
+            
+            })
+        })
+        this.llenarArrary()
+  
+    }
+
+    llenarArrary=()=>{
+      console.log(this.state.equipo)
+      this.state.api.map((a,n)=>(
+        //console.log(n),
+        this.state.vacio.push([])
+      ))
+      console.log(this.state.vacio)
+    }
+
+      componentDidMount = () => {
+          this.getMiembrosEquipo();
+    const camera = Permissions.askAsync(Permissions.CAMERA);
+        const audio = Permissions.askAsync(Permissions.AUDIO_RECORDING);
+        const roll = Permissions.askAsync(Permissions.CAMERA_ROLL);
+        const hasCameraPermission = (camera.status === 'granted' && audio.status === 'granted' && roll.status === 'granted');
+
+        this.setState({ hasCameraPermission });
+  }
+
+      
 
 
   _onHideUnderlay() {
@@ -136,13 +338,17 @@ export default class Crear extends Component {
 
    
 
-  onUpdateItem (i,str) {
+  onUpdateItem (i) {
    // alert('hola')
     this.setState(state => {
       const array = state.array.map((item, j) => {
          if (j === i) {
-          
-                return str;
+           if(item+1<3){
+             return item+1;
+           }else{
+             return item;
+           }      
+                
               } else {
                 return item;
               }
@@ -159,33 +365,76 @@ export default class Crear extends Component {
   
   }
 
+  onUpdateRespuesta (i,pregunta,respuesta) {
+   // alert('hola')
+    this.setState(state => {
+      const vacio = state.vacio.map((item, j) => {
+         if (j === i) {
+           return { 
+             pregunta,respuesta
+           }
+           }      
+                
+               else {
+                return item;
+              }
+          });
+        
+     
+ 
+      return {
+        vacio
+      };
+    
+    });
+    console.log(this.state.vacio)
+  
+  }
+
   onUpdateItem1(i,n) {
    // alert('hola')
     this.setState(state => {
       const subarray = state.subarray.map((item, j) => {   
          if (j === i) {
-           const subarray1 = item.map((item1, o) => {
+          // alert(item)
+         //  console.log(item)
+          const subarray1 = item.map((item1, o) => {
+           /* console.log(item1)
+            console.log(n)
+            console.log(o)
+            console.log('-')*/ 
              if (o === n) {
+              /* alert(item1)
+               console.log('/')
+               console.log(item1)
+               console.log('chao funcion')*/
                return item1+1
              }else {
+             //  console.log(item1)
                 return item1;
               }
           });
+         console.log(subarray1)
           return {
+            //console.log(subarray1)
             subarray1
           };
         } 
-        else{
+       else{
+         console.log(item)
           return item
-        }          
-        })
-      return {
-        subarray
-      };
+        //}          
+        }
+     // return {
+       // subarray
+      //};
 
-      }
-    )
-      }
+      });
+      return subarray
+    
+
+      });
+    }
         
        
     
@@ -303,13 +552,137 @@ export default class Crear extends Component {
   }
 
 
+
+ onSelectedImage(image){
+    let newImgData = this.state.fileList;
+    const source = {uri: image.path};
+    let item = {
+      id: Date.now(),
+      url: source,
+      content: image.data
+    }
+    newImgData.push(item);
+    this.setState({fileList: newImgData});
+  }
+
+  setFlashMode = (flashMode) => this.setState({ flashMode });
+  setCameraType = (cameraType) => this.setState({ cameraType });
+  handleCaptureIn = () => this.setState({ capturing: true });
+
+  handleCaptureOut = () => {
+      if (this.state.capturing)
+          this.camera.stopRecording();
+  };
+
+  handleShortCapture = async () => {
+      const photoData = await this.camera.takePictureAsync();
+      console.log(photoData.uri);
+      this.setState({ capturing: false, captures: [photoData, ...this.state.captures] })
+  };
+
+  handleLongCapture = async () => {
+      const videoData = await this.camera.recordAsync();
+      this.setState({ capturing: false, captures: [videoData, ...this.state.captures] });
+  };
+
+  tomarFoto = () => {
+    console.log('hola')
+    const { hasCameraPermission, flashMode, cameraType, capturing } = this.state;
+    console.log('--')
+    console.log(hasCameraPermission)
+
+    if (hasCameraPermission === false) {
+      console.log('bueno')
+      this.props.navigation.navigate('Camara')
+      
+ 
+        } else if (hasCameraPermission === null) {
+          console.log('no')
+      return <Text>Acceso a cámara ha sido denegado.</Text>;
+  }
+
+ 
+  }
+
+  _verFotoDesdeGaleria = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3]
+     });
+     if (!result.cancelled) {
+      this.setState({ image: result.uri });
+     }
+  }
+
+  verGaleria = () => {
+    const { image, hasCameraPermission } = this.state;
+
+    if (hasCameraPermission === null) {
+      return <View />
+     }
+     else if (hasCameraPermission === false) {
+      return <Text>Acceso a galería ha sido denegado.</Text>;
+     }
+     else {
+      return (
+       <View style={{ flex: 1 }}>
+        <View style={{flex: 1, width: Dimensions.get("window").width, height: Dimensions.get("window").height / 2, backgroundColor: "#eee", borderBottomWidth: 0.5, borderColor: "#fff"}}>
+         {image ? (
+          <Image source={{ uri: image }} style={{ flex: 1 }} />
+         ) : (
+          <View />
+         )}
+       </View>
+       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Button 
+          onPress={this._verFotoDesdeGaleria.bind(this)} 
+          title="Pantalla de galería"
+        />
+       </View>
+      </View>
+      );
+     }
+  }
+
+  onClickAddImage(){
+    const BUTTONS = ['Tomar Foto','Añadir desde Galería','Cancelar'];
+    ActionSheet.show(
+      { options: BUTTONS,
+        cancelButtonIndex: 2,
+        title: 'Seleccione una opción'
+      },
+      buttonIndex => {
+        switch(buttonIndex){
+          case 0:
+            this.props.navigation.navigate('Camara');
+            console.log('foto')
+            break;
+          case 1:
+            
+            console.log('galeria')
+            this.props.navigation.navigate('Galeria');
+            
+            break;
+          default:
+            break;
+        }
+      }
+    )
+  }
+
+
       render(){
         //var array = [0,10,5];
+        const arrayApi = this.state.api1
+        var a = 'Hotel'
+       
         var contador = 0;
           return(
+
+              
               <View style={{height:Dimensions.get('window').height,flex:1,marginTop:25}}>
               
-
+              <Root>
 
                 <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:55,alignContent:'center'}}>
                 <View style={{marginTop:5,flexDirection:'row',}}>
@@ -477,8 +850,7 @@ export default class Crear extends Component {
                                 
                             </View>
 
-                            <TouchableHighlight onPress={()=>{this.enviarFecha()}}><View><Text>Boton</Text></View></TouchableHighlight>
-
+                           
                             
                         </View>
 
@@ -498,6 +870,163 @@ export default class Crear extends Component {
 
                       
                         </View>
+
+                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <View style={{marginTop:15}}>
+                        {this.state.api.map((a,a1)=>(
+
+                          <Collapse>
+                            <CollapseHeader>
+
+                            <View style={{marginTop:10,backgroundColor:'green'}}>
+                            <Text>{a.mainMenu}</Text>
+                            <Text>{this.state.array[a1]}/{ a.subMenuLista.length}</Text>
+                            <Text>{this.state.array[a1]/ a.subMenuLista.length*100}%</Text>
+                            </View>
+
+                            </CollapseHeader>
+                        <CollapseBody>
+              
+                        <View>
+                        {
+                            a.subMenuLista.map((m1, n) => (
+                              <Collapse>
+                                <CollapseHeader>
+                            
+                                   <View style={{marginTop:5,backgroundColor:'#B6B82D'}}>
+                                   <Text>{m1}</Text>
+                                   <Text>{this.state.subarray[a1][n]}/{a.subMenuLista.length}</Text>
+                                   </View>
+
+                              
+                               
+                                </CollapseHeader>
+
+                                  <CollapseBody>
+                                  <View>
+                                  {
+
+                                    //console.log('=='),
+                                    //console.log(this.state.api1[n]),
+                                    //console.log('='),
+                                    this.state.api1[a1][n].map((item,itemId)=>(
+                                      
+                                      //console.log(item),
+                                      //console.log('-------'),
+
+                                      
+                                    
+                                    <View>
+                                      {item.itemLista.map((i,it)=>(
+                                       // console.log(item[a1]),
+                                        //console.log('-/'),
+
+                                        <Collapse>
+
+                                        <CollapseHeader>
+                                        <View style={{backgroundColor:'yellow',marginTop:5}}>
+                                        <Text>{i}</Text>
+                                         <Text>{this.state.api2[a1][n][it].length}</Text>
+                                      
+                                        </View> 
+
+                                        </CollapseHeader>
+                                        <CollapseBody>
+              
+                                        <View>
+                                        {
+                                          this.state.api2[a1][n][it].map((goku,gokuId)=>(
+                                            
+                                            <View style={{backgroundColor:'#81B82D',marginTop:5}}>
+                                             
+                                              {goku.subItemLista.map((vegeta,vegetaId)=>(
+                                                
+                                                <Text onPress={()=>{this.onUpdateRespuesta(a1,vegeta,'si')}} style={{marginTop:5}}>{vegeta}</Text>
+                                                
+                                              ))
+
+                                              }
+
+                                              
+                                            </View>
+
+                                          ))
+                                        
+                                        }
+                                        </View>
+                                        </CollapseBody>
+
+                                        </Collapse>
+
+                                      ))
+                                    }
+                                    </View>
+
+                                      
+
+                                    ))
+                           
+
+                                    
+
+
+                                  }
+                                         
+
+                                    </View>
+                                  </CollapseBody>
+
+                            </Collapse>
+
+
+                            ))}
+
+                           </View>
+                                  </CollapseBody>
+
+                            </Collapse>
+
+
+                           
+
+                              
+
+
+
+                            ))
+
+
+                        }
+
+                        </View>
+                     
+                     
+
+
+
+
+                      
+
+                         
+
+
+
                          <View style={styles.colapse}>
                   
                 {
@@ -645,7 +1174,8 @@ export default class Crear extends Component {
                                                                             </TouchableHighlight>
                                                                             
                                                                         </View>
-                                                                        <View style={{marginTop:5,marginBottom:7,marginLeft:5}}>
+                                                                        <View style={{marginTop:5,marginBottom:7,marginLeft:5,flexDirection:'row'}}>
+                                                                        <View>
                                                                         <Collapse>
                                                                             <CollapseHeader>
 
@@ -659,14 +1189,7 @@ export default class Crear extends Component {
                                                                                 <Text style={{fontSize:12,marginLeft:5,marginTop:2}}>Agregar nota</Text>
                                                                                 </View>
 
-                                                                                <View style={{flexDirection:'row',alignItems: 'center',marginLeft:5}}>
-                                                                                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/evidencia.png?raw=true'}} 
-                                                                                        style={{height: 35, 
-                                                                                                    width: 35,
-                                                                                                    marginLeft:7
-                                                                                                    }}/>
-                                                                                <Text style={{fontSize:12,marginLeft:5,marginTop:2}}>Agregar evidencia</Text>
-                                                                                </View>
+                                                                               
 
                                                                             </View>
                                                                             
@@ -689,6 +1212,17 @@ export default class Crear extends Component {
                                                                             </View>
                                                                             </CollapseBody>
                                                                             </Collapse>
+                                                                          </View>
+                                                                          <View>
+                                                                           <View style={{flexDirection:'row',alignItems: 'center',marginLeft:5}}>
+                                                                                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/evidencia.png?raw=true'}} 
+                                                                                        style={{height: 35, 
+                                                                                                    width: 35,
+                                                                                                    marginLeft:7
+                                                                                                    }}/>
+                                                                                <Text onPress={() => this.onClickAddImage()} style={{fontSize:12,marginLeft:5,marginTop:2}}>Agregar evidencia</Text>
+                                                                                </View>
+                                                                          </View>
                                                                         </View>
 
                                                                         </View>
@@ -730,7 +1264,7 @@ export default class Crear extends Component {
               </View>
 
               <View style={{alignItems:'center',marginTop:'5%'}}>
-              <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriaFinalizada"')} style={styles.botonFirma}>
+              <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriaFinalizada',{arrayRespuestas:this.state.arrayRespuestas,arrayMain:this.state.arrayMain})} style={styles.botonFirma}>
               <View>
                   <Text style={{fontSize:15}}>Finalizar</Text>
               </View>
@@ -784,8 +1318,9 @@ export default class Crear extends Component {
                 </TouchableHighlight>
                
                 </View>
-
+</Root>
             </View>
+
           )
       }
 }

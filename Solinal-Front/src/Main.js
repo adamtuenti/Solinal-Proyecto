@@ -23,7 +23,7 @@ const list = [
   {
     name: 'Mis Auditorias',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true',
-    url: 'Crear',
+    url: 'Camara',
     altura:32,
     anchura:23
   },

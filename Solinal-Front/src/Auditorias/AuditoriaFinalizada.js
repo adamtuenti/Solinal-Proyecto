@@ -32,7 +32,9 @@ export default class AuditoriaFinalizada extends Component{
       users: [],
       url: 'http://accountsolinal.pythonanywhere.com/api/users',
       file: '',
-      cFile:''
+      cFile:'',
+      arrayRespuestas:this.props.navigation.state.params.arrayRespuestas,
+      arrayMain:this.props.navigation.state.params.arrayMain,
       };
   }
 
@@ -65,40 +67,49 @@ export default class AuditoriaFinalizada extends Component{
   }
 
   renderTableData() {
-    const array = this.state.users;
+    const arrayRespuestas = this.state.arrayRespuestas;
+    const arrayMain =this.state.arrayMain;
+    var cont = 0;
 
     var iduser = ''
     var tabledata = ''
 
-    array.forEach(function(element){
-      console.log(element)
+    arrayRespuestas.forEach(function(element){
+      /*console.log(element)
 
       var iduser = element.user
       var nombre = element.first_name
       var apellido = element.last_name
       var correo = element.email
-      var tipoC = element.tipoCuenta
+      var tipoC = element.tipoCuenta*/
+      var pregunta = element[0]
+      var respuesta =element[1]
+      var titulo = arrayMain[cont]
 
-      var jiduser = JSON.stringify(iduser)
-      var jnombre = JSON.stringify(nombre)
-      var japellido= JSON.stringify(apellido)
+
+      var jpregunta = JSON.stringify(pregunta)
+      var jrespuesta = JSON.stringify(respuesta)
+      var jmain = JSON.stringify(titulo)
+     /* var japellido= JSON.stringify(apellido)
       var jcorreo = JSON.stringify(correo)
-      var jtipoC = JSON.stringify(tipoC)
+      var jtipoC = JSON.stringify(tipoC)*/
 
-      console.log(iduser)
+     /* console.log(iduser)
       console.log(jiduser)
       console.log(nombre)
       console.log(apellido)
       console.log(correo)
-      console.log(tipoC)
+      console.log(tipoC)*/
+      cont = cont + 1
 
       tabledata += `
-        <tr key=`+jiduser+`>
-           <td>`+jiduser+`</td>
-           <td>`+jnombre+`</td>
-           <td>`+japellido+`</td>
-           <td>`+jcorreo+`</td>
-           <td>`+jtipoC+`</td>
+        <tr >
+         
+           <h2>`+jmain+`</h2>
+      
+           <td>`+jpregunta+`</td>
+           <td>`+jrespuesta+`</td>
+         
         </tr>
         `
     });
@@ -167,19 +178,13 @@ export default class AuditoriaFinalizada extends Component{
           <h1 id='title'>Tabla de Usuarios</h1>
           <table id='usuarios'>
                <tbody>
-               <tr>
-                <th key=1>ID</th>
-                <th key=2>NOMBRE</th>
-                <th key=3>APELLIDO</th>
-                <th key=4>CORREO</th>
-                <th key=5>TIPO DE CUENTA</th>
-               </tr>
+               
                 `+tabledata+`
                </tbody>
           </table>
         </div>
-        <div>
-        <img src=" `+urifirma+`">
+        <div align="center">
+        <img height="210" width="250" class="center" src=" `+urifirma+`">
         </div>
       </body>
     </html>

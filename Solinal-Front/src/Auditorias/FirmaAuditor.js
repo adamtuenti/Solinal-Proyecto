@@ -23,7 +23,7 @@ export default class FirmaAuditor extends React.Component {
         urifirma=this.state.signature;
 
         if(this.state.firma!=''){
-          this.props.navigation.navigate('Crear',{signature:this.state.signature})
+          this.props.navigation.navigate('Crear')
 
         }
         else{

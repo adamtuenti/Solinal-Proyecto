@@ -83,9 +83,6 @@ export default class PdfCompartido extends Component {
     }
 
     mostrarPdf(){
-        console.log('a')
-        console.log(this.state.cFile)
-        console.log(this.state.file)
         FileSystem.getContentUriAsync(this.state.file).then(cUri => {
       console.log(cUri);
       this.setState({cFile:cUri.uri})
@@ -108,7 +105,9 @@ export default class PdfCompartido extends Component {
       
     render(){
         return(
-            <Container style={{height:Dimensions.get('window').height}}>
+            <View style={{height:Dimensions.get('window').height,flex:1,marginTop:25}}>
+
+
                 <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:55,alignContent:'center'}}>
                 <View style={{marginTop:5,flexDirection:'row',}}>
                     <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
@@ -116,13 +115,15 @@ export default class PdfCompartido extends Component {
                         <MaterialIcons name="arrow-back" size={32} color="white" />
                         </TouchableHighlight>         
                         <Text style={{color:'white', fontSize:21, marginLeft:10}}>
-                            Equipo
+                            Auditorias
                         </Text>
                     </View>
                 </View>
                 </View>
                     
-                <Content padder style={{backgroundColor: '#f6f6f6'}}>
+
+            <Content>
+                
 
                 
 
@@ -159,7 +160,7 @@ export default class PdfCompartido extends Component {
         <Text style={{marginLeft:'1%',fontSize:13.5,fontStyle:'italic'}}>{a.correoIntegrante}</Text>
         </View>
         <View style={{flexDirection:'row-reverse',flex:1,alignItems:'center'}}>
-        <Feather onPress={()=>this.mailComposer("adanavarrete15@gmail.com")} name="send" size={30}/>
+        <Feather onPress={()=>this.mailComposer(a.correoIntegrante)} name="send" size={30}/>
         </View>
         </View>
         </Card>
@@ -172,20 +173,52 @@ export default class PdfCompartido extends Component {
    
                     
                     
-                    <View style={{alignItems: 'center',marginTop:'15%'}}>
-                        <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/team.png?raw=true'}} 
-                                        style={{height: 150, 
-                                           width: 150, 
-                                           alignItems: 'center'}}/>
+              
+               
+            </Content>
+
+            <View style={{height:62, flexDirection: 'row',width:'100%'}}>
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('AuditoriasVacia')} style={{justifyContent:'center',width:'20%'}}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/autoria.png?raw=true'}} 
+                            style={{height: 35, width: 25}}/>
+                    <Text style={{color: '#636363', fontSize: 9}}>Auditorias</Text>
                     </View>
-                    <View style={{alignItems: 'center'}}>
-                        <TouchableHighlight style={styles.botonLogin}
-                            onPress={()=>this.validarInvitaciones()}>
-                            <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> INVITAR MIEMBROS </Text>
-                        </TouchableHighlight>                        
+                </TouchableHighlight>
+
+                 <TouchableHighlight onPress={()=>alert('en proceso')} style={{justifyContent:'center',width:'20%'}}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
+                                   style= {{height: 35,width: 28}}>
+                            </Image>
+               <Text style={{color: '#636363',fontSize: 9}}>Accion Correctiva</Text></View>
+                </TouchableHighlight>    
+
+                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('Main')} style={{marginLeft:'2%',marginRight:'2%',alignItems:'center',justifyContent:'center'}}>
+                    <View style={{flexDirection:'column',alignItems:'center',justifyContent:'center',marginBottom:'8%'}}>
+                           <MaterialCommunityIcons name="home-circle" size={50} />
                     </View>
-                </Content>
-            </Container>
+                </TouchableHighlight>
+
+                <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioVacio')} style={{justifyContent:'center',width:'20%'}}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario.png?raw=true'}}
+                                   style= {{height: 35,width: 32}}>
+                            </Image>
+                    <Text style={{color: '#636363', fontSize: 9}}>Calendario</Text></View>
+                </TouchableHighlight>
+          
+                <TouchableHighlight onPress={()=>alert('en proceso')} style={{justifyContent:'center',width:'20%'}}>
+                    <View style={{flexDirection:'column',alignItems: 'center',}}>
+                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2015.png'}}
+                                   style= {{height: 35,width: 34}}>
+                            </Image>
+               <Text style={{color: '#636363', fontSize: 9}}>No Conformidad</Text></View>
+                </TouchableHighlight>
+               
+                </View>
+        
+        </View>
         )
     }  
 }
