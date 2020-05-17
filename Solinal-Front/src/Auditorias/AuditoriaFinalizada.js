@@ -33,7 +33,9 @@ export default class AuditoriaFinalizada extends Component{
       url: 'http://accountsolinal.pythonanywhere.com/api/users',
       file: '',
       cFile:'',
-      arrayRespuestas: [ ['pregunta','si'] ,['pregunta 1','n/a'],['pregunta 2','si']   ],
+      arrayRespuestas: [ ['pregunta','si','https://storage.googleapis.com/afs-prod/media/media:d77e3bdb7e8b4b5e99105baf96bb5c20/800.jpeg'] ,
+                         ['pregunta 1','n/a','https://en.as.com/futbol/imagenes/2019/03/07/champions/1551964837_243220_1551964927_miniatura_normal.jpg'],
+                         ['pregunta 2','si','https://i.imgflip.com/4/2knl.jpg']   ],
       arrayMain: ['main 1','main 2','main 3'],
       };
   }
@@ -83,6 +85,7 @@ export default class AuditoriaFinalizada extends Component{
       var tipoC = element.tipoCuenta*/
       var pregunta = element[0]
       var respuesta =element[1]
+      var imagen = element [2]
       var titulo = arrayMain[cont]
 
 
@@ -103,7 +106,8 @@ export default class AuditoriaFinalizada extends Component{
 
       tabledata += `
       <h2>`+jmain+`</h2>
-      <table id='pregunta'>
+      <div>
+      <table id='pregunta' key=`+cont+`>
         <tr>
           <th>Pregunta</th>
           <th>Respuesta</th>
@@ -113,6 +117,10 @@ export default class AuditoriaFinalizada extends Component{
            <td>`+jrespuesta+`</td>
         </tr>
       <table>
+      </div>
+      <div align="center">
+          <img height="210" width="250" class="center" src=" `+imagen+`">
+      </div>
         `
     });
 
