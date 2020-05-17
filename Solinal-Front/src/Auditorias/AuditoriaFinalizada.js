@@ -12,12 +12,12 @@ import {
 import * as Print from 'expo-print';
 import * as FileSystem from 'expo-file-system';
 import * as IntentLauncher from 'expo-intent-launcher';
-import {MaterialIcons,MaterialCommunityIcons,AntDesign,Feather} from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import Footer from './../../shared/Footer';
 import HeaderBack from './../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterAuditoria from '../../shared/FooterAuditoria';
-
+import {MaterialIcons,MaterialCommunityIcons,AntDesign,Feather} from '@expo/vector-icons';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import PDFLib, { PDFDocument, PDFPage } from 'react-native-pdf-lib';
 import RNPrint from 'react-native-print';
@@ -32,18 +32,13 @@ export default class AuditoriaFinalizada extends Component{
       users: [],
       url: 'http://accountsolinal.pythonanywhere.com/api/users',
       file: '',
-      cFile: ''
+      cFile:'',
+      arrayRespuestas: [ ['pregunta','si'] ,['pregunta 1','n/a'],['pregunta 2','si']   ],
+      arrayMain: ['main 1','main 2','main 3'],
       };
   }
 
-  async componentDidMount() {
-    await Font.loadAsync({
-      Roboto: require("native-base/Fonts/Roboto.ttf"),
-      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-      /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
-    });
-    this.setState({ isReady: true });
-  }
+
 
   componentDidMount = () => {
     this.getUsers();
@@ -72,41 +67,52 @@ export default class AuditoriaFinalizada extends Component{
   }
 
   renderTableData() {
-    const array = this.state.users;
+    const arrayRespuestas = this.state.arrayRespuestas;
+    const arrayMain =this.state.arrayMain;
+    var cont = 0;
 
     var iduser = ''
     var tabledata = ''
 
-    array.forEach(function(element){
-      console.log(element)
-
+    arrayRespuestas.forEach(function(element){
+      /*console.log(element)
       var iduser = element.user
       var nombre = element.first_name
       var apellido = element.last_name
       var correo = element.email
-      var tipoC = element.tipoCuenta
+      var tipoC = element.tipoCuenta*/
+      var pregunta = element[0]
+      var respuesta =element[1]
+      var titulo = arrayMain[cont]
 
-      var jiduser = JSON.stringify(iduser)
-      var jnombre = JSON.stringify(nombre)
-      var japellido= JSON.stringify(apellido)
+
+      var jpregunta = JSON.stringify(pregunta)
+      var jrespuesta = JSON.stringify(respuesta)
+      var jmain = JSON.stringify(titulo)
+     /* var japellido= JSON.stringify(apellido)
       var jcorreo = JSON.stringify(correo)
-      var jtipoC = JSON.stringify(tipoC)
+      var jtipoC = JSON.stringify(tipoC)*/
 
-      console.log(iduser)
+     /* console.log(iduser)
       console.log(jiduser)
       console.log(nombre)
       console.log(apellido)
       console.log(correo)
-      console.log(tipoC)
+      console.log(tipoC)*/
+      cont = cont + 1
 
       tabledata += `
-        <tr key=`+jiduser+`>
-           <td>`+jiduser+`</td>
-           <td>`+jnombre+`</td>
-           <td>`+japellido+`</td>
-           <td>`+jcorreo+`</td>
-           <td>`+jtipoC+`</td>
+      <h2>`+jmain+`</h2>
+      <table id='pregunta'>
+        <tr>
+          <th>Pregunta</th>
+          <th>Respuesta</th>
         </tr>
+        <tr>
+           <td>`+jpregunta+`</td>
+           <td>`+jrespuesta+`</td>
+        </tr>
+      <table>
         `
     });
 
@@ -171,19 +177,16 @@ export default class AuditoriaFinalizada extends Component{
       </head
       <body>
         <div>
-          <h1 id='title'>Tabla de Usuarios</h1>
-          <table id='usuarios'>
+          <h1 id='title'>Informe</h1>
+          <table id='students'>
                <tbody>
-               <tr>
-                <th key=1>ID</th>
-                <th key=2>NOMBRE</th>
-                <th key=3>APELLIDO</th>
-                <th key=4>CORREO</th>
-                <th key=5>TIPO DE CUENTA</th>
-               </tr>
+               
                 `+tabledata+`
                </tbody>
           </table>
+        </div>
+        <div align="center">
+          <img height="210" width="250" class="center" src=" `+urifirma+`">
         </div>
       </body>
     </html>
@@ -205,10 +208,14 @@ export default class AuditoriaFinalizada extends Component{
     });
     alert('PDF Generado',filePath.uri);
     this.setState({file:filePath.uri})
-    console.log(filePath.uri)
     console.log('/')
     console.log(this.state.file)
 
+    
+
+    // console.log(filePath.uri);
+    // console.log(FileSystem.cacheDirectory);
+    // console.log(FileSystem.documentDirectory);
 
     FileSystem.getContentUriAsync(filePath.uri).then(cUri => {
       console.log(cUri);
@@ -225,76 +232,76 @@ export default class AuditoriaFinalizada extends Component{
 
       render() {
         return (
-          <Container>
-          <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:'11%',paddingTop:'8%',alignContent:'center'}}>
-          <View style={{marginTop:'4.5%',flexDirection:'row',}}>
-              <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
-                  <TouchableHighlight onPress={()=>this.props.navigation.navigate('EquipoVacio')}>       
-                  <MaterialIcons name="arrow-back" size={32} color="white" />
-                  </TouchableHighlight>         
-                  <Text style={{color:'white', fontSize:21, marginLeft:10}}>
-                      Auditoria Finalizada
-                  </Text>
-              </View>
-          </View>
-          </View>
+            <Container>
+                <View  style={{flexDirection:'row',backgroundColor:'#1ED695',height:'11%',paddingTop:'8%',alignContent:'center'}}>
+                <View style={{marginTop:'4.5%',flexDirection:'row',}}>
+                    <View style={{width:'100%',flexDirection: 'row',alignItems:'center',marginLeft:10}}>
+                        <TouchableHighlight onPress={()=>this.props.navigation.navigate('EquipoVacio')}>       
+                        <MaterialIcons name="arrow-back" size={32} color="white" />
+                        </TouchableHighlight>         
+                        <Text style={{color:'white', fontSize:21, marginLeft:10}}>
+                            Auditoria Finalizada
+                        </Text>
+                    </View>
+                </View>
+                </View>
 
-          <Content padder style={{backgroundColor: '#f6f6f6'}}>
-             
-                  <View style={{flexDirection:'column',flex:1}}>
-                      <View style={{alignItems: 'center',marginTop:'15%'}}>
-                          <Text style={{alignItems: 'center',fontSize: 24,color:'#1ED695',fontWeight:'bold'}}>EXCELENTE</Text>
-                      </View>
-                
-                  <View style={{alignItems: 'center',marginTop:'10%'}}>
+                <Content padder style={{backgroundColor: '#f6f6f6'}}>
+                   
+                        <View style={{flexDirection:'column',flex:1}}>
+                            <View style={{alignItems: 'center',marginTop:'15%'}}>
+                                <Text style={{alignItems: 'center',fontSize: 24,color:'#1ED695',fontWeight:'bold'}}>EXCELENTE</Text>
+                            </View>
                       
-                          <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2062.png'}} 
-                             style={{height: 225, 
-                                     width: 200, 
-                                     alignItems: 'center'}}/>
-                             
-                  </View>
-                  
-                      <View style={{alignItems: 'center',fontWeight: 'bold',marginTop:'10%'}}>
-                          <Text style={{alignItems: 'center',fontSize: 19,color:'#1ED695',fontWeight:'bold'}}>AUDITORÍA FINALIZADA</Text>
-                      </View>
-                  
+                        <View style={{alignItems: 'center',marginTop:'10%'}}>
+                            
+                                <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2062.png'}} 
+                                   style={{height: 225, 
+                                           width: 200, 
+                                           alignItems: 'center'}}/>
+                                   
+                        </View>
+                        
+                            <View style={{alignItems: 'center',fontWeight: 'bold',marginTop:'10%'}}>
+                                <Text style={{alignItems: 'center',fontSize: 19,color:'#1ED695',fontWeight:'bold'}}>AUDITORÍA FINALIZADA</Text>
+                            </View>
+                        
 
-                 
-                      <View style={{alignItems: 'center',marginTop:'10%'}}>
+                       
+                            <View style={{alignItems: 'center',marginTop:'10%'}}>
 
-                          <TouchableHighlight onPress={()=>this.expoPDF()} style={{backgroundColor:'#B3F1C9',padding: 10,width:'55%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
-                              <View style={{flexDirection:'row',alignContent:'center',justifyContent:'center'}}>
+                                <TouchableHighlight onPress={()=>this.expoPDF()} style={{backgroundColor:'#B3F1C9',padding: 10,width:'55%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
+                                    <View style={{flexDirection:'row',alignContent:'center',justifyContent:'center'}}>
 
-                              <Feather style={{justifyContent:'center'}} name="download" size={28}  />
-
-
-                                  <Text style={{fontWeight:'bold',fontSize:15,marginLeft:'3.5%',marginTop:'1.5%'}}>Descargar informe</Text>
-                              </View>
-                          </TouchableHighlight>                    
-                      </View>
-
-                      <View style={{alignItems: 'center',marginTop:'10%'}}>
-
-                          <TouchableHighlight onPress={()=>this.props.navigation.navigate('PdfCompartido', {file:this.state.file, cFile:this.state.cFile})} style={{backgroundColor:'#B3F1C9',padding: 10,width:'55%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
-                              <View style={{flexDirection:'row',alignContent:'center',justifyContent:'center'}}>
-
-                              <Feather style={{justifyContent:'center'}} name="download" size={28}  />
+                                    <Feather style={{justifyContent:'center'}} name="download" size={28}  />
 
 
-                                  <Text style={{fontWeight:'bold',fontSize:15,marginLeft:'3.5%',marginTop:'1.5%'}}>Compartir informe</Text>
-                              </View>
-                          </TouchableHighlight>                    
-                      </View>
+                                        <Text style={{fontWeight:'bold',fontSize:15,marginLeft:'3.5%',marginTop:'1.5%'}}>Descargar informe</Text>
+                                    </View>
+                                </TouchableHighlight>                    
+                            </View>
 
-                      
-                 
-                  </View>
+                            <View style={{alignItems: 'center',marginTop:'10%'}}>
+
+                                <TouchableHighlight onPress={()=>this.props.navigation.navigate('PdfCompartido',{file:this.state.file,cFile:this.state.cFile})} style={{backgroundColor:'#B3F1C9',padding: 10,width:'55%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
+                                    <View style={{flexDirection:'row',alignContent:'center',justifyContent:'center'}}>
+
+                                    <Feather style={{justifyContent:'center'}} name="download" size={28}  />
 
 
-              
-          </Content>
-      </Container>
+                                        <Text style={{fontWeight:'bold',fontSize:15,marginLeft:'3.5%',marginTop:'1.5%'}}>Compartir informe</Text>
+                                    </View>
+                                </TouchableHighlight>                    
+                            </View>
+
+                            
+                       
+                        </View>
+
+
+                    
+                </Content>
+            </Container>
         );
     } 
 }
