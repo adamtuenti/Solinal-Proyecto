@@ -33,9 +33,9 @@ export default class AuditoriaFinalizada extends Component{
       url: 'http://accountsolinal.pythonanywhere.com/api/users',
       file: '',
       cFile:'',
-      arrayRespuestas: [ ['pregunta','si','https://storage.googleapis.com/afs-prod/media/media:d77e3bdb7e8b4b5e99105baf96bb5c20/800.jpeg'] ,
-                         ['pregunta 1','n/a','https://en.as.com/futbol/imagenes/2019/03/07/champions/1551964837_243220_1551964927_miniatura_normal.jpg'],
-                         ['pregunta 2','si','https://i.imgflip.com/4/2knl.jpg']   ],
+      arrayRespuestas: [ ['pregunta','si','https://d22uy85tnpcynx.cloudfront.net/2020/02/Messi-3-1024x574.jpg'] ,
+                         ['pregunta 1','n/a','https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/05/10/15891435093664.jpg'],
+                         ['pregunta 2','si','https://www.futboltotal.com.mx/wp-content/uploads/2020/01/biografia-de-ronaldo-nazario.jpg']   ],
       arrayMain: ['main 1','main 2','main 3'],
       };
   }
