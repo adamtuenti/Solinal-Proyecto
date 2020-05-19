@@ -37,9 +37,71 @@ export default class AuditoriaFinalizada extends Component{
                          ['pregunta 1','n/a','https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/05/10/15891435093664.jpg'],
                          ['pregunta 2','si','https://www.futboltotal.com.mx/wp-content/uploads/2020/01/biografia-de-ronaldo-nazario.jpg']   ],
       arrayMain: ['main 1','main 2','main 3'],
+      normas:[
+        {
+        detalle_mainmenu: 'De las instalaciones y requisitos de buenas practicas de manufactura',
+        id_mainmenu: 1,
+        key_norma: 1,
+        key_pais: 1,
+        menu: [
+          'Art. 73.- De las condiciones mínimas básicas.- Los establecimientos donde se producen y manipulan alimentos serán diseñados y construidos de acuerdo a las operaciones y riesgos asociados a la actividad y al alimento, de manera que puedan cumplir con los siguientes requisitos:',
+          'Art. 74.- De la localización.- Los establecimientos donde se procesen, envasen o distribuyan alimentos serán responsables que su funcionamiento esté protegido de focos de insalubridad que representen riesgos de contaminación:',
+          'Art. 75.- Diseño y construcción.- La edificación debe diseñarse y construirse de manera que:',
+          'Art. 76.- Condiciones específicas de las áreas, estructuras internas y accesorios:',
+          'Art. 77.- Servicios de plantas - facilidades:'],
+        submenu: [
+          [],
+          [],
+          [],
+          [
+            ['a. Distribución de Áreas.-', 0],
+            ['b. Pisos, Paredes, Techos y Drenajes.-',0],
+            ['c. Ventanas, Puertas y Otras Aberturas.-',0],
+            ['d. Escaleras, Elevadores y Estructuras Complementarias (rampas, plataformas).-',0],
+            ['e. Instalaciones Eléctricas y Redes de Agua.-',0],
+            ['f. Iluminación.-',0],
+            ['g. Calidad del Aire y Ventilación.-',0],
+            ['h. Control de Temperatura y Humedad Ambiental.-',0],
+            ['i. Instalaciones Sanitarias.-',0],
+          ],
+          [],
+        ],
+      },
+      {
+        detalle_mainmenu: 'De los equipos y utensilios',
+        id_mainmenu: 2,
+        key_norma: 1,
+        key_pais: 1,
+        menu: [
+          'Art. 78.- de los equipos',
+          'Art. 79.- Del monitoreo de los equipos.-',
+          ],
+        submenu: [
+            [],
+            [],
+          ],     
+      },
+      {
+        detalle_mainmenu: 'Requisitos higiénicos de fabricación',
+        id_mainmenu: 3,
+        key_norma: 1,
+        key_pais: 1,
+        menu: [
+          'Obligaciones del personal',
+          'De las materias primas e insumos',
+        ],
+        submenu: [
+            [
+              ['Art. 80.- De las obligaciones del personal.- Durante la fabricación de alimentos, el personal manipulador que entra en contacto directo o indirecto con los alimentos debe:',0],
+              ['Art. 81.- De la educación y capacitación del personal.- Tiene implementado un plan de capacifacion continuo y permanente para todo el personal sobre BPM',0],
+              ['Art. 96.- Del Agua.-',0],
+            ],
+            [],
+        ], 
+      }
+      ]
       };
   }
-
 
 
   componentDidMount = () => {
@@ -69,29 +131,29 @@ export default class AuditoriaFinalizada extends Component{
   }
 
   renderTableData() {
-    const arrayRespuestas = this.state.arrayRespuestas;
+    const arrayNormas = this.state.normas;
     const arrayMain =this.state.arrayMain;
     var cont = 0;
 
     var iduser = ''
     var tabledata = ''
 
-    arrayRespuestas.forEach(function(element){
+    arrayNormas.forEach(function(element){
       /*console.log(element)
       var iduser = element.user
       var nombre = element.first_name
       var apellido = element.last_name
       var correo = element.email
       var tipoC = element.tipoCuenta*/
-      var pregunta = element[0]
-      var respuesta =element[1]
-      var imagen = element [2]
+      var detalle = element[0]
+      var idmenu =element[1]
+      var keyn = element [2]
+      var keyp = element [3]
       var titulo = arrayMain[cont]
 
 
-      var jpregunta = JSON.stringify(pregunta)
-      var jrespuesta = JSON.stringify(respuesta)
-      var jmain = JSON.stringify(titulo)
+      var jdetalle = JSON.stringify(detalle)
+      
      /* var japellido= JSON.stringify(apellido)
       var jcorreo = JSON.stringify(correo)
       var jtipoC = JSON.stringify(tipoC)*/
@@ -104,22 +166,36 @@ export default class AuditoriaFinalizada extends Component{
       console.log(tipoC)*/
       cont = cont + 1
 
+      var titletable = ''
+      var data = ''
+      
+      element.menu.map((mainmenu) => {
+        element.submenu.map((question) => {
+          const {preg, answer} = question
+          data += 
+          `
+          <table>
+            <tr>
+              <td>`+preg+`</td>
+              <td>`+answer+`</td>
+            </tr>
+          </table>
+          `
+        })
+        titletable +=
+        `
+        <h3>`+mainmenu+`</h3>
+        `
+      })
+      
+
       tabledata += `
-      <h2>`+jmain+`</h2>
+      <h2>`+jdetalle+`</h2>
       <div>
-      <table id='pregunta' key=`+cont+`>
-        <tr>
-          <th>Pregunta</th>
-          <th>Respuesta</th>
-        </tr>
-        <tr>
-           <td>`+jpregunta+`</td>
-           <td>`+jrespuesta+`</td>
-        </tr>
-      <table>
+        `+titletable+`
       </div>
-      <div align="center">
-          <img height="210" width="250" class="center" src=" `+imagen+`">
+      <div>
+        `+data+`
       </div>
         `
     });
