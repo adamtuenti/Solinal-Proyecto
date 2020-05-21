@@ -151,6 +151,7 @@ export default class Crear extends Component {
           valoresMenu:[],
           valoresSubMenu:[],
           clickRespuestas:[],
+          clickColorBoton:[],
 
           
           
@@ -191,7 +192,7 @@ export default class Crear extends Component {
         fetch(this.state.urlEquipo)
         .then(res=>res.json())
         .then(res=>{ 
-            console.log(res);
+           // console.log(res);
             this.setState({
             equipo: res,
             urlEquipo: res.next,
@@ -276,6 +277,7 @@ export default class Crear extends Component {
       const valoresMenu = this.state.valoresMenu;
 
       const clickRespuestas = this.state.clickRespuestas;
+      const clickColorBoton = this.state.clickColorBoton;
       const listPreguntas = this.state.listPreguntas;
       
       //lista3
@@ -288,6 +290,7 @@ export default class Crear extends Component {
         valoresMain.push(0)
         const temporalMenu = []
         const temporalRespuestas = []
+        const temporalBotonColor = []
         //item=[]
       //  console.log(elemento)
         lista1.forEach(function(element1){
@@ -295,15 +298,18 @@ export default class Crear extends Component {
             elemento.menu.push(element1.detalle_submenu)
             temporalMenu.push(0)
             const temp = []
-            const temporalSubRespuestas=[]  
+            const temporalSubRespuestas=[] 
+            const temporalSubBotonColor=[] 
             lista2.forEach(function(element2){
               
              // this.state.totalPregunta=this.state.y+1
             // console.log(element1)
               if(element1.id_submenu==element2.key_submenu){
                 listPreguntas.push(0)
-                temp.push([element2.detalle_submenud,'','',''])
+                temp.push([element2.detalle_submenud,'','https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true',''])
                 temporalSubRespuestas.push(true)
+                temporalSubBotonColor.push('')
+
                 //temp1=[]
                 //foreach
                  //valido
@@ -313,15 +319,19 @@ export default class Crear extends Component {
               }    
             })
             elemento.submenu.push(temp) 
-            temporalRespuestas.push(temporalSubRespuestas)          
+            temporalRespuestas.push(temporalSubRespuestas)   
+            temporalBotonColor.push(temporalSubBotonColor)       
           }
         })
         
         valoresMenu.push(temporalMenu)
         clickRespuestas.push(temporalRespuestas)
+        clickColorBoton.push(temporalBotonColor)
         })
 
     this.setState({totalPreguntas:listPreguntas.length})
+
+    console.log(this.state.clickColorBoton)
   // alert(this.state.totalPreguntas)
    
 
@@ -363,7 +373,11 @@ export default class Crear extends Component {
     
  
     
-    agregarElemento=(main,menu,submenu1,respuesta)=>{
+    agregarElemento=(main,menu,submenu1,respuesta,boton)=>{
+      let clickColorBoton= this.state.clickColorBoton
+      this.state.clickColorBoton[main][menu][submenu1]=boton
+
+      this.setState({clickColorBoton:clickColorBoton})
     
 
       
@@ -393,6 +407,7 @@ export default class Crear extends Component {
         this.setState({valoresMenu:valoresMenu})
 
       }
+      
      // else{
        // alert('ya aplastaste')
       //}
@@ -482,6 +497,7 @@ export default class Crear extends Component {
   }
 
   finalizarAuditoria(){
+     this.props.navigation.navigate('AuditoriaFinalizada',{lista:this.state.lista,datosAuditoria:this.state.datosAuditoria})
 
     if(this.state.totalPreguntas==this.state.contadorRespuestas){
 
@@ -509,9 +525,9 @@ export default class Crear extends Component {
 
          const{organizacion,direccion,alcance}=this.state;
 
-         if ( organizacion === ''||direccion==''||alcance=='') { this.setState({mensajeError:'LLene todos los campos!'}); alert('llene')}
+       //  if ( organizacion === ''||direccion==''||alcance=='') { this.setState({mensajeError:'LLene todos los campos!'}); alert('llene')}
 
-         else{ 
+         //else{ 
 
            let datosAuditoria = this.state.datosAuditoria;
 
@@ -528,11 +544,11 @@ export default class Crear extends Component {
 
      
       this.setState({datosAuditoria:datosAuditoria})
-      console.log(this.state.datosAuditoria)
+     // console.log(this.state.datosAuditoria)
            
            this.setState({listo:true})
 
-         }
+        // }
     
   }
 
@@ -866,17 +882,17 @@ export default class Crear extends Component {
                                         <View style={{flexDirection:'row'}}>
 
 
-                               <TouchableHighlight style={{backgroundColor: (this.state.SelectedButton === p+'1' ? 'green' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}} onPress={()=>this.agregarElemento(iterator,n,p,'Si')}>
+                               <TouchableHighlight style={{backgroundColor: (this.state.clickColorBoton[iterator][n][p] === p+'1' ? 'green' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}} onPress={()=>this.agregarElemento(iterator,n,p,'Si',p+'1')}>
                                <View>
                                <Text>Si</Text>
                                </View>
                                </TouchableHighlight >
-                                <TouchableHighlight style={{backgroundColor: (this.state.SelectedButton === p+'2' ? 'red' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}} onPress={()=>this.agregarElemento(iterator,n,p,'No')}>
+                                <TouchableHighlight style={{backgroundColor: (this.state.clickColorBoton[iterator][n][p] === p+'2' ? 'red' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}} onPress={()=>this.agregarElemento(iterator,n,p,'No',p+'2')}>
                                <View>
                                <Text>No</Text>
                                </View>
                                </TouchableHighlight>
-                                <TouchableHighlight style={{backgroundColor: (this.state.SelectedButton === p+'3' ? 'red' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}} onPress={()=>console.log(this.state.valoresMain)}>
+                                <TouchableHighlight style={{backgroundColor: (this.state.clickColorBoton[iterator][n][p] === p+'3' ? 'orange' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}} onPress={()=>this.agregarElemento(iterator,n,p,'N/A',p+'3')}>
                                <View>
                                <Text>N/A</Text>
                                </View>

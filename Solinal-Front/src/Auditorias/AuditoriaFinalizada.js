@@ -262,7 +262,7 @@ th, td {
   padding: 15px;
 }
 .final{
-width:100%; background:#F2F2F2;
+width:100%; 
 }
 
 .pregunta{
@@ -328,7 +328,7 @@ width:100%; background:#F2F2F2;
           <img height="210" width="250" class="center" src=" `+urifirma+`">
         </div>
         <div align="center">
-        <h3 style="font-style: italic; text-decoration: underline;">Firma del auditor</h3>
+        <h3 style="font-style: italic;">Firma del auditor</h3>
         </div>
       </body>
     </html>
