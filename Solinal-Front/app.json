@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Blank Template",
-    "slug": "Solinal-Front",
+    "name": "Solinal",
+    "slug": "https://github.com/adamtuenti/Solinal-Proyecto/",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar01.jpg",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Sidebar01.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -32,9 +32,11 @@
     },
     "scheme": "exp676acc29eeb2470591bed1856df7b423",
     "android": {
-      "package": "solinal.android",
+      "package": "com.solinal.android",
       "publishBundlePath": "android\\app\\src\\main\\assets\\shell-app.bundle",
-      "publishManifestPath": "android\\app\\src\\main\\assets\\shell-app-manifest.json"
+      "publishManifestPath": "android\\app\\src\\main\\assets\\shell-app-manifest.json",
+      "versionCode": 1,
+      "permissions": []
     }
   }
 }
