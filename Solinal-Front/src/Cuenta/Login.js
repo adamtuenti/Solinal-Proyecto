@@ -27,6 +27,11 @@ export default class Login extends Component{
           mensajeError:'',
           iconName : 'eye',
           secureTextEntry:true,
+
+          numero: [0,0],
+          numero2: [[0,0],[1,0]],
+
+          json:[{lista:[0,0]}]
          
         }
       
@@ -99,11 +104,71 @@ export default class Login extends Component{
     }
 
 
+
+    aumentar(n,m){
+       // const numero = this.state.numero;
+
+
+        // alert('hola')
+   /* this.setState(state => {
+      const numero = state.numero.map((item, j) => {
+         if (j === n) {
+           if(item+1<15){
+             return item+1;
+           }else{
+             return item;
+           }      
+                
+              } else {
+                return item;
+              }
+          });
+        
+     
+ 
+      return {
+        numero
+      };
+    
+    });*/
+    let json = this.state.json;
+    json[0].lista[0] = json[0].lista[0]+1;
+    this.setState({json: json});
+
+
+    let numero2 = this.state.numero2
+    numero2[0][1]=numero2[0][1]+1
+    this.setState({numero2:numero2})
+
+   // this.setState({json[0].lista[n]=this.state.json[0].lista[n]+1})
+
+    
+
+
+
+
+
+  
+  
+
+        console.log(this.state.json[0].lista[n])
+    }
+
     
 
     render() {
         return ( 
             <SafeAreaView style={{}}>
+             <View style={{alignItems:'center',marginTop:150}}>
+                
+                <Text>{this.state.numero2[0][1]}</Text>
+               
+                <TouchableHighlight onPress={()=>{this.aumentar(1,0)}} style={{width:150}}>
+                <View>
+                <Text>{this.state.numero[1]}</Text>
+                </View>
+                </TouchableHighlight>
+                </View>
             
              
 

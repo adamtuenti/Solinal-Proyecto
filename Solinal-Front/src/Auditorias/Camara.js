@@ -30,6 +30,7 @@ export default class Camara extends React.Component {
         const photoData = await this.camera.takePictureAsync();
         this.setState({ capturing: false, captures: [photoData, ...this.state.captures] })
         console.log(photoData.uri)
+        fotoEvidencia=photoData.uri
     };
 
     handleLongCapture = async () => {

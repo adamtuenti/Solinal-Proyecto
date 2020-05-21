@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Title, Content, Card, CardItem, Footer, Button, Left, Right, Body,  Font , Arrow} from 'native-base';
 import { Icon } from 'react-native-elements'
-import {StyleSheet,TouchableHighlight,Text,View,Dimensions} from 'react-native';
+import {StyleSheet,TouchableHighlight,Text,View,Dimensions,TextInput} from 'react-native';
 
 import HeaderBack from '../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
@@ -28,6 +28,13 @@ export default class AgendarAuditorias extends Component {
             fechaFin:moment().format('DD-MM-YYYY'),
             horaInicio:moment().format('HH:mm'),
             horaFin:moment().format('HH:mm'),
+
+            detalleAuditoria:'',
+            mensajeError:'',
+
+            iconName : 'calendar-clock',
+            textButton:'AGENDAR',
+            envioMensaje:true,
     }
   }
 
@@ -110,8 +117,10 @@ export default class AgendarAuditorias extends Component {
 
   enviarFecha(){
 
-    const {fechaInicio,fechaFin,horaInicio,horaFin}= this.state
-    var dataToSend = {detalle_auditoria: 'detalle',fecha_inicio:fechaInicio,fecha_fin:fechaFin,hora_inicio:horaInicio,hora_fin:horaFin,id_usuario:idUserGlobal};
+     
+
+    const {fechaInicio,fechaFin,horaInicio,horaFin,detalleAuditoria}= this.state
+    var dataToSend = {detalle_auditoria: detalleAuditoria,fecha_inicio:fechaInicio,fecha_fin:fechaFin,hora_inicio:horaInicio,hora_fin:horaFin,id_usuario:idUserGlobal};
                     var formBody = [];
                     for (var key in dataToSend) {
                     var encodedKey = encodeURIComponent(key);
@@ -129,7 +138,21 @@ export default class AgendarAuditorias extends Component {
                     .then((response) => response.json())
                     //If response is in json then in success
                     .then((responseJson) => {
-                      alert(JSON.stringify(responseJson));
+                      //alert(JSON.stringify(responseJson));
+                      if('error' in responseJson){
+                        this.setState({mensajeError:'Consiga la cuenta premium!'})
+                        
+                        
+                      }else{
+
+                         let iconName = (this.state.envioMensaje)? "check":"calendar-clock";
+                         let textButton = (this.state.envioMensaje)? "AGENDADO":"AGENDAR";
+                          this.setState({
+                              envioMensaje:!this.state.envioMensaje,
+                              iconName:iconName,
+                              textButton:textButton
+                          });
+                      }
                        
                         //this.setState({mensajeError:'Usuari agregado!'})
                        // this.props.navigation.navigate('EquipoVacio')
@@ -161,29 +184,29 @@ export default class AgendarAuditorias extends Component {
                 </View>
                 </View>
 
-                    <Content padder style={{backgroundColor: '#f6f6f6'}}>
+                    <Content padder style={{backgroundColor: '#f6f6f6',width:'100%'}}>
                         <EstadoCuenta/>
 
-                    <View style={{flexDirection:'column',width:'100%',marginBottom:10,marginTop:5}}>
+                    <View style={{flexDirection:'column',marginBottom:10,marginTop:5,marginTop:'5%'}}>
 
-                        <View style={{flexDirection:'row',width:'100%',marginBottom:10,marginTop:5}}>
-
-
+                        <View style={{flexDirection:'column',marginBottom:10}}>
 
 
 
 
-                        <View style={{flexDirection:'column',width:'50%',marginBottom:10,marginTop:5}}>
+
+
+                        <View style={{flexDirection:'row',marginBottom:10,marginTop:5,alignContent:'center',alignItems:'center'}}>
 
                         <View style={{alignContent:'center',alignItems:'center'}}>
                         <Text>Fecha y hora de inicio</Text>
                         </View>
 
 
-                        <View style={{flexDirection:'row',marginTop:11}}>
+                        <View style={{flexDirection:'row',marginLeft:'8%'}}>
 
 
-                        <View style={{marginLeft:2,  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'55%'}}>
+                        <View style={{marginLeft:'5%',  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'38%'}}>
 
                         
                         <TouchableHighlight title="Show Date Picker" onPress={()=>this.showDatePickerFI()}><Text>{this.state.fechaInicio}</Text></TouchableHighlight>
@@ -202,7 +225,7 @@ export default class AgendarAuditorias extends Component {
 
                                                     
                            
-                                <View style={{marginLeft:2,  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'38%'}}>
+                                <View style={{marginLeft:'2.5%',  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'28%'}}>
                                 <TouchableHighlight title="Show Date Picker" onPress={()=>this.showDatePickerHI()}><Text>{this.state.horaInicio}</Text></TouchableHighlight>
                         
                                 <DateTimePickerModal
@@ -227,16 +250,18 @@ export default class AgendarAuditorias extends Component {
 
                     
 
-                    <View style={{flexDirection:'column',width:'50%',marginBottom:10,marginTop:5}}>
+                 <View style={{flexDirection:'row',marginBottom:10,marginTop:5,alignContent:'center',alignItems:'center'}}>
 
                         <View style={{alignContent:'center',alignItems:'center'}}>
-                        <Text >Fecha y hora de cierre</Text>
+                        <Text>Fecha y hora de cierre</Text>
                         </View>
 
+                      
+                        <View style={{flexDirection:'row',marginLeft:'8%'}}>
 
-                        <View style={{flexDirection:'row',marginTop:11,alignItems:'center'}}>
 
-                        <View style={{marginLeft:2,  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'55%'}}>
+                        <View style={{marginLeft:'5%',  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'38%'}}>
+
 
                             <TouchableHighlight title="Show Date Picker" onPress={()=>this.showDatePickerFF()}><Text>{this.state.fechaFin}</Text></TouchableHighlight>
                         
@@ -252,7 +277,7 @@ export default class AgendarAuditorias extends Component {
 
                                                     
                             
-                                <View style={{marginLeft:2,  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'38%'}}>
+                                <View style={{marginLeft:'2.5%',  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'28%'}}>
                                 <TouchableHighlight title="Show Date Picker" onPress={()=>this.showDatePickerHF()}><Text>{this.state.horaFin}</Text></TouchableHighlight>
                         
                                 <DateTimePickerModal
@@ -274,8 +299,34 @@ export default class AgendarAuditorias extends Component {
 
                         </View>
 
-                        <View style={{alignItems:'center'}}>
-                        <TouchableHighlight style={{backgroundColor:'#c7f5d7',width:'50%',alignItems:'center',padding:'2%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',}}onPress={()=>{this.enviarFecha()}}><View style={{flexDirection:'row',alignItems:'center'}}><MaterialCommunityIcons name={'calendar-clock'} size={30} color={'green'}/><Text style={{marginLeft:'5%'}}>AGENDAR</Text></View></TouchableHighlight>
+
+                       
+                        <View style={{alignItems:'center',flexDirection:'column'}}>
+
+                         <View style={{ alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'85%',marginTop:'2.5%'}}>
+                                
+                                <TextInput
+                                    style={{ height: 30,borderBottomColor: '#1ed796',borderBottomWidth: 1,width: '95%',alignItems: 'center',fontSize: 15}}
+                                    placeholder='Ingrese detalle de la auditoria'
+
+                                    autoCapitalize="words"
+                                    placeholderTextColor='lightgrey'
+                                    onChangeText={detalleAuditoria => this.setState({ detalleAuditoria })}
+
+                              />
+                         
+                      
+                      
+
+                        </View>
+                        <View>
+                        <Text style={{color:'red',marginTop:'2%',marginBottom:'2%',alignContent:'center',fontSize:15,fontStyle:'italic',textAlign:'center'}}>{this.state.mensajeError}</Text>
+                        </View>
+                      
+                      </View>
+
+                        <View style={{alignItems:'center',marginTop:'10%'}}>
+                        <TouchableHighlight style={{backgroundColor:'#c7f5d7',width:'50%',alignItems:'center',padding:'2%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',}}onPress={()=>{this.enviarFecha()}}><View style={{flexDirection:'row',alignItems:'center'}}><MaterialCommunityIcons name={this.state.iconName} size={30} color={'green'}/><Text style={{marginLeft:'5%'}}>{this.state.textButton}</Text></View></TouchableHighlight>
                         </View>
 
                     </View>

@@ -33,11 +33,11 @@ export default class AuditoriaFinalizada extends Component{
       url: 'http://accountsolinal.pythonanywhere.com/api/users',
       file: '',
       cFile:'',
-      arrayRespuestas:this.props.navigation.state.params.arrayRespuestas,
-      arrayMain:this.props.navigation.state.params.arrayMain,
+      datos:this.props.navigation.state.params.datosAuditoria, //norma,persona que audita,persona auditada,fehca de inicio,fecha de cierre,organizacion,direccion,alcance de la auditoria
+      normas: this.props.navigation.state.params.lista,
+     
       };
   }
-
 
 
   componentDidMount = () => {
@@ -46,50 +46,101 @@ export default class AuditoriaFinalizada extends Component{
 
   getUsers = () => {
     const array = [];
-    console.log(this.state.url)
+    
       this.setState({loading:true})
-      fetch(this.state.url)
+      fetch('http://accountsolinal.pythonanywhere.com/api/users')
 
       .then(res=>res.json())
      
       .then(res=>{ 
-        console.log('--')
-          console.log(res);
+       
           this.setState({
           users: res,
           url: res.next,
           loading: false,    
           })
-          console.log('----')
-          console.log(this.state.users);
+     
       })
       
   }
 
+  renderInfoData(){
+    const datos = this.state.datos;
+
+    var infotable = ''
+
+    infotable = 
+    `
+    <div>
+      <table id="tablaInfo">
+        <tr>
+          <td>Norma</td>
+          <td>`+datos[0]+`</td>
+        </tr>
+        <tr>
+          <td>Persona que audita</td>
+          <td>`+datos[1]+`</td>
+        </tr>
+        <tr>
+          <td>Persona auditada</td>
+          <td>`+datos[2]+`</td>
+        </tr>
+        <tr>
+          <td>Fecha de inicio</td>
+          <td>`+datos[3]+`</td>
+        </tr>
+        <tr>
+          <td>Fecha de cierre</td>
+          <td>`+datos[4]+`</td>
+        </tr>
+        <tr>
+          <td>Organización</td>
+          <td>`+datos[5]+`</td>
+        </tr>
+        <tr>
+          <td>Dirección</td>
+          <td>`+datos[6]+`</td>
+        </tr>
+        <tr>
+          <td>Alcance de la auditoría</td>
+          <td>`+datos[7]+`</td>
+        </tr>
+      </table>
+    </div>
+    `
+    return infotable
+  }
+ 
+
   renderTableData() {
-    const arrayRespuestas = this.state.arrayRespuestas;
+    const normas = this.state.normas;
     const arrayMain =this.state.arrayMain;
     var cont = 0;
 
     var iduser = ''
     var tabledata = ''
 
-    arrayRespuestas.forEach(function(element){
+    normas.forEach(function(element){
       /*console.log(element)
-
       var iduser = element.user
       var nombre = element.first_name
       var apellido = element.last_name
       var correo = element.email
       var tipoC = element.tipoCuenta*/
-      var pregunta = element[0]
-      var respuesta =element[1]
-      var titulo = arrayMain[cont]
 
 
-      var jpregunta = JSON.stringify(pregunta)
-      var jrespuesta = JSON.stringify(respuesta)
-      var jmain = JSON.stringify(titulo)
+      var detalle = element.detalle_mainmenu
+      //var idmenu =element[1]
+      //var keyn = element [2]
+      //var keyp = element [3]
+     // var titulo = arrayMain[cont]
+
+
+      var jdetalle = JSON.stringify(detalle)
+
+      var contMain=0
+      var contSubMenu=0
+      
      /* var japellido= JSON.stringify(apellido)
       var jcorreo = JSON.stringify(correo)
       var jtipoC = JSON.stringify(tipoC)*/
@@ -100,21 +151,54 @@ export default class AuditoriaFinalizada extends Component{
       console.log(apellido)
       console.log(correo)
       console.log(tipoC)*/
-      cont = cont + 1
+     // cont = cont + 1
+
+      var titletable = ''
+      var data = ''
+      
+      element.menu.map((mainmenu) => {
+         titletable +=
+        `
+        <table class="final">
+        <tr>
+        <th>
+        <h4>`+mainmenu+`</h4>
+        </th>
+        </tr>
+        `
+        element.submenu[contSubMenu].map((question) => {
+          var preg = question[0]
+          var answer = question[1]
+          var imagen = question[2]
+          
+          titletable += 
+          `
+          <table class="final">
+          
+            <tr>
+              <th class="pregunta">`+preg+`</th>
+              <th class="respuesta">`+answer+`</th>
+              <th class="evidencia"><img src="`+imagen+`"  width="185" height="155"></th>
+            </tr>
+          </table>
+          `
+        })
+        contSubMenu+=1
+       
+      })
+      
 
       tabledata += `
-        <tr >
-         
-           <h2>`+jmain+`</h2>
+      <h2>`+jdetalle+`</h2>
+      <div>
+        `+titletable+`
+      </div>
+      </table>
       
-           <td>`+jpregunta+`</td>
-           <td>`+jrespuesta+`</td>
-         
-        </tr>
         `
     });
 
-    console.log(tabledata)
+   // console.log(tabledata)
     return tabledata;
  }
 
@@ -122,7 +206,7 @@ export default class AuditoriaFinalizada extends Component{
    var tableheader = ''
    var k = ''
   let header = Object.keys(this.state.users[0])
-  console.log(header)
+  //console.log(header)
    header.map((key, index) => {
     var i = index;
     var k = key.toUpperCase();
@@ -132,11 +216,11 @@ export default class AuditoriaFinalizada extends Component{
      tableheader = `<th key=`+index+`}>`+jk+`</th>`
   })
 
-  console.log(tableheader);
+ // console.log(tableheader);
   return tableheader;
 }
 
-  makeHTML = (tableheader,tabledata) => {
+  makeHTML = (tableinfo,tableheader,tabledata) => {
     const htmlstring = `
     <!DOCTYPE html>
     <html>
@@ -147,13 +231,40 @@ export default class AuditoriaFinalizada extends Component{
           font-family: arial, sans-serif;
         }
         
-        #students {
-          text-align: center;
-          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-          border-collapse: collapse;
-          border: 3px solid #ddd;
-          width: 100%;
-        }
+        table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+.final{
+width:100%; background:#F2F2F2;
+}
+
+.pregunta{
+  width:50%;
+}
+.respuesta{
+  width:15%
+}
+.evidencia{
+  width:35%;
+}
+
+
+#tablaInfo{
+  width:100%;
+}
+
         
         #students td, #students th {
           border: 1px solid #ddd;
@@ -175,8 +286,23 @@ export default class AuditoriaFinalizada extends Component{
       </head
       <body>
         <div>
-          <h1 id='title'>Tabla de Usuarios</h1>
-          <table id='usuarios'>
+          <div>
+
+          <div align="center">
+          <img src="https://github.com/adamtuenti/Solinal-Proyecto/blob/rama/Solinal-Front/png/Recurso%201.png?raw=true"  width="125" height="135">
+          </div>
+
+          <div align="center">
+          <h1 >Informe de la auditoria</h1>
+          </div>
+         
+         
+        
+        </div>
+        <div>
+        `+tableinfo+`
+        </div>
+          <table id='students'>
                <tbody>
                
                 `+tabledata+`
@@ -184,7 +310,10 @@ export default class AuditoriaFinalizada extends Component{
           </table>
         </div>
         <div align="center">
-        <img height="210" width="250" class="center" src=" `+urifirma+`">
+          <img height="210" width="250" class="center" src=" `+urifirma+`">
+        </div>
+        <div align="center">
+        <h3 style="font-style: italic; text-decoration: underline;">Firma del auditor</h3>
         </div>
       </body>
     </html>
@@ -195,19 +324,20 @@ export default class AuditoriaFinalizada extends Component{
   }
 
   expoPDF = async () => {
+    const infodatahtml = this.renderInfoData();
     const tabledatahtml = this.renderTableData();
     const tableheaderhtml = this.renderTableHeader();
     console.log(tabledatahtml);
     let filePath = await Print.printToFileAsync({
-      html: this.makeHTML(tableheaderhtml,tabledatahtml),
+      html: this.makeHTML(infodatahtml,tableheaderhtml,tabledatahtml),
       width: 612,
       height: 792,
       base64: false
     });
     alert('PDF Generado',filePath.uri);
     this.setState({file:filePath.uri})
-    console.log('/')
-    console.log(this.state.file)
+   // console.log('/')
+    //console.log(this.state.file)
 
     
 
@@ -216,16 +346,31 @@ export default class AuditoriaFinalizada extends Component{
     // console.log(FileSystem.documentDirectory);
 
     FileSystem.getContentUriAsync(filePath.uri).then(cUri => {
-      console.log(cUri);
+     // console.log(cUri);
       this.setState({cFile:cUri.uri})
-      console.log('hola')
-      console.log(this.state.cFile)
+     // console.log(this.state.cFile)
       IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
           data: cUri.uri,
           flags: 1,
           type: 'application/pdf'
        });
     });
+  }
+
+  compartirPdf = async () => {
+        const infodatahtml = this.renderInfoData();
+    const tabledatahtml = this.renderTableData();
+    const tableheaderhtml = this.renderTableHeader();
+    //console.log(tabledatahtml);
+    let filePath = await Print.printToFileAsync({
+      html: this.makeHTML(infodatahtml,tableheaderhtml,tabledatahtml),
+      width: 612,
+      height: 792,
+      base64: false
+    });
+    alert('PDF Compartido',filePath.uri);
+    this.setState({file:filePath.uri})
+    this.props.navigation.navigate('PdfCompartido',{file:this.state.file,cFile:this.state.cFile})
   }
 
       render() {
@@ -281,7 +426,7 @@ export default class AuditoriaFinalizada extends Component{
 
                             <View style={{alignItems: 'center',marginTop:'10%'}}>
 
-                                <TouchableHighlight onPress={()=>this.props.navigation.navigate('PdfCompartido',{file:this.state.file,cFile:this.state.cFile})} style={{backgroundColor:'#B3F1C9',padding: 10,width:'55%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
+                                <TouchableHighlight onPress={()=>this.compartirPdf()} style={{backgroundColor:'#B3F1C9',padding: 10,width:'55%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
                                     <View style={{flexDirection:'row',alignContent:'center',justifyContent:'center'}}>
 
                                     <Feather style={{justifyContent:'center'}} name="download" size={28}  />

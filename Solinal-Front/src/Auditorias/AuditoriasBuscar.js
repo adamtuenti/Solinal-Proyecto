@@ -6,10 +6,10 @@ import FormData from 'form-data';
 import PasswordInputText from 'react-native-hide-show-password-input';
 import {MaterialIcons,MaterialCommunityIcons,Ionicons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import HeaderBack from './../../shared/HeaderBack';
+
 import EstadoCuenta from './../../shared/estadoCuenta';
 import { Collapse, CollapseHeader, CollapseBody } from "accordion-collapse-react-native";
-import FooterAuditoria from './../../shared/FooterAuditoria';
+
 
 class AuditoriasBuscar extends Component {
 

@@ -5,17 +5,17 @@ import Signature from 'react-native-signature-canvas';
 export default class FirmaAuditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signature: null,firma:'' };
+        this.state = { signature: null,firma:'',mensajeError:'' };
       }
      
       handleSignature = signature => {
-        this.setState({ signature ,firma:'ok'});
+        this.setState({ signature ,firma:'ok',mensajeError:'Firma guardada!'});
         
        
       };
      
       handleEmpty = () => {
-        alert('Firma vacia')
+        this.setState({mensajeError:'Firma Vacia!'})
       }
 
       enviarFirma=()=>{
@@ -27,7 +27,7 @@ export default class FirmaAuditor extends React.Component {
 
         }
         else{
-          alert('firma no')
+          this.setState({mensajeError:'No ha guardado la firma!'})
         }
         
         
@@ -37,7 +37,7 @@ export default class FirmaAuditor extends React.Component {
       render() {
         const style = `.m-signature-pad--footer
         .button {
-          background-color: red;
+          background-color: #1ED695 ;
           color: #FFF;
         }`;
         return (
@@ -46,23 +46,26 @@ export default class FirmaAuditor extends React.Component {
           {this.state.signature ? (
             <Image
               resizeMode={"contain"}
-              style={{ width: 335, height: 114 }}
+              style={{ width: 335, height: 104 }}
               source={{ uri: this.state.signature }}
             />
           ) : null}
         </View>
+        <View style={{alignItems:'center'}}>
+        <Text style={{color:'red',fontSize:15,fontStyle:'italic'}} >{this.state.mensajeError}</Text>
+        </View>
             <Signature
               onOK={this.handleSignature}
               onEmpty={this.handleEmpty}
-              descriptionText="Firma"
-              clearText="Clear"
+              descriptionText="Firma del Auditor"
+              clearText="Borrar"
               confirmText="Guardar"
               webStyle={style}
             />
 
-              <View>
+              <View style={{alignItems:'center'}}>
 
-              <TouchableHighlight style={{alignItems:'center'}} onPress={()=>{this.enviarFirma()}}><View><Text>aceptar</Text></View></TouchableHighlight>
+              <TouchableHighlight style={{alignItems:'center',width:150,height:35,marginBottom:'2%',justifyContent:'center',alignItems: 'center',backgroundColor: '#1ED695',padding: 10,borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginTop:'1%'}} onPress={()=>{this.enviarFirma()}}><View><Text style={{fontSize:15,color:'white',marginBottom:'8%'}}>Aceptar</Text></View></TouchableHighlight>
           </View>
           </View>
 
@@ -78,11 +81,11 @@ export default class FirmaAuditor extends React.Component {
     const styles = StyleSheet.create({
       preview: {
         width: 335,
-        height: 114,
+        height: 104,
         backgroundColor: "#F8F8F8",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 15
+        marginTop: 10
       },
       previewText: {
         color: "#FFF",

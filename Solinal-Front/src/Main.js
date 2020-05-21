@@ -23,7 +23,7 @@ const list = [
   {
     name: 'Mis Auditorias',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true',
-    url: 'Camara',
+    url: 'Crear',
     altura:32,
     anchura:23
   },
@@ -293,7 +293,7 @@ render() {
                     </View>
                 </TouchableHighlight>
 
-                 <TouchableHighlight onPress={()=>alert('en proceso')} style={{justifyContent:'center',width:'20%'}}>
+                 <TouchableHighlight onPress={()=>this.props.navigation.navigate('CalendarioPrograma')} style={{justifyContent:'center',width:'20%'}}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
                             <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2014.png'}}
                                    style= {{height: 35,width: 28}}>

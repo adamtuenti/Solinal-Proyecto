@@ -22,9 +22,12 @@ export default class PdfCompartido extends Component {
           loading: false,
           equipo: [],
           mensajeError:'',
-          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/'+idUserGlobal,
+          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/7',
           file: this.props.navigation.state.params.file,
           cFile: this.props.navigation.state.params.cFile,
+          ready:false,
+          iconName:'send',
+          selectedtem:[],
           //forceUpdateHandler : this.forceUpdateHandler.bind(this)
         }  
     }
@@ -43,12 +46,29 @@ export default class PdfCompartido extends Component {
         .then(res=>res.json())
         .then(res=>{ 
             console.log(res);
+            
             this.setState({
             equipo: res,
             urlEquipo: res.next,
-            loading: false,    
+            loading: false, 
+               
             })
+            this.llenarItem()
+           
         })
+    }
+
+    llenarItem(){
+        const equipo = this.state.equipo;
+        const selectedtem = this.state.selectedtem;
+
+         equipo.forEach(function(elemento){
+             selectedtem.push('')
+
+            
+         })
+
+        
     }
 
 
@@ -91,7 +111,7 @@ export default class PdfCompartido extends Component {
     });
     }
 
-    mailComposer(mailto){
+    mailComposer(mailto,item){
         console.log('sendmail')
         MailComposer.composeAsync({
             recipients: [mailto],
@@ -100,6 +120,16 @@ export default class PdfCompartido extends Component {
             attachments: [this.state.file]
         },(response) => alert(response)
         );
+
+        this.state.selectedtem[item]=item;
+
+          let iconName = (this.state.iconName)? "check-square":"send";
+                         
+                          this.setState({
+                             
+                              iconName:iconName,
+                             
+                          });
     }
  
       
@@ -133,7 +163,7 @@ export default class PdfCompartido extends Component {
             <View style={{ flexDirection:'column',marginLeft:'2%'}}>
                 <View style={{flexDirection:'row'}}>
                     <Text style={{color: '#636363',fontSize:15}}>Equipo de:</Text>
-                    <Text style={{color: '#2ba855', marginLeft:'5%',fontSize:15}}>{nameGlobal}</Text>
+                    <Text style={{color: '#2ba855', marginLeft:'5%',fontSize:15}}>Adan</Text>
                 </View>
                 <View style={{flexDirection:'row'}}>
                     <Text style={{color: '#2ba855',fontSize:15}}>{this.state.equipo.length}/5 </Text>
@@ -144,14 +174,24 @@ export default class PdfCompartido extends Component {
         
         </View>
 
-       
+         <View style={{marginTop:15,alignItems:'center'}}>
+                     <TouchableHighlight style={{ alignItems: 'center',backgroundColor: '#1ED695',padding: 10,width:172,borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginTop:'1%'}} onPress={()=>this.setState({ready:true})}>
+                     <View>
+                    <Text style={{fontSize:15}}>Mostrar Integrantes</Text>
+                    </View>
+                    </TouchableHighlight>
+                    </View>
 
        
 
+        <View>
+                    {this.state.ready ? (
 
-        <View style={{marginTop:'2%',marginBottom:'2%'}}>
 
-        {this.state.equipo.map(a=>
+
+        <View style={{marginTop:'2%',marginBottom:'2%',width:'90%',marginLeft:'5%'}}>
+
+        {this.state.equipo.map((a,n)=>(
 
         <Card style={{borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',padding:'2%'}}>
         <View style={{flexDirection:'row'}}>
@@ -160,15 +200,20 @@ export default class PdfCompartido extends Component {
         <Text style={{marginLeft:'1%',fontSize:13.5,fontStyle:'italic'}}>{a.correoIntegrante}</Text>
         </View>
         <View style={{flexDirection:'row-reverse',flex:1,alignItems:'center'}}>
-        <Feather onPress={()=>this.mailComposer(a.correoIntegrante)} name="send" size={30}/>
+        <Feather onPress={()=>this.mailComposer('dfsaigua@gmail.com',n)} color={ this.state.selectedtem[n] === n ? '#1ED695' : 'black'} name={'send'} size={30}/>
         </View>
         </View>
         </Card>
-        )}
+        ))}
+
+        
 
        
 
         </View>
+          ) : null}
+</View>
+               
 
    
                     
