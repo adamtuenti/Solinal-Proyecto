@@ -322,7 +322,7 @@ export default class Crear extends Component {
         })
 
     this.setState({totalPreguntas:listPreguntas.length})
-    alert(this.state.totalPreguntas)
+  // alert(this.state.totalPreguntas)
    
 
        
@@ -507,16 +507,16 @@ export default class Crear extends Component {
 
   inicarAuditoria(){
 
-         const{organizacion,direccion,alcance,auditado}=this.state;
+         const{organizacion,direccion,alcance}=this.state;
 
-       //  if ( organizacion === ''||direccion==''||alcance==''||auditado=='') { this.setState({mensajeError:'LLene todos los campos!'}); alert('llene')}
+         if ( organizacion === ''||direccion==''||alcance=='') { this.setState({mensajeError:'LLene todos los campos!'}); alert('llene')}
 
-         //else{ 
+         else{ 
 
            let datosAuditoria = this.state.datosAuditoria;
 
            datosAuditoria[1]='Adan Navarrete'
-           datosAuditoria[2]=auditado
+           //datosAuditoria[2]=auditado
            datosAuditoria[3]='15/10/2020'
            datosAuditoria[4]='15/10/2020'
            datosAuditoria[5]=organizacion
@@ -532,17 +532,19 @@ export default class Crear extends Component {
            
            this.setState({listo:true})
 
-        // }
+         }
     
   }
 
   agregarIntegrante(integrante){
-    if(integrante in this.state.datosAuditoria[2]){
-      alert('ya esta')
+    if(this.state.datosAuditoria[2].includes(integrante) == false){
+     
+      this.state.datosAuditoria[2].push(integrante)
       
     }
     else{
-      this.state.datosAuditoria[2].push(integrante)
+      
+      alert('ya esta')
       
     }
   }

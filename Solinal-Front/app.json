@@ -25,6 +25,11 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.solinal.android",
+      "versionCode": 1,
+      "permissions": []
     }
   }
 }

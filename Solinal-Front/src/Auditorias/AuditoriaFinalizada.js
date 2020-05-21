@@ -68,6 +68,16 @@ export default class AuditoriaFinalizada extends Component{
     const datos = this.state.datos;
 
     var infotable = ''
+    var auditados = ''
+
+    datos[2].forEach(function(name){
+      auditados +=
+      `
+      <ul>
+        <li>`+name+`</li>
+      </ul>
+      `
+    })
 
     infotable = 
     `
@@ -83,7 +93,7 @@ export default class AuditoriaFinalizada extends Component{
         </tr>
         <tr>
           <td>Persona auditada</td>
-          <td>`+datos[2]+`</td>
+          <td>`+auditados+`</td>
         </tr>
         <tr>
           <td>Fecha de inicio</td>
@@ -159,10 +169,10 @@ export default class AuditoriaFinalizada extends Component{
       element.menu.map((mainmenu) => {
          titletable +=
         `
-        <table class="final">
+        
         <tr>
         <th>
-        <h4>`+mainmenu+`</h4>
+        <h4 align="left">`+mainmenu+`</h4>
         </th>
         </tr>
         `
@@ -189,7 +199,12 @@ export default class AuditoriaFinalizada extends Component{
       
 
       tabledata += `
-      <h2>`+jdetalle+`</h2>
+      <table class="final" style="margin-top: 25px">
+      <tr>
+        <th>
+      <h2 align=center>`+jdetalle+`</h2>
+      </th>
+        </tr>
       <div>
         `+titletable+`
       </div>
