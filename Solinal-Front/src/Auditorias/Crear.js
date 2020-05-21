@@ -162,7 +162,8 @@ export default class Crear extends Component {
           auditor:'',
           mensajeError:'',
           contadorRespuestas:0,
-          totalPregunta:0
+          totalPreguntas:0,
+          listPreguntas:[],
         
 
 
@@ -255,6 +256,7 @@ export default class Crear extends Component {
       const valoresMenu = this.state.valoresMenu;
 
       const clickRespuestas = this.state.clickRespuestas;
+      const listPreguntas = this.state.listPreguntas;
       
       //lista3
 
@@ -275,8 +277,11 @@ export default class Crear extends Component {
             const temp = []
             const temporalSubRespuestas=[]  
             lista2.forEach(function(element2){
+              
+             // this.state.totalPregunta=this.state.y+1
             // console.log(element1)
               if(element1.id_submenu==element2.key_submenu){
+                listPreguntas.push(0)
                 temp.push([element2.detalle_submenud,'','',''])
                 temporalSubRespuestas.push(true)
                 //temp1=[]
@@ -296,7 +301,8 @@ export default class Crear extends Component {
         clickRespuestas.push(temporalRespuestas)
         })
 
-      this.setState({totalPregunta:this.state.valoresMain.length})
+    this.setState({totalPreguntas:listPreguntas.length})
+    alert(this.state.totalPreguntas)
    
 
        
@@ -349,7 +355,7 @@ export default class Crear extends Component {
       // console.log(this.state.subarray)
       
       if(this.state.clickRespuestas[main][menu][submenu1]){
-        
+        this.state.contadorRespuestas=this.state.contadorRespuestas+1
 
         let valoresMenu = this.state.valoresMenu
         if(valoresMenu[main][menu]+1<=this.state.lista[main].submenu[menu].length){
@@ -360,9 +366,6 @@ export default class Crear extends Component {
             
             valoresMain[main]=valoresMain[main]+1
             this.setState({valoresMain:valoresMain})
-            if(valoresMain[main]==valoresMenu[main][menu].length){
-              this.state.contadorRespuestas=this.state.contadorRespuestas+1
-            }
 
           }
         }
@@ -460,7 +463,7 @@ export default class Crear extends Component {
 
   finalizarAuditoria(){
 
-    if(this.state.totalPregunta==this.state.contadorRespuestas){
+    if(this.state.totalPreguntas==this.state.contadorRespuestas){
 
        if(urifirma!=''){
       this.props.navigation.navigate('AuditoriaFinalizada',{lista:this.state.lista,datosAuditoria:this.state.datosAuditoria})
@@ -475,7 +478,7 @@ export default class Crear extends Component {
     else{
       alert(this.state.contadorRespuestas)
       console.log('-')
-      console.log(this.state.totalPregunta)
+      console.log(this.state.totalPreguntas)
     }
    
     
@@ -486,9 +489,9 @@ export default class Crear extends Component {
 
          const{organizacion,direccion,alcance,auditado}=this.state;
 
-         if ( organizacion === ''||direccion==''||alcance==''||auditado=='') { this.setState({mensajeError:'LLene todos los campos!'}); alert('llene')}
+       //  if ( organizacion === ''||direccion==''||alcance==''||auditado=='') { this.setState({mensajeError:'LLene todos los campos!'}); alert('llene')}
 
-         else{ 
+         //else{ 
 
            let datosAuditoria = this.state.datosAuditoria;
 
@@ -509,7 +512,7 @@ export default class Crear extends Component {
            
            this.setState({listo:true})
 
-         }
+        // }
     
   }
 
