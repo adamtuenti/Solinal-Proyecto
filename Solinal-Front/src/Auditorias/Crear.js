@@ -154,7 +154,7 @@ export default class Crear extends Component {
 
           
           
-          datosAuditoria:['Norma INEM','','','','','','',''],
+          datosAuditoria:['Norma INEM','',[],'','','','',''],
           organizacion:'',
           direccion:'',
           alcance:'',
@@ -166,6 +166,10 @@ export default class Crear extends Component {
           listPreguntas:[],
         
 
+        equipo: [],
+          mensajeError:'',
+          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/7',
+
 
      
     
@@ -175,10 +179,26 @@ export default class Crear extends Component {
     componentDidMount = () => {
        
         this.getLista();
+        this.getMiembrosEquipo();
       //  this.getLista1();
         //this.getMiembrosEquipo();
        
       }
+
+
+       getMiembrosEquipo = () => {
+        this.setState({loading:true})
+        fetch(this.state.urlEquipo)
+        .then(res=>res.json())
+        .then(res=>{ 
+            console.log(res);
+            this.setState({
+            equipo: res,
+            urlEquipo: res.next,
+            loading: false,    
+            })
+        })
+    }
 
 
     getLista=()=>{
@@ -476,7 +496,7 @@ export default class Crear extends Component {
 
     }
     else{
-      alert(this.state.contadorRespuestas)
+      alert('responda todas las preguntas')
       console.log('-')
       console.log(this.state.totalPreguntas)
     }
@@ -514,6 +534,17 @@ export default class Crear extends Component {
 
         // }
     
+  }
+
+  agregarIntegrante(integrante){
+    if(integrante in this.state.datosAuditoria[2]){
+      alert('ya esta')
+      
+    }
+    else{
+      this.state.datosAuditoria[2].push(integrante)
+      
+    }
   }
 
 
@@ -571,6 +602,30 @@ export default class Crear extends Component {
                        
                             <Input onChangeText={alcance => this.setState({alcance })} style={styles.input} placeholder="Alcance de la auditoría" />
                             <Input onChangeText={auditado => this.setState({auditado })} style={styles.input} placeholder="Nombre del auditado" />
+                            <Collapse>
+    <CollapseHeader  style={{width:'100%'}}>
+      <View  style={styles.input}> 
+        <Text>Nombres de los auditados</Text>
+      </View>
+    </CollapseHeader>
+
+    <CollapseBody>
+    {this.state.equipo.map((integrante,n)=>(
+      <View style={{backgroundColor:'#D0F5A9',flexDirection:'row',alignItems:'center'}}>
+      <View >
+      <Text onPress={()=>{console.log(this.state.datosAuditoria)}}style={{marginLeft:'10%'}}>{integrante.nombreIntegrante} {integrante.apellidoIntegrante}</Text>
+      </View>
+      <View style={{flexDirection:'row-reverse',flex:1,marginRight:'5%'}}>
+      <MaterialIcons name={'group-add'} size={25} onPress={()=>{this.agregarIntegrante(integrante.nombreIntegrante+' '+integrante.apellidoIntegrante)}}/>
+      </View>
+      </View>
+
+    ))
+
+    }
+      
+    </CollapseBody>
+</Collapse>
 
                             
                            
