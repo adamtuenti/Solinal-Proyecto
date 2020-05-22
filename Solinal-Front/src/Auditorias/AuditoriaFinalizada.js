@@ -146,7 +146,7 @@ export default class AuditoriaFinalizada extends Component{
      // var titulo = arrayMain[cont]
 
 
-      var jdetalle = JSON.stringify(detalle)
+     
 
       var contMain=0
       var contSubMenu=0
@@ -180,31 +180,42 @@ export default class AuditoriaFinalizada extends Component{
           var preg = question[0]
           var answer = question[1]
           var imagen = question[2]
+          var comentario = question[3]
           
           titletable += 
           `
           <table class="final">
-          
+          <div>
             <tr>
               <th class="pregunta">`+preg+`</th>
               <th class="respuesta">`+answer+`</th>
               <th class="evidencia"><img src="`+imagen+`"  width="185" height="155"></th>
             </tr>
+            </div>
+            <div>
+            <table class="final">
+            <tr>
+              <th class="pregunta">Comentario: `+comentario+`</th>
+            </tr>
+            </table>
+            <div>
           </table>
           `
         })
-        contSubMenu+=1
+        contSubMenu+=1  //Comentario: 'comentario'
        
       })
       
 
       tabledata += `
       <table class="final" style="margin-top: 25px">
+      <div>
       <tr>
-        <th>
-      <h2 align=center>`+jdetalle+`</h2>
+        <th class="detalle">
+      <h2 align=center>`+detalle+`</h2>
       </th>
         </tr>
+        </div>
       <div>
         `+titletable+`
       </div>
@@ -261,12 +272,20 @@ table, th, td {
 th, td {
   padding: 15px;
 }
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
 .final{
 width:100%; 
 }
-
+.detalle{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
 .pregunta{
   width:50%;
+  text-align: left;
 }
 .respuesta{
   width:15%

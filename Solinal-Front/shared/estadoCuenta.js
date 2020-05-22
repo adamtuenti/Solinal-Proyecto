@@ -80,35 +80,3 @@ export default class EstadoCuenta extends React.Component{
     }
 }
 
-const styles = StyleSheet.create({
-    izquierdo:{
-        width: Dimensions.get('screen').width,
-        
-       
-        flexDirection: 'row',
-        alignItems:'center',
-        marginLeft:10
-          
-        
-    },
-    icon:{
-       position:'absolute',
-       left:25,
-       //marginTop:12
-        
-    },
-    back:{
-        flexDirection:'row',
-         backgroundColor:'#1ed695',
-        height:62,
-        alignContent:'center'
-        
-    },
-    imagen:{
-        height:40,
-        width:40,
-        
-       // marginLeft:10,
-        //marginTop:8
-    }
-})

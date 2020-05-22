@@ -28,7 +28,7 @@ export default class CalendarioPrograma extends Component {
           tiempoend: '',
           loading: false,
           fechas: [],
-          url: 'http://accountsolinal.pythonanywhere.com/api/fechas_get/7',
+          url: 'http://accountsolinal.pythonanywhere.com/api/fechas_get/'+idUserGlobal,
           array: ['2020-05-10','2020-05-11']
     }
   }

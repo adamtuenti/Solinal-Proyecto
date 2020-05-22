@@ -159,16 +159,7 @@ export default class Login extends Component{
     render() {
         return ( 
             <SafeAreaView style={{}}>
-             <View style={{alignItems:'center',marginTop:150}}>
-                
-                <Text>{this.state.numero2[0][1]}</Text>
-               
-                <TouchableHighlight onPress={()=>{this.aumentar(1,0)}} style={{width:150}}>
-                <View>
-                <Text>{this.state.numero[1]}</Text>
-                </View>
-                </TouchableHighlight>
-                </View>
+            
             
              
 

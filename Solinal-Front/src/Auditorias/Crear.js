@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image ,TouchableOpacity} from 'react-native';
 import { Root,ActionSheet,Container, Title, Content, Card, CardItem, Footer, Button, Left, Right, Body,  Font,Input,DatePicker } from 'native-base';
-import { Icon } from 'react-native-elements'
+import { Icon ,Divider} from 'react-native-elements'
 import {StyleSheet,TouchableHighlight,Text,View,Dimensions} from 'react-native';
 //import DatePicker from 'react-native-datepicker';
 import {RNCamera} from 'react-native-camera'
@@ -9,7 +9,7 @@ import {RNCamera} from 'react-native-camera'
 import AuditoriasProgramadas from '../../shared/AuditoriasProgramadas';
 
 //import { Calendar } from 'react-native-calendario';
-import {MaterialIcons,FontAwesome,MaterialCommunityIcons} from '@expo/vector-icons';
+import {MaterialIcons,FontAwesome,MaterialCommunityIcons,AntDesign} from '@expo/vector-icons';
 //import TimePicker from "react-native-24h-timepicker";
 import { Collapse, CollapseHeader, CollapseBody } from "accordion-collapse-react-native";
 
@@ -28,51 +28,7 @@ import * as Permissions from 'expo-permissions';
 import * as Expo from 'expo';
 import Toolbar from './../../shared/toolbar.component';
 
-const dataItem1 = [
-    { title: "Art. 73: De las condiciones mínimas básicas", content: "Lorem ipsum dolor sit amet" },
-    { title: "Art. 74: De la localización", content: "Lorem ipsum dolor sit amet" },
-    { title: "Art. 75: Diseño y construcción", content: "Lorem ipsum dolor sit amet" },
-    { title: "Art. 76: Condiciones específicas de las áreas, estructuras internas y accesorios", content: "Lorem ipsum dolor sit amet" },
-    { title: "Art. 77: Suministro de Agua", content: "Lorem ipsum dolor sit amet" },
-];
 
-const dataMain = [
-    { title: "De las instalaciones y requisitos de buenas prácticas de manufactura", content: "Lorem ipsum dolor sit amet" },
-    { title: "De los equipos y utensilios", content: "Lorem ipsum dolor sit amet" },
-    { title: "Requisitos higiénicos de fabricación", content: "Lorem ipsum dolor sit amet" },
-    { title: "Envasado, etiquetado y empaquetado", content: "Lorem ipsum dolor sit amet" },
-    { title: "Almacenamiento, distribución, transporte y comercialización", content: "Lorem ipsum dolor sit amet" },
-    { title: "Del aseguramiento y control de la calidad", content: "Lorem ipsum dolor sit amet" },
-    { title: "Firma del auditor", content: "Lorem ipsum dolor sit amet" }
-  ];
-
-
-const list = [
-  {
-    titulo: 'De las instalaciones y requisitos de buenas prácticas de manufactura',
-    menu: ['Art. 75: Diseño y construcción','Art. 76: Condiciones específicas de las áreas, estructuras internas y accesorios'],
-    submenu:[['sub menu1','submenu2'],['hola','hola1']],
-    url: 'AuditoriasBuscar',
-    altura:30,
-    anchura:40
-  },
-  {
-   titulo: 'De los equipos y utensilios',
-    menu: ['1a','2a'],
-    submenu:[['sub menu3','submenu4'],['hola','hola1']],
-    url: 'AuditoriasBuscar',
-    altura:32,
-    anchura:23
-  },
-  {
-    titulo: 'Requisitos higiénicos de fabricación',
-    menu: ['1 a'],
-    submenu:['sub menu5','submenu6'],
-    url: 'AuditoriasBuscar',
-    altura:30,
-    anchura:35
-  }
-]
 
 export default class Crear extends Component {
 
@@ -153,6 +109,9 @@ export default class Crear extends Component {
           clickRespuestas:[],
           clickColorBoton:[],
 
+          textButtonCamera:'Guardar',
+          colorButtonCamera:'orange',
+
           
           
           datosAuditoria:['Norma INEM','',[],'','','','',''],
@@ -171,11 +130,35 @@ export default class Crear extends Component {
           mensajeError:'',
           urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/7',
 
-
-     
+        iconName : 'down', 
+        iconStateValue:false, 
+        comentarioNota:'',
+        collapsed:false,
+        botonGuardar: 'orange',
+        botonGuardarTexto: 'Guardar',
+        botonGuardarEstado: false
     
         };
     }
+
+    iconState(){
+      let iconName = (this.state.iconStateValue)? "down":"up"; 
+                          this.setState({
+                              iconStateValue:!this.state.iconStateValue, 
+                              iconName:iconName, 
+                          });
+    }
+
+      fotoGuardada(){
+        let botonGuardar = (this.state.botonGuardarEstado)? "orange":"green";
+        let botonGuardarTexto = (this.state.botonGuardarEstado) ? "Guardar":"Guardado";
+                    this.setState({
+                      botonGuardarEstado:!this.state.botonGuardarEstado,
+                      botonGuardar:botonGuardar,
+                      botonGuardarTexto:botonGuardarTexto,
+                    })
+      }
+
 
     componentDidMount = () => {
        
@@ -306,9 +289,9 @@ export default class Crear extends Component {
             // console.log(element1)
               if(element1.id_submenu==element2.key_submenu){
                 listPreguntas.push(0)
-                temp.push([element2.detalle_submenud,'','https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true',''])
+                temp.push([element2.detalle_submenud,'','https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true','No hay comentario'])
                 temporalSubRespuestas.push(true)
-                temporalSubBotonColor.push('')
+                temporalSubBotonColor.push(['','',''])
 
                 //temp1=[]
                 //foreach
@@ -360,7 +343,18 @@ export default class Crear extends Component {
 
 
 
+  agregarComentario=(iterator,n,p,boton)=>{
 
+    
+     let clickColorBoton= this.state.clickColorBoton
+      this.state.clickColorBoton[iterator][n][p][2]=boton
+
+      this.setState({clickColorBoton:clickColorBoton})
+      
+      
+
+    this.state.lista[iterator].submenu[n][p][3]=this.state.comentarioNota
+  }
 
 
 
@@ -369,13 +363,25 @@ export default class Crear extends Component {
 
 
       
+  agregarEvidencia=(main,menu,submenu1,boton)=>{
+   
 
+     let clickColorBoton= this.state.clickColorBoton
+      this.state.clickColorBoton[main][menu][submenu1][1]=boton
+
+      this.setState({clickColorBoton:clickColorBoton})
+      
+      this.state.lista[main].submenu[menu][submenu1][2]=fotoEvidencia
+
+  
+
+  }
     
  
     
     agregarElemento=(main,menu,submenu1,respuesta,boton)=>{
       let clickColorBoton= this.state.clickColorBoton
-      this.state.clickColorBoton[main][menu][submenu1]=boton
+      this.state.clickColorBoton[main][menu][submenu1][0]=boton
 
       this.setState({clickColorBoton:clickColorBoton})
     
@@ -434,35 +440,7 @@ export default class Crear extends Component {
 
   
 
-  verGaleria = () => {
-    const { image, hasCameraPermission } = this.state;
 
-    if (hasCameraPermission === null) {
-      return <View />
-     }
-     else if (hasCameraPermission === false) {
-      return <Text>Acceso a galería ha sido denegado.</Text>;
-     }
-     else {
-      return (
-       <View style={{ flex: 1 }}>
-        <View style={{flex: 1, width: Dimensions.get("window").width, height: Dimensions.get("window").height / 2, backgroundColor: "#eee", borderBottomWidth: 0.5, borderColor: "#fff"}}>
-         {image ? (
-          <Image source={{ uri: image }} style={{ flex: 1 }} />
-         ) : (
-          <View />
-         )}
-       </View>
-       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Button 
-          onPress={this._verFotoDesdeGaleria.bind(this)} 
-          title="Pantalla de galería"
-        />
-       </View>
-      </View>
-      );
-     }
-  }
 
   onClickAddImage(main,menu,submenu1){
 
@@ -495,6 +473,7 @@ export default class Crear extends Component {
       }
     )
   }
+
 
   finalizarAuditoria(){
      this.props.navigation.navigate('AuditoriaFinalizada',{lista:this.state.lista,datosAuditoria:this.state.datosAuditoria})
@@ -619,32 +598,45 @@ export default class Crear extends Component {
                        
                        
                             <Input onChangeText={alcance => this.setState({alcance })} style={styles.input} placeholder="Alcance de la auditoría" />
-                            <Input onChangeText={auditado => this.setState({auditado })} style={styles.input} placeholder="Nombre del auditado" />
-                            <Collapse>
-    <CollapseHeader  style={{width:'100%'}}>
-      <View  style={styles.input}> 
-        <Text>Nombres de los auditados</Text>
+                       
+                           
+      <View  style={{flexDirection:'row',alignItems:'center',height: 30,marginTop:'1%', borderBottomColor: '#1ed796', borderBottomWidth: 1, paddingRight: 10, width: '100%', padding:5, fontSize: 14,}}> 
+      
+      <View >
+        <Text style={{marginLeft:'2.5%'}}>Nombres de los auditados</Text>
+        </View>
+        <View style={{flexDirection:'row-reverse',flex:1,marginRight:'5%'}}>  
+       
+        <AntDesign onPress={()=>{this.iconState()}} name={this.state.iconName} size={30} color={'#1ED695'}/>
+      
       </View>
-    </CollapseHeader>
+       
+      </View>
 
-    <CollapseBody>
+      <View>
+       
+                    {this.state.iconStateValue ? (
+                      <View style={{width:'100%'}}>
+     
+  
     {this.state.equipo.map((integrante,n)=>(
-      <View style={{backgroundColor:'#D0F5A9',flexDirection:'row',alignItems:'center'}}>
+      <View style={{backgroundColor:'#D0F5A9',flexDirection:'row',alignItems:'center',width:'100%',borderBottomColor: 'black',borderBottomWidth: 1}}>
       <View >
       <Text onPress={()=>{console.log(this.state.datosAuditoria)}}style={{marginLeft:'10%'}}>{integrante.nombreIntegrante} {integrante.apellidoIntegrante}</Text>
       </View>
-      <View style={{flexDirection:'row-reverse',flex:1,marginRight:'5%'}}>
+      <View style={{flexDirection:'row-reverse',flex:1,marginLeft:'2.5%'}}>
       <MaterialIcons name={'group-add'} size={25} onPress={()=>{this.agregarIntegrante(integrante.nombreIntegrante+' '+integrante.apellidoIntegrante)}}/>
       </View>
+      
       </View>
 
     ))
 
     }
-      
-    </CollapseBody>
-</Collapse>
-
+    </View>
+    ) : null}
+</View>
+    
                             
                            
                         
@@ -654,7 +646,7 @@ export default class Crear extends Component {
 
                     <View style={{flexDirection:'column'}}>
 
-                    <View style = {{ backgroundColor: '#f6f6f6', borderBottomColor:2,width:'90%',alignItems:'center',marginLeft:'5%'}}>
+                    <View style = {{ backgroundColor: '#f6f6f6', borderBottomColor:2,width:'90%',alignItems:'center',marginLeft:'5%',marginTop:'1%'}}>
                     <Text style={styles.input}>Fecha de la auditoria</Text>
                     </View>
 
@@ -882,17 +874,17 @@ export default class Crear extends Component {
                                         <View style={{flexDirection:'row'}}>
 
 
-                               <TouchableHighlight style={{backgroundColor: (this.state.clickColorBoton[iterator][n][p] === p+'1' ? 'green' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}} onPress={()=>this.agregarElemento(iterator,n,p,'Si',p+'1')}>
+                               <TouchableHighlight style={{backgroundColor: (this.state.clickColorBoton[iterator][n][p][0] === p+'1' ? 'green' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}} onPress={()=>this.agregarElemento(iterator,n,p,'Si',p+'1')}>
                                <View>
                                <Text>Si</Text>
                                </View>
                                </TouchableHighlight >
-                                <TouchableHighlight style={{backgroundColor: (this.state.clickColorBoton[iterator][n][p] === p+'2' ? 'red' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}} onPress={()=>this.agregarElemento(iterator,n,p,'No',p+'2')}>
+                                <TouchableHighlight style={{backgroundColor: (this.state.clickColorBoton[iterator][n][p][0] === p+'2' ? 'red' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}} onPress={()=>this.agregarElemento(iterator,n,p,'No',p+'2')}>
                                <View>
                                <Text>No</Text>
                                </View>
                                </TouchableHighlight>
-                                <TouchableHighlight style={{backgroundColor: (this.state.clickColorBoton[iterator][n][p] === p+'3' ? 'orange' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}} onPress={()=>this.agregarElemento(iterator,n,p,'N/A',p+'3')}>
+                                <TouchableHighlight style={{backgroundColor: (this.state.clickColorBoton[iterator][n][p][0] === p+'3' ? 'orange' : 'grey'),alignItems: 'center',padding: 10,width:'30%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginLeft:7}} onPress={()=>this.agregarElemento(iterator,n,p,'N/A',p+'3')}>
                                <View>
                                <Text>N/A</Text>
                                </View>
@@ -915,47 +907,50 @@ export default class Crear extends Component {
                                                                                 <Text onPress={()=>console.log(this.state.lista[iterator].submenu[n][p][2])} style={{fontSize:12,marginLeft:5,marginTop:2}}>Agregar nota</Text>
                                                                                 </View>
 
-                                                                                <View style={{flexDirection:'row',alignItems: 'center',marginLeft:5}}>
+                                                                                
+                                                                            </View>
+                                                                            
+                                                                            </CollapseHeader>
+                                                                            <CollapseBody>
+                                                                            <View style={{flexDirection:'column',marginTop:5,backgroundColor:'#F5F5F5', alignItems: 'center',width:'100%'}}>
+                                                                                <View style={{alignItems: 'center',width:'100%'}}>
+                                                                                <Input numberOfLines={4}  onChangeText={comentarioNota => this.setState({ comentarioNota })} style={styles.input} placeholder="Escriba su nota" />
+                                                                                </View>
+
+                                                                                <View style={{flexDirection:'row-reverse',marginTop:2, marginBottom:10,marginLeft:10 }}>
+                                                                                <TouchableHighlight onPress={()=>{this.agregarComentario(iterator,n,p,p)}}style={{ height:30, width:75,backgroundColor: (this.state.clickColorBoton[iterator][n][p][2] === p ? '#35E119' : 'orange'),borderRadius: 4,alignItems: 'center',borderWidth: 1,borderColor: '#d6d7da',alignContent:'center',width:105,height:35}}>
+                                                                                    <View>
+                                                                                        <Text style={{fontSize:17,color:'white',alignItems:'center',marginTop:'3.5%'}}>{(this.state.clickColorBoton[iterator][n][p][2] === p ? 'Agregado' : 'Agregar')}</Text>
+                                                                                    </View>
+                                                                                </TouchableHighlight>
+                                                                                </View>
+                                                                            </View>
+                                                                            </CollapseBody>
+                                                                            </Collapse>
+                                                                             <Collapse >
+                                                                              <CollapseHeader>
+                                                                               <View style={{flexDirection:'row',alignItems: 'center',marginLeft:5}}>
                                                                                         <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/evidencia.png?raw=true'}} 
                                                                                         style={{height: 35, 
                                                                                                     width: 35,
                                                                                                     marginLeft:7
                                                                                                     }}/>
                                                                                 <Text onPress={() => this.onClickAddImage(iterator,n,p)} style={{fontSize:12,marginLeft:5,marginTop:2}}>Agregar evidencia</Text>
-                                                                                <View>
-                    {fotoEvidencia!='' ? (
-                      <View>
-                      <Text onPress={()=>this.state.lista[iterator].submenu[n][p][2]=fotoEvidencia}>
-                      {fotoEvidencia}
-                      </Text>
-                      </View>
-                        ) : null}
-</View>
-
                                                                                 </View>
-
-                                                                               
-
-                                                                            </View>
-                                                                            
-                                                                            </CollapseHeader>
-                                                                            <CollapseBody>
-                                                                            <View style={{flexDirection:'column',marginTop:5,backgroundColor:'#F5F5F5'}}>
-                                                                                <View>
-                                                                                <Input numberOfLines={4} style={styles.input} placeholder="Escriba su nota" />
-                                                                                </View>
-
-                                                                                <View style={{flexDirection:'row-reverse',marginTop:2, marginBottom:10,marginLeft:10 }}>
-                                                                                <TouchableHighlight style={styles.botonAgregarNota}>
+                                                                                
+                                                                              </CollapseHeader>
+                                                                              <CollapseBody>
+                                                                                <View style={{flexDirection:'row',alignItems: 'center',width:'100%'}}>                                                            
+                                                                                     
+                                                                                      <TouchableHighlight  onPress={()=>{this.agregarEvidencia(iterator,n,p,p)}} style={{ height:30, width:75,backgroundColor: (this.state.clickColorBoton[iterator][n][p][1] === p ? '#35E119' : 'orange'),borderRadius: 4,alignItems: 'center',borderWidth: 1,borderColor: '#d6d7da',alignContent:'center',width:105,height:35}}>
                                                                                     <View>
-                                                                                        <Text style={{fontSize:12}}>Agregar</Text>
-                                                                                    </View>
-                                                                                </TouchableHighlight>
-                                                                                </View>
-                                                                            
 
-                                                                            </View>
-                                                                            </CollapseBody>
+                                                                                      <Text style={{fontSize:17,color:'white',alignItems:'center',marginTop:'3.5%'}}>{(this.state.clickColorBoton[iterator][n][p][1] === p ? 'Guardado' : 'Guardar')}</Text>
+                                                                                    </View>
+                                                                                  </TouchableHighlight>
+                                                                                  
+                                                                                </View>
+                                                                              </CollapseBody>
                                                                             </Collapse>
                                                                           </View>
                                                                        
@@ -1155,6 +1150,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#CED3CE",
     
     marginBottom:15,
+   
     flexDirection:'row',
 
         width: '100%',

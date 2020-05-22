@@ -31,7 +31,7 @@ const list = [
     name: 'Recomienda Solinal Auditor',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/compartir.png?raw=true',
     subtitle: 'Vice Chairman',
-    url: 'RecomiendaSolinal',
+    url: 'CalendarioPrograma',
     altura:30,
     anchura:35
   }

@@ -32,9 +32,9 @@ export default class AgendarAuditorias extends Component {
             detalleAuditoria:'',
             mensajeError:'',
 
-            iconName : 'calendar-clock',
+            iconName : 'calendar-clock', //down
             textButton:'AGENDAR',
-            envioMensaje:true,
+            envioMensaje:true, //lo mismo
     }
   }
 
@@ -145,11 +145,11 @@ export default class AgendarAuditorias extends Component {
                         
                       }else{
 
-                         let iconName = (this.state.envioMensaje)? "check":"calendar-clock";
+                         let iconName = (this.state.envioMensaje)? "check":"calendar-clock";  //up:down
                          let textButton = (this.state.envioMensaje)? "AGENDADO":"AGENDAR";
                           this.setState({
-                              envioMensaje:!this.state.envioMensaje,
-                              iconName:iconName,
+                              envioMensaje:!this.state.envioMensaje, //--
+                              iconName:iconName, //--
                               textButton:textButton
                           });
                       }

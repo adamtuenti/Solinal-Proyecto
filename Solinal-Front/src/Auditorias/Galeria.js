@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
-import {View, Text, StyleSheet, Dimensions, Button, Image } from "react-native";
+import {View, Text, StyleSheet, Dimensions, Button, Image,TouchableHighlight } from "react-native";
 
 export default class Galeria extends Component {
  
@@ -27,23 +27,21 @@ async componentDidMount() {
   if (!result.cancelled) {
    this.setState({ image: result.uri,foto:'si' });
   }
-  console.log(result.uri);
-  console.log('-')
-  console.log(this.state.image)
+
  // urifirma='https://laverdadnoticias.com/__export/1586892765870/sites/laverdad/img/2020/04/14/cosplay_vegeta_super_saiyan.png_423682103.png'
   
  }
 
  enviarFoto=()=>{
         
-        urifirma=this.state.image;
+        fotoEvidencia=this.state.image;
 
         if(this.state.foto!=''){
           this.props.navigation.navigate('Crear')
 
         }
         else{
-          alert('foto no')
+          alert('No ha seleccionado foto!')
         }
         
         
@@ -70,15 +68,22 @@ async componentDidMount() {
       )}
     </View>
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-     <Button 
-       onPress={this._getPhotoLibrary.bind(this)} 
-       title="Selector de fotos"
-     />
-
-     <Button 
-      onPress={()=>{this.enviarFoto()}}
-       title="Ok"
-     />
+    <View>
+     
+     <TouchableHighlight
+                    style={{alignItems: 'center',backgroundColor: '#B3F1C9',padding: 10,width:142,borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginTop:'10%'}} onPress={this._getPhotoLibrary.bind(this)}>
+                    <Text style={{fontWeight: 'bold', color: '#515254'}}>Seleccionar foto</Text>
+                </TouchableHighlight>
+    
+    </View>
+    <View>
+    
+    
+     <TouchableHighlight
+                    style={{alignItems: 'center',backgroundColor: '#B3F1C9',padding: 10,width:142,borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',marginTop:'10%'}} onPress={()=>{this.enviarFoto()}}>
+                    <Text style={{fontWeight: 'bold', color: '#515254'}}>Guardar</Text>
+                </TouchableHighlight>
+    </View>
      
     </View>
    </View>
