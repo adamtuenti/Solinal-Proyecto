@@ -37,54 +37,70 @@ export default class AuditoriaFinalizada extends Component{
                          ['pregunta 1','n/a','https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/05/10/15891435093664.jpg'],
                          ['pregunta 2','si','https://www.futboltotal.com.mx/wp-content/uploads/2020/01/biografia-de-ronaldo-nazario.jpg']   ],
       arrayMain: ['main 1','main 2','main 3'],
+      datos: ["Norma INEN","Jesse Pinkman",["Skyler White","Jon Snow"],"Ayer","Hoy","Los Pollos Hermanos","La casa de Walter White","5 cms"],
       normas:[
         {
         detalle_mainmenu: 'De las instalaciones y requisitos de buenas practicas de manufactura',
-        id_mainmenu: 1,
-        key_norma: 1,
+        id_mainmenu: 9,
+        key_norma: 2,
         key_pais: 1,
         menu: [
-          'Art. 73.- De las condiciones mínimas básicas.- Los establecimientos donde se producen y manipulan alimentos serán diseñados y construidos de acuerdo a las operaciones y riesgos asociados a la actividad y al alimento, de manera que puedan cumplir con los siguientes requisitos:',
-          'Art. 74.- De la localización.- Los establecimientos donde se procesen, envasen o distribuyan alimentos serán responsables que su funcionamiento esté protegido de focos de insalubridad que representen riesgos de contaminación:',
-          'Art. 75.- Diseño y construcción.- La edificación debe diseñarse y construirse de manera que:',
-          'Art. 76.- Condiciones específicas de las áreas, estructuras internas y accesorios:',
-          'Art. 77.- Servicios de plantas - facilidades:'],
+          'Art. 73.- De las condiciones mínimas básicas.-',
+          'Art. 74.- De la localización.-',
+          'Art. 75.- Diseño y construcción.-',
+        ],
         submenu: [
-          [],
-          [],
-          [],
-          [
-            ['a. Distribución de Áreas.-', 0],
-            ['b. Pisos, Paredes, Techos y Drenajes.-',0],
-            ['c. Ventanas, Puertas y Otras Aberturas.-',0],
-            ['d. Escaleras, Elevadores y Estructuras Complementarias (rampas, plataformas).-',0],
-            ['e. Instalaciones Eléctricas y Redes de Agua.-',0],
-            ['f. Iluminación.-',0],
-            ['g. Calidad del Aire y Ventilación.-',0],
-            ['h. Control de Temperatura y Humedad Ambiental.-',0],
-            ['i. Instalaciones Sanitarias.-',0],
-          ],
-          [],
+        [
+          ["a. Que el riesgo de contaminación y alteración sea mínimo",
+           "",
+           "https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true",
+           "No hay comentario"],
+          ["b. Que el diseño y distribución de las áreas permita un mantenimiento, limpieza y desinfección apropiada; y, que minimice los riesgos de contaminación",
+          "",
+          "https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true",
+          "No hay comentario"],
+        ],
+        [
+          ["Los establecimientos donde se procesen, envasen o distribuyan alimentos serán responsables que su funcionamiento",
+          "",
+          "https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true",
+          "No hay comentario",],
+        ],
+        [
+          ["a. Ofrezca protección contra polvo, materias extrañas, insectos, roedores, aves y otros elementos del ambiente exterior y que mantenga las condiciones sanitarias apropiadas según el proceso",
+          "",
+          "https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true",
+          "No hay comentario",],
+          ["c. Brinde facilidades para la higiene del personal",
+          "",
+          "https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true",
+          "No hay comentario",],
+        ],
         ],
       },
       {
         detalle_mainmenu: 'De los equipos y utensilios',
-        id_mainmenu: 2,
-        key_norma: 1,
+        id_mainmenu: 10,
+        key_norma: 2,
         key_pais: 1,
         menu: [
-          'Art. 78.- de los equipos',
-          'Art. 79.- Del monitoreo de los equipos.-',
+          "Art. 78. – de los equipos",
           ],
         submenu: [
-            [],
-            [],
-          ],     
+            [
+              [
+                "a. Construidos con materiales tales que sus superficies de contacto no transmitan sustancias tóxicas, olores ni sabores, ni reaccionen con los ingredientes o materiales que intervengan en el proceso de fabricación",
+                "",
+                "https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true",
+                "No hay comentario",
+              ],
+            ],
+        ],     
       },
       {
         detalle_mainmenu: 'Requisitos higiénicos de fabricación',
-        id_mainmenu: 3,
-        key_norma: 1,
+        id_mainmenu: 11,
+        key_norma: 2,
         key_pais: 1,
         menu: [
           'Obligaciones del personal',
@@ -92,11 +108,29 @@ export default class AuditoriaFinalizada extends Component{
         ],
         submenu: [
             [
-              ['Art. 80.- De las obligaciones del personal.- Durante la fabricación de alimentos, el personal manipulador que entra en contacto directo o indirecto con los alimentos debe:',0],
-              ['Art. 81.- De la educación y capacitación del personal.- Tiene implementado un plan de capacifacion continuo y permanente para todo el personal sobre BPM',0],
-              ['Art. 96.- Del Agua.-',0],
+              [
+                "a. Comportarse y operar de la manera descrita en el artículo 78 de la presente norma técnica",
+                "",
+                "https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true",
+                "No hay comentario",
+              ],
             ],
-            [],
+            [
+              [
+                "b. Mantener la higiene y el cuidado personal;",
+                "",
+                "https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true",
+                "No hay comentario",
+              ],
+            ],
+            [
+              [
+                ". La operación de lavado debe hacérsela en un lugar apropiado",
+                "",
+                "https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true",
+                "No hay comentario",
+              ],
+            ],
         ], 
       }
       ]
@@ -130,29 +164,91 @@ export default class AuditoriaFinalizada extends Component{
       
   }
 
+  renderInfoData(){
+    const datos = this.state.datos;
+
+    var infotable = ''
+    var auditados = ''
+
+    datos[2].forEach(function(name){
+      auditados +=
+      `
+      <ul>
+        <li>Jesse Pinkman</li>
+      </ul>
+      `
+    })
+
+    infotable = 
+    `
+    <div>
+      <table id="tablaInfo">
+        <tr>
+          <td>Norma</td>
+          <td>`+datos[0]+`</td>
+        </tr>
+        <tr>
+          <td>Persona que audita</td>
+          <td>`+datos[1]+`</td>
+        </tr>
+        <tr>
+          <td>Persona auditada</td>
+          <td>`+auditados+`</td>
+        </tr>
+        <tr>
+          <td>Fecha de inicio</td>
+          <td>`+datos[3]+`</td>
+        </tr>
+        <tr>
+          <td>Fecha de cierre</td>
+          <td>`+datos[4]+`</td>
+        </tr>
+        <tr>
+          <td>Organización</td>
+          <td>`+datos[5]+`</td>
+        </tr>
+        <tr>
+          <td>Dirección</td>
+          <td>`+datos[6]+`</td>
+        </tr>
+        <tr>
+          <td>Alcance de la auditoría</td>
+          <td>`+datos[7]+`</td>
+        </tr>
+      </table>
+    </div>
+    `
+    return infotable
+  }
+
   renderTableData() {
-    const arrayNormas = this.state.normas;
+    const normas = this.state.normas;
     const arrayMain =this.state.arrayMain;
     var cont = 0;
 
     var iduser = ''
     var tabledata = ''
 
-    arrayNormas.forEach(function(element){
+    normas.forEach(function(element){
       /*console.log(element)
       var iduser = element.user
       var nombre = element.first_name
       var apellido = element.last_name
       var correo = element.email
       var tipoC = element.tipoCuenta*/
-      var detalle = element[0]
-      var idmenu =element[1]
-      var keyn = element [2]
-      var keyp = element [3]
-      var titulo = arrayMain[cont]
 
 
-      var jdetalle = JSON.stringify(detalle)
+      var detalle = element.detalle_mainmenu
+      //var idmenu =element[1]
+      //var keyn = element [2]
+      //var keyp = element [3]
+     // var titulo = arrayMain[cont]
+
+
+     
+
+      var contMain=0
+      var contSubMenu=0
       
      /* var japellido= JSON.stringify(apellido)
       var jcorreo = JSON.stringify(correo)
@@ -164,43 +260,71 @@ export default class AuditoriaFinalizada extends Component{
       console.log(apellido)
       console.log(correo)
       console.log(tipoC)*/
-      cont = cont + 1
+     // cont = cont + 1
 
       var titletable = ''
       var data = ''
       
       element.menu.map((mainmenu) => {
-        element.submenu.map((question) => {
-          const {preg, answer} = question
-          data += 
+         titletable +=
+        `
+        <table style="width:100%";>
+        <tr>
+        <th>
+        <h4 align="left">`+mainmenu+`</h4>
+        </th>
+        </tr>
+        </table>
+        `
+        element.submenu[contSubMenu].map((question) => {
+          var preg = question[0]
+          var answer = question[1]
+          var imagen = question[2]
+          var comentario = question[3]
+          
+          titletable += 
           `
-          <table>
+          <table class="final">
+          <div>
             <tr>
-              <td>`+preg+`</td>
-              <td>`+answer+`</td>
+              <th class="pregunta">`+preg+`</th>
+              <th class="respuesta">`+answer+`</th>
+              <th class="evidencia"><img src="`+imagen+`"  width="185" height="155"></th>
             </tr>
+            </div>
+            <div>
+            <table class="final">
+            <tr>
+              <th class="pregunta">Comentario: `+comentario+`</th>
+            </tr>
+            </table>
+            <div>
           </table>
           `
         })
-        titletable +=
-        `
-        <h3>`+mainmenu+`</h3>
-        `
+        contSubMenu+=1  //Comentario: 'comentario'
+       
       })
       
 
       tabledata += `
-      <h2>`+jdetalle+`</h2>
+      <table class="final" style="margin-top: 25px">
+      <div>
+      <tr>
+        <th class="detalle">
+      <h2 align=center>`+detalle+`</h2>
+      </th>
+        </tr>
+        </div>
       <div>
         `+titletable+`
       </div>
-      <div>
-        `+data+`
-      </div>
+      </table>
+      
         `
     });
 
-    console.log(tabledata)
+   // console.log(tabledata)
     return tabledata;
  }
 
@@ -222,97 +346,164 @@ export default class AuditoriaFinalizada extends Component{
   return tableheader;
 }
 
-  makeHTML = (tableheader,tabledata) => {
-    const htmlstring = `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <style>
-        #title {
-          text-align: center;
-          font-family: arial, sans-serif;
-        }
-        
-        #students {
-          text-align: center;
-          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-          border-collapse: collapse;
-          border: 3px solid #ddd;
-          width: 100%;
-        }
-        
-        #students td, #students th {
-          border: 1px solid #ddd;
-          padding: 8px;
-        }
-        
-        #students tr:nth-child(even){background-color: #f2f2f2;}
-        
-        #students tr:hover {background-color: #ddd;}
-        
-        #students th {
-          padding-top: 12px;
-          padding-bottom: 12px;
-          text-align: center;
-          background-color: #4CAF50;
-          color: white;
-        }
-        </style>
-      </head
-      <body>
+makeHTML = (tableinfo,tableheader,tabledata) => {
+  const htmlstring = `
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <style>
+      #title {
+        text-align: center;
+        font-family: arial, sans-serif;
+      }
+      
+      table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+th, td {
+padding: 15px;
+}
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+page-break-inside: avoid;
+}
+th, td {
+padding: 15px;
+page-break-inside: avoid;
+}
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+page-break-inside: avoid;
+}
+.final{
+width:100%; 
+}
+.detalle{
+border: 1px solid black;
+border-collapse: collapse;
+page-break-inside: avoid;
+}
+.pregunta{
+width:50%;
+text-align: left;
+}
+.respuesta{
+width:15%
+}
+.evidencia{
+width:35%;
+}
+#tablaInfo{
+width:100%;
+}
+      
+      #students td, #students th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      
+      #students tr:nth-child(even){background-color: #f2f2f2;}
+      
+      #students tr:hover {background-color: #ddd;}
+      
+      #students th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #4CAF50;
+        color: white;
+      }
+      </style>
+    </head
+    <body>
+      <div>
         <div>
-          <h1 id='title'>Informe</h1>
-          <table id='students'>
-               <tbody>
-               
-                `+tabledata+`
-               </tbody>
-          </table>
+        <div align="center">
+        <img src="https://github.com/adamtuenti/Solinal-Proyecto/blob/rama/Solinal-Front/png/Recurso%201.png?raw=true"  width="125" height="135">
         </div>
         <div align="center">
-          <img height="210" width="250" class="center" src=" `+urifirma+`">
+        <h1 >Informe de la auditoria</h1>
         </div>
-      </body>
-    </html>
- `
- console.log(htmlstring)
- return htmlstring;
- 
-  }
+       
+       
+      
+      </div>
+      <div>
+      `+tableinfo+`
+      </div>
+        <table id='students'>
+             <tbody>
+             
+              `+tabledata+`
+             </tbody>
+        </table>
+      </div>
+      <div align="center">
+        <img height="210" width="250" class="center" src=" `+urifirma+`">
+      </div>
+      <div align="center">
+      <h3 style="font-style: italic;">Firma del auditor</h3>
+      </div>
+    </body>
+  </html>
+`
+console.log(htmlstring)
+return htmlstring;
 
-  expoPDF = async () => {
-    const tabledatahtml = this.renderTableData();
-    const tableheaderhtml = this.renderTableHeader();
-    console.log(tabledatahtml);
-    let filePath = await Print.printToFileAsync({
-      html: this.makeHTML(tableheaderhtml,tabledatahtml),
-      width: 612,
-      height: 792,
-      base64: false
-    });
-    alert('PDF Generado',filePath.uri);
-    this.setState({file:filePath.uri})
-    console.log('/')
-    console.log(this.state.file)
+}
 
-    
+expoPDF = async () => {
+  const infodatahtml = this.renderInfoData();
+  const tabledatahtml = this.renderTableData();
+  const tableheaderhtml = this.renderTableHeader();
+  console.log(tabledatahtml);
+  let filePath = await Print.printToFileAsync({
+    html: this.makeHTML(infodatahtml,tableheaderhtml,tabledatahtml),
+    width: 612,
+    height: 792,
+    base64: false
+  });
+  alert('PDF Generado',filePath.uri);
+  this.setState({file:filePath.uri})
+ // console.log('/')
+  //console.log(this.state.file)
 
-    // console.log(filePath.uri);
-    // console.log(FileSystem.cacheDirectory);
-    // console.log(FileSystem.documentDirectory);
+  
 
-    FileSystem.getContentUriAsync(filePath.uri).then(cUri => {
-      console.log(cUri);
-      this.setState({cFile:cUri.uri})
-      console.log('hola')
-      console.log(this.state.cFile)
-      IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
-          data: cUri.uri,
-          flags: 1,
-          type: 'application/pdf'
-       });
-    });
-  }
+  // console.log(filePath.uri);
+  // console.log(FileSystem.cacheDirectory);
+  // console.log(FileSystem.documentDirectory);
+
+  FileSystem.getContentUriAsync(filePath.uri).then(cUri => {
+   // console.log(cUri);
+    this.setState({cFile:cUri.uri})
+   // console.log(this.state.cFile)
+    IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
+        data: cUri.uri,
+        flags: 1,
+        type: 'application/pdf'
+     });
+  });
+}
+
+compartirPdf = async () => {
+  const infodatahtml = this.renderInfoData();
+const tabledatahtml = this.renderTableData();
+const tableheaderhtml = this.renderTableHeader();
+//console.log(tabledatahtml);
+let filePath = await Print.printToFileAsync({
+html: this.makeHTML(infodatahtml,tableheaderhtml,tabledatahtml),
+width: 612,
+height: 792,
+base64: false
+});
+alert('PDF Compartido',filePath.uri);
+this.setState({file:filePath.uri})
+this.props.navigation.navigate('PdfCompartido',{file:this.state.file,cFile:this.state.cFile})
+}
 
       render() {
         return (
