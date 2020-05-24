@@ -178,7 +178,7 @@ export default class Login extends Component{
                 
 
                 <Image
-                        style={{width: '45%', height: 212,marginBottom:'8%',marginTop:'25%'}}
+                        style={{width: '45%', height: 212,marginBottom:'8%',marginTop:'28%'}}
                         source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
                 />
 
