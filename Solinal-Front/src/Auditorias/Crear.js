@@ -90,7 +90,7 @@ export default class Crear extends Component {
             loading1: false,
           equipo: [],
           mensajeError:'',
-          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/2',
+          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/mostrarEquipo/'+idEquipoGlobal,
           vacio:[],
 
           user:[],
@@ -112,9 +112,12 @@ export default class Crear extends Component {
           textButtonCamera:'Guardar',
           colorButtonCamera:'orange',
 
+          nombreNorma: this.props.navigation.state.params.nombreNorma,
+          idNorma: this.props.navigation.state.params.idNorma,
+
           
           
-          datosAuditoria:['Norma INEM','',[],'','','','',''],
+          datosAuditoria:['','',[],'','','','',''],
           organizacion:'',
           direccion:'',
           alcance:'',
@@ -128,7 +131,7 @@ export default class Crear extends Component {
 
         equipo: [],
           mensajeError:'',
-          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/7',
+         
 
         iconName : 'down', 
         iconStateValue:false, 
@@ -189,7 +192,7 @@ export default class Crear extends Component {
       
 
        this.setState({loading1:true}),
-            fetch('http://accountsolinal.pythonanywhere.com/api/mainMenu')
+            fetch('http://accountsolinal.pythonanywhere.com/api/mainMenu/'+this.state.idNorma)
             .then(res=>res.json())
             .then(res=>{ 
               //  console.log(res);
@@ -209,7 +212,7 @@ export default class Crear extends Component {
      
 
        this.setState({loading1:true}),
-            fetch('http://accountsolinal.pythonanywhere.com/api/subMenu')
+            fetch('http://accountsolinal.pythonanywhere.com/api/subMenu/'+this.state.idNorma)
             .then(res=>res.json())
             .then(res=>{ 
                 //console.log(res);
@@ -233,7 +236,7 @@ export default class Crear extends Component {
      
 
        this.setState({loading1:true}),
-            fetch('http://accountsolinal.pythonanywhere.com/api/subMenuDos')
+            fetch('http://accountsolinal.pythonanywhere.com/api/subMenuDos/'+this.state.idNorma)
             .then(res=>res.json())
             .then(res=>{ 
                ////console.log(res);
@@ -430,6 +433,85 @@ export default class Crear extends Component {
     }
 
     
+  showDatePickerHI ()  {
+     
+    this.setState({
+            isVisibleHI:true
+        })
+  };
+ 
+ hideDatePickerHI = () => {
+     // console.log("A date has been picked: ", moment(date).format('MMMM, Do YYYY HH:mm'));
+    this.setState({
+            isVisibleHI:false
+        })
+  };
+ 
+  handleConfirmHI = (date) => {
+    this.setState({horaInicio:moment(date).format('HH:mm')})
+    this.hideDatePickerHI();
+  };
+
+  showDatePickerHF ()  {
+    
+    this.setState({
+            isVisibleHF:true
+        })
+  };
+ 
+ hideDatePickerHF = () => {
+     // console.log("A date has been picked: ", moment(date).format('MMMM, Do YYYY HH:mm'));
+    this.setState({
+            isVisibleHF:false
+        })
+  };
+ 
+  handleConfirmHF = (date) => {
+    this.setState({horaFin:moment(date).format('HH:mm')})
+    this.hideDatePickerHF();
+  };
+
+
+  showDatePickerFI ()  {
+     
+    this.setState({
+            isVisibleFI:true
+        })
+  };
+ 
+ hideDatePickerFI = () => {
+     // console.log("A date has been picked: ", moment(date).format('MMMM, Do YYYY HH:mm'));
+    this.setState({
+            isVisibleFI:false
+        })
+  };
+ 
+  handleConfirmFI = (date) => {
+    this.setState({fechaInicio:moment(date).format('DD-MM-YYYY')})
+    this.hideDatePickerFI();
+  };
+
+  showDatePickerFF ()  {
+     
+    this.setState({
+            isVisibleFF:true
+        })
+  };
+ 
+ hideDatePickerFF = () => {
+     // console.log("A date has been picked: ", moment(date).format('MMMM, Do YYYY HH:mm'));
+    this.setState({
+            isVisibleFF:false
+        })
+  };
+ 
+  handleConfirmFF = (date) => {
+    this.setState({fechaFin:moment(date).format('DD-MM-YYYY')})
+    this.hideDatePickerFF();
+  };
+
+
+    
 
 
   
@@ -476,7 +558,7 @@ export default class Crear extends Component {
 
 
   finalizarAuditoria(){
-     this.props.navigation.navigate('AuditoriaFinalizada',{lista:this.state.lista,datosAuditoria:this.state.datosAuditoria})
+     //this.props.navigation.navigate('AuditoriaFinalizada',{lista:this.state.lista,datosAuditoria:this.state.datosAuditoria})
 
     if(this.state.totalPreguntas==this.state.contadorRespuestas){
 
@@ -504,11 +586,13 @@ export default class Crear extends Component {
 
          const{organizacion,direccion,alcance}=this.state;
 
-       //  if ( organizacion === ''||direccion==''||alcance=='') { this.setState({mensajeError:'LLene todos los campos!'}); alert('llene')}
+        if ( organizacion === ''||direccion==''||alcance=='') { this.setState({mensajeError:'LLene todos los campos!'}); alert('llene los datos personales primero')}
 
-         //else{ 
+         else{ 
 
            let datosAuditoria = this.state.datosAuditoria;
+
+           datosAuditoria[0]=this.state.nombreNorma
 
            datosAuditoria[1]='Adan Navarrete'
            //datosAuditoria[2]=auditado
@@ -527,7 +611,7 @@ export default class Crear extends Component {
            
            this.setState({listo:true})
 
-        // }
+    }
     
   }
 
@@ -589,7 +673,7 @@ export default class Crear extends Component {
                         
                     <View style = {{ backgroundColor: '#f6f6f6', borderBottomColor:2,width:'90%',alignItems:'center',marginLeft:'5%'}}>
                         
-                            <Text style={styles.input}> {this.state.norma} </Text>
+                            <Text style={styles.input}> {this.state.nombreNorma} </Text>
                         
                             <Input onChangeText={organizacion => this.setState({organizacion })} style={styles.input} placeholder="Organización" />
                         

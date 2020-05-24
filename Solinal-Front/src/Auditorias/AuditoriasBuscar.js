@@ -68,6 +68,27 @@ class AuditoriasBuscar extends Component {
     }
 
 
+    accederNormaId(idPais,nombreNorma){
+
+           const normas = this.state.normas;
+           var idNorma = '';
+        
+        normas.forEach(function(elemento){
+
+            if(elemento.key_pais==idPais && elemento.norma==nombreNorma){
+                idNorma=elemento.id_norma
+              
+                 
+                
+            }
+
+        })
+
+        this.props.navigation.navigate('Crear',{nombreNorma:nombreNorma,idNorma:idNorma})  
+        
+    }
+
+
    
 
 
@@ -106,7 +127,7 @@ class AuditoriasBuscar extends Component {
              .then((response) => response.json())
             //If response is in json then in success
             .then((responseJson) => {
-               // alert(JSON.stringify(responseJson));
+                //alert(JSON.stringify(responseJson));
                 //console.log(responseJson);
                 this.setState({mensajeError:'Pais/Norma enviado!'})
                // this.setState({paisEnvio:''})
@@ -119,17 +140,6 @@ class AuditoriasBuscar extends Component {
 
 
     
-
-
-
-  async componentDidMount() {
-    await Font.loadAsync({
-      Roboto: require("native-base/Fonts/Roboto.ttf"),
-      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-      /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
-    });
-    this.setState({ isReady: true });
-  }
 
 
   
@@ -239,9 +249,9 @@ class AuditoriasBuscar extends Component {
 
 
                                                 <TouchableHighlight
-                                                            style={styles.botonLogin} onPress={()=>{this.cambiar
-                                                            //this.props.navigation.navigate('Crear',{norma:m,pais:r.pais,paginaActual:'Auditorias'})   
-                                                            }}>
+                                                            style={styles.botonLogin} onPress={()=>{this.accederNormaId(r.id_pais,m)}}>
+                                                            
+                                                            
                                                         <Text style={{fontWeight: 'bold',color:'white',fontSize:15.5}}> Crear </Text>
                                                         </TouchableHighlight>
                                               

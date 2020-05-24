@@ -22,7 +22,7 @@ export default class PdfCompartido extends Component {
           loading: false,
           equipo: [],
           mensajeError:'',
-          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/7',
+          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/mostrarEquipo/'+idEquipoGlobal,
           file: this.props.navigation.state.params.file,
           cFile: this.props.navigation.state.params.cFile,
           ready:false,

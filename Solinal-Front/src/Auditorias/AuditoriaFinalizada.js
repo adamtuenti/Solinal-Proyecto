@@ -169,12 +169,13 @@ export default class AuditoriaFinalizada extends Component{
       element.menu.map((mainmenu) => {
          titletable +=
         `
-        
+        <table style="width:100%";>
         <tr>
         <th>
         <h4 align="left">`+mainmenu+`</h4>
         </th>
         </tr>
+        </table>
         `
         element.submenu[contSubMenu].map((question) => {
           var preg = question[0]
@@ -268,13 +269,16 @@ th, td {
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
+  page-break-inside: avoid;
 }
 th, td {
   padding: 15px;
+  page-break-inside: avoid;
 }
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
+  page-break-inside: avoid;
 }
 .final{
 width:100%; 
@@ -282,6 +286,7 @@ width:100%;
 .detalle{
   border: 1px solid black;
   border-collapse: collapse;
+  page-break-inside: avoid;
 }
 .pregunta{
   width:50%;

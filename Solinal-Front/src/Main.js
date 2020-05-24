@@ -23,14 +23,14 @@ const list = [
   {
     name: 'Mis Auditorias',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true',
-    url: 'AuditoriasBuscar',
+    url: 'AuditoriasVacia',
     altura:32,
     anchura:23
   },
   {
     name: 'Recomienda Solinal Auditor',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/compartir.png?raw=true',
-    url: 'EquipoVacio',
+    url: 'RecomiendaSolinal',
     altura:30,
     anchura:35
   }

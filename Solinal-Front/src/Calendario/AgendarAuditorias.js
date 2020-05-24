@@ -24,8 +24,8 @@ export default class AgendarAuditorias extends Component {
             isVisibleHI:false,
             isVisibleHF:false,
     
-            fechaInicio:moment().format('DD-MM-YYYY'),
-            fechaFin:moment().format('DD-MM-YYYY'),
+            fechaInicio:moment().format('DD/MM/YYYY'),
+            fechaFin:moment().format('DD/MM/YYYY'),
             horaInicio:moment().format('HH:mm'),
             horaFin:moment().format('HH:mm'),
 
@@ -92,7 +92,8 @@ export default class AgendarAuditorias extends Component {
   };
  
   handleConfirmFI = (date) => {
-    this.setState({fechaInicio:moment(date).format('DD-MM-YYYY')})
+    console.log(date)
+    this.setState({fechaInicio:moment(date).format('DD/MM/YYYY')})
     this.hideDatePickerFI();
   };
 
@@ -111,7 +112,7 @@ export default class AgendarAuditorias extends Component {
   };
  
   handleConfirmFF = (date) => {
-    this.setState({fechaFin:moment(date).format('DD-MM-YYYY')})
+    this.setState({fechaFin:moment(date).format('DD/MM/YYYY')})
     this.hideDatePickerFF();
   };
 
@@ -139,6 +140,7 @@ export default class AgendarAuditorias extends Component {
                     //If response is in json then in success
                     .then((responseJson) => {
                       //alert(JSON.stringify(responseJson));
+                      console.log(responseJson)
                       if('error' in responseJson){
                         this.setState({mensajeError:'Consiga la cuenta premium!'})
                         

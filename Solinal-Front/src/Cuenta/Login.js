@@ -77,7 +77,11 @@ export default class Login extends Component{
                     userNameGlobal=responseJson.user.username;
                     emailGlobal=responseJson.user.email;
                     idEquipoGlobal=responseJson.user.profile.idEquipo;
-                    alert(idEquipoGlobal)
+
+
+
+                    
+                  
                     this.props.navigation.navigate('Home')
                     
                 }
@@ -174,7 +178,7 @@ export default class Login extends Component{
                 
 
                 <Image
-                        style={{width: '45%', height: 212,marginBottom:'8%',marginTop:'25%'}}
+                        style={{width: '45%', height: 212,marginBottom:'8%',marginTop:'28%'}}
                         source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
                 />
 
@@ -246,7 +250,7 @@ export default class Login extends Component{
                         <Text 
                             onPress={()=>this.props.navigation.navigate('Reestablecer')}
                             style={{color: 'black',marginTop:'10%',fontWeight:'bold',fontStyle:'italic',fontSize:15,marginTop:'15%'}}>
-                            ¿Olvidó su clave</Text>
+                            ¿Olvidó su clave?</Text>
                     
 
                     

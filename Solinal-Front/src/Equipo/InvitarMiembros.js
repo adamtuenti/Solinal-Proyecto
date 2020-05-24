@@ -28,7 +28,7 @@ class InvitarMiembros extends Component {
     }
 
     componentDidMount(){
-        this.getUsuarios();
+        //this.getUsuarios();
     }
 
     getUsuarios = () => {
@@ -56,14 +56,26 @@ class InvitarMiembros extends Component {
         if (email=='' ) { this.setState({mensajeError:'Ingrese un correo valido!'}) }
 
         else{
-            const array = this.state.usuarios
-            var bandera = 0
-            array.forEach(function(element){
-                var correo = element.email
-                if (email==correo){bandera = 1;}
-            });
             
-                var dataToSend = {CorreoIntegrante: email,IdEquipo:idUserGlobal};
+            //const usuarios = this.state.usuarios
+            //var bandera = 0
+            var userIdInvitado = ''
+          /*  usuarios.forEach(function(element){
+               // console.log(element)
+                //console.log('/')
+                var correo = element.email
+                if (email==correo){
+                    bandera = 1;
+                    userIdInvitado= element.user;
+                    //alert(userIdInvitado)
+                    //console.log('-')
+                    //console.log(element)
+                   
+                    //console.log('-')
+                }
+            });*/
+            
+                var dataToSend = {correoIntegrante: email,idEquipo:idEquipoGlobal};
                     var formBody = [];
                     for (var key in dataToSend) {
                     var encodedKey = encodeURIComponent(key);
@@ -81,15 +93,46 @@ class InvitarMiembros extends Component {
                     .then((response) => response.json())
                     //If response is in json then in success
                     .then((responseJson) => {
-                    // alert(JSON.stringify(responseJson));
-                        if("idEquipo"  in responseJson){
-                            this.setState({mensajeError:'Usuario agregado!'})
+                    console.log(responseJson);
+                    alert(responseJson)
+                        if("id"  in responseJson){
+                            alert('hola')
+                            this.setState({mensajeError:'Agregado!'})
+                          //  alert(userIdInvitado)
+                            console.log(userIdInvitado);
+
+                            var dataToSend = {idEquipo:idEquipoGlobal,idUsuario:responseJson.id};
+                                var formBody = [];
+                                for (var key in dataToSend) {
+                                var encodedKey = encodeURIComponent(key);
+                                var encodedValue = encodeURIComponent(dataToSend[key]);
+                                formBody.push(encodedKey + "=" + encodedValue);
+                                }
+                                formBody = formBody.join("&");
+                                fetch('http://accountsolinal.pythonanywhere.com/api/actualizarIntegrante', {
+                                method: "POST",//Request Type 
+                                body: formBody,//post body 
+                                headers: {//Header Defination 
+                                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                                },
+                                })
+                                .then((response) => response.json())
+                                .then((responseJson) => {
+                                    alert(JSON.stringify(responseJson));
+                                    console.log(responseJson)
+                                  
+                                
+                                
+                                })
+
+                        }
+                        else if("non_field_errors" in responseJson){
+                            this.setState({mensajeError:'Ya estaba agregado previamente!'})
                         }
                         else{
-                           this.setState({mensajeError:'El correo no esta registrado, recomiendale que se descargue Solinal App'})
+                           this.setState({mensajeError:'El correo no esta registrado!'})
                         }
-                        //this.setState({mensajeError:'Usuari agregado!'})
-                       // this.props.navigation.navigate('EquipoVacio')
+                    
                     })
                 //errorM = error
                 //this.avanzarRegistro();
@@ -149,7 +192,7 @@ class InvitarMiembros extends Component {
                         <View style={{alignItems:'center',marginTop:'5%'}}>
                         <View style={{flexDirection:'row',justifyContent:'center'}}>
                             <AntDesign size={30} style={{marginTop:'2.5%'}}  name="sharealt" />
-                             <TextInput style={styles.input} placeholder='Ingrese correo' placeholderTextColor='lightgrey'
+                             <TextInput style={styles.input} placeholder='Ingrese correo' placeholderTextColor='lightgrey' autoCapitalize='none'
                                     onChangeText={email => this.setState({ email })}/>
                         </View>
                         <Text style={{color:'red',marginTop:'2%',marginBottom:'1%',marginLeft:'5%',fontStyle:'italic',fontWeight:'bold',textAlign:'center'}}>{this.state.mensajeError}</Text>
