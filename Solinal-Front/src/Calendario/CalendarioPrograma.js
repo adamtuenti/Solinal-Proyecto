@@ -110,46 +110,11 @@ export default class CalendarioPrograma extends Component {
 
                     <Content padder style={{backgroundColor: '#f6f6f6'}}>
                         <EstadoCuenta/>
+
+                         <View>
+
                        
-                        
-                        
-                       
-                        
-                     
-                        {this.state.fechas.map((r,i) => 
-
-
-
-                        <View style={{flexDirection:'column',marginTop:10,}}>
-
-                        
-                        <View style={{alignItems:'center'}}>
-
-                        <View><Text>Fecha de inicio</Text></View>
-                        
-                        
-                        
-
-                        <View><Text>{moment(r.detalle_auditoria).format("MMM Do YY")}</Text></View>
-                        
-
-                        </View>
-
-
-                        <View style={{alignItems:'center',marginTop:'5%'}}>
-
-                         <View><Text>Fecha de cierre</Text></View>
-
-                        <View><Text>{r.fecha_fin}</Text></View>
-                        
-
-
-                        </View>
-
-                        <View style={{flexDirection:'row',marginTop:'10%',}}>
-
-
-                         <Calendar
+                        <Calendar
                           current={'2020-04-01'}
                           minDate={'2020-03-01'}
                           onDayPress={(day) => {console.log('selected day', day)}}
@@ -159,7 +124,10 @@ export default class CalendarioPrograma extends Component {
                           firstDay={1}
                           onPressArrowLeft={substractMonth => substractMonth()}
                           onPressArrowRight={addMonth => addMonth()}
-                          markedDates={this.state.marked}
+                          markedDates={{               
+                            '2020-04-19': {startingDay: true, endingDay: false, color: 'green', textColor: 'white'},
+                            '2020-04-20': {selected: true, startingDay: false, endingDay: true, color: 'green', textColor: 'white'},
+                          }}
                           markingType={'period'}
                           theme={{
                             backgroundColor: '#ffffff',
@@ -186,6 +154,29 @@ export default class CalendarioPrograma extends Component {
                             textDayHeaderFontSize: 16
                           }}
                         />
+                        
+                        </View>
+                       
+                        
+                        
+                       
+                        
+                     
+                        {this.state.fechas.map((r,i) => 
+
+
+
+                        <View style={{flexDirection:'column',marginTop:10,}}>
+
+                        
+                        
+
+                      
+
+                        <View style={{flexDirection:'row',marginTop:'10%',}}>
+
+
+                       
 
                          
                             <View style={{flexDirection:'column',backgroundColor:'#C0FC96',borderColor: '#d6d7da',borderRadius: 2,borderWidth: 1,alignItems:'center',width:'23%'}}>

@@ -82,6 +82,8 @@ class Reestablecer extends Component{
              .then((response) => response.json())
             //If response is in json then in success
             .then((responseJson) => {
+                console.log(responseJson)
+                alert(responseJson)
             this.props.navigation.navigate('ValidacionClave',{idA})
             })
    

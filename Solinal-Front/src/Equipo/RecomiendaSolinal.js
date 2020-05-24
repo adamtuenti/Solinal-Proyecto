@@ -26,7 +26,7 @@ class RecomiendaSolinal extends Component {
 
       enviarInvitacion=()=> {
         const { email } = this.state;
-        if (email=='' || email.length<5) { this.setState({mensajeError:'Ingrese un correo valido!'}) }
+        if (email=='') { this.setState({mensajeError:'Ingrese un correo valido!'}) }
         else{         
                     var dataToSend = {correo_add: email,usuario:idUserGlobal};
                     var formBody = [];
@@ -46,8 +46,8 @@ class RecomiendaSolinal extends Component {
                     .then((response) => response.json())
                     //If response is in json then in success
                     .then((responseJson) => {
-                    // alert(JSON.stringify(responseJson));
-                        //console.log(responseJson);
+                      // alert(JSON.stringify(responseJson));
+                        console.log(responseJson);
                         this.setState({mensajeError:'Invitacion enviada!'})
                     })
             }
@@ -82,7 +82,7 @@ class RecomiendaSolinal extends Component {
                         <View style={{alignItems:'center',marginTop:'5%'}}>
                         <View style={{flexDirection:'row',justifyContent:'center'}}>
                             <AntDesign size={30} style={{marginTop:'2.5%'}}  name="sharealt" />
-                             <TextInput style={styles.input} placeholder='Ingrese correo' placeholderTextColor='lightgrey'
+                             <TextInput style={styles.input} placeholder='Ingrese correo' placeholderTextColor='lightgrey'autoCapitalize='none'
                                     onChangeText={email => this.setState({ email })}/>
                         </View>
                         <Text style={{color:'red',marginTop:'2%',marginBottom:'1%',marginLeft:'5%',fontStyle:'italic',fontWeight:'bold',textAlign:'center'}}>{this.state.mensajeError}</Text>

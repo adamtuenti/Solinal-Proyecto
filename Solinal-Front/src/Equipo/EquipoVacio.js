@@ -26,7 +26,7 @@ export default class EquipoVacio extends Component {
           loading: false,
           equipo: [],
           mensajeError:'',
-          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/equipo/'+idUserGlobal,
+          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/mostrarEquipo/'+idEquipoGlobal,
           forceUpdateHandler : this.forceUpdateHandler.bind(this),
         
         }  
@@ -48,6 +48,8 @@ export default class EquipoVacio extends Component {
         fetch(this.state.urlEquipo)
         .then(res=>res.json())
         .then(res=>{ 
+            
+            console.log(res)
            
             this.setState({
             equipo: res,
@@ -138,9 +140,34 @@ export default class EquipoVacio extends Component {
                     .then((responseJson) => {
                     // alert(JSON.stringify(responseJson));
                         idEquipoGlobal=responseJson.idEquipo;
+
+                        var dataToSend = {idEquipo:idEquipoGlobal,idUsuario:idUserGlobal};
+                                var formBody = [];
+                                for (var key in dataToSend) {
+                                var encodedKey = encodeURIComponent(key);
+                                var encodedValue = encodeURIComponent(dataToSend[key]);
+                                formBody.push(encodedKey + "=" + encodedValue);
+                                }
+                                formBody = formBody.join("&");
+                                fetch('http://accountsolinal.pythonanywhere.com/api/actualizarIntegrante', {
+                                method: "POST",//Request Type 
+                                body: formBody,//post body 
+                                headers: {//Header Defination 
+                                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                                },
+                                })
+                                .then((response) => response.json())
+                                .then((responseJson) => {
+                                   // alert(JSON.stringify(responseJson));
+                                    console.log(responseJson)
+                                  
+                                
+                                
+                                })
+                              
                         console.log(responseJson);
                         
-                        this.props.navigation.navigate('Main')
+                        this.props.navigation.navigate('InvitarMiembros')
                         
                     })
                     

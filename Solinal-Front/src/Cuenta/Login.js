@@ -77,7 +77,11 @@ export default class Login extends Component{
                     userNameGlobal=responseJson.user.username;
                     emailGlobal=responseJson.user.email;
                     idEquipoGlobal=responseJson.user.profile.idEquipo;
-                    alert(idEquipoGlobal)
+
+
+
+                    
+                  
                     this.props.navigation.navigate('Home')
                     
                 }
@@ -246,7 +250,7 @@ export default class Login extends Component{
                         <Text 
                             onPress={()=>this.props.navigation.navigate('Reestablecer')}
                             style={{color: 'black',marginTop:'10%',fontWeight:'bold',fontStyle:'italic',fontSize:15,marginTop:'15%'}}>
-                            ¿Olvidó su clave</Text>
+                            ¿Olvidó su clave?</Text>
                     
 
                     
