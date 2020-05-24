@@ -1033,7 +1033,7 @@ export default class Crear extends Component {
               <View style={{alignItems:'center',marginTop:'5%'}}>
               <Button onPress={()=>this.props.navigation.navigate('FirmaAuditor')} style={styles.botonFirma}>
               <View>
-                  <Text style={{fontSize:15}}>Firmar</Text>
+                  <Text style={{textAlign:'center', fontSize:15}}>Firmar</Text>
               </View>
           </Button>
 
@@ -1044,7 +1044,7 @@ export default class Crear extends Component {
               <View style={{alignItems:'center',marginTop:'5%'}}>
               <Button onPress={()=>this.finalizarAuditoria()} style={styles.botonFirma}>
               <View>
-                  <Text style={{fontSize:15}}>Finalizar</Text>
+                  <Text style={{textAlign:'center', fontSize:15}}>Finalizar</Text>
               </View>
           </Button>
 
