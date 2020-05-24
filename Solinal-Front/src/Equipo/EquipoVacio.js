@@ -64,7 +64,7 @@ export default class EquipoVacio extends Component {
 
         const { equipo } = this.state;
 
-        if(equipo.length<5){
+        if(equipo.length<15){
             
                         this.props.navigation.navigate('InvitarMiembros')
                    
@@ -173,7 +173,9 @@ export default class EquipoVacio extends Component {
                     
     
 
-
+/* <View style={{flexDirection:'row-reverse',flex:1}}>
+        <AntDesign onPress={()=>this.eliminarIntegrante(a.correoIntegrante)} name="deleteuser" size={35}/>
+        </View>*/
 
   }
 
@@ -245,9 +247,7 @@ export default class EquipoVacio extends Component {
         <Text style={{fontWeight:'bold',marginLeft:'1%',fontSize:15}}>{a.nombreIntegrante} {a.apellidoIntegrante}</Text>
         <Text style={{marginLeft:'1%',fontSize:13.5,fontStyle:'italic'}}>{a.correoIntegrante}</Text>
         </View>
-        <View style={{flexDirection:'row-reverse',flex:1}}>
-        <AntDesign onPress={()=>this.eliminarIntegrante(a.correoIntegrante)} name="deleteuser" size={35}/>
-        </View>
+       
         </View>
         </Card>
         )}

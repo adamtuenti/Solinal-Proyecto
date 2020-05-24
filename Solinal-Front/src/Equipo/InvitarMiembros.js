@@ -28,7 +28,7 @@ class InvitarMiembros extends Component {
     }
 
     componentDidMount(){
-        this.getUsuarios();
+        //this.getUsuarios();
     }
 
     getUsuarios = () => {
@@ -57,10 +57,10 @@ class InvitarMiembros extends Component {
 
         else{
             
-            const usuarios = this.state.usuarios
-            var bandera = 0
+            //const usuarios = this.state.usuarios
+            //var bandera = 0
             var userIdInvitado = ''
-            usuarios.forEach(function(element){
+          /*  usuarios.forEach(function(element){
                // console.log(element)
                 //console.log('/')
                 var correo = element.email
@@ -73,7 +73,7 @@ class InvitarMiembros extends Component {
                    
                     //console.log('-')
                 }
-            });
+            });*/
             
                 var dataToSend = {correoIntegrante: email,idEquipo:idEquipoGlobal};
                     var formBody = [];
@@ -95,12 +95,13 @@ class InvitarMiembros extends Component {
                     .then((responseJson) => {
                     console.log(responseJson);
                     alert(responseJson)
-                        if("apellidoIntegrante"  in responseJson){
+                        if("id"  in responseJson){
+                            alert('hola')
                             this.setState({mensajeError:'Agregado!'})
                           //  alert(userIdInvitado)
                             console.log(userIdInvitado);
 
-                            var dataToSend = {idEquipo:idEquipoGlobal,idUsuario:userIdInvitado};
+                            var dataToSend = {idEquipo:idEquipoGlobal,idUsuario:responseJson.id};
                                 var formBody = [];
                                 for (var key in dataToSend) {
                                 var encodedKey = encodeURIComponent(key);
