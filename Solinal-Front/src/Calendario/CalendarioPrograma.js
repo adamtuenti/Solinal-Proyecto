@@ -26,6 +26,13 @@ var nextDay =['2020-06-02',
     [nextDay]: {selected: true, marked: true,color: 'green', textColor: 'green'}
    };
 
+   var nextDayold =['02-06-2020',
+       '05-06-2020',
+       '08-06-2020',  
+      ];
+
+   var nextDaynew = [];
+
 export default class CalendarioPrograma extends Component {
 
   constructor(props){
@@ -47,6 +54,13 @@ export default class CalendarioPrograma extends Component {
   }
 
 
+  changeFormatDate = () => {
+    nextDay.forEach(function(element){
+      moment(element).format('YYYY-mm-DD');
+      nextDaynew.push(element);
+    })
+    console.log(nextDaynew)
+  }
 
 
   
