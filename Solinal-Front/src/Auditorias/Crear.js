@@ -1115,22 +1115,22 @@ export default class Crear extends Component {
 
 
               <View style={{alignItems:'center',marginTop:'5%'}}>
-              <TouchableHighlight onPress={()=>this.props.navigation.navigate('FirmaAuditor')} style={styles.botonFirma}>
+              <Button onPress={()=>this.props.navigation.navigate('FirmaAuditor')} style={styles.botonFirma}>
               <View>
                   <Text style={{fontSize:15}}>Firmar</Text>
               </View>
-          </TouchableHighlight>
+          </Button>
 
 
 
               </View>
 
               <View style={{alignItems:'center',marginTop:'5%'}}>
-              <TouchableHighlight onPress={()=>this.finalizarAuditoria()} style={styles.botonFirma}>
+              <Button onPress={()=>this.finalizarAuditoria()} style={styles.botonFirma}>
               <View>
                   <Text style={{fontSize:15}}>Finalizar</Text>
               </View>
-          </TouchableHighlight>
+          </Button>
 
 
 
