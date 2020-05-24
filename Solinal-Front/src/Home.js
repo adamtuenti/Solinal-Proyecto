@@ -26,7 +26,7 @@ export default class Home extends Component{
 
        
 
-          <MaterialCommunityIcons name="home-circle" size={85} color='#1ED695' onPress={() => this.props.navigation.navigate('Crear')} />
+          <MaterialCommunityIcons name="home-circle" size={85} color='#1ED695' onPress={() => this.props.navigation.navigate('Main')} />
       </View>
      
     );

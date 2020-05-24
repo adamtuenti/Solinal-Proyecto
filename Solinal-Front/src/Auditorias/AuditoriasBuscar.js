@@ -43,7 +43,7 @@ class AuditoriasBuscar extends Component {
         fetch(this.state.urlPaises)
         .then(res=>res.json())
         .then(res=>{ 
-            //console.log(res);
+            console.log(res);
             this.setState({
             paises: res,
             urlPaises: res.next,

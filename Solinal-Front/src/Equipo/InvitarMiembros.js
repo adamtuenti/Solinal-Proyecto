@@ -47,13 +47,13 @@ class InvitarMiembros extends Component {
 
 
 
-      enviarPais=()=> {
+     agregarIntegrante=()=> {
           
 
         const { email } = this.state;
 
         
-        if (email=='' || email.length<5) { this.setState({mensajeError:'Ingrese un correo valido!'}) }
+        if (email=='' ) { this.setState({mensajeError:'Ingrese un correo valido!'}) }
 
         else{
             const array = this.state.usuarios
@@ -63,7 +63,7 @@ class InvitarMiembros extends Component {
                 if (email==correo){bandera = 1;}
             });
             
-                var dataToSend = {correoIntegrante: email,idUsuario:idUserGlobal};
+                var dataToSend = {CorreoIntegrante: email,IdEquipo:idUserGlobal};
                     var formBody = [];
                     for (var key in dataToSend) {
                     var encodedKey = encodeURIComponent(key);
@@ -71,7 +71,7 @@ class InvitarMiembros extends Component {
                     formBody.push(encodedKey + "=" + encodedValue);
                     }
                     formBody = formBody.join("&");
-                    fetch('http://accountsolinal.pythonanywhere.com/api/registrarequipo', {
+                    fetch('http://accountsolinal.pythonanywhere.com/api/agregarIntegrante', {
                     method: "POST",//Request Type 
                     body: formBody,//post body 
                     headers: {//Header Defination 
@@ -158,7 +158,7 @@ class InvitarMiembros extends Component {
               
                     
                     <View style={{alignItems: 'center'}}>
-                         <TouchableOpacity style={styles.botonEnviar}  onPress={this.enviarPais}>
+                         <TouchableOpacity style={styles.botonEnviar}  onPress={this.agregarIntegrante}>
                             <Text style={{fontWeight: 'bold',color:'black',fontSize:19}}> Enviar </Text>
                         </TouchableOpacity>            
                     </View>

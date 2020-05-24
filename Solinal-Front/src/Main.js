@@ -23,15 +23,14 @@ const list = [
   {
     name: 'Mis Auditorias',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/Recurso%2047.png?raw=true',
-    url: 'Crear',
+    url: 'AuditoriasBuscar',
     altura:32,
     anchura:23
   },
   {
     name: 'Recomienda Solinal Auditor',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/compartir.png?raw=true',
-    subtitle: 'Vice Chairman',
-    url: 'CalendarioPrograma',
+    url: 'EquipoVacio',
     altura:30,
     anchura:35
   }
@@ -49,9 +48,7 @@ export default class Main extends React.Component {
     }
 
 
-imprimir(){
-  alert('no')
-}
+
   
 
   async componentDidMount() {

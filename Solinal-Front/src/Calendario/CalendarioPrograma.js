@@ -16,6 +16,16 @@ import { Calendar } from 'react-native-calendars';
 import {MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
 import moment from 'moment'
 
+
+var nextDay =['2020-06-02',
+       '2020-06-05',
+       '2020-06-08',  
+      ];
+
+   const mark = {
+    [nextDay]: {selected: true, marked: true,color: 'green', textColor: 'green'}
+   };
+
 export default class CalendarioPrograma extends Component {
 
   constructor(props){
@@ -29,7 +39,10 @@ export default class CalendarioPrograma extends Component {
           loading: false,
           fechas: [],
           url: 'http://accountsolinal.pythonanywhere.com/api/fechas_get/'+idUserGlobal,
-          array: ['2020-05-10','2020-05-11']
+          array: ['2020-05-10','2020-05-11'],
+          a : '2020-04-19',
+          n:  '2020-04-25',
+          marked: null,
     }
   }
 
@@ -40,7 +53,24 @@ export default class CalendarioPrograma extends Component {
 
       componentDidMount = () => {
         this.getFechas();
+        this.anotherFunc();
       }
+
+      anotherFunc = () => {
+    var obj = nextDay.reduce((c, v) => Object.assign(c, {[v]: {selected: true,marked: true}}), {});
+    this.setState({ marked : obj});
+    console.log(this.state.marked);
+}
+
+       getMarkedDates = () => {
+        const marked = {};
+        this.props.weekly.forEach(item => {
+            marked[item] = {marked: true, dotColor: Colors.green};
+        });
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({markedDates: JSON.parse(JSON.stringify(marked))})
+        });
+    };
 
       getFechas = () => {
         const array = [];
@@ -59,6 +89,9 @@ export default class CalendarioPrograma extends Component {
 
    
       render(){
+
+        const array = this.state.array;
+        const n = this.state.n;
           return(
               <View style={{height:Dimensions.get('window').height,flex:1,marginTop:25}}>
                 
@@ -69,7 +102,7 @@ export default class CalendarioPrograma extends Component {
                         <MaterialIcons name="arrow-back" size={32} color="white" />
                         </TouchableHighlight>         
                         <Text style={{color:'white', fontSize:21, marginLeft:10}}>
-                            Calendario
+                            Auditorias Pendientes
                         </Text>
                     </View>
                 </View>
@@ -77,13 +110,46 @@ export default class CalendarioPrograma extends Component {
 
                     <Content padder style={{backgroundColor: '#f6f6f6'}}>
                         <EstadoCuenta/>
-                        <Card>
-                           
-                        </Card>
-                        <View>
-
                        
-                        <Calendar
+                        
+                        
+                       
+                        
+                     
+                        {this.state.fechas.map((r,i) => 
+
+
+
+                        <View style={{flexDirection:'column',marginTop:10,}}>
+
+                        
+                        <View style={{alignItems:'center'}}>
+
+                        <View><Text>Fecha de inicio</Text></View>
+                        
+                        
+                        
+
+                        <View><Text>{moment(r.detalle_auditoria).format("MMM Do YY")}</Text></View>
+                        
+
+                        </View>
+
+
+                        <View style={{alignItems:'center',marginTop:'5%'}}>
+
+                         <View><Text>Fecha de cierre</Text></View>
+
+                        <View><Text>{r.fecha_fin}</Text></View>
+                        
+
+
+                        </View>
+
+                        <View style={{flexDirection:'row',marginTop:'10%',}}>
+
+
+                         <Calendar
                           current={'2020-04-01'}
                           minDate={'2020-03-01'}
                           onDayPress={(day) => {console.log('selected day', day)}}
@@ -93,17 +159,7 @@ export default class CalendarioPrograma extends Component {
                           firstDay={1}
                           onPressArrowLeft={substractMonth => substractMonth()}
                           onPressArrowRight={addMonth => addMonth()}
-                          
-                            
-
-                             markedDates=  {this.state.array.map((r) => 
-                               r
-
-                             )}
-                                         
-                           
-                            
-                          
+                          markedDates={this.state.marked}
                           markingType={'period'}
                           theme={{
                             backgroundColor: '#ffffff',
@@ -119,9 +175,9 @@ export default class CalendarioPrograma extends Component {
                             arrowColor: 'orange',
                             monthTextColor: 'blue',
                             indicatorColor: 'blue',
-                           // textDayFontFamily: 'monospace',
-                            //textMonthFontFamily: 'monospace',
-                            //textDayHeaderFontFamily: 'monospace',
+                            textDayFontFamily: 'monospace',
+                            textMonthFontFamily: 'monospace',
+                            textDayHeaderFontFamily: 'monospace',
                             textDayFontWeight: '300',
                             textMonthFontWeight: 'bold',
                             textDayHeaderFontWeight: '300',
@@ -130,35 +186,7 @@ export default class CalendarioPrograma extends Component {
                             textDayHeaderFontSize: 16
                           }}
                         />
-                        
-                        </View>
-                        
-                        
-                        <View style={{flexDirection:'row',marginTop:'2.5%',marginBottom:'2.5%',marginLeft:'2%'}}>
 
-                          <View>
-                          <Text>
-                            Tienes 
-                          </Text>
-                          </View>
-
-                          <View style={{marginLeft:5}}>
-                          <Text style={{color:'green'}}>
-                            {this.state.fechas.length}
-                          </Text>
-                          </View>
-
-                          <View style={{marginLeft:5}}>
-                          <Text>
-                            auditoría interna pendiente
-                          </Text>
-                          </View>
-                        </View>
-                        
-                        
-                     
-                        {this.state.fechas.map((r,i) => 
-                        <View style={{flexDirection:'row',marginTop:10,}}>
                          
                             <View style={{flexDirection:'column',backgroundColor:'#C0FC96',borderColor: '#d6d7da',borderRadius: 2,borderWidth: 1,alignItems:'center',width:'23%'}}>
                                 <View style={{marginTop:'5%'}}>
@@ -188,6 +216,8 @@ export default class CalendarioPrograma extends Component {
                               </Text>
                             </View>
                           
+                        </View>
+
                         </View>
                         )}
                     </Content>

@@ -260,7 +260,7 @@ export default class AgendarAuditorias extends Component {
                         <View style={{flexDirection:'row',marginLeft:'8%'}}>
 
 
-                        <View style={{marginLeft:'5%',  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'38%'}}>
+                        <View style={{marginLeft:'4.5%',  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'38%'}}>
 
 
                             <TouchableHighlight title="Show Date Picker" onPress={()=>this.showDatePickerFF()}><Text>{this.state.fechaFin}</Text></TouchableHighlight>

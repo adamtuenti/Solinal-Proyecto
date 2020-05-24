@@ -48,7 +48,7 @@ export default class EquipoVacio extends Component {
         fetch(this.state.urlEquipo)
         .then(res=>res.json())
         .then(res=>{ 
-            console.log(res);
+           
             this.setState({
             equipo: res,
             urlEquipo: res.next,
@@ -113,6 +113,42 @@ export default class EquipoVacio extends Component {
      console.log('aqui')
     this.forceUpdate();
   };
+
+
+  crearEquipo(){
+
+      
+        var dataToSend = {Administrador: emailGlobal};
+                    var formBody = [];
+                    for (var key in dataToSend) {
+                    var encodedKey = encodeURIComponent(key);
+                    var encodedValue = encodeURIComponent(dataToSend[key]);
+                    formBody.push(encodedKey + "=" + encodedValue);
+                    }
+                    formBody = formBody.join("&");
+                    fetch('http://accountsolinal.pythonanywhere.com/api/crearEquipo', {
+                    method: "POST",//Request Type 
+                    body: formBody,//post body 
+                    headers: {//Header Defination 
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    },
+                    })
+                    .then((response) => response.json())
+                    //If response is in json then in success
+                    .then((responseJson) => {
+                    // alert(JSON.stringify(responseJson));
+                        idEquipoGlobal=responseJson.idEquipo;
+                        console.log(responseJson);
+                        
+                        this.props.navigation.navigate('Main')
+                        
+                    })
+                    
+    
+
+
+
+  }
 
  
 
@@ -203,11 +239,37 @@ export default class EquipoVacio extends Component {
                                            alignItems: 'center'}}/>
                     </View>
                     <View style={{alignItems: 'center'}}>
+
+
+                    
+        <View>
+                    {idEquipoGlobal!=null ? (
                         <TouchableHighlight style={styles.botonLogin}
                             onPress={()=>this.validarInvitaciones()}>
                             <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> INVITAR MIEMBROS </Text>
                         </TouchableHighlight>                        
-                    </View>
+                   
+
+
+
+
+                     ) : 
+
+                      <TouchableHighlight style={styles.botonLogin}
+                            onPress={()=>this.crearEquipo()}>
+                            <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}>CREAR EQUIPO </Text>
+                        </TouchableHighlight>  
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     }
+</View>
+
+</View>
                 </Content>
 
                

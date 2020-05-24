@@ -16,6 +16,7 @@ export default class Login extends Component{
         global.nameGlobal = '';
         global.userNameGlobal='';
         global.emailGlobal='';
+        global.idEquipoGlobal='';
         
         global.urifirma='https://i.pinimg.com/originals/e3/3c/2f/e33c2fa94c03efa06678116f80d62d0d.jpg'; 
 
@@ -70,10 +71,13 @@ export default class Login extends Component{
                 //alert(JSON.stringify(responseJson));
                 //console.log(responseJson)
                 if("user" in responseJson){
+                    console.log(responseJson)
                     idUserGlobal = responseJson.user.id;
                     nameGlobal=responseJson.user.first_name;
                     userNameGlobal=responseJson.user.username;
                     emailGlobal=responseJson.user.email;
+                    idEquipoGlobal=responseJson.user.profile.idEquipo;
+                    alert(idEquipoGlobal)
                     this.props.navigation.navigate('Home')
                     
                 }

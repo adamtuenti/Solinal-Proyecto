@@ -314,7 +314,7 @@ export default class Crear extends Component {
 
     this.setState({totalPreguntas:listPreguntas.length})
 
-    console.log(this.state.clickColorBoton)
+    console.log(this.state.lista)
   // alert(this.state.totalPreguntas)
    
 
