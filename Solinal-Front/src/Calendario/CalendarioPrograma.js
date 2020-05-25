@@ -67,7 +67,7 @@ export default class CalendarioPrograma extends Component {
       anotherFunc = () => {
     var obj = nextDaynew.reduce((c, v) => Object.assign(c, {[v]: {selected: true,marked: true, color: '#1ED695', textColor: 'white'}}), {});
     this.setState({ marked : obj});
-   // console.log(this.state.marked);
+    console.log(this.state.marked);
 }
 
        getMarkedDates = () => {
@@ -109,8 +109,8 @@ export default class CalendarioPrograma extends Component {
     fechas.map((f,i) => {
       console.log(f.fecha_inicio)
       
-      day = moment(f.fecha_inicio,'DD-MM-YYYY').format('YYYY-MM-DD');
-      end = moment(f.fecha_fin,'DD-MM-YYYY').format('YYYY-MM-DD');
+      day = moment(f.fecha_inicio,'YYYY-MM-DD').format('YYYY-MM-DD');
+      end = moment(f.fecha_fin,'YYYY-MM-DD').format('YYYY-MM-DD');
       nextDaynew.push(day);
       nextDaynew.push(end);
     })
