@@ -55,23 +55,30 @@ export default class CalendarioPrograma extends Component {
 
 
   changeFormatDate = () => {
-    nextDay.forEach(function(element){
-      moment(element).format('YYYY-mm-DD');
-      nextDaynew.push(element);
+    const day = '';
+    const end = '';
+    this.state.fechas.map((f,i) => {
+      day = moment(f.fecha_inicio,'MM-DD-YYYY').format('YYYY-MM-DD');
+      end = moment(f.fecha_fin,'MM-DD-YYYY').format('YYYY-MM-DD');
+      nextDaynew.push(day);
+      nextDaynew.push(end);
     })
-    console.log(nextDaynew)
+    console.log(nextDaynew);
   }
 
 
   
 
       componentDidMount = () => {
+        console.log('-')
+        console.log(this.state.fechas);
         this.getFechas();
         this.anotherFunc();
+        this.changeFormatDate();
       }
 
       anotherFunc = () => {
-    var obj = nextDay.reduce((c, v) => Object.assign(c, {[v]: {selected: true,marked: true}}), {});
+    var obj = nextDaynew.reduce((c, v) => Object.assign(c, {[v]: {selected: true,marked: true, color: '#1ED695', textColor: 'white'}}), {});
     this.setState({ marked : obj});
     console.log(this.state.marked);
 }
@@ -98,7 +105,7 @@ export default class CalendarioPrograma extends Component {
               loading: false,    
               })
           })
-          
+        console.log(this.state.fechas)
       }
 
    
@@ -138,10 +145,7 @@ export default class CalendarioPrograma extends Component {
                           firstDay={1}
                           onPressArrowLeft={substractMonth => substractMonth()}
                           onPressArrowRight={addMonth => addMonth()}
-                          markedDates={{               
-                            '2020-04-19': {startingDay: true, endingDay: false, color: 'green', textColor: 'white'},
-                            '2020-04-20': {selected: true, startingDay: false, endingDay: true, color: 'green', textColor: 'white'},
-                          }}
+                          markedDates={this.state.marked}
                           markingType={'period'}
                           theme={{
                             backgroundColor: '#ffffff',
@@ -154,9 +158,9 @@ export default class CalendarioPrograma extends Component {
                             textDisabledColor: '#d9e1e8',
                             dotColor: '#00adf5',
                             selectedDotColor: '#ffffff',
-                            arrowColor: 'orange',
-                            monthTextColor: 'blue',
-                            indicatorColor: 'blue',
+                            arrowColor: '#1ED695',
+                            monthTextColor: '#1ED695',
+                            indicatorColor: '#1ED695',
                             textDayFontFamily: 'monospace',
                             textMonthFontFamily: 'monospace',
                             textDayHeaderFontFamily: 'monospace',
