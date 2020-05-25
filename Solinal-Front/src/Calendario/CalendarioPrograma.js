@@ -61,7 +61,6 @@ export default class CalendarioPrograma extends Component {
       componentDidMount  ()  {
 
         this.getFechas();
-        this.anotherFunc();
        
       }
 
@@ -94,6 +93,7 @@ export default class CalendarioPrograma extends Component {
               loading: false,    
               })
               this.changeFormatDate();
+              this.anotherFunc();
           })
        // console.log(this.state.fechas)
          
