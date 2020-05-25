@@ -54,33 +54,21 @@ export default class CalendarioPrograma extends Component {
   }
 
 
-  changeFormatDate = () => {
-    const day = '';
-    const end = '';
-    this.state.fechas.map((f,i) => {
-      day = moment(f.fecha_inicio,'MM-DD-YYYY').format('YYYY-MM-DD');
-      end = moment(f.fecha_fin,'MM-DD-YYYY').format('YYYY-MM-DD');
-      nextDaynew.push(day);
-      nextDaynew.push(end);
-    })
-    console.log(nextDaynew);
-  }
 
 
   
 
-      componentDidMount = () => {
-        console.log('-')
-        console.log(this.state.fechas);
+      componentDidMount  ()  {
+
         this.getFechas();
         this.anotherFunc();
-        this.changeFormatDate();
+       
       }
 
       anotherFunc = () => {
     var obj = nextDaynew.reduce((c, v) => Object.assign(c, {[v]: {selected: true,marked: true, color: '#1ED695', textColor: 'white'}}), {});
     this.setState({ marked : obj});
-    console.log(this.state.marked);
+   // console.log(this.state.marked);
 }
 
        getMarkedDates = () => {
@@ -99,14 +87,36 @@ export default class CalendarioPrograma extends Component {
           fetch(this.state.url)
           .then(res=>res.json())
           .then(res=>{ 
+           // console.log(res)
               this.setState({
               fechas: res,
               url: res.next,
               loading: false,    
               })
+              this.changeFormatDate();
           })
-        console.log(this.state.fechas)
+       // console.log(this.state.fechas)
+         
       }
+
+      
+  changeFormatDate = () => {
+    var day = '';
+    var end = '';
+    const fechas = this.state.fechas;
+    console.log('//')
+    console.log(fechas)
+    fechas.map((f,i) => {
+      console.log(f.fecha_inicio)
+      
+      day = moment(f.fecha_inicio,'DD-MM-YYYY').format('YYYY-MM-DD');
+      end = moment(f.fecha_fin,'DD-MM-YYYY').format('YYYY-MM-DD');
+      nextDaynew.push(day);
+      nextDaynew.push(end);
+    })
+    console.log('-')
+    console.log(nextDaynew);
+  }
 
    
       render(){
@@ -221,8 +231,7 @@ export default class CalendarioPrograma extends Component {
                             <View style={{backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 2,borderWidth: 1,alignItems:'center',width:'70%',marginLeft:'5%'}}>
                           
                               <Text key={i} style={styles.descrip}>
-                                {r.fecha_inicio}
-                                {r.fecha_fin}
+                               
                                 {r.detalle_auditoria}
                               </Text>
                             </View>
