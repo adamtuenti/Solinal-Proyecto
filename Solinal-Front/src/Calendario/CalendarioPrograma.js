@@ -203,6 +203,8 @@ export default class CalendarioPrograma extends Component {
                             <View style={{backgroundColor:'white',borderColor: '#d6d7da',borderRadius: 2,borderWidth: 1,alignItems:'center',width:'70%',marginLeft:'5%'}}>
                           
                               <Text key={i} style={styles.descrip}>
+                                {r.fecha_inicio}
+                                {r.fecha_fin}
                                 {r.detalle_auditoria}
                               </Text>
                             </View>

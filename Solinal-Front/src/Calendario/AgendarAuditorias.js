@@ -24,8 +24,8 @@ export default class AgendarAuditorias extends Component {
             isVisibleHI:false,
             isVisibleHF:false,
     
-            fechaInicio:moment().format('DD/MM/YYYY'),
-            fechaFin:moment().format('DD/MM/YYYY'),
+            fechaInicio:moment().format('YYYY-MM-DD'),
+            fechaFin:moment().format('YYYY-MM-DD'),
             horaInicio:moment().format('HH:mm'),
             horaFin:moment().format('HH:mm'),
 
@@ -93,7 +93,7 @@ export default class AgendarAuditorias extends Component {
  
   handleConfirmFI = (date) => {
     console.log(date)
-    this.setState({fechaInicio:moment(date).format('DD/MM/YYYY')})
+    this.setState({fechaInicio:moment(date).format('YYYY-MM-DD')})
     this.hideDatePickerFI();
   };
 
@@ -112,7 +112,7 @@ export default class AgendarAuditorias extends Component {
   };
  
   handleConfirmFF = (date) => {
-    this.setState({fechaFin:moment(date).format('DD/MM/YYYY')})
+    this.setState({fechaFin:moment(date).format('YYYY-MM-DD')})
     this.hideDatePickerFF();
   };
 
