@@ -28,8 +28,7 @@ async componentDidMount() {
    this.setState({ image: result.uri,foto:'si' });
   }
 
- // urifirma='https://laverdadnoticias.com/__export/1586892765870/sites/laverdad/img/2020/04/14/cosplay_vegeta_super_saiyan.png_423682103.png'
-  
+ 
  }
 
  enviarFoto=()=>{

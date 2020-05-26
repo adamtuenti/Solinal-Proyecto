@@ -8,7 +8,6 @@ import {
   Text,
   View,Dimensions
 } from 'react-native'
-/*import * as Font from 'expo-font';*/
 
 import Footer from './../../shared/Footer';
 import HeaderBack from './../../shared/HeaderBack';
@@ -23,7 +22,6 @@ export default class CrearAuditoria extends Component {
         await Font.loadAsync({
           Roboto: require("native-base/Fonts/Roboto.ttf"),
           Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-          /*Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")*/
         });
         this.setState({ isReady: true });
       }

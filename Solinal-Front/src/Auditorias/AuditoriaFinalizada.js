@@ -135,53 +135,30 @@ export default class AuditoriaFinalizada extends Component{
     var tabledata = ''
 
     normas.forEach(function(element){
-      /*console.log(element)
-      var iduser = element.user
-      var nombre = element.first_name
-      var apellido = element.last_name
-      var correo = element.email
-      var tipoC = element.tipoCuenta*/
+
 
 
       var detalle = element.detalle_mainmenu
-      //var idmenu =element[1]
-      //var keyn = element [2]
-      //var keyp = element [3]
-     // var titulo = arrayMain[cont]
-
-
-     
 
       var contMain=0
       var contSubMenu=0
       
-     /* var japellido= JSON.stringify(apellido)
-      var jcorreo = JSON.stringify(correo)
-      var jtipoC = JSON.stringify(tipoC)*/
-
-     /* console.log(iduser)
-      console.log(jiduser)
-      console.log(nombre)
-      console.log(apellido)
-      console.log(correo)
-      console.log(tipoC)*/
-     // cont = cont + 1
 
       var titletable = ''
       var data = ''
       
-      element.menu.map((mainmenu) => {
+      element.menu.map((mainmenu,index) => {
          titletable +=
         `
         <table style="width:100%";>
-        <tr>
+        <tr key=`+mainmenu.id_mainmenu+`>
         <th>
         <h4 align="left">`+mainmenu+`</h4>
         </th>
         </tr>
         </table>
         `
-        element.submenu[contSubMenu].map((question) => {
+        element.submenu[contSubMenu].map((question,i) => {
           var preg = question[0]
           var answer = question[1]
           var imagen = question[2]
@@ -192,7 +169,7 @@ export default class AuditoriaFinalizada extends Component{
           `
           <table class="final">
           <div>
-            <tr>
+            <tr key=`+i+`>
               <th class="pregunta">`+preg+`</th>
               <th class="respuesta">`+answer+`</th>
               <th class="evidencia"><img src="`+imagen+`"  width="185" height="155"></th>
@@ -208,7 +185,7 @@ export default class AuditoriaFinalizada extends Component{
           </table>
           `
         })
-        contSubMenu+=1  //Comentario: 'comentario'
+        contSubMenu+=1  
        
       })
       
@@ -230,7 +207,6 @@ export default class AuditoriaFinalizada extends Component{
         `
     });
 
-   // console.log(tabledata)
     return tabledata;
  }
 
@@ -238,17 +214,15 @@ export default class AuditoriaFinalizada extends Component{
    var tableheader = ''
    var k = ''
   let header = Object.keys(this.state.users[0])
-  //console.log(header)
+
    header.map((key, index) => {
     var i = index;
     var k = key.toUpperCase();
     var jk = JSON.stringify(k);
-    console.log(k);
 
      tableheader = `<th key=`+index+`}>`+jk+`</th>`
   })
 
- // console.log(tableheader);
   return tableheader;
 }
 
@@ -362,7 +336,6 @@ width:100%;
       </body>
     </html>
  `
- console.log(htmlstring)
  return htmlstring;
  
   }
@@ -371,7 +344,6 @@ width:100%;
     const infodatahtml = this.renderInfoData();
     const tabledatahtml = this.renderTableData();
     const tableheaderhtml = this.renderTableHeader();
-    console.log(tabledatahtml);
     let filePath = await Print.printToFileAsync({
       html: this.makeHTML(infodatahtml,tableheaderhtml,tabledatahtml),
       width: 612,
@@ -380,19 +352,10 @@ width:100%;
     });
     alert('PDF Generado',filePath.uri);
     this.setState({file:filePath.uri})
-   // console.log('/')
-    //console.log(this.state.file)
 
-    
-
-    // console.log(filePath.uri);
-    // console.log(FileSystem.cacheDirectory);
-    // console.log(FileSystem.documentDirectory);
 
     FileSystem.getContentUriAsync(filePath.uri).then(cUri => {
-     // console.log(cUri);
       this.setState({cFile:cUri.uri})
-     // console.log(this.state.cFile)
       IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
           data: cUri.uri,
           flags: 1,
@@ -405,7 +368,6 @@ width:100%;
         const infodatahtml = this.renderInfoData();
     const tabledatahtml = this.renderTableData();
     const tableheaderhtml = this.renderTableHeader();
-    //console.log(tabledatahtml);
     let filePath = await Print.printToFileAsync({
       html: this.makeHTML(infodatahtml,tableheaderhtml,tabledatahtml),
       width: 612,

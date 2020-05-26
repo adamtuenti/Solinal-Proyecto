@@ -8,13 +8,13 @@ import {
   Text,
   View,
 } from 'react-native'
-/*import * as Font from 'expo-font';*/
+
 import { Ionicons } from '@expo/vector-icons';
 import Footer from './../../shared/Footer';
 import HeaderBack from './../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
 import FooterAuditoria from '../../shared/FooterAuditoria';
-//import {idPais} from './AuditoriasBuscar'
+
 
 
 export default class AuditoriasLista extends Component {

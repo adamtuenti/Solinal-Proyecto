@@ -16,7 +16,6 @@ export default class AuditoriasVacia extends Component {
         super(props);
         this.state = {
             loading: false,
-            //paginaAnterior: this.props.navigation.state.params.paginaActual,
           datos: [],
           url: 'http://accountsolinal.pythonanywhere.com/api/user/'+idUserGlobal
         };
@@ -50,7 +49,6 @@ export default class AuditoriasVacia extends Component {
   
 
     render() {
-       // if(this.state.datos.numero_auditorias_pendientes<2){
         if(0<1){
         
         return (
@@ -154,15 +152,6 @@ export default class AuditoriasVacia extends Component {
             </View>
         );
     
-    //}
-    /*else{
-        console.log(idUserGlobal)
-        console.log('-')
-        console.log(this.state.datos.numero_auditorias_pendientes)
-        return(
-        this.props.navigation.navigate('Home')
-        );
-    }*/
     }
     else{
       
