@@ -34,6 +34,7 @@ export default class AuditoriaFinalizada extends Component{
       file: '',
       cFile:'',
       datos:this.props.navigation.state.params.datosAuditoria, //norma,persona que audita,persona auditada,fehca de inicio,fecha de cierre,organizacion,direccion,alcance de la auditoria
+      datosPost:this.props.navigation.state.params.datosAuditoriaPost,
       normas: this.props.navigation.state.params.lista,
      
       };
@@ -42,6 +43,7 @@ export default class AuditoriaFinalizada extends Component{
 
   componentDidMount = () => {
     this.getUsers();
+   // this.postAuditoria();
   }
 
   getUsers = () => {
@@ -61,7 +63,40 @@ export default class AuditoriaFinalizada extends Component{
           })
      
       })
+
+      console.log(this.state.datosPost)
       
+  }
+
+  postAuditoria=()=>{
+
+    console.log('aca')
+   
+
+    const datosPost = this.state.datosPost
+    var dataToSend = {fechaInicio: datosPost[0],idUser:datosPost[1],idEquipoI:datosPost[2],paisAuditoriaI:datosPost[3],normaAuditoriaI:datosPost[4],pdfAuditoriaI:this.state.file};
+                    var formBody = [];
+                    for (var key in dataToSend) {
+                    var encodedKey = encodeURIComponent(key);
+                    var encodedValue = encodeURIComponent(dataToSend[key]);
+                    formBody.push(encodedKey + "=" + encodedValue);
+                    }
+                    formBody = formBody.join("&");
+                    fetch('http://accountsolinal.pythonanywhere.com/api/auditoriasRealizadasPost', {
+                    method: "POST",//Request Type 
+                    body: formBody,//post body 
+                    headers: {//Header Defination 
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    },
+                    })
+                    .then((response) => response.json())
+                    //If response is in json then in success
+                    .then((responseJson) => {
+                      //alert(JSON.stringify(responseJson));
+                      console.log(responseJson)
+                    
+
+                    })
   }
 
   renderInfoData(){
@@ -353,6 +388,8 @@ width:100%;
     alert('PDF Generado',filePath.uri);
     this.setState({file:filePath.uri})
 
+    
+
 
     FileSystem.getContentUriAsync(filePath.uri).then(cUri => {
       this.setState({cFile:cUri.uri})
@@ -362,6 +399,8 @@ width:100%;
           type: 'application/pdf'
        });
     });
+
+    this.postAuditoria();
   }
 
   compartirPdf = async () => {

@@ -127,6 +127,7 @@ export default class Crear extends Component {
           contadorRespuestas:0,
           totalPreguntas:0,
           listPreguntas:[],
+          datosAuditoriaPost: [moment().format('YYYY-MM-DD'),1,1,'pais auditoria','nombre auditoria'],
         
 
         equipo: [],
@@ -317,11 +318,6 @@ export default class Crear extends Component {
 
     this.setState({totalPreguntas:listPreguntas.length})
 
-    console.log(this.state.lista)
-  // alert(this.state.totalPreguntas)
-   
-
-       
 
         
 
@@ -621,11 +617,10 @@ export default class Crear extends Component {
 
 
       })
-      console.log(valorCalculado)
-      console.log(numPreguntas)
+  
 
       var calificacionTotal = Number((valorCalculado/numPreguntas*100).toFixed(1))
-      console.log(calificacionTotal)
+    
 
         let datosAuditoria = this.state.datosAuditoria;
 
@@ -637,13 +632,13 @@ export default class Crear extends Component {
      
       this.setState({datosAuditoria:datosAuditoria})
 
-      console.log(this.state.datosAuditoria)
+
 
 
 
 
        if(urifirma!=''){
-      this.props.navigation.navigate('AuditoriaFinalizada',{lista:this.state.lista,datosAuditoria:this.state.datosAuditoria})
+      this.props.navigation.navigate('AuditoriaFinalizada',{lista:this.state.lista,datosAuditoria:this.state.datosAuditoria,datosAuditoriaPost:this.state.datosAuditoriaPost})
 
     }
     else{
