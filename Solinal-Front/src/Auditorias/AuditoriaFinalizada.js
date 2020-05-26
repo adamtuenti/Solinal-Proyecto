@@ -170,7 +170,7 @@ export default class AuditoriaFinalizada extends Component{
          titletable +=
         `
         <table style="width:100%";>
-        <tr key=`+index+`>
+        <tr key=`+mainmenu.id_mainmenu+`>
         <th>
         <h4 align="left">`+mainmenu+`</h4>
         </th>
