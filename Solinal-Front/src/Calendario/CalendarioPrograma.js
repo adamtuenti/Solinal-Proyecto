@@ -50,6 +50,8 @@ export default class CalendarioPrograma extends Component {
           a : '2020-04-19',
           n:  '2020-04-25',
           marked: null,
+          presentarDetalle:false,
+          fechasDetalle:[]
     }
   }
 
@@ -65,9 +67,11 @@ export default class CalendarioPrograma extends Component {
       }
 
       anotherFunc = () => {
-    var obj = nextDaynew.reduce((c, v) => Object.assign(c, {[v]: {selected: true,marked: true, color: '#1ED695', textColor: 'white'}}), {});
+
+        const colores =['#F7F78B','#B9F957','#B1F9EB','#EE9BED','#6E6FAB','#C97E34','#9EEC4F']
+    var obj = nextDaynew.reduce((c, v,a) => Object.assign(c, {[v]: {selected: true,marked: true, color: colores[a], textColor: 'black'}}), {});
     this.setState({ marked : obj});
-    console.log(this.state.marked);
+   
 }
 
        getMarkedDates = () => {
@@ -95,7 +99,7 @@ export default class CalendarioPrograma extends Component {
               this.changeFormatDate();
               this.anotherFunc();
           })
-       // console.log(this.state.fechas)
+    
          
       }
 
@@ -104,31 +108,66 @@ export default class CalendarioPrograma extends Component {
     var day = '';
     var end = '';
     const fechas = this.state.fechas;
-    console.log('//')
-    console.log(fechas)
+  
 
     fechas.forEach(function(element){
       day = moment(element.fecha_inicio,'YYYY-MM-DD').format('YYYY-MM-DD');
-      end = moment(element.fecha_fin,'YYYY-MM-DD').format('YYYY-MM-DD');
+     // end = moment(element.fecha_fin,'YYYY-MM-DD').format('YYYY-MM-DD');
       nextDaynew.push(day);
-      nextDaynew.push(end);
+     // nextDaynew.push(end);
     })
-    //fechas.map((f,i) => {
-    //  console.log(f.fecha_inicio)
+ 
+  
+  }
+
+  mostrarDetalle=(day)=>{
+
+   
+
+    
+
+    const fechas = this.state.fechas
+    let fechasDetalle = this.state.fechasDetalle
+    
+
+   
+    var presentarDetalle = this.state.presentarDetalle
+  //  fechasDetalle = []
+    
+    
+  var cont = 0
+    fechas.forEach(function(elemento){
+      elemento.pos = cont
       
-     // day = moment(f.fecha_inicio,'YYYY-MM-DD').format('YYYY-MM-DD');
-      // end = moment(f.fecha_fin,'YYYY-MM-DD').format('YYYY-MM-DD');
-      // nextDaynew.push(day);
-      // nextDaynew.push(end);
-   // })
-    console.log('-')
-    console.log(nextDaynew);
+
+      if(elemento.fecha_inicio==day.dateString){
+        fechasDetalle = []
+        
+        
+        presentarDetalle = true
+        fechasDetalle.push(elemento)
+        //console.log(elemento)
+
+      }
+      cont = cont + 1
+
+
+    
+    })
+    this.setState({presentarDetalle:presentarDetalle})
+    this.setState({fechasDetalle:fechasDetalle})
+
+
+
   }
 
    
       render(){
 
         const array = this.state.array;
+
+        const colores =['#F7F78B','#B9F957','#B1F9EB','#EE9BED','#6E6FAB','#C97E34','#9EEC4F'];
+
         const n = this.state.n;
           return(
               <View style={{height:Dimensions.get('window').height,flex:1,marginTop:25}}>
@@ -153,12 +192,12 @@ export default class CalendarioPrograma extends Component {
 
                        
                         <Calendar
-                          current={'2020-04-01'}
+                          current={'2020-05-01'}
                           minDate={'2020-03-01'}
-                          onDayPress={(day) => {console.log('selected day', day)}}
+                          onDayPress={(day) => {this.mostrarDetalle(day)}}
                           onDayLongPress={(day) => {console.log('selected day', day)}}
                           monthFormat={'MMMM yyyy'}
-                          onMonthChange={(month) => {console.log('month changed', month)}}
+                          //onMonthChange={(month) => {console.log('month changed', month)}}
                           firstDay={1}
                           onPressArrowLeft={substractMonth => substractMonth()}
                           onPressArrowRight={addMonth => addMonth()}
@@ -191,13 +230,15 @@ export default class CalendarioPrograma extends Component {
                         />
                         
                         </View>
-                       
-                        
-                        
-                       
-                        
-                     
-                        {this.state.fechas.map((r,i) => 
+
+
+                        <View>
+                    {this.state.presentarDetalle ? (
+
+                      <View>
+
+                      
+                        {this.state.fechasDetalle.map((r,i) => 
 
 
 
@@ -214,7 +255,7 @@ export default class CalendarioPrograma extends Component {
                        
 
                          
-                            <View style={{flexDirection:'column',backgroundColor:'#C0FC96',borderColor: '#d6d7da',borderRadius: 2,borderWidth: 1,alignItems:'center',width:'23%'}}>
+                            <View style={{flexDirection:'column',backgroundColor:colores[r.pos],borderColor: '#d6d7da',borderRadius: 2,borderWidth: 1,alignItems:'center',width:'23%'}}>
                                 <View style={{marginTop:'5%'}}>
                                   <Text style={styles.datos}>
                                     INICIA
@@ -247,6 +288,20 @@ export default class CalendarioPrograma extends Component {
 
                         </View>
                         )}
+
+                        </View>
+
+
+
+                    ): null}
+
+                    </View>
+                       
+                        
+                        
+                       
+                        
+                     
                     </Content>
 
                     <View style={{height:62, flexDirection: 'row',width:'100%'}}>

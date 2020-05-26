@@ -43,7 +43,7 @@ import RecomiendaSolinal from './src/Equipo/RecomiendaSolinal';
 
 const AppNavigator = createStackNavigator(
   {
-   Crear,Login,AuditoriasRealizadas,Galeria,Camara,Carusel,Camara,Login,PdfCompartido,RecomiendaSolinal,AgendarAuditorias,AuditoriaFinalizada,Main,Login,Crear,ValidacionClave,FirmaAuditor,AuditoriasBuscar,Crear,Login,Main,CalendarioPrograma,Carusel,Footer,CalendarioVacio,NormaEcBPM,EquipoVacio,EquipoLista,InvitarMiembros,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar,FooterAuditoria
+   Login,AuditoriasRealizadas,Galeria,Camara,Carusel,Camara,Login,PdfCompartido,RecomiendaSolinal,AgendarAuditorias,AuditoriaFinalizada,Main,Login,Crear,ValidacionClave,FirmaAuditor,AuditoriasBuscar,Crear,Login,Main,CalendarioPrograma,Carusel,Footer,CalendarioVacio,NormaEcBPM,EquipoVacio,EquipoLista,InvitarMiembros,Main, Login, Registro, Home, Reestablecer, AuditoriasVacia, CrearAuditoria, AuditoriasLista, AuditoriasBuscar,FooterAuditoria
   },  {
     headerMode: 'none',
   }
