@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 import { Container,  Title, Content, Card, CardItem,  Button, Left, Right, Body,  Font } from 'native-base';
 import { Icon,Divider, } from 'react-native-elements'
 import {StyleSheet,TouchableHighlight,Text,View,Image,FlatList,ListItem,Dimensions } from 'react-native'
-/*import * as Font from 'expo-font';*/
 import { Ionicons } from '@expo/vector-icons';
 
 import {MaterialIcons,MaterialCommunityIcons,Feather} from '@expo/vector-icons';
 import HeaderBack from '../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
-//import Toast from 'react-native-simple-toast';
-//import Toast from 'react-native-tiny-toast'
 import * as FileSystem from 'expo-file-system';
 import * as MailComposer from 'expo-mail-composer';
 
@@ -28,7 +25,6 @@ export default class PdfCompartido extends Component {
           ready:false,
           iconName:'send',
           selectedtem:[],
-          //forceUpdateHandler : this.forceUpdateHandler.bind(this)
         }  
     }
 
@@ -93,8 +89,7 @@ export default class PdfCompartido extends Component {
                     .then((response) => response.json())
                     //If response is in json then in success
                     .then((responseJson) => {
-                    // alert(JSON.stringify(responseJson));
-                        //console.log(responseJson);
+
                         
                         console.log('eliminado')
 

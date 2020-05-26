@@ -16,7 +16,6 @@ export default class AuditoriasRealizadas extends Component {
         super(props);
         this.state = {
             loading: false,
-            //paginaAnterior: this.props.navigation.state.params.paginaActual,
           datos: [],
           url: 'http://accountsolinal.pythonanywhere.com/api/user/'+idUserGlobal
         };
@@ -177,16 +176,7 @@ export default class AuditoriasRealizadas extends Component {
 
             </View>
         );
-    
-    //}
-    /*else{
-        console.log(idUserGlobal)
-        console.log('-')
-        console.log(this.state.datos.numero_auditorias_pendientes)
-        return(
-        this.props.navigation.navigate('Home')
-        );
-    }*/
+
     }
     else{
       

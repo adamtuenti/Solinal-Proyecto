@@ -57,7 +57,6 @@ class AuditoriasBuscar extends Component {
         fetch(this.state.urlnorma)
         .then(res=>res.json())
         .then(res=>{ 
-            //console.log(res);
             this.setState({
             normas: res,
             urlnorma: res.next,
@@ -127,10 +126,7 @@ class AuditoriasBuscar extends Component {
              .then((response) => response.json())
             //If response is in json then in success
             .then((responseJson) => {
-                //alert(JSON.stringify(responseJson));
-                //console.log(responseJson);
                 this.setState({mensajeError:'Pais/Norma enviado!'})
-               // this.setState({paisEnvio:''})
 
             })
             //If response is not in json then in error
