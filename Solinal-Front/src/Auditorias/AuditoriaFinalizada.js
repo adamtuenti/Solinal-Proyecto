@@ -115,6 +115,10 @@ export default class AuditoriaFinalizada extends Component{
           <td>Alcance de la auditoría</td>
           <td>`+datos[7]+`</td>
         </tr>
+         <tr>
+          <td>Calificacion total</td>
+          <td>`+datos[8]+`%</td>
+        </tr>
       </table>
     </div>
     `
@@ -182,6 +186,7 @@ export default class AuditoriaFinalizada extends Component{
           var answer = question[1]
           var imagen = question[2]
           var comentario = question[3]
+        
           
           titletable += 
           `

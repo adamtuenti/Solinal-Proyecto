@@ -49,7 +49,7 @@ export default class Crear extends Component {
            array:[0,0,0],
            subarray:[[10,0],[8,0],[0]],
            cont:0,
-           paginaAnterior: 'Main',//this.props.navigation.state.params.paginaActual,
+        
            time: '09:00',
            timeFin: '09:10',
            norma: 'norma',//this.props.navigation.state.params.norma,
@@ -117,7 +117,7 @@ export default class Crear extends Component {
 
           
           
-          datosAuditoria:['','',[],'','','','',''],
+          datosAuditoria:['','',[],'','','','','',0],
           organizacion:'',
           direccion:'',
           alcance:'',
@@ -294,7 +294,7 @@ export default class Crear extends Component {
                 listPreguntas.push(0)
                 temp.push([element2.detalle_submenud,'','https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true','No hay comentario'])
                 temporalSubRespuestas.push(true)
-                temporalSubBotonColor.push(['','','',0])
+                temporalSubBotonColor.push(['','','',''])
 
                 //temp1=[]
                 //foreach
@@ -383,10 +383,40 @@ export default class Crear extends Component {
  
     
     agregarElemento=(main,menu,submenu1,respuesta,boton)=>{
-      let clickColorBoton= this.state.clickColorBoton
-      this.state.clickColorBoton[main][menu][submenu1][0]=boton
 
-      this.setState({clickColorBoton:clickColorBoton})
+
+      if(respuesta=='Si'){
+        let clickColorBoton= this.state.clickColorBoton
+        this.state.clickColorBoton[main][menu][submenu1][0]=boton
+        this.state.clickColorBoton[main][menu][submenu1][3]=1
+
+        this.setState({clickColorBoton:clickColorBoton})
+
+
+
+      }
+      else if(respuesta=='No'){
+        let clickColorBoton= this.state.clickColorBoton
+        this.state.clickColorBoton[main][menu][submenu1][0]=boton
+        this.state.clickColorBoton[main][menu][submenu1][3]=0
+
+        this.setState({clickColorBoton:clickColorBoton})
+
+
+
+      }
+
+       else if(respuesta=='N/A'){
+        let clickColorBoton= this.state.clickColorBoton
+        this.state.clickColorBoton[main][menu][submenu1][0]=boton
+        this.state.clickColorBoton[main][menu][submenu1][3]='-'
+
+        this.setState({clickColorBoton:clickColorBoton})
+
+
+
+      }
+      
     
 
       
@@ -560,7 +590,57 @@ export default class Crear extends Component {
   finalizarAuditoria(){
      //this.props.navigation.navigate('AuditoriaFinalizada',{lista:this.state.lista,datosAuditoria:this.state.datosAuditoria})
 
+     console.log(this.state.clickColorBoton)
+
+     
+
     if(this.state.totalPreguntas==this.state.contadorRespuestas){
+
+      var valorCalculado = 0
+      var numPreguntas = 0
+      const clickColorBoton = this.state.clickColorBoton
+      clickColorBoton.forEach(function(element){
+        element.forEach(function(arr){
+          
+        
+          arr.forEach(function(subarr){
+
+
+           
+            if(subarr[3]!='-'){
+               numPreguntas = numPreguntas + 1
+               if(subarr[3]==1){
+                 valorCalculado=valorCalculado+1
+               }
+
+            }
+
+          })
+
+        })
+
+
+      })
+      console.log(valorCalculado)
+      console.log(numPreguntas)
+
+      var calificacionTotal = Number((valorCalculado/numPreguntas*100).toFixed(1))
+      console.log(calificacionTotal)
+
+        let datosAuditoria = this.state.datosAuditoria;
+
+           datosAuditoria[8]=calificacionTotal
+
+         
+
+
+     
+      this.setState({datosAuditoria:datosAuditoria})
+
+      console.log(this.state.datosAuditoria)
+
+
+
 
        if(urifirma!=''){
       this.props.navigation.navigate('AuditoriaFinalizada',{lista:this.state.lista,datosAuditoria:this.state.datosAuditoria})
