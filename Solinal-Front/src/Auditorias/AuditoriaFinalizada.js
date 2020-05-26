@@ -166,18 +166,18 @@ export default class AuditoriaFinalizada extends Component{
       var titletable = ''
       var data = ''
       
-      element.menu.map((mainmenu) => {
+      element.menu.map((mainmenu,index) => {
          titletable +=
         `
         <table style="width:100%";>
-        <tr>
+        <tr key=`+index+`>
         <th>
         <h4 align="left">`+mainmenu+`</h4>
         </th>
         </tr>
         </table>
         `
-        element.submenu[contSubMenu].map((question) => {
+        element.submenu[contSubMenu].map((question,i) => {
           var preg = question[0]
           var answer = question[1]
           var imagen = question[2]
@@ -187,7 +187,7 @@ export default class AuditoriaFinalizada extends Component{
           `
           <table class="final">
           <div>
-            <tr>
+            <tr key=`+i+`>
               <th class="pregunta">`+preg+`</th>
               <th class="respuesta">`+answer+`</th>
               <th class="evidencia"><img src="`+imagen+`"  width="185" height="155"></th>
