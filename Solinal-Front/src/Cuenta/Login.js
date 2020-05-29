@@ -17,6 +17,7 @@ export default class Login extends Component{
         global.userNameGlobal='';
         global.emailGlobal='';
         global.idEquipoGlobal='';
+        global.isAdminGlobal='';
         
         global.urifirma='https://i.pinimg.com/originals/e3/3c/2f/e33c2fa94c03efa06678116f80d62d0d.jpg'; 
 
@@ -29,10 +30,6 @@ export default class Login extends Component{
           iconName : 'eye',
           secureTextEntry:true,
 
-          numero: [0,0],
-          numero2: [[0,0],[1,0]],
-
-          json:[{lista:[0,0]}]
          
         }
       
@@ -77,6 +74,8 @@ export default class Login extends Component{
                     userNameGlobal=responseJson.user.username;
                     emailGlobal=responseJson.user.email;
                     idEquipoGlobal=responseJson.user.profile.idEquipo;
+                    isAdminGlobal=responseJson.user.profile.isAdmin;
+                   
 
 
 
@@ -113,54 +112,7 @@ export default class Login extends Component{
 
 
 
-    aumentar(n,m){
-       // const numero = this.state.numero;
-
-
-        // alert('hola')
-   /* this.setState(state => {
-      const numero = state.numero.map((item, j) => {
-         if (j === n) {
-           if(item+1<15){
-             return item+1;
-           }else{
-             return item;
-           }      
-                
-              } else {
-                return item;
-              }
-          });
-        
-     
- 
-      return {
-        numero
-      };
-    
-    });*/
-    let json = this.state.json;
-    json[0].lista[0] = json[0].lista[0]+1;
-    this.setState({json: json});
-
-
-    let numero2 = this.state.numero2
-    numero2[0][1]=numero2[0][1]+1
-    this.setState({numero2:numero2})
-
-   // this.setState({json[0].lista[n]=this.state.json[0].lista[n]+1})
-
-    
-
-
-
-
-
-  
-  
-
-        console.log(this.state.json[0].lista[n])
-    }
+   
 
     
 
@@ -177,24 +129,19 @@ export default class Login extends Component{
 
                 
 
-                <Image
-                        style={{width: '45%', height: 212,marginBottom:'8%',marginTop:'28%'}}
-                        source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}
-                />
+                <Image style={{width: '45%', height: 212,marginBottom:'8%',marginTop:'28%'}} source={{uri: 'https://github.com/adamtuenti/FrontEnd/blob/master/Solinal-Front/Recurso%201.png?raw=true'}}/>
+                        
+                        
+                
 
 
-                
-                
-            
-               
                 
                 <TextInput
-                                    style={styles.input}
-                                    placeholder='User'
-
-                                    autoCapitalize="none"
-                                    placeholderTextColor='lightgrey'
-                                    onChangeText={username => this.setState({ username })}
+                    style={styles.input}
+                    placeholder='User'
+                    autoCapitalize="none"
+                    placeholderTextColor='lightgrey'
+                    onChangeText={username => this.setState({ username })}
 
                 />
                 
@@ -203,23 +150,22 @@ export default class Login extends Component{
                 <View style={{marginLeft:'7%'}}>
                 
                 <TextInput
-                                    style={styles.input}
-                                    placeholder='Password'
-
-                                    autoCapitalize="none"
-                                    secureTextEntry={this.state.secureTextEntry}
-                                    placeholderTextColor='lightgrey'
-                                     minLength={2}
-                                    onChangeText={password => this.setState({ password})}
+                    style={styles.input}
+                    placeholder='Password'
+                    autoCapitalize="none"
+                    secureTextEntry={this.state.secureTextEntry}
+                    placeholderTextColor='lightgrey'
+                        minLength={2}
+                    onChangeText={password => this.setState({ password})}
 
                 />
                 
                 </View>
-                <View style={{marginLeft:'1%'}}>
-                <TouchableHighlight onPress={this.mostrarClave}>
-                <MaterialCommunityIcons name = {this.state.iconName} size={19}/>
-                </TouchableHighlight>
-                </View>
+                    <View style={{marginLeft:'1%'}}>
+                        <TouchableHighlight onPress={this.mostrarClave}>
+                        <MaterialCommunityIcons name = {this.state.iconName} size={19}/>
+                        </TouchableHighlight>
+                    </View>
                 </View>
 
                

@@ -28,7 +28,7 @@ class InvitarMiembros extends Component {
     }
 
     componentDidMount(){
-        //this.getUsuarios();
+        this.getUsuarios();
     }
 
     getUsuarios = () => {
@@ -57,25 +57,18 @@ class InvitarMiembros extends Component {
 
         else{
             
-            //const usuarios = this.state.usuarios
-            //var bandera = 0
+            const usuarios = this.state.usuarios
             var userIdInvitado = ''
-          /*  usuarios.forEach(function(element){
-               // console.log(element)
-                //console.log('/')
+            usuarios.forEach(function(element){
                 var correo = element.email
                 if (email==correo){
-                    bandera = 1;
                     userIdInvitado= element.user;
-                    //alert(userIdInvitado)
-                    //console.log('-')
-                    //console.log(element)
-                   
-                    //console.log('-')
                 }
-            });*/
+            });
+
+            console.log(userIdInvitado)
             
-                var dataToSend = {correoIntegrante: email,idEquipo:idEquipoGlobal};
+                var dataToSend = {correoIntegrante: email,idEquipo:idEquipoGlobal,idUsuario:userIdInvitado};
                     var formBody = [];
                     for (var key in dataToSend) {
                     var encodedKey = encodeURIComponent(key);
@@ -93,15 +86,14 @@ class InvitarMiembros extends Component {
                     .then((response) => response.json())
                     //If response is in json then in success
                     .then((responseJson) => {
-                    console.log(responseJson);
-                    alert(responseJson)
-                        if("id"  in responseJson){
-                            alert('hola')
+                    //console.log(responseJson);
+
+                    
+                        if("idEquipo"  in responseJson){
                             this.setState({mensajeError:'Agregado!'})
                           //  alert(userIdInvitado)
-                            console.log(userIdInvitado);
 
-                            var dataToSend = {idEquipo:idEquipoGlobal,idUsuario:responseJson.id};
+                            var dataToSend = {idEquipo:idEquipoGlobal,idUsuario:userIdInvitado}; 
                                 var formBody = [];
                                 for (var key in dataToSend) {
                                 var encodedKey = encodeURIComponent(key);
@@ -118,7 +110,7 @@ class InvitarMiembros extends Component {
                                 })
                                 .then((response) => response.json())
                                 .then((responseJson) => {
-                                    alert(JSON.stringify(responseJson));
+                                   
                                     console.log(responseJson)
                                   
                                 
@@ -134,15 +126,9 @@ class InvitarMiembros extends Component {
                         }
                     
                     })
-                //errorM = error
-                //this.avanzarRegistro();
-            
-                    
+
                 
             }
-
-         
-
       
     }
 

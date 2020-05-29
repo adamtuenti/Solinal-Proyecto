@@ -43,7 +43,7 @@ export default class AuditoriaFinalizada extends Component{
 
   componentDidMount = () => {
     this.getUsers();
-   // this.postAuditoria();
+    this.postAuditoria();
   }
 
   getUsers = () => {
@@ -70,11 +70,13 @@ export default class AuditoriaFinalizada extends Component{
 
   postAuditoria=()=>{
 
-    console.log('aca')
+    if(postAuditoriaGlobal){
+      alert('hola')
+
    
 
-    const datosPost = this.state.datosPost
-    var dataToSend = {fechaInicio: datosPost[0],idUser:datosPost[1],idEquipoI:datosPost[2],paisAuditoriaI:datosPost[3],normaAuditoriaI:datosPost[4],pdfAuditoriaI:this.state.file};
+                    const datosPost = this.state.datosPost
+                    var dataToSend = {fechaInicio: datosPost[0],idUsuario:idUserGlobal,idEquipoI:idEquipoGlobal,paisAuditoriaI:datosPost[3],normaAuditoriaI:datosPost[4]};
                     var formBody = [];
                     for (var key in dataToSend) {
                     var encodedKey = encodeURIComponent(key);
@@ -93,10 +95,16 @@ export default class AuditoriaFinalizada extends Component{
                     //If response is in json then in success
                     .then((responseJson) => {
                       //alert(JSON.stringify(responseJson));
+                      console.log('////////////////////////')
                       console.log(responseJson)
+                      console.log('////////////////')
+                      postAuditoriaGlobal=false
                     
 
                     })
+      
+
+    }
   }
 
   renderInfoData(){
@@ -131,28 +139,25 @@ export default class AuditoriaFinalizada extends Component{
           <td>`+auditados+`</td>
         </tr>
         <tr>
-          <td>Fecha de inicio</td>
+          <td>Fecha de la auditoria</td>
           <td>`+datos[3]+`</td>
         </tr>
+        
         <tr>
-          <td>Fecha de cierre</td>
+          <td>Organización</td>
           <td>`+datos[4]+`</td>
         </tr>
         <tr>
-          <td>Organización</td>
+          <td>Dirección</td>
           <td>`+datos[5]+`</td>
         </tr>
         <tr>
-          <td>Dirección</td>
-          <td>`+datos[6]+`</td>
-        </tr>
-        <tr>
           <td>Alcance de la auditoría</td>
-          <td>`+datos[7]+`</td>
+          <td>`+datos[6]+`</td>
         </tr>
          <tr>
           <td>Calificacion total</td>
-          <td>`+datos[8]+`%</td>
+          <td>`+datos[7]+`%</td>
         </tr>
       </table>
     </div>
@@ -174,6 +179,7 @@ export default class AuditoriaFinalizada extends Component{
 
 
       var detalle = element.detalle_mainmenu
+      var notaMain = element.cantidad[2]
 
       var contMain=0
       var contSubMenu=0
@@ -187,9 +193,13 @@ export default class AuditoriaFinalizada extends Component{
         `
         <table style="width:100%";>
         <tr key=`+mainmenu.id_mainmenu+`>
-        <th>
-        <h4 align="left">`+mainmenu+`</h4>
-        </th>
+        <th class='menuPregunta'>`+mainmenu[0]+`</th>
+         <th class='menuCalificacion'>`+mainmenu[1]+` % </th>
+        
+       
+
+       
+       
         </tr>
         </table>
         `
@@ -229,8 +239,11 @@ export default class AuditoriaFinalizada extends Component{
       <table class="final" style="margin-top: 25px">
       <div>
       <tr>
-        <th class="detalle">
-      <h2 align=center>`+detalle+`</h2>
+       
+   
+
+       <th class='mainPregunta'>`+detalle+`</th>
+         <th class='mainCalificacion'>`+notaMain+` % </th>
       </th>
         </tr>
         </div>
@@ -278,6 +291,34 @@ export default class AuditoriaFinalizada extends Component{
 }
 th, td {
   padding: 15px;
+}
+
+.menuPregunta{
+  align=left;
+  width:85%;
+ 
+}
+.menuCalificacion{
+  align=center;
+  width:15%;
+  
+}
+
+.mainPregunta{
+  align=left
+  width:85%;
+  height:80;
+  font-size: 30px;
+  background-color: #EFF1EC;
+
+}
+.mainCalificacion{
+  align=center;
+  width:15%;
+  height:80;
+  font-size: 25px;
+  background-color: #EFF1EC;
+
 }
 
 table, th, td {
@@ -362,12 +403,11 @@ width:100%;
                </tbody>
           </table>
         </div>
-        <div align="center">
+        <div align="center" style="margin-top: 35px;">
           <img height="210" width="250" class="center" src=" `+urifirma+`">
+          <h3 style="font-style: italic;">Firma del auditor</h3>
         </div>
-        <div align="center">
-        <h3 style="font-style: italic;">Firma del auditor</h3>
-        </div>
+       
       </body>
     </html>
  `
@@ -393,6 +433,7 @@ width:100%;
 
     FileSystem.getContentUriAsync(filePath.uri).then(cUri => {
       this.setState({cFile:cUri.uri})
+      // this.postAuditoria(cUri.uri);
       IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
           data: cUri.uri,
           flags: 1,
@@ -400,7 +441,7 @@ width:100%;
        });
     });
 
-    this.postAuditoria();
+   
   }
 
   compartirPdf = async () => {
@@ -474,7 +515,7 @@ width:100%;
                                 <TouchableHighlight onPress={()=>this.compartirPdf()} style={{backgroundColor:'#B3F1C9',padding: 10,width:'55%',borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
                                     <View style={{flexDirection:'row',alignContent:'center',justifyContent:'center'}}>
 
-                                    <Feather style={{justifyContent:'center'}} name="download" size={28}  />
+                                    <Feather style={{justifyContent:'center'}} name="share-2" size={28}  />
 
 
                                         <Text style={{fontWeight:'bold',fontSize:15,marginLeft:'3.5%',marginTop:'1.5%'}}>Compartir informe</Text>

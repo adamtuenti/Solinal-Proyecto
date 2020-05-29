@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Title, Content, Card, CardItem,  Button, Left, Right, Body,  Font } from 'native-base';
 import { Icon } from 'react-native-elements'
-import {StyleSheet,TouchableHighlight,Text,View,Dimensions} from 'react-native'
+import {StyleSheet,TouchableHighlight,Text,View,Dimensions} from 'react-native';
+import * as FileSystem from 'expo-file-system';
+import * as IntentLauncher from 'expo-intent-launcher';
 import FooterAuditoria from './../../shared/FooterAuditoria';
 import HeaderBack from './../../shared/HeaderBack';
 import EstadoCuenta from './../../shared/estadoCuenta';
@@ -17,13 +19,16 @@ export default class AuditoriasRealizadas extends Component {
         this.state = {
             loading: false,
           datos: [],
-          url: 'http://accountsolinal.pythonanywhere.com/api/user/'+idUserGlobal
+          url: 'http://accountsolinal.pythonanywhere.com/api/auditoriasRealizadasGet/'+idEquipoGlobal,
+          audioriasPendientes:[],
+          urlAuditoriaPendiente:'http://accountsolinal.pythonanywhere.com/api/fechas_get/'+idUserGlobal,
         };
     }
 
 
      componentDidMount(){
         this.getDatos();
+        this.getDatosPendientes();
     }
 
     getDatos = () => {
@@ -43,6 +48,38 @@ export default class AuditoriasRealizadas extends Component {
             loading: false,    
             })
         })
+    }
+
+    getDatosPendientes=()=>{
+        this.setState({loading:true})
+        fetch(this.state.urlAuditoriaPendiente)
+
+        .then(res=>res.json())
+       
+        .then(res=>{ 
+       
+            
+
+            this.setState({
+            audioriasPendientes: res,
+            urlAuditoriaPendiente: res.next,
+            loading: false,    
+            })
+        })
+
+    }
+
+
+    descargarPdf=(uriPdf)=>{
+        alert(uriPdf)
+
+      IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
+          data: uriPdf,
+
+          flags: 1,
+          type: 'application/pdf'
+       });
+   
     }
 
 
@@ -74,61 +111,102 @@ export default class AuditoriasRealizadas extends Component {
 
                     <EstadoCuenta/>
 
-                    <View style={{flexDirection:'column',marginTop:'5%'}}>
+                    {this.state.datos.map((element,a)=>(
 
-                    <View style={{flexDirection:'row',borderRadius: 4,borderWidth: 1, borderColor: '#d6d7da',padding:'2%'}}>
-       
- 
+                                <View style={{flexDirection:'column',marginTop:'5%',backgroundColor:'#CDFBAB'}}>
 
+                                <View style={{flexDirection:'row',borderRadius: 4,borderWidth: 1, borderColor: '#d6d7da',padding:'2%'}}>
 
-                        <View style={{alignItems:'center',width:'25%',marginTop:'5%'}}>
+                                    <View style={{alignItems:'center',width:'21%',flex:1,justifyContent:'center'}}>
 
-                            <Image source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2047.png'}} 
-                            style={{height: 45, width: 31}}/>
-                        </View>
+                                    <TouchableHighlight onPress={()=>this.descargarPdf(element.pdfAuditoriaI)}>
+                                    
 
+                                        <Image   source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2047.png'}} 
+                                        style={{height: 45, width: 31}}/>
 
-                        <View style={{width:'75%',flexDirection:'column',marginTop:'5%'}}>
-
-                            <View style={{flexDirection:'row'}}>
-
-                                <Text style={{fontWeight:'bold'}}>Autor:</Text>
-                                <Text style={{marginLeft:'2%'}} >Adam Navarrete</Text>
-                                
-                               
-
-                               
-                            </View>
-
-                            <View style={{flexDirection:'row'}}>
-
-                                <Text style={{fontWeight:'bold'}}>Fecha de la auditoria:</Text>
-                                <Text style={{marginLeft:'2%'}} >2015-10-12</Text>
-                                
-                               
-
-                               
-                            </View>
-
-                             <View style={{flexDirection:'row'}}>
-
-                                <Text style={{fontSize:12,color:'#8C8C8B'}}>Norma | </Text>
-                                <Text style={{marginLeft:'1%',fontSize:12,color:'#8C8C8B'}} >Pais</Text>
-                                
-                               
-
-                               
-                            </View>
+                                    </TouchableHighlight>
+                                    </View>
 
 
+                                    <View style={{width:'76%',flexDirection:'column',marginTop:'2.5%',marginBottom:'2.5%',marginLeft:'3%'}}>
 
-                        </View>
+                                        <View style={{flexDirection:'row'}}>
+
+                                            <Text style={{fontWeight:'bold'}}>Autor:</Text>
+                                            <Text onPress={()=>this.descargarPdf(element.pdfAuditoriaI)} style={{marginLeft:'2%'}} >{element.nombre} {element.apellido}</Text>
+                              
+                                        </View>
+
+                                        <View style={{flexDirection:'row'}}>
+
+                                            <Text style={{fontWeight:'bold'}}>Fecha de la auditoria:</Text>
+                                            <Text style={{marginLeft:'2%'}} >{element.fechaInicio}</Text>
+                                                                                                                    
+                                        </View>
+
+                                        <View style={{flexDirection:'row'}}>
+                                            <Text style={{fontSize:12,color:'#8C8C8B'}}>{element.norma} | </Text>
+                                            <Text style={{marginLeft:'1%',fontSize:12,color:'#8C8C8B'}} >{element.pais}</Text>                                                                                                           
+                                        </View>
+                                    </View>
+                                </View>
+
+                                </View>
+
+                    ))}
 
 
-                    </View>
+                    {this.state.audioriasPendientes.map((element,a)=>(
+
+                                <View style={{flexDirection:'column',marginTop:'5%',backgroundColor:'#F0E292'}}>
+
+                                <View style={{flexDirection:'row',borderRadius: 4,borderWidth: 1, borderColor: '#d6d7da',padding:'2%'}}>
+
+                                    <View style={{alignItems:'center',width:'21%',flex:1,justifyContent:'center'}}>
+
+                                    <TouchableHighlight >
+                                    
+
+                                        <Image   source={{uri: 'https://raw.githubusercontent.com/adamtuenti/Solinal-Proyecto/master/Solinal-Front/png/Recurso%2047.png'}} 
+                                        style={{height: 45, width: 31}}/>
+
+                                    </TouchableHighlight>
+                                    </View>
 
 
-                    </View>
+                                    <View style={{width:'76%',flexDirection:'column',marginTop:'2.5%',marginBottom:'2.5%',marginLeft:'3%'}}>
+
+                                        <View style={{flexDirection:'row'}}>
+
+                                            <Text style={{fontWeight:'bold'}}>Autor:</Text>
+                                            <Text onPress={()=>this.descargarPdf(element.pdfAuditoriaI)} style={{marginLeft:'2%'}} >{nameGlobal}</Text>
+                              
+                                        </View>
+
+                                        <View style={{flexDirection:'row'}}>
+
+                                            <Text style={{fontWeight:'bold'}}>Fecha de la auditoria:</Text>
+                                            <Text style={{marginLeft:'2%'}} >{element.fecha_inicio}</Text>
+                                                                                                                    
+                                        </View>
+
+                                        <View style={{flexDirection:'column'}}>
+
+                                            <Text style={{fontWeight:'bold'}}>Detalle de la auditoria</Text>
+                                            <Text style={{width:'95%'}} >{element.detalle_auditoria}</Text>
+                                                                                                                    
+                                        </View>
+
+                                       
+                                    </View>
+                                </View>
+
+                                </View>
+
+                    ))}
+
+
                 </Content>
                  
 
@@ -181,7 +259,7 @@ export default class AuditoriasRealizadas extends Component {
     else{
       
         return(
-            alert(this.state.datos.auditoriasPendientes),
+            
         this.props.navigation.navigate('Home')
         );
     }

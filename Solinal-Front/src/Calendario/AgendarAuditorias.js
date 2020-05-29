@@ -189,6 +189,12 @@ export default class AgendarAuditorias extends Component {
                     <Content padder style={{backgroundColor: '#f6f6f6',width:'100%'}}>
                         <EstadoCuenta/>
 
+
+
+
+                   
+
+
                     <View style={{flexDirection:'column',marginBottom:10,marginTop:5,marginTop:'5%'}}>
 
                         <View style={{flexDirection:'column',marginBottom:10}}>
@@ -252,52 +258,6 @@ export default class AgendarAuditorias extends Component {
 
                     
 
-                 <View style={{flexDirection:'row',marginBottom:10,marginTop:5,alignContent:'center',alignItems:'center'}}>
-
-                        <View style={{alignContent:'center',alignItems:'center'}}>
-                        <Text>Fecha y hora de cierre</Text>
-                        </View>
-
-                      
-                        <View style={{flexDirection:'row',marginLeft:'8%'}}>
-
-
-                        <View style={{marginLeft:'4.5%',  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'38%'}}>
-
-
-                            <TouchableHighlight title="Show Date Picker" onPress={()=>this.showDatePickerFF()}><Text>{this.state.fechaFin}</Text></TouchableHighlight>
-                        
-                                <DateTimePickerModal
-                                  isVisible={this.state.isVisibleFF}
-                                  mode="date"
-                                  onConfirm={this.handleConfirmFF}
-                                  onCancel={this.hideDatePickerFF}
-                                  is24Hour={true}
-                                />
-
-                        </View>
-
-                                                    
-                            
-                                <View style={{marginLeft:'2.5%',  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'28%'}}>
-                                <TouchableHighlight title="Show Date Picker" onPress={()=>this.showDatePickerHF()}><Text>{this.state.horaFin}</Text></TouchableHighlight>
-                        
-                                <DateTimePickerModal
-                                  isVisible={this.state.isVisibleHF}
-                                  mode="time"
-                                  onConfirm={this.handleConfirmHF}
-                                  onCancel={this.hideDatePickerHF}
-                                  is24Hour={true}
-                                />
-                                </View>
-
-                                
-                            </View>
-
-                            
-
-                            
-                        </View>
 
                         </View>
 
@@ -332,6 +292,11 @@ export default class AgendarAuditorias extends Component {
                         </View>
 
                     </View>
+
+                     
+
+                    
+          
 
 
 

@@ -90,7 +90,7 @@ export default class CalendarioPrograma extends Component {
           fetch(this.state.url)
           .then(res=>res.json())
           .then(res=>{ 
-           // console.log(res)
+            console.log(res)
               this.setState({
               fechas: res,
               url: res.next,
@@ -111,16 +111,17 @@ export default class CalendarioPrograma extends Component {
   
 
     fechas.forEach(function(element){
-      day = moment(element.fecha_inicio,'YYYY-MM-DD').format('YYYY-MM-DD');
-     // end = moment(element.fecha_fin,'YYYY-MM-DD').format('YYYY-MM-DD');
+      
+      day = moment(element.fecha_inicio,'DD-MM-YYYY').format('YYYY-MM-DD');
       nextDaynew.push(day);
-     // nextDaynew.push(end);
     })
  
   
   }
 
   mostrarDetalle=(day)=>{
+    console.log(day)
+    
 
    
 
@@ -138,9 +139,10 @@ export default class CalendarioPrograma extends Component {
   var cont = 0
     fechas.forEach(function(elemento){
       elemento.pos = cont
+      console.log(elemento.fecha_inicio)
       
 
-      if(elemento.fecha_inicio==day.dateString){
+      if((moment(elemento.fecha_inicio,'DD-MM-YYYY').format('YYYY-MM-DD'))==day.dateString){
         fechasDetalle = []
         
         
@@ -166,7 +168,7 @@ export default class CalendarioPrograma extends Component {
 
         const array = this.state.array;
 
-        const colores =['#F7F78B','#B9F957','#B1F9EB','#EE9BED','#6E6FAB','#C97E34','#9EEC4F'];
+        const colores =['#F7F78B','#B9F957','#B1F9EB','#EE9BED','#6E6FAB','#C97E34','#9EEC4F']
 
         const n = this.state.n;
           return(
@@ -327,7 +329,7 @@ export default class CalendarioPrograma extends Component {
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight  style={{justifyContent:'center',width:'20%'}}>
+                <TouchableHighlight  onPress={()=>this.props.navigation.navigate('CalendarioVacio')}style={{justifyContent:'center',width:'20%'}}>
                     <View style={{flexDirection:'column',alignItems: 'center',}}>
                             <Image source={{uri: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/calendario-active.png?raw=true'}}
                                    style= {{height: 35,width: 32}}>

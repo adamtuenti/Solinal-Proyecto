@@ -16,6 +16,8 @@ class AuditoriasBuscar extends Component {
 
     constructor(props) {
         super(props);
+
+        global.postAuditoriaGlobal=true;
         
 
         this.state = {
@@ -70,8 +72,12 @@ class AuditoriasBuscar extends Component {
     accederNormaId(idPais,nombreNorma){
 
            const normas = this.state.normas;
+          // const paises = this.state.paises;
            var idNorma = '';
-        
+           //var idPaisApi = '';
+
+
+       
         normas.forEach(function(elemento){
 
             if(elemento.key_pais==idPais && elemento.norma==nombreNorma){
@@ -83,7 +89,7 @@ class AuditoriasBuscar extends Component {
 
         })
 
-        this.props.navigation.navigate('Crear',{nombreNorma:nombreNorma,idNorma:idNorma})  
+        this.props.navigation.navigate('Crear',{nombreNorma:nombreNorma,idNorma:idNorma,idPais:idPais})  
         
     }
 
@@ -198,6 +204,10 @@ class AuditoriasBuscar extends Component {
 
                     <View style={{paddingBottom:15}}>
 
+
+                     <View>
+                    {idEquipoGlobal!=null ? (
+
          <View style={styles.colapse}>
 
          
@@ -270,7 +280,9 @@ class AuditoriasBuscar extends Component {
                              
                 
               </View>
-                       
+
+               ) : null}
+                       </View>
               
 
                     

@@ -118,7 +118,7 @@ export default class EquipoVacio extends Component {
 
 
   crearEquipo(){
-
+      
       
         var dataToSend = {Administrador: emailGlobal};
                     var formBody = [];
@@ -138,32 +138,82 @@ export default class EquipoVacio extends Component {
                     .then((response) => response.json())
                     //If response is in json then in success
                     .then((responseJson) => {
+                        console.log('-se creo equipo--')
+                        console.log(responseJson)
                     // alert(JSON.stringify(responseJson));
                         idEquipoGlobal=responseJson.idEquipo;
+                        isAdminGlobal=true
 
-                        var dataToSend = {idEquipo:idEquipoGlobal,idUsuario:idUserGlobal};
-                                var formBody = [];
-                                for (var key in dataToSend) {
-                                var encodedKey = encodeURIComponent(key);
-                                var encodedValue = encodeURIComponent(dataToSend[key]);
-                                formBody.push(encodedKey + "=" + encodedValue);
-                                }
-                                formBody = formBody.join("&");
-                                fetch('http://accountsolinal.pythonanywhere.com/api/actualizarIntegrante', {
-                                method: "POST",//Request Type 
-                                body: formBody,//post body 
-                                headers: {//Header Defination 
-                                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                                },
-                                })
-                                .then((response) => response.json())
-                                .then((responseJson) => {
-                                   // alert(JSON.stringify(responseJson));
-                                    console.log(responseJson)
-                                  
-                                
-                                
-                                })
+                        console.log(responseJson)
+                                           
+                                            
+                                           
+
+
+                         var dataToSend1 = {correoIntegrante: emailGlobal,idEquipo:idEquipoGlobal,idUsuario:idUserGlobal};
+                                        var formBody = [];
+                                        for (var key in dataToSend1) {
+                                        var encodedKey = encodeURIComponent(key);
+                                        var encodedValue = encodeURIComponent(dataToSend1[key]);
+                                        formBody.push(encodedKey + "=" + encodedValue);
+                                        }
+                                        formBody = formBody.join("&");
+                                        fetch('http://accountsolinal.pythonanywhere.com/api/agregarIntegrante', {
+                                        method: "POST",//Request Type 
+                                        body: formBody,//post body 
+                                        headers: {//Header Defination 
+                                            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                                        },
+                                        })
+                                        .then((response) => response.json())
+                                        .then((responseJson) => {
+                                           alert(JSON.stringify(responseJson));
+                                           console.log('--agregar admin--')
+                                           console.log(responseJson)
+
+                                           console.log('variables:')
+                                             
+                                            console.log(idEquipoGlobal)
+
+
+  console.log(emailGlobal)
+                                          
+                                            console.log(idUserGlobal)
+                                            console.log('--')
+                                            
+
+                                                                
+                                            var dataToSend = {idEquipo:idEquipoGlobal,idUsuario:idUserGlobal};
+                                                    var formBody = [];
+                                                    for (var key in dataToSend) {
+                                                    var encodedKey = encodeURIComponent(key);
+                                                    var encodedValue = encodeURIComponent(dataToSend[key]);
+                                                    formBody.push(encodedKey + "=" + encodedValue);
+                                                    }
+                                                    formBody = formBody.join("&");
+                                                    fetch('http://accountsolinal.pythonanywhere.com/api/actualizarIntegrante', {
+                                                    method: "POST",//Request Type 
+                                                    body: formBody,//post body 
+                                                    headers: {//Header Defination 
+                                                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                                                    },
+                                                    })
+                                                    .then((response) => response.json())
+                                                    .then((responseJson) => {
+                                                    // alert(JSON.stringify(responseJson));
+                                                    console.log('--se actualizo el id equipo--')
+                                                        console.log(responseJson)
+
+                                                    
+                                                    })
+
+
+                                            
+                                        
+                                        
+                                        
+                                        })
+
                               
                         console.log(responseJson);
                         
@@ -173,9 +223,7 @@ export default class EquipoVacio extends Component {
                     
     
 
-/* <View style={{flexDirection:'row-reverse',flex:1}}>
-        <AntDesign onPress={()=>this.eliminarIntegrante(a.correoIntegrante)} name="deleteuser" size={35}/>
-        </View>*/
+/* */
 
   }
 
@@ -243,8 +291,10 @@ export default class EquipoVacio extends Component {
 
         <Card style={{borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',padding:'2%'}}>
         <View style={{flexDirection:'row'}}>
+
+        
         <View>
-        <Text style={{fontWeight:'bold',marginLeft:'1%',fontSize:15}}>{a.nombreIntegrante} {a.apellidoIntegrante}</Text>
+        <Text style={{fontWeight:'bold',marginLeft:'1%',fontSize:15}}>{a.nombre} {a.apellido}</Text>
         <Text style={{marginLeft:'1%',fontSize:13.5,fontStyle:'italic'}}>{a.correoIntegrante}</Text>
         </View>
        
@@ -270,7 +320,7 @@ export default class EquipoVacio extends Component {
 
                     
         <View>
-                    {idEquipoGlobal!=null ? (
+                    {idEquipoGlobal!=null && isAdminGlobal==true? (
                         <TouchableHighlight style={styles.botonLogin}
                             onPress={()=>this.validarInvitaciones()}>
                             <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> INVITAR MIEMBROS </Text>
@@ -280,19 +330,19 @@ export default class EquipoVacio extends Component {
 
 
 
-                     ) : 
-
-                      <TouchableHighlight style={styles.botonLogin}
+                     ) : idEquipoGlobal==null?(
+                           <TouchableHighlight style={styles.botonLogin}
                             onPress={()=>this.crearEquipo()}>
                             <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}>CREAR EQUIPO </Text>
                         </TouchableHighlight>  
-                     
-                     
-                     
-                     
-                     
-                     
-                     
+
+                     ):null
+                       
+
+                    
+
+                      
+
                      }
 </View>
 

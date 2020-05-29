@@ -99,15 +99,14 @@ export default class PdfCompartido extends Component {
 
     mostrarPdf(){
         FileSystem.getContentUriAsync(this.state.file).then(cUri => {
-      console.log(cUri);
+
       this.setState({cFile:cUri.uri})
 
-      console.log(this.state.cFile)
     });
     }
 
     mailComposer(mailto,item){
-        console.log('sendmail')
+        
         MailComposer.composeAsync({
             recipients: [mailto],
             subject: 'Informa Auditoría',
@@ -158,7 +157,7 @@ export default class PdfCompartido extends Component {
             <View style={{ flexDirection:'column',marginLeft:'2%'}}>
                 <View style={{flexDirection:'row'}}>
                     <Text style={{color: '#636363',fontSize:15}}>Equipo de:</Text>
-                    <Text style={{color: '#2ba855', marginLeft:'5%',fontSize:15}}>Adan</Text>
+                    <Text style={{color: '#2ba855', marginLeft:'5%',fontSize:15}}>{nameGlobal}</Text>
                 </View>
                 <View style={{flexDirection:'row'}}>
                     <Text style={{color: '#2ba855',fontSize:15}}>{this.state.equipo.length}/5 </Text>
@@ -191,11 +190,11 @@ export default class PdfCompartido extends Component {
         <Card style={{borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',padding:'2%'}}>
         <View style={{flexDirection:'row'}}>
         <View>
-        <Text style={{fontWeight:'bold',marginLeft:'1%',fontSize:15}}>{a.nombreIntegrante} {a.apellidoIntegrante}</Text>
+        <Text style={{fontWeight:'bold',marginLeft:'1%',fontSize:15}}>{a.nombre} {a.apellido}</Text>
         <Text style={{marginLeft:'1%',fontSize:13.5,fontStyle:'italic'}}>{a.correoIntegrante}</Text>
         </View>
         <View style={{flexDirection:'row-reverse',flex:1,alignItems:'center'}}>
-        <Feather onPress={()=>this.mailComposer('dfsaigua@gmail.com',n)} color={ this.state.selectedtem[n] === n ? '#1ED695' : 'black'} name={'send'} size={30}/>
+        <Feather onPress={()=>this.mailComposer(a.correoIntegrante,n)} color={ this.state.selectedtem[n] === n ? '#1ED695' : 'black'} name={'send'} size={30}/>
         </View>
         </View>
         </Card>

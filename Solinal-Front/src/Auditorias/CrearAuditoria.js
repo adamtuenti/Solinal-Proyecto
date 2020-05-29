@@ -105,6 +105,15 @@ export default class CrearAuditoria extends Component {
                 
                 </TouchableHighlight> 
 
+                <View style={{alignItems:'center'}}>
+
+                <TouchableHighlight style={styles.botonLogin} onPress={()=>this.props.navigation.navigate('AuditoriasRealizadas')}>   
+                    <Text style={{fontWeight: 'bold',color:'white',fontSize:15}}> MIS AUDITORIAS </Text>
+                </TouchableHighlight>  
+
+
+                </View>
+
           
 
 
@@ -160,3 +169,22 @@ export default class CrearAuditoria extends Component {
         );
     }  
 }
+
+
+const styles = StyleSheet.create({
+    
+
+    botonLogin:{
+        alignItems: 'center',
+        backgroundColor: '#1ed695',
+        padding: 10,
+        width:175,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: '#d6d7da',
+        marginTop:35,
+        
+   
+
+    }
+})

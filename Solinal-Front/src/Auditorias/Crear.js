@@ -90,7 +90,7 @@ export default class Crear extends Component {
             loading1: false,
           equipo: [],
           mensajeError:'',
-          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/mostrarEquipo/7',//+idEquipoGlobal,
+          urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/mostrarEquipo/'+idEquipoGlobal,
           vacio:[],
 
           user:[],
@@ -103,8 +103,9 @@ export default class Crear extends Component {
           lista1:[],
           lista2:[],
 
-          valoresMain:[],
-          valoresMenu:[],
+          valoresMain:[],  //[0,0,0]
+          
+          valoresMenu:[],  //[ [0,0]   , [0,0]       ,      ]
           valoresSubMenu:[],
           clickRespuestas:[],
           clickColorBoton:[],
@@ -112,12 +113,13 @@ export default class Crear extends Component {
           textButtonCamera:'Guardar',
           colorButtonCamera:'orange',
 
-          nombreNorma: 'nombre',//this.props.navigation.state.params.nombreNorma,
-          idNorma: 2,//this.props.navigation.state.params.idNorma,
+          nombreNorma:this.props.navigation.state.params.nombreNorma,
+          idNorma:this.props.navigation.state.params.idNorma,
+          idPais:this.props.navigation.state.params.idPais,
 
           
           
-          datosAuditoria:['','',[],'','','','','',0],
+          datosAuditoria:['','',[],'','','','',0],
           organizacion:'',
           direccion:'',
           alcance:'',
@@ -127,7 +129,7 @@ export default class Crear extends Component {
           contadorRespuestas:0,
           totalPreguntas:0,
           listPreguntas:[],
-          datosAuditoriaPost: [moment().format('YYYY-MM-DD'),1,1,'pais auditoria','nombre auditoria'],
+          datosAuditoriaPost: [moment().format('YYYY-MM-DD'),1,1,this.props.navigation.state.params.idPais,this.props.navigation.state.params.idNorma],//[moment().format('YYYY-MM-DD'),idUserGlobal,idEquipoGlobal,this.props.navigation.state.params.idPais,this.props.navigation.state.params.idNorma],
         
 
         equipo: [],
@@ -271,45 +273,100 @@ export default class Crear extends Component {
 
       
        //alert(this.state.lista)
+
+      
+
+       
       lista.forEach(function(elemento){
+        var cont = 0
         elemento.menu=[]
         elemento.submenu=[]
+        elemento.cantidad=[[],0,0] //contador promedio,num de items,total:contador/num *100
+        
         valoresMain.push(0)
+       
         const temporalMenu = []
         const temporalRespuestas = []
         const temporalBotonColor = []
         //item=[]
       //  console.log(elemento)
+
+      var contMain = 0
+        
         lista1.forEach(function(element1){
+          
+          
+           
           if(elemento.id_mainmenu==element1.key_mainmenu){
-            elemento.menu.push(element1.detalle_submenu)
-            temporalMenu.push(0)
+
+            elemento.cantidad[1]= elemento.cantidad[1]+1
+            elemento.cantidad[0].push(0)
+
+
+            
+            elemento.menu.push([element1.detalle_submenu,0]) //detalle menu, total % en las preguntas
+           
+            //temporalMenu.push([0,element1.detalle_submenu.length,0,0]) //aumentador, num de preguntas, respondidas, total
+           
             const temp = []
             const temporalSubRespuestas=[] 
             const temporalSubBotonColor=[] 
+
+             let cont1 = 0
+            
             lista2.forEach(function(element2){
+             
+            
+                
+             
               
              // this.state.totalPregunta=this.state.y+1
             // console.log(element1)
+            
               if(element1.id_submenu==element2.key_submenu){
+               // console.log(temporalMenu[1])
+               // console.log('..')
+                cont1 = cont1 + 1
+                
                 listPreguntas.push(0)
+               //  temporalMenu[cont1][1]=temporalMenu[cont1][1]+1
+               
+             
+                 
                 temp.push([element2.detalle_submenud,'','https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/sinevidencia.png?raw=true','No hay comentario'])
-                temporalSubRespuestas.push(true)
+                temporalSubRespuestas.push([true,true,true])  //primera vez que se aplasta, segunda vez que se aplasta, N/A
                 temporalSubBotonColor.push(['','','',''])
 
+                 
                 //temp1=[]
                 //foreach
                  //valido
                  //temp1.push elemento
                  //}
                  ////push.temp1
-              }    
+                  
+               
+              } 
+              
+             
+             
+              
+              
+             
+              
             })
+            
+       //   cont1 = cont1+1  
+              
             elemento.submenu.push(temp) 
             temporalRespuestas.push(temporalSubRespuestas)   
-            temporalBotonColor.push(temporalSubBotonColor)       
+            temporalBotonColor.push(temporalSubBotonColor)
+            temporalMenu.push([0,temp.length,0,0]) //aumentador, num de preguntas, respondidas, total       
           }
         })
+
+        cont = cont + 1
+       // elemento.cantidad=valoresMain
         
         valoresMenu.push(temporalMenu)
         clickRespuestas.push(temporalRespuestas)
@@ -317,6 +374,8 @@ export default class Crear extends Component {
         })
 
     this.setState({totalPreguntas:listPreguntas.length})
+    console.log('-')
+   console.log(lista)
 
 
         
@@ -380,61 +439,172 @@ export default class Crear extends Component {
     
     agregarElemento=(main,menu,submenu1,respuesta,boton)=>{
 
+      
+
 
       if(respuesta=='Si'){
-        let clickColorBoton= this.state.clickColorBoton
-        this.state.clickColorBoton[main][menu][submenu1][0]=boton
-        this.state.clickColorBoton[main][menu][submenu1][3]=1
+           if(this.state.clickRespuestas[main][menu][submenu1][1]){
+               let clickColorBoton= this.state.clickColorBoton
+                  this.state.clickColorBoton[main][menu][submenu1][0]=boton
+                  this.state.clickColorBoton[main][menu][submenu1][3]=1
+                  this.setState({clickColorBoton:clickColorBoton})
+            }
+            if(this.state.clickRespuestas[main][menu][submenu1][0]){
+                this.state.contadorRespuestas=this.state.contadorRespuestas+1
 
-        this.setState({clickColorBoton:clickColorBoton})
+                let valoresMenu = this.state.valoresMenu
+                    if(valoresMenu[main][menu][2]+1<=this.state.lista[main].submenu[menu].length){
+                      this.state.clickRespuestas[main][menu][submenu1][0]=false
+                      valoresMenu[main][menu][0]=valoresMenu[main][menu][0]+1
+                      valoresMenu[main][menu][2]=valoresMenu[main][menu][2]+1
+                      if(valoresMenu[main][menu][2]==this.state.lista[main].submenu[menu].length){
+                        let valoresMain = this.state.valoresMain;
+                        
+                        valoresMain[main]=valoresMain[main]+1
+                        this.setState({valoresMain:valoresMain})
+
+                        let lista = this.state.lista;
+                    
+                        lista[main].cantidad[0][menu]=valoresMenu[main][menu][0]/valoresMenu[main][menu][1]
+                        this.setState({lista:lista})
+
+                      }
+                    }
+
+          this.setState({valoresMenu:valoresMenu})
+
+          }
+
+                                                        else{
+                                                          //alert('hola')
+
+                                                            if(this.state.clickRespuestas[main][menu][submenu1][1]){
+
+                                                              let clickColorBoton= this.state.clickColorBoton
+                                                              this.state.clickColorBoton[main][menu][submenu1][0]=boton
+                                                              this.state.clickColorBoton[main][menu][submenu1][3]=1
+
+                                                              this.setState({clickColorBoton:clickColorBoton})
+
+                                                              let valoresMenu = this.state.valoresMenu
+
+                                                                if(this.state.lista[main].submenu[menu][submenu1][1]=='No'){
+                                                                this.state.lista[main].submenu[menu][submenu1][1]=respuesta
+                                                                  valoresMenu[main][menu][0]=valoresMenu[main][menu][0]+1
+                                                                  this.state.clickRespuestas[main][menu][submenu1][1]=false
+
+                                                                  let valoresMain = this.state.valoresMain;
+
+                                                                  if(valoresMain[main]==this.state.lista[main].cantidad[1]){
+
+                                                                    let lista = this.state.lista;
+                                                                    const arr = lista[main].cantidad[0]                                                
+                                                                    var arrSum = 0
+                                                                    arr.map((num,a)=>(arrSum=arrSum+num ))                
+                                                                    lista[main].cantidad[2]=Number((arrSum/lista[main].cantidad[1]*100).toFixed(1))
+                                                                    this.setState({lista:lista})
+                                                                    }
+
+                                                                  
+                                                                }
+                                                       
+                                                              else if(this.state.lista[main].submenu[menu][submenu1][1]=='N/A'){
+                                                                this.state.lista[main].submenu[menu][submenu1][1]=respuesta
+                                                                alert(this.state.clickRespuestas[main][menu][submenu1][2])
+
+                                                            
+
+                                                                if(!this.state.clickRespuestas[main][menu][submenu1][2]){
+                                                                
+                                                                    alert('aqui esta')
+                                                                      valoresMenu[main][menu][0]=valoresMenu[main][menu][0]+1
+                                                                        this.state.clickRespuestas[main][menu][submenu1][1]=false
+
+                                                                        let valoresMain = this.state.valoresMain;
+
+                                                                  if(valoresMain[main]==this.state.lista[main].cantidad[1]){
+
+                                                                    let lista = this.state.lista;
+                                                                    const arr = lista[main].cantidad[0]                                                
+                                                                    var arrSum = 0
+                                                                    arr.map((num,a)=>(arrSum=arrSum+num ))                
+                                                                    lista[main].cantidad[2]=Number((arrSum/lista[main].cantidad[1]*100).toFixed(1))
+                                                                    this.setState({lista:lista})
+                                                                    }
+                                                                
+                                                                    
+
+                                                                }
+
+                                                                else{
+                                                                  alert(this.state.clickRespuestas[main][menu][submenu1][2])
+                                                                  alert('hola aca')
+                                                                
+                                                                      valoresMenu[main][menu][0]=valoresMenu[main][menu][0]+1
+                                                                  valoresMenu[main][menu][1]=valoresMenu[main][menu][1]+1
+
+                                                                  let valoresMain = this.state.valoresMain;
+
+                                                                  if(valoresMain[main]==this.state.lista[main].cantidad[1]){
+
+                                                                    let lista = this.state.lista;
+                                                                    const arr = lista[main].cantidad[0]                                                
+                                                                    var arrSum = 0
+                                                                    arr.map((num,a)=>(arrSum=arrSum+num ))                
+                                                                    lista[main].cantidad[2]=Number((arrSum/lista[main].cantidad[1]*100).toFixed(1))
+                                                                    this.setState({lista:lista})
+                                                                    }
+                                                                
+
+                                                                }
+                                                          
+                                                        }
+                                                        this.setState({valoresMenu:valoresMenu})
+                                                         
+
+                                                            }
+                                                        }
+      
+
+            
+
+          }
 
 
 
-      }
+      
       else if(respuesta=='No'){
-        let clickColorBoton= this.state.clickColorBoton
-        this.state.clickColorBoton[main][menu][submenu1][0]=boton
-        this.state.clickColorBoton[main][menu][submenu1][3]=0
+        if(this.state.clickRespuestas[main][menu][submenu1][1]){
+               let clickColorBoton= this.state.clickColorBoton
+              this.state.clickColorBoton[main][menu][submenu1][0]=boton
+              this.state.clickColorBoton[main][menu][submenu1][3]=0
 
-        this.setState({clickColorBoton:clickColorBoton})
+              this.setState({clickColorBoton:clickColorBoton})
 
+        }
+   
 
-
-      }
-
-       else if(respuesta=='N/A'){
-        let clickColorBoton= this.state.clickColorBoton
-        this.state.clickColorBoton[main][menu][submenu1][0]=boton
-        this.state.clickColorBoton[main][menu][submenu1][3]='-'
-
-        this.setState({clickColorBoton:clickColorBoton})
-
-
-
-      }
-      
-    
-
-      
-      
-      this.state.lista[main].submenu[menu][submenu1][1]=respuesta
-      //console.log(this.state.lista[main].submenu[menu][submenu1][1])
-
-      // this.state.subarray[0][0]=this.state.subarray[0][0]+1
-      // console.log(this.state.subarray)
-      
-      if(this.state.clickRespuestas[main][menu][submenu1]){
+        if(this.state.clickRespuestas[main][menu][submenu1][0]){
         this.state.contadorRespuestas=this.state.contadorRespuestas+1
 
+
+        
+
         let valoresMenu = this.state.valoresMenu
-        if(valoresMenu[main][menu]+1<=this.state.lista[main].submenu[menu].length){
-          this.state.clickRespuestas[main][menu][submenu1]=false
-          valoresMenu[main][menu]=valoresMenu[main][menu]+1
-          if(valoresMenu[main][menu]==this.state.lista[main].submenu[menu].length){
+        if(valoresMenu[main][menu][2]+1<=this.state.lista[main].submenu[menu].length){
+          this.state.clickRespuestas[main][menu][submenu1][0]=false
+            valoresMenu[main][menu][2]=valoresMenu[main][menu][2]+1
+         
+          if(valoresMenu[main][menu][2]==this.state.lista[main].submenu[menu].length){
             let valoresMain = this.state.valoresMain;
             
             valoresMain[main]=valoresMain[main]+1
             this.setState({valoresMain:valoresMain})
+
+            let lista = this.state.lista;
+            
+            lista[main].cantidad[0][menu]=valoresMenu[main][menu][0]/valoresMenu[main][menu][1]
+            this.setState({lista:lista})
 
           }
         }
@@ -442,105 +612,313 @@ export default class Crear extends Component {
         this.setState({valoresMenu:valoresMenu})
 
       }
+
+                                        
+                                                        else{
+
+                                                           if(this.state.clickRespuestas[main][menu][submenu1][1]){
+
+                                                             let clickColorBoton= this.state.clickColorBoton
+                                                          this.state.clickColorBoton[main][menu][submenu1][0]=boton
+                                                          this.state.clickColorBoton[main][menu][submenu1][3]=0
+
+                                                          this.setState({clickColorBoton:clickColorBoton})
+          
+                                                        let valoresMenu = this.state.valoresMenu
+                      
+                                                        if(this.state.lista[main].submenu[menu][submenu1][1]=='Si'){
+                                                          this.state.lista[main].submenu[menu][submenu1][1]=respuesta
+                                                          valoresMenu[main][menu][0]=valoresMenu[main][menu][0]-1
+                                                           this.state.clickRespuestas[main][menu][submenu1][1]=false
+
+                                                           let valoresMain = this.state.valoresMain;
+
+                                                                  if(valoresMain[main]==this.state.lista[main].cantidad[1]){
+
+                                                                    let lista = this.state.lista;
+                                                                    const arr = lista[main].cantidad[0]                                                
+                                                                    var arrSum = 0
+                                                                    arr.map((num,a)=>(arrSum=arrSum+num ))                
+                                                                    lista[main].cantidad[2]=Number((arrSum/lista[main].cantidad[1]*100).toFixed(1))
+                                                                    this.setState({lista:lista})
+                                                                    }
+
+                                                        }
+                                                       
+                                                        else if(this.state.lista[main].submenu[menu][submenu1][1]=='N/A'){
+
+
+                                                           if(this.state.clickRespuestas[main][menu][submenu1][2]){
+                                                             this.state.lista[main].submenu[menu][submenu1][1]=respuesta
+                                                            valoresMenu[main][menu][1]=valoresMenu[main][menu][1]+1
+                      
+                                                            this.state.clickRespuestas[main][menu][submenu1][1]=false
+
+                                                            let valoresMain = this.state.valoresMain;
+
+                                                                  if(valoresMain[main]==this.state.lista[main].cantidad[1]){
+
+                                                                    let lista = this.state.lista;
+                                                                    const arr = lista[main].cantidad[0]                                                
+                                                                    var arrSum = 0
+                                                                    arr.map((num,a)=>(arrSum=arrSum+num ))                
+                                                                    lista[main].cantidad[2]=Number((arrSum/lista[main].cantidad[1]*100).toFixed(1))
+                                                                    this.setState({lista:lista})
+                                                                    }
+                       
+                                                          }else{
+                                                             this.state.lista[main].submenu[menu][submenu1][1]=respuesta
+                                                            //valoresMenu[main][menu][0]=valoresMenu[main][menu][0]-1
+                                                           
+                                                            this.state.clickRespuestas[main][menu][submenu1][1]=false
+
+                                                            let valoresMain = this.state.valoresMain;
+
+                                                                  if(valoresMain[main]==this.state.lista[main].cantidad[1]){
+
+                                                                    let lista = this.state.lista;
+                                                                    const arr = lista[main].cantidad[0]                                                
+                                                                    var arrSum = 0
+                                                                    arr.map((num,a)=>(arrSum=arrSum+num ))                
+                                                                    lista[main].cantidad[2]=Number((arrSum/lista[main].cantidad[1]*100).toFixed(1))
+                                                                    this.setState({lista:lista})
+                                                                    }
+
+                                                          }
+                                                         
+                                                           
+                                
+                                                          
+                                                        }
+                                                        this.setState({valoresMenu:valoresMenu})
+                                                       
+
+                                                           }
+                                                        }
       
-     // else{
-       // alert('ya aplastaste')
-      //}
-      
+
+
+
+
+      }
+
+       else if(respuesta=='N/A'){
+           if(this.state.clickRespuestas[main][menu][submenu1][1]){
+               let clickColorBoton= this.state.clickColorBoton
+              this.state.clickColorBoton[main][menu][submenu1][0]=boton
+              this.state.clickColorBoton[main][menu][submenu1][3]='-'
+
+              this.setState({clickColorBoton:clickColorBoton})
+
+        }
+
+
+          if(this.state.clickRespuestas[main][menu][submenu1][0]){
+        this.state.contadorRespuestas=this.state.contadorRespuestas+1
+
 
      
 
+
+       let valoresMenu = this.state.valoresMenu
+        if(valoresMenu[main][menu][2]+1<=this.state.lista[main].submenu[menu].length){
+          this.state.clickRespuestas[main][menu][submenu1][0]=false
+            valoresMenu[main][menu][2]=valoresMenu[main][menu][2]+1
+
+            if(valoresMenu[main][menu][2]==this.state.lista[main].submenu[menu].length){
+            let valoresMain = this.state.valoresMain;
+            
+            valoresMain[main]=valoresMain[main]+1
+
+            this.setState({valoresMain:valoresMain})
+
+            let lista = this.state.lista;
+            
+            lista[main].cantidad[0][menu]=valoresMenu[main][menu][0]/valoresMenu[main][menu][1]
+            this.setState({lista:lista})
+
+
+
+          }
+
+             if(valoresMenu[main][menu][1]-1>0){
+
+            valoresMenu[main][menu][1]=valoresMenu[main][menu][1]-1
+
+
+             }
+             else{
+               this.state.clickRespuestas[main][menu][submenu1][2]=false
+               
+             }
+
+         
+
+          
+         
+        }
+
+        this.setState({valoresMenu:valoresMenu})
+
+      }
+
+                                  else{
+                                                          
+                                                            if(this.state.clickRespuestas[main][menu][submenu1][1]){
+
+                                                              let clickColorBoton= this.state.clickColorBoton
+                                                          this.state.clickColorBoton[main][menu][submenu1][0]=boton
+                                                          this.state.clickColorBoton[main][menu][submenu1][3]='-'
+
+                                                          this.setState({clickColorBoton:clickColorBoton})
+                    
+
+                                                        let valoresMenu = this.state.valoresMenu
+                                         
+
+                                                        if(this.state.lista[main].submenu[menu][submenu1][1]=='Si'){
+                                                     
+                                                           this.state.lista[main].submenu[menu][submenu1][1]=respuesta
+                                                          
+
+
+                                                           if(valoresMenu[main][menu][1]-1>0){
+                                                             valoresMenu[main][menu][1]=valoresMenu[main][menu][1]-1
+                                                             valoresMenu[main][menu][0]=valoresMenu[main][menu][0]-1
+                                                           this.state.clickRespuestas[main][menu][submenu1][1]=false
+
+                                                           let valoresMain = this.state.valoresMain;
+
+                                                                  if(valoresMain[main]==this.state.lista[main].cantidad[1]){
+
+                                                                    let lista = this.state.lista;
+                                                                    const arr = lista[main].cantidad[0]                                                
+                                                                    var arrSum = 0
+                                                                    arr.map((num,a)=>(arrSum=arrSum+num ))                
+                                                                    lista[main].cantidad[2]=Number((arrSum/lista[main].cantidad[1]*100).toFixed(1))
+                                                                    this.setState({lista:lista})
+                                                                    }
+
+                                                           }
+                                                           else{
+                                                             valoresMenu[main][menu][0]=valoresMenu[main][menu][0]-1
+                                                             //valoresMenu[main][menu][1]=valoresMenu[main][menu][1]-1
+                                                           this.state.clickRespuestas[main][menu][submenu1][1]=false
+                                                           let valoresMain = this.state.valoresMain;
+
+                                                                  if(valoresMain[main]==this.state.lista[main].cantidad[1]){
+
+                                                                    let lista = this.state.lista;
+                                                                    const arr = lista[main].cantidad[0]                                                
+                                                                    var arrSum = 0
+                                                                    arr.map((num,a)=>(arrSum=arrSum+num ))                
+                                                                    lista[main].cantidad[2]=Number((arrSum/lista[main].cantidad[1]*100).toFixed(1))
+                                                                    this.setState({lista:lista})
+                                                                    }
+                                                           }
+
+                                                          
+                                         
+                                                          
+                                                        }
+                                                       
+                                                        else if(this.state.lista[main].submenu[menu][submenu1][1]=='No'){
+                                                           this.state.lista[main].submenu[menu][submenu1][1]=respuesta
+
+                                                           
+
+                                                           if(valoresMenu[main][menu][1]-1<1){
+                                                              this.state.clickRespuestas[main][menu][submenu1][1]=false
+
+                                                              let valoresMain = this.state.valoresMain;
+
+                                                                  if(valoresMain[main]==this.state.lista[main].cantidad[1]){
+
+                                                                    let lista = this.state.lista;
+                                                                    const arr = lista[main].cantidad[0]                                                
+                                                                    var arrSum = 0
+                                                                    arr.map((num,a)=>(arrSum=arrSum+num ))                
+                                                                    lista[main].cantidad[2]=Number((arrSum/lista[main].cantidad[1]*100).toFixed(1))
+                                                                    this.setState({lista:lista})
+                                                                    }
+
+                                                           }
+                                                           else{
+                                                              valoresMenu[main][menu][1]=valoresMenu[main][menu][1]-1
+                                                           this.state.clickRespuestas[main][menu][submenu1][1]=false
+
+                                                           let valoresMain = this.state.valoresMain;
+
+                                                                  if(valoresMain[main]==this.state.lista[main].cantidad[1]){
+
+                                                                    let lista = this.state.lista;
+                                                                    const arr = lista[main].cantidad[0]                                                
+                                                                    var arrSum = 0
+                                                                    arr.map((num,a)=>(arrSum=arrSum+num ))                
+                                                                    lista[main].cantidad[2]=Number((arrSum/lista[main].cantidad[1]*100).toFixed(1))
+                                                                    this.setState({lista:lista})
+                                                                    }
+
+                                                           }
+                                                         
+                                    
+                                                          
+                                                        }
+                                                        this.setState({valoresMenu:valoresMenu})
+                                                          
+
+                                                       }
+                                                        
+                                                        }
+
+     
+
+      }
+
+      if(this.state.clickRespuestas[main][menu][submenu1][1]){
+
+       this.state.lista[main].submenu[menu][submenu1][1]=respuesta
+
+      }
+
+      let valoresMain = this.state.valoresMain;
+
+       if(valoresMain[main]==this.state.lista[main].cantidad[1]){
+
+         let lista = this.state.lista;
+         console.log(lista)
+
+         const arr = lista[main].cantidad[0]
+         console.log(arr)
+
+         var arrSum = 0
+         arr.map((num,a)=>(
+           arrSum=arrSum+num
+         ))
+         console.log(arrSum)
+// arrSum([20, 10, 5, 10]) -> 45
+            
+            lista[main].cantidad[2]=Number((arrSum/lista[main].cantidad[1]*100).toFixed(1))
+            this.setState({lista:lista})
+
+
+
       
-       // console.log(this.state.lista)
+      }
+
+
+      
     
-      
-      //variable.respuesta = respuesta
+
 
     }
 
     
-  showDatePickerHI ()  {
-     
-    this.setState({
-            isVisibleHI:true
-        })
-  };
  
- hideDatePickerHI = () => {
-     // console.log("A date has been picked: ", moment(date).format('MMMM, Do YYYY HH:mm'));
-    this.setState({
-            isVisibleHI:false
-        })
-  };
  
-  handleConfirmHI = (date) => {
-    this.setState({horaInicio:moment(date).format('HH:mm')})
-    this.hideDatePickerHI();
-  };
-
-  showDatePickerHF ()  {
-    
-    this.setState({
-            isVisibleHF:true
-        })
-  };
  
- hideDatePickerHF = () => {
-     // console.log("A date has been picked: ", moment(date).format('MMMM, Do YYYY HH:mm'));
-    this.setState({
-            isVisibleHF:false
-        })
-  };
- 
-  handleConfirmHF = (date) => {
-    this.setState({horaFin:moment(date).format('HH:mm')})
-    this.hideDatePickerHF();
-  };
-
-
-  showDatePickerFI ()  {
-     
-    this.setState({
-            isVisibleFI:true
-        })
-  };
- 
- hideDatePickerFI = () => {
-     // console.log("A date has been picked: ", moment(date).format('MMMM, Do YYYY HH:mm'));
-    this.setState({
-            isVisibleFI:false
-        })
-  };
- 
-  handleConfirmFI = (date) => {
-    this.setState({fechaInicio:moment(date).format('DD-MM-YYYY')})
-    this.hideDatePickerFI();
-  };
-
-  showDatePickerFF ()  {
-     
-    this.setState({
-            isVisibleFF:true
-        })
-  };
- 
- hideDatePickerFF = () => {
-     // console.log("A date has been picked: ", moment(date).format('MMMM, Do YYYY HH:mm'));
-    this.setState({
-            isVisibleFF:false
-        })
-  };
- 
-  handleConfirmFF = (date) => {
-    this.setState({fechaFin:moment(date).format('DD-MM-YYYY')})
-    this.hideDatePickerFF();
-  };
-
-
-    
-
-
   
+ 
 
   
 
@@ -586,7 +964,7 @@ export default class Crear extends Component {
   finalizarAuditoria(){
      //this.props.navigation.navigate('AuditoriaFinalizada',{lista:this.state.lista,datosAuditoria:this.state.datosAuditoria})
 
-     console.log(this.state.clickColorBoton)
+    
 
      
 
@@ -597,12 +975,7 @@ export default class Crear extends Component {
       const clickColorBoton = this.state.clickColorBoton
       clickColorBoton.forEach(function(element){
         element.forEach(function(arr){
-          
-        
           arr.forEach(function(subarr){
-
-
-           
             if(subarr[3]!='-'){
                numPreguntas = numPreguntas + 1
                if(subarr[3]==1){
@@ -617,20 +990,37 @@ export default class Crear extends Component {
 
 
       })
+
+       console.log(this.state.clickColorBoton)
+
+      let lista = this.state.lista;
+
+        lista.map((elemento,a)=>{
+
+          elemento.menu.map((elemento1,n)=>{
+            
+            lista[a].menu[n][1]=Number((this.state.valoresMenu[a][n][0]/this.state.valoresMenu[a][n][1]*100).toFixed(1))
+          })
+         
+
+          
+        })
+        
+     
+        this.setState({lista:lista})
+
+        console.log(this.state.lista)
   
 
       var calificacionTotal = Number((valorCalculado/numPreguntas*100).toFixed(1))
     
-
         let datosAuditoria = this.state.datosAuditoria;
-
-           datosAuditoria[8]=calificacionTotal
-
-         
-
-
+        datosAuditoria[7]=calificacionTotal
      
-      this.setState({datosAuditoria:datosAuditoria})
+        this.setState({datosAuditoria:datosAuditoria})
+
+
+       
 
 
 
@@ -642,15 +1032,14 @@ export default class Crear extends Component {
 
     }
     else{
-      alert('firma primero')
+      alert('Debe firmar primero')
       //this.props.navigation.navigate('AuditoriaFinalizada',{lista:this.state.lista})
     }
 
     }
     else{
-      alert('responda todas las preguntas')
-      console.log('-')
-      console.log(this.state.totalPreguntas)
+      alert('Responda todas las preguntas')
+     
     }
    
     
@@ -671,11 +1060,11 @@ export default class Crear extends Component {
 
            datosAuditoria[1]='Adan Navarrete'
            //datosAuditoria[2]=auditado
-           datosAuditoria[3]='15/10/2020'
-           datosAuditoria[4]='15/10/2020'
-           datosAuditoria[5]=organizacion
-           datosAuditoria[6]=direccion
-           datosAuditoria[7]=alcance
+           datosAuditoria[3]=moment().format('YYYY-MM-DD')
+          
+           datosAuditoria[4]=organizacion
+           datosAuditoria[5]=direccion
+           datosAuditoria[6]=alcance
          
       
 
@@ -698,7 +1087,7 @@ export default class Crear extends Component {
     }
     else{
       
-      alert('ya esta')
+      alert('ya esta agregado!')
       
     }
   }
@@ -782,10 +1171,10 @@ export default class Crear extends Component {
       console.log(integrante),
       <View style={{backgroundColor:'#D0F5A9',flexDirection:'row',alignItems:'center',width:'100%',borderBottomColor: 'black',borderBottomWidth: 1}}>
       <View >
-      <Text onPress={()=>{console.log(this.state.datosAuditoria)}}style={{marginLeft:'10%'}}>{integrante.correoIntegrante} {integrante.apellidoIntegrante}</Text>
+      <Text onPress={()=>{console.log(this.state.datosAuditoria)}}style={{marginLeft:'10%'}}>{integrante.nombre} {integrante.apellido}</Text>
       </View>
       <View style={{flexDirection:'row-reverse',flex:1,marginLeft:'2.5%'}}>
-      <MaterialIcons name={'group-add'} size={25} onPress={()=>{this.agregarIntegrante(integrante.correoIntegrante)}}/>
+      <MaterialIcons name={'group-add'} size={25} onPress={()=>{this.agregarIntegrante(integrante.nombre+' '+integrante.apellido)}}/>
       </View>
       
       </View>
@@ -804,142 +1193,11 @@ export default class Crear extends Component {
                            
                     </View>
 
-                    <View style={{flexDirection:'column'}}>
-
-                    <View style = {{ backgroundColor: '#f6f6f6', borderBottomColor:2,width:'90%',alignItems:'center',marginLeft:'5%',marginTop:'1%'}}>
-                    <Text style={styles.input}>Fecha de la auditoria</Text>
-                    </View>
-
-
-                      <View style={styles.container}>
-                        
-
-                        
-
-
-                        <View style={{flexDirection:'column',width:'50%',marginBottom:10,marginTop:5}}>
-
-                        <View style={{alignContent:'center',alignItems:'center'}}>
-                        <Text>Fecha y hora de inicio</Text>
-                        </View>
-
-
-                        <View style={{flexDirection:'row',marginTop:11}}>
-
-
-                        <View style={{marginLeft:2,  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'55%'}}>
-
-                        
-                        <TouchableHighlight title="Show Date Picker" onPress={()=>this.showDatePickerFI()}><Text>{this.state.fechaInicio}</Text></TouchableHighlight>
-                        
-                        <DateTimePickerModal
-                          isVisible={this.state.isVisibleFI}
-                          mode="date"
-                          onConfirm={this.handleConfirmFI}
-                          onCancel={this.hideDatePickerFI}
-                          is24Hour={true}
-                        />
-   
-                           
-
-                        </View>
-
-                                                    
-                           
-                                <View style={{marginLeft:2,  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'38%'}}>
-                                <TouchableHighlight title="Show Date Picker" onPress={()=>this.showDatePickerHI()}><Text>{this.state.horaInicio}</Text></TouchableHighlight>
-                        
-                                <DateTimePickerModal
-                                  isVisible={this.state.isVisibleHI}
-                                  mode="time"
-                                  onConfirm={this.handleConfirmHI}
-                                  onCancel={this.hideDatePickerHI}
-                                  is24Hour={true}
-                                />
-
-                                </View>
-
-
-                            </View>
-                        </View>
-
-
-
-
-
-
-
-                    
-
-                    <View style={{flexDirection:'column',width:'50%',marginBottom:10,marginTop:5}}>
-
-                        <View style={{alignContent:'center',alignItems:'center'}}>
-                        <Text >Fecha y hora de cierre</Text>
-                        </View>
-
-
-                        <View style={{flexDirection:'row',marginTop:11,alignItems:'center'}}>
-
-                        <View style={{marginLeft:2,  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'55%'}}>
-
-                            <TouchableHighlight title="Show Date Picker" onPress={()=>this.showDatePickerFF()}><Text>{this.state.fechaFin}</Text></TouchableHighlight>
-                        
-                                <DateTimePickerModal
-                                  isVisible={this.state.isVisibleFF}
-                                  mode="date"
-                                  onConfirm={this.handleConfirmFF}
-                                  onCancel={this.hideDatePickerFF}
-                                  is24Hour={true}
-                                />
-
-                        </View>
-
-                                                    
-                            <View>
-                            
-                                
-
-                                </View>
-                                <View style={{marginLeft:2,  alignItems:'center',backgroundColor:'white',borderRadius: 5,padding:5, borderWidth: 1,borderColor: '#d6d7da',width:'38%'}}>
-                                <TouchableHighlight title="Show Date Picker" onPress={()=>this.showDatePickerHF()}><Text>{this.state.horaFin}</Text></TouchableHighlight>
-                        
-                                <DateTimePickerModal
-                                  isVisible={this.state.isVisibleHF}
-                                  mode="time"
-                                  onConfirm={this.handleConfirmHF}
-                                  onCancel={this.hideDatePickerHF}
-                                  is24Hour={true}
-                                />
-                                </View>
-
-                                
-                            </View>
-
-                           
-                            
-                        </View>
-
-
-
-                    </View>
-
-                    </View>
-
-
-
-                  
-
-
-        
 
 
                       
                         </View>
 
-                    
-
-
-                  
 
                      <View style={{marginTop:15,alignItems:'center'}}>
                      <TouchableHighlight style={styles.botonFirma} onPress={()=>this.inicarAuditoria()}>
@@ -969,13 +1227,26 @@ export default class Crear extends Component {
                           
                           <View style={{flexDirection:'column',alignItems:'flex-end',marginLeft:'7%'}}>
                                 <View>
-                                  <Text>{this.state.valoresMain[iterator]}/{this.state.valoresMenu[iterator].length}</Text>
+                                  <Text>{this.state.valoresMain[iterator]}/{elemento.menu.length}</Text>
                                 </View>
-                                <View>
-                                  <Text>{Number((this.state.valoresMain[iterator]/this.state.valoresMenu[iterator].length).toFixed(1))*100}%</Text>
 
-                              
+                                  {this.state.valoresMain[iterator]==elemento.menu.length ?(
+                                <View>
+                                  <Text>{elemento.cantidad[2]} %</Text>
                                 </View>
+
+                                ):null}
+
+                      
+
+                                
+                                <View>
+                                  
+                                
+                                </View>
+
+                                
+                              
                               </View>
 
 
@@ -996,20 +1267,21 @@ export default class Crear extends Component {
 
                             <View style={{width:'85%'}}>
 
-                             <Text style={styles.menuLetra}>{a} </Text>
+                             <Text style={styles.menuLetra}>{a[0]} </Text>
                             </View>
 
                             <View style={{flexDirection:'column',alignItems:'flex-end',marginLeft:'5%'}}>
                                 <View>
-                                  <Text>{this.state.valoresMenu[iterator][n]}/{elemento.submenu[n].length}</Text>
+                                  <Text>{this.state.valoresMenu[iterator][n][2]}/{elemento.submenu[n].length}</Text>
                                 </View>
+                                {this.state.valoresMenu[iterator][n][2]==elemento.submenu[n].length ?(
                                 <View>
-                                  <Text>{Number((this.state.valoresMenu[iterator][n]/elemento.submenu[n].length).toFixed(1))*100}%</Text>
+                                  <Text>{Number((this.state.valoresMenu[iterator][n][0]/this.state.valoresMenu[iterator][n][1]).toFixed(1))*100}%</Text>
                                 </View>
+
+                                ):null}
                               </View>
-
-
-                            
+                         
                              
                              </View>
 
@@ -1116,18 +1388,8 @@ export default class Crear extends Component {
                                                                         </View>
                                </View>
 
-                                   
-                              
-
-
-                          
-
-
-
                              ))
 
-
-                           
 
                              }
                                                                       
@@ -1135,12 +1397,6 @@ export default class Crear extends Component {
 
                                                     </CollapseBody>
                                                 </Collapse>
-                                               
-
-
-
-
-                   
 
                           ))
 
@@ -1164,29 +1420,6 @@ export default class Crear extends Component {
 </View>
                     
 
-
-
-                       
-
-                      
-                      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                     
-                 
 
 
               <View style={{alignItems:'center',marginTop:'5%'}}>

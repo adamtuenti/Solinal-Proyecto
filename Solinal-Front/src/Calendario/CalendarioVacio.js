@@ -40,6 +40,11 @@ export default class CalendarioVacio extends Component {
                     <AuditoriasProgramadas cantidad='0' tipoCuenta='GRATIS'/>
 
 
+                     <View>
+
+                    {idEquipoGlobal!=null ? (
+
+
                     <Card>
                         <CardItem>
                             <Body style={{alignItems: 'center'}}>
@@ -71,6 +76,25 @@ export default class CalendarioVacio extends Component {
                             </Body>
                         </CardItem>
                     </Card>
+
+
+                    ) : 
+
+                     <View style={{flex:1,alignItems:'center',justifyContent:'center',alignContent:'center'}}>
+
+                     <Text style={{marginTop:'70%',fontSize:25}}>No pertene a ningun equipo</Text>
+
+                     <Text 
+                            onPress={()=>this.props.navigation.navigate('EquipoVacio')}
+                            style={{color: 'black',marginTop:'10%',color:'#1ED695',fontWeight:'bold',fontStyle:'italic',fontSize:19}}>
+                            Crea a un equipo!</Text>
+
+
+                     </View>
+
+                     
+                     }
+                    </View>
                 </Content>
                 
 
