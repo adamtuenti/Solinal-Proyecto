@@ -28,6 +28,7 @@ export default class EquipoVacio extends Component {
           mensajeError:'',
           urlEquipo: 'http://accountsolinal.pythonanywhere.com/api/mostrarEquipo/'+idEquipoGlobal,
           forceUpdateHandler : this.forceUpdateHandler.bind(this),
+          selectedtem:[],
         
         }  
     }
@@ -56,7 +57,21 @@ export default class EquipoVacio extends Component {
             urlEquipo: res.next,
             loading: false,    
             })
+            this.llenarItem()
         })
+    }
+
+      llenarItem(){
+        const equipo = this.state.equipo;
+        const selectedtem = this.state.selectedtem;
+
+         equipo.forEach(function(elemento){
+             selectedtem.push('')
+
+            
+         })
+
+        
     }
 
     validarInvitaciones(){
@@ -80,33 +95,53 @@ export default class EquipoVacio extends Component {
         
     }
 
-    eliminarIntegrante(correoIntegrante){
+    eliminarIntegrante(idUser,item,idIntegrante){
+        console.log(this.state.selectedtem)
+
+        console.log(idUser)
+
+        var dataToSend = {idEquipo:0,idUsuario:idUser};
+        var formBody = [];
+        for (var key in dataToSend) {
+        var encodedKey = encodeURIComponent(key);
+        var encodedValue = encodeURIComponent(dataToSend[key]);
+        formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
+        fetch('http://accountsolinal.pythonanywhere.com/api/actualizarIntegrante', {
+        method: "POST",//Request Type 
+        body: formBody,//post body 
+        headers: {//Header Defination 
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+        // alert(JSON.stringify(responseJson));
+        console.log('--se actualizo el id equipo--')
+            console.log(responseJson)
+
+        
+        })
+        this.state.selectedtem[item]=item;
+
+      
         
 
-        var dataToSend = {correoIntegrante: correoIntegrante};
-                    var formBody = [];
-                    for (var key in dataToSend) {
-                    var encodedKey = encodeURIComponent(key);
-                    var encodedValue = encodeURIComponent(dataToSend[key]);
-                    formBody.push(encodedKey + "=" + encodedValue);
-                    }
-                    formBody = formBody.join("&");
-                    fetch('http://accountsolinal.pythonanywhere.com/api/eliminarIntegrante', {
-                    method: "POST",//Request Type 
-                    body: formBody,//post body 
-                    headers: {//Header Defination 
-                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                    },
+        
+                    fetch('http://accountsolinal.pythonanywhere.com/api/eliminarIntegrante/'+idIntegrante, {
+                    method: "delete",//Request Type 
                     })
                     .then((response) => response.json())
                     //If response is in json then in success
                     .then((responseJson) => {
                     // alert(JSON.stringify(responseJson));
-                        //console.log(responseJson);
+                        console.log(responseJson);
                         
                         console.log('eliminado')
-                        this.forceUpdateHandler()
-                    })
+                     })
+                        
+                   
                     
     }
  
@@ -167,20 +202,7 @@ export default class EquipoVacio extends Component {
                                         })
                                         .then((response) => response.json())
                                         .then((responseJson) => {
-                                           alert(JSON.stringify(responseJson));
-                                           console.log('--agregar admin--')
-                                           console.log(responseJson)
-
-                                           console.log('variables:')
-                                             
-                                            console.log(idEquipoGlobal)
-
-
-  console.log(emailGlobal)
-                                          
-                                            console.log(idUserGlobal)
-                                            console.log('--')
-                                            
+                                        
 
                                                                 
                                             var dataToSend = {idEquipo:idEquipoGlobal,idUsuario:idUserGlobal};
@@ -221,9 +243,6 @@ export default class EquipoVacio extends Component {
                         
                     })
                     
-    
-
-/* */
 
   }
 
@@ -287,7 +306,7 @@ export default class EquipoVacio extends Component {
     
       
 
-       {this.state.equipo.map(a=>
+       {this.state.equipo.map((a,n)=>(
 
         <Card style={{borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',padding:'2%'}}>
         <View style={{flexDirection:'row'}}>
@@ -297,10 +316,17 @@ export default class EquipoVacio extends Component {
         <Text style={{fontWeight:'bold',marginLeft:'1%',fontSize:15}}>{a.nombre} {a.apellido}</Text>
         <Text style={{marginLeft:'1%',fontSize:13.5,fontStyle:'italic'}}>{a.correoIntegrante}</Text>
         </View>
+
+        {isAdminGlobal ? (
+
+        <View style={{flexDirection:'row-reverse',flex:1,alignItems:'center'}}>
+        <AntDesign onPress={()=>this.eliminarIntegrante(a.idUsuario,n,a.idIntegrante)} color={ this.state.selectedtem[n] === n ? 'green' : 'black'} name={'deleteuser'} size={30}/>
+        </View>
+        ):null}
        
         </View>
         </Card>
-        )}
+        ))}
 
        
 

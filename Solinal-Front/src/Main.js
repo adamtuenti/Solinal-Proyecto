@@ -14,7 +14,7 @@ import MenuDrawer from 'react-native-side-drawer';
 
 const list = [
   {
-    name: 'Crear Equipo',
+    name: 'Mi Equipo',
     avatar_url: 'https://github.com/adamtuenti/Solinal-Proyecto/blob/master/Solinal-Front/png/equipo.png?raw=true',
     url: 'EquipoVacio',
     altura:30,
